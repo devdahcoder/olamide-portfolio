@@ -1,0 +1,60 @@
+@use "../../styles/mixins";
+
+.work--flow--container {
+
+    display: flex;
+    flex-direction: row;
+
+    .work--flow--sub--container {
+    
+        .work--flow--list--container {
+        
+            .work--flow--item--container {
+            
+                position: relative;
+
+                .work--flow--item--sub--container {
+                    
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    column-gap: 1rem;
+                    padding: 2rem 0;
+                    @include mixins.top-horizontal-rule;
+                
+                    .work--flow--digit {
+                
+                        height: 2rem;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        color: hsl(0, 0%, 55%);
+
+                    }
+
+                    .work--flow--item--text {
+                    
+                        font-size: 1.3rem;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        color: hsl(0, 3%, 73%);
+
+                    }
+
+                }
+
+                    &:last-child {
+                
+                        @include mixins.bottom-horizontal-rule;
+
+                    }
+
+            }
+        
+        }
+
+    }
+
+}

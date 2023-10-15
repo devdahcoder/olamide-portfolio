@@ -1,0 +1,29 @@
+@mixin top-horizontal-rule($color: hsl(0, 5%, 69%), $height: 0.01rem, $width: 100%) {
+
+    &::after {
+
+        content: "";
+        position: absolute;
+        top: 0;
+        height: $height;
+        width: $width;
+        background-color: $color;
+
+    }
+
+}
+
+@mixin bottom-horizontal-rule($color: hsl(0, 5%, 69%), $height: 0.01rem, $width: 100%) {
+
+    &::after {
+
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: $height;
+        width: $width;
+        background-color: $color;
+
+    }
+
+}
