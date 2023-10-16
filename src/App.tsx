@@ -1,13 +1,13 @@
-import WorkFlow from "./component/work-flow/work-flow"
+import Quote from "./component/sections/quote/quote";
+import WorkFlow from "./component/sections/work-flow/work-flow";
 
 function App() {
-
-  return (
-    <>
-      <WorkFlow />
-    </>
-  )
-
+	return (
+		<>
+			<Quote />
+			<WorkFlow />
+		</>
+	);
 }
 
-export default App
+export default App;

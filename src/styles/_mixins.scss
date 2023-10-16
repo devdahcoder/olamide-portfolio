@@ -1,4 +1,4 @@
-@mixin top-horizontal-rule($color: hsl(0, 5%, 69%), $height: 0.01rem, $width: 100%) {
+@mixin top-horizontal-rule($color: hsl(0, 2%, 36%), $height: 0.01rem, $width: 100%) {
 
     &::after {
 
@@ -13,7 +13,7 @@
 
 }
 
-@mixin bottom-horizontal-rule($color: hsl(0, 5%, 69%), $height: 0.01rem, $width: 100%) {
+@mixin bottom-horizontal-rule($color: hsl(0, 2%, 36%), $height: 0.01rem, $width: 100%) {
 
     &::after {
 
