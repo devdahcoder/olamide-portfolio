@@ -1,6 +1,6 @@
 .quote--container {
 
-    padding: 8rem 0;
+    padding: 7rem 0;
     // border: 1px solid white;
 
     .quote--sub--container {
@@ -13,6 +13,7 @@
     
         .quote--text {
         
+            font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
             position: relative;
             font-size: 1.9rem;
             display: flex;
@@ -28,6 +29,7 @@
             .quote--author {
             
                 font-size: 1rem;
+                font-weight: 500;
                 position: absolute;
                 right: 0;
                 bottom: 0.8rem;

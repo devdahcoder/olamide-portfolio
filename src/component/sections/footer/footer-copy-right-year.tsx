@@ -1,5 +1,7 @@
 import { Component } from "solid-js";
+import CopyRightIcon from "../../../../icon/copy-right-icon";
 import "./footer.scss";
+import UpArrowIcon from '../../../../icon/up-arrow-icon';
 
 const FooterCopyRightYear: Component<{}> = (props) => {
 	return (
@@ -7,15 +9,15 @@ const FooterCopyRightYear: Component<{}> = (props) => {
 			<div class="footer--copy--right--year--sub--container">
 				<button class="footer--back--to--top--button">
 					Back to top
-					<span class="">
-						<div class=""></div>
-					</span>
+					<UpArrowIcon width="15" height="15" />
 				</button>
 				<div class="footer--copy--right">
-					<span>
-						<div></div>
-					</span>{" "}
-					2023 -- Adigun Olamide
+					<CopyRightIcon
+						width="20"
+						height="20"
+						class="footer--copy--right--icon"
+					/>
+					2023 - All Rights Reserved
 				</div>
 			</div>
 		</div>
