@@ -6,3 +6,11 @@ export type WorkFlowTypes = {
     class?: string;
 
 }
+
+export type SocialMediaTypes = {
+
+    id: number;
+    text: string;
+    link: string;
+
+}

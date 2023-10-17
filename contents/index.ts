@@ -1,4 +1,4 @@
-import { WorkFlowTypes } from "../types";
+import { SocialMediaTypes, WorkFlowTypes } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -48,6 +48,39 @@ export const workFlowArrayContent: Array<WorkFlowTypes> = [
         figure: 0o6,
         text: "supporting and scaling my code",
         class: "",
+
+    }
+
+]
+
+export const socialMediaContent: Array<SocialMediaTypes> = [
+
+    {
+    
+        id: 1,
+        text: "Github",
+        link: "",
+
+    },
+    {
+    
+        id: 2,
+        text: "LinkedIn",
+        link: "https://www.linkedin.com/yourprofile",
+
+    },
+    {
+    
+        id: 3,
+        text: "Twitter",
+        link: "https://twitter.com/yourhandle",
+
+    },
+    {
+    
+        id: 5,
+        text: "Medium",
+        link: "https://medium.com/@yourusername",
 
     }
 
