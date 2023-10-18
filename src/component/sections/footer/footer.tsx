@@ -1,22 +1,19 @@
 import { Component } from "solid-js";
 import "./footer.scss";
-import FooterCredit from "./footer-credit";
-import FooterSocialMedia from "./footer-social-media";
-import FooterCopyRightYear from "./footer-copy-right-year";
 import FooterHero from "./footer-hero";
+import FooterHeader from "./footer-header";
+import FooterBottom from "./footer-bottom";
 
 const Footer: Component<{}> = (props) => {
 	return (
 		<div class="footer--container">
 			<div class="footer--sub--container">
+				<FooterHeader />
+
 				<FooterHero />
-				<div class="footer--media--container">
-					<FooterCredit />
 
-					<FooterSocialMedia />
-
-					<FooterCopyRightYear />
-				</div>
+				<FooterBottom />
+				
 			</div>
 		</div>
 	);

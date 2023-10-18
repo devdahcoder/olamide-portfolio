@@ -27,3 +27,25 @@
     }
 
 }
+
+@mixin double--stacked--text--sub-container($direction: column, $align: start, $gap: 0.1rem) {
+
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    row-gap: $gap;
+
+}
+
+@mixin flex--layout(
+  $direction: row,           
+  $align: center,            
+  $justify: space-between   
+) {
+
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  
+}

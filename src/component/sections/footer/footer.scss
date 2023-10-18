@@ -1,123 +1,38 @@
+@use "../../../styles/mixins";
+
+@mixin double--stacked--text($color: hsl(0, 0%, 100%), $direction: row, $align: start, $fontSize: 0.9rem) {
+    color: $color;
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    font-size: $fontSize;
+}
+
 .footer--container {
+
+    border: 1px solid white;
 
     .footer--sub--container {
 
-        .footer--hero--container {
-    
-            padding: 6rem 0;
+        @include mixins.flex--layout($direction: column, $align: normal, $justify: baseline);
 
-            .footer--hero--sub--container {
-            
-                width: 80%;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                row-gap: 2rem;
+        .footer--header--container {
 
-                .footer--hero--text {
-                    
-                    font-family: Tanker, -apple-system, Helvetica Neue, sans-serif;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 7rem;
-                    font-weight: 400;
-                    text-transform: uppercase;
-                    line-height: 7rem;
-                    color: white;
-                
-                }
-
-                .footer--hero--email--container {
-
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
-                    row-gap: 0.2rem;
-
-                    .footer--hero--email--text {
-                
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: center;
-                        color: white;
-                        font-size: 1.1rem;
-
-                    }
-
-                    .footer--hero--email {
-
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: center;
-                    
-                        a {
-                        
-                            width: 100%;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            justify-content: center;
-                            color: white;
-                            font-size: 1.3rem;
-                            text-decoration: none;
-
-                        }
-
-                    }
-                
-                }
-
-            }
-
-        }
-    
-        .footer--media--container {
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
             padding: 1rem 2rem;
         
-            .footer--credit--container {
-
-                display: flex;
-                flex-direction: column;
+            .footer--header--sub--container {
             
-                .footer--credit--sub--container {
+                @include mixins.flex--layout;
 
-                    display: flex;
-                    flex-direction: column;
-                    align-items: start;
-                    row-gap: 0.1rem;
+                .footer--year--container {
                 
-                    .footer--credit--design--text, .footer--credit--developer--text {
+                    .footer--year--sub--container {
                     
-                        color: white;
-                        display: flex;
-                        flex-direction: row;
-                        align-items: start;
-                        column-gap: 0.5rem;
-                        font-size: 0.9rem;
+                        @include mixins.double--stacked--text--sub-container;
 
-                        a {
+                        .footer--role--text, .footer--year--text {
                         
-                            width: 100%;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            justify-content: center;
-                            text-decoration: none;
-                            color: white;
+                            @include double--stacked--text;
 
                         }
 
@@ -125,92 +40,19 @@
 
                 }
 
-            }
+                .footer--location--container {
 
-            .footer--social--media--container {
-            
-                .footer--social--media--list {
-
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    column-gap: 1rem;
-                
-                    .footer--social--media--item {
-
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: center;
-                        text-align: center;
-                        border: 0.01rem solid white;
-                        border-radius: 100vh;
-                    
-                        a {
-                            font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                            width: 100%;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            justify-content: center;
-                            text-decoration: none;
-                            color: white;
-                            font-size: 0.8rem;
-                            text-transform: uppercase;
-                            padding: 0.3rem 1.4rem;
-                            font-weight: 300;
-                            letter-spacing: 0.07rem;
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-            .footer--copy--right--year--container {
-            
-                display: flex;
-                flex-direction: column;
-
-                .footer--copy--right--year--sub--container {
-                
                     display: flex;
                     flex-direction: column;
-                    align-items: end;
-                    row-gap: 0.2rem;
-
-                    .footer--back--to--top--button {
+                
+                    .footer--location--sub--container {
                     
-                        font-family: Passenger Sans, Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        column-gap: 0.2rem;
-                        background: none;
-                        outline: none;
-                        border: none;
-                        cursor: pointer;
-                        color: white;
-                        font-size: 0.9rem;
+                        @include mixins.double--stacked--text--sub-container($align: end);
 
-                    }
+                        .footer--availability--text, .footer--location--text {
 
-                    .footer--copy--right {
-                    
-                        color: white;
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        column-gap: 0.2rem;
-                        font-size: 0.9rem;
-
-                        .footer--copy--right--icon {
-                        
-                            vertical-align: middle;
-                            color: white;
-                            fill: white;
+                            @include double--stacked--text($align: end);
+                            justify-content: end;
 
                         }
 
@@ -221,6 +63,225 @@
             }
 
         }
+
+        // .footer--hero--container {
+    
+        //     padding: 6rem 0 10rem 0;
+        //     // border: 1px solid white;
+
+        //     .footer--hero--sub--container {
+            
+        //         width: 80%;
+        //         margin: 0 auto;
+        //         display: flex;
+        //         flex-direction: column;
+        //         align-items: center;
+        //         justify-content: center;
+        //         text-align: center;
+        //         row-gap: 2.5rem;
+
+        //         .footer--hero--text {
+                    
+        //             font-family: Tanker, -apple-system, Helvetica Neue, sans-serif;
+        //             display: flex;
+        //             flex-direction: row;
+        //             align-items: center;
+        //             justify-content: center;
+        //             font-size: 7rem;
+        //             font-weight: 400;
+        //             text-transform: uppercase;
+        //             line-height: 7rem;
+        //             color: white;
+                
+        //         }
+
+        //         .footer--hero--email--container {
+
+        //             display: flex;
+        //             flex-direction: column;
+        //             align-items: center;
+        //             justify-content: center;
+        //             text-align: center;
+        //             row-gap: 0.1rem;
+
+        //             .footer--hero--email--text {
+                
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: center;
+        //                 justify-content: center;
+        //                 color: white;
+        //                 font-size: 1.1rem;
+
+        //             }
+
+        //             .footer--hero--email {
+
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: center;
+        //                 justify-content: center;
+                    
+        //                 a {
+                        
+        //                     width: 100%;
+        //                     display: flex;
+        //                     flex-direction: row;
+        //                     align-items: center;
+        //                     justify-content: center;
+        //                     color: white;
+        //                     font-size: 1.3rem;
+        //                     text-decoration: none;
+
+        //                 }
+
+        //             }
+                
+        //         }
+
+        //     }
+
+        // }
+    
+        // .footer--media--container {
+
+        //     display: flex;
+        //     flex-direction: row;
+        //     align-items: center;
+        //     justify-content: space-between;
+        //     padding: 1rem 2rem;
+        //     // border: 1px solid white;
+        
+        //     .footer--credit--container {
+
+        //         display: flex;
+        //         flex-direction: column;
+            
+        //         .footer--credit--sub--container {
+
+        //             @include mixins.footer-sub-container-flex;
+                
+        //             .footer--credit--design--text, .footer--credit--developer--text {
+                    
+        //                 color: white;
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: start;
+        //                 column-gap: 0.5rem;
+        //                 font-size: 0.9rem;
+
+        //                 a {
+                        
+        //                     width: 100%;
+        //                     display: flex;
+        //                     flex-direction: row;
+        //                     align-items: center;
+        //                     justify-content: center;
+        //                     text-decoration: none;
+        //                     color: white;
+
+        //                 }
+
+        //             }
+
+        //         }
+
+        //     }
+
+        //     .footer--social--media--container {
+            
+        //         .footer--social--media--list {
+
+        //             display: flex;
+        //             flex-direction: row;
+        //             align-items: center;
+        //             column-gap: 0.7rem;
+                
+        //             .footer--social--media--item {
+
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: center;
+        //                 justify-content: center;
+        //                 text-align: center;
+        //                 border: 0.01rem solid white;
+        //                 border-radius: 100vh;
+                    
+        //                 a {
+        //                     font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+        //                     width: 100%;
+        //                     display: flex;
+        //                     flex-direction: row;
+        //                     align-items: center;
+        //                     justify-content: center;
+        //                     text-decoration: none;
+        //                     color: white;
+        //                     font-size: 0.8rem;
+        //                     text-transform: uppercase;
+        //                     padding: 0.3rem 1.4rem;
+        //                     font-weight: 300;
+        //                     letter-spacing: 0.07rem;
+
+        //                 }
+
+        //             }
+
+        //         }
+
+        //     }
+
+        //     .footer--copy--right--year--container {
+            
+        //         display: flex;
+        //         flex-direction: column;
+
+        //         .footer--copy--right--year--sub--container {
+                
+        //             display: flex;
+        //             flex-direction: column;
+        //             align-items: end;
+        //             row-gap: 0.2rem;
+
+        //             .footer--back--to--top--button {
+                    
+        //                 font-family: Passenger Sans, Satoshi, -apple-system, Helvetica Neue, sans-serif;
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: center;
+        //                 column-gap: 0.2rem;
+        //                 background: none;
+        //                 outline: none;
+        //                 border: none;
+        //                 cursor: pointer;
+        //                 color: white;
+        //                 font-size: 0.9rem;
+
+        //             }
+
+        //             .footer--copy--right {
+                    
+        //                 color: white;
+        //                 display: flex;
+        //                 flex-direction: row;
+        //                 align-items: center;
+        //                 column-gap: 0.2rem;
+        //                 font-size: 0.9rem;
+
+        //                 .footer--copy--right--icon {
+                        
+        //                     vertical-align: middle;
+        //                     color: white;
+        //                     fill: white;
+
+        //                 }
+
+        //             }
+
+        //         }
+
+        //     }
+
+        // }
 
     }
 
