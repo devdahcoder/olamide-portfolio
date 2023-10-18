@@ -1,13 +1,20 @@
-import { Component } from "solid-js";
-import FooterSocialMediaList from "./footer-social-media-list";
+import { Component, For } from "solid-js";
 import { socialMediaContent } from "../../../../contents";
 import "./footer.scss"
 
-const FooterSocialMedia: Component<{}> = (props) => {
+const FooterSocialMedia: Component<{}> = () => {
 
     return (
 		<div class="footer--social--media--container">
-			<FooterSocialMediaList footerSocialMediaArrayContent={socialMediaContent} />
+			<div class="footer--social--media--sub--container">
+				<For each={socialMediaContent}>
+					{(props) => (
+						<div class="footer--social--media--item">
+							<a href={props.link}>{props.text}</a>
+						</div>
+					)}
+				</For>
+			</div>
 		</div>
 	);
     

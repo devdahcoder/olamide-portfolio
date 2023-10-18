@@ -34,8 +34,8 @@ const FooterBottom: Component<{}> = () => {
 				<FooterSocialMedia />
 
 				<DoubleStackedText
-					containerClass="footer--copy--right--year--container"
-					subContainerClass="footer--copy--right--year--sub--container"
+					containerClass="footer--copy--right--container"
+					subContainerClass="footer--copy--right--sub--container"
 					firstStack={
 						<button class="footer--back--to--top--button">
 							Back to top

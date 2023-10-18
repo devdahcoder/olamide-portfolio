@@ -37,6 +37,46 @@
 
 }
 
+@mixin button(
+    $flex-direction: row,
+    $align-items: center,
+    $background: none,
+    $outline: none,
+    $border: none,
+    $cursor: pointer,
+    $color: white,
+    $font-size: 0.9rem
+) {
+
+    display: flex;
+    flex-direction: $flex-direction;
+    align-items: $align-items;
+    background: $background;
+    outline: $outline;
+    border: $border;
+    cursor: $cursor;
+    color: $color;
+    font-size: $font-size;
+
+}
+
+@mixin center--element($direction: row) {
+
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+@mixin center--section($width: 80%) {
+
+    width: $width;
+    margin: 0 auto;
+
+}
+
 @mixin flex--layout(
   $direction: row,           
   $align: center,            
