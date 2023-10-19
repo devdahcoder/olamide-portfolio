@@ -6,7 +6,7 @@ import FooterBottom from "./footer-bottom";
 import IconButton from "../../icon-button";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 
-const Footer: Component<{}> = (props) => {
+const Footer: Component<{}> = () => {
 	return (
 		<div class="footer--container">
 			<div class="footer--sub--container">

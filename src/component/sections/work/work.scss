@@ -1,0 +1,64 @@
+@use "../../../styles/mixins";
+
+.work--container {
+
+    border: 1px solid hsl(0, 0%, 100%);
+
+    .work--sub--container {
+    
+        @include mixins.center--section;
+
+        .work--list {
+        
+            @include mixins.flex--layout($direction: column, $align: stretch, $justify: baseline);
+            row-gap: 5rem;
+
+            .work--item--container {
+
+                @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
+
+                .work--item--details--container {
+                
+                    @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
+                    border: 1px solid white;
+
+                    .work--item--details {
+                    
+                        @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
+                        row-gap: 1rem;
+
+                    }
+
+                    .work--item--icon--container {
+                    
+                        
+
+                    }
+
+                }
+
+                .work--item--image--container {
+                
+                    @include mixins.flex--layout($direction: column, $align: start, $justify: start);
+                    row-gap: 1rem;
+
+                    .work--item--title {
+                
+                        font-family: Zodiak, -appl-system, Helvetica Neue, sans-serif;
+                        @include mixins.flex--layout($direction: row, $align: start, $justify: start);
+                        font-size: 1.4rem;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        color: white;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
