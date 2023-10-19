@@ -77,12 +77,12 @@
 
 }
 
-@mixin image {
+@mixin image($height: 100%, $width: 100%) {
 
     object-fit: cover;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: $width;
+    height: $height;
     user-select: none;
     top: 0;
     position: absolute;
@@ -91,12 +91,14 @@
 
 }
 
-@mixin image--sub--container() {
+@mixin image--sub--container($height, $width) {
 
-    padding-bottom: 100%;
+    // padding-bottom: 100%;
     display: block;
     overflow: hidden;
     position: relative;
+    height: $height;
+    width: $width;
 
 }
 

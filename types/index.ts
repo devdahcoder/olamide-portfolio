@@ -34,5 +34,6 @@ export type WorkType = {
     date: string;
     link: string;
     companyName: string;
+    className: string;
 
 }

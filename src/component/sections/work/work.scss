@@ -2,56 +2,176 @@
 
 .work--container {
 
-    border: 1px solid hsl(0, 0%, 100%);
+    padding: 8rem 0;
 
     .work--sub--container {
     
         @include mixins.center--section;
+        display: flex;
+        flex-direction: column;
+        row-gap: 3.5rem;
+
+        .work--header--container {
+        
+            @include mixins.center--element;
+            color: white;
+            font-size: 1.2rem;
+            
+
+        }
 
         .work--list {
         
             @include mixins.flex--layout($direction: column, $align: stretch, $justify: baseline);
-            row-gap: 5rem;
+            row-gap: 4rem;
 
             .work--item--container {
 
-                @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
+                .work--item--sub--container {
 
-                .work--item--details--container {
-                
-                    @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
-                    border: 1px solid white;
-
-                    .work--item--details {
+                    column-gap: 4.5rem;
+                    
+                    .work--item--details--container {
                     
                         @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
+                        height: 100%;
+                        row-gap: 4rem;
+                        margin-top: auto;
+
+                        .work--item--details {
+                        
+                            @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
+                            row-gap: 0.5rem;
+                            margin-bottom: 1.5rem;
+
+                            .work--item--company--name {
+                            
+                                color: white;
+                                font-size: 2rem;
+                                font-weight: 500;
+                                font-family: Satoshi -apple-system, Helvetica Neue, sans-serif;
+
+                            }
+
+                            .work--item--description {
+                            
+                                color: white;
+                                font-size: 1rem;
+                                font-weight: 400;
+                                letter-spacing: 0.10rem;
+
+                            }
+
+                            .work--item-date {
+                            
+                                color: white;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                letter-spacing: 0.10rem;
+
+                            }
+
+                        }
+
+                        .work--item--icon--text--container {
+                        
+                            @include mixins.flex--layout($direction: row, $align: center, $justify: baseline);
+                            column-gap: 2.5rem;
+                            color: white;
+                            font-size: 0.9rem;
+                            font-weight: 300;
+                            margin-top: auto;                        
+
+                            .work--item--icon--container {
+                        
+                                @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
+
+                                .work--item--icon--button {
+                                
+                                    @include mixins.button;
+                                    @include mixins.center--element;
+                                    border: 0.01rem solid white;
+                                    height: 4.5rem;
+                                    width: 4.5rem;
+                                    border-radius: 100vh;
+
+                                    .work--item--icon {
+                                    
+                                        transform: rotate(35deg);
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    .work--item--image--container {
+                    
+                        @include mixins.flex--layout($direction: column, $align: start, $justify: start);
                         row-gap: 1rem;
 
-                    }
-
-                    .work--item--icon--container {
+                        .work--item--title {
                     
+                            font-family: Zodiak, -appl-system, Helvetica Neue, sans-serif;
+                            @include mixins.flex--layout($direction: row, $align: start, $justify: start);
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            text-transform: uppercase;
+                            color: white;
+
+                        }
+
+                        .image--container {
                         
+                            @include mixins.image--container;
+                            // height: 100%;
+
+                            .image--sub--container {
+
+                                @include mixins.image--sub--container(27rem, 32rem);
+                                border: 1px solid white;
+                                height: 20rem;
+                                border-radius: 0.3rem;
+
+                            
+                                .image {
+                                
+                                    @include mixins.image($height: 27rem);
+
+                                }
+
+                            }
+
+                        }
 
                     }
+                }
+
+            }
+
+            .start {
+            
+                @include mixins.flex--layout($direction: row, $align: end, $justify: end);
+
+                .work--item--sub--container {
+                
+                    @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
 
                 }
 
-                .work--item--image--container {
-                
-                    @include mixins.flex--layout($direction: column, $align: start, $justify: start);
-                    row-gap: 1rem;
+            }
 
-                    .work--item--title {
-                
-                        font-family: Zodiak, -appl-system, Helvetica Neue, sans-serif;
-                        @include mixins.flex--layout($direction: row, $align: start, $justify: start);
-                        font-size: 1.4rem;
-                        font-weight: 400;
-                        text-transform: uppercase;
-                        color: white;
+            .end {
+            
+                @include mixins.flex--layout($direction: row, $align: start, $justify: start);
 
-                    }
+                .work--item--sub--container {
+                
+                    @include mixins.flex--layout($direction: row-reverse, $align: baseline, $justify: baseline);
 
                 }
 
