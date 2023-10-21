@@ -1,3 +1,65 @@
+@mixin center--element($direction: row) {
+
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@mixin center--section($width: 80%) {
+
+    width: $width;
+    margin: 0 auto;
+
+}
+
+@mixin flex--layout(
+  $direction: row,           
+  $align: center,            
+  $justify: space-between   
+) {
+
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  
+}
+
+@mixin image--container {
+
+    position: relative;
+    display: block;
+    width: 100%;
+
+}
+
+@mixin image--sub--container($height, $width) {
+
+    // padding-bottom: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: $width;
+
+}
+
+@mixin image($height: 100%, $width: 100%) {
+
+    object-fit: cover;
+    left: 0;
+    width: $width;
+    height: $height;
+    user-select: none;
+    top: 0;
+    position: absolute;
+    border: 0;
+    outline: 0;
+
+}
+
 @mixin top-horizontal-rule($color: hsl(0, 2%, 36%), $height: 0.01rem, $width: 100%) {
 
     &::after {
@@ -58,67 +120,4 @@
     color: $color;
     font-size: $font-size;
 
-}
-
-@mixin center--element($direction: row) {
-
-    display: flex;
-    flex-direction: $direction;
-    align-items: center;
-    justify-content: center;
-
-}
-
-
-@mixin center--section($width: 80%) {
-
-    width: $width;
-    margin: 0 auto;
-
-}
-
-@mixin image($height: 100%, $width: 100%) {
-
-    object-fit: cover;
-    left: 0;
-    width: $width;
-    height: $height;
-    user-select: none;
-    top: 0;
-    position: absolute;
-    border: 0;
-    outline: 0;
-
-}
-
-@mixin image--sub--container($height, $width) {
-
-    // padding-bottom: 100%;
-    display: block;
-    overflow: hidden;
-    position: relative;
-    height: $height;
-    width: $width;
-
-}
-
-@mixin image--container {
-
-    position: relative;
-    display: block;
-    width: 100%;
-
-}
-
-@mixin flex--layout(
-  $direction: row,           
-  $align: center,            
-  $justify: space-between   
-) {
-
-  display: flex;
-  flex-direction: $direction;
-  align-items: $align;
-  justify-content: $justify;
-  
 }
