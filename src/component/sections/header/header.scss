@@ -3,10 +3,28 @@
 
 .header--container {
 
+    margin-bottom: 4rem;
+
     .header--sub--container {
     
-        border: 1px solid white;
+        @include mixins.center--section;
+        @include mixins.flex--layout($align: baseline);
+        padding: 1rem 0;
+
+        .header--logo--container {
+
+            @include mixins.center--element;
         
+            .header--logo {
+            
+                font-weight: 700;
+                font-size: 2rem;
+                color: white;
+                letter-spacing: 0.2rem;
+
+            }
+
+        }
 
     }
 
