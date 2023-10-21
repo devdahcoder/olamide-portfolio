@@ -1,8 +1,8 @@
 import { Component } from "solid-js";
+import UpArrowIcon from "../../../../icon/up-arrow-icon";
+import IconButton from "../../icon-button";
+import Link from "../../link";
 import "./hero.scss";
-import Link from "../link";
-import IconButton from "../icon-button";
-import UpArrowIcon from "../../../icon/up-arrow-icon";
 
 const Hero: Component<{}> = () => {
 	return (

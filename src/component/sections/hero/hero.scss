@@ -1,12 +1,15 @@
-@use "../../styles/mixins";
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
 
 .hero--container {
+    
+    min-height: 100vh;
 
     .hero--sub--container {
 
         @include mixins.center--section;
         @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
-        row-gap: 4.5rem;
+        row-gap: 5rem;
     
         .hero--text--container {
         
@@ -25,17 +28,8 @@
                 font-size: 8.2vw;
                 line-height: 9rem;
                 font-weight: 700;
-                color: hsl(0, 0%, 100%);
+                color: variables.$primary--text--color;
                 overflow: hidden;
-            
-                .hero--main--text {
-                    // color: white;
-                    // overflow: hidden;
-                    // display: flex;
-                    // flex-direction: row;
-                    // align-items: center;
-
-                }
 
             }
 
@@ -48,7 +42,7 @@
                 .hero--sub--text {
                 
                     width: 45%;
-                    color: white;
+                    color: variables.$primary--text--color;
 
                 }
 
@@ -60,16 +54,17 @@
     
             @include mixins.center--element;
             width: 100%;
+            margin-top: 3rem;
 
             .hero--link {
             
                 @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
                 @include mixins.center--element;
                 text-decoration: none;
-                border: 0.01rem solid white;
+                border: 0.01rem solid variables.$primary--text--color;
                 border-radius: 100vh;
                 padding: 0.8rem 1.5rem;
-                color: white;
+                color: variables.$primary--text--color;
 
                 .hero--link--inner--container {
                 
@@ -93,20 +88,17 @@
     
             @include mixins.center--element;
             width: 100%;
+            margin-top: 3.5rem;
 
             .hero--scroll--more--sub--container {
 
                 @include mixins.flex--layout($direction: row-reverse, $align: baseline, $justify: baseline);
-                // @include mixins.button;
                 writing-mode: vertical-lr; 
                 transform: rotate(180deg);
                 letter-spacing: 0.4rem;
-                color: white;
+                color: variables.$primary--text--color;
                 column-gap: 1.5rem;
-
-                // width: 0.4rem;
-                // word-wrap: break-word;
-                // white-space: pre-wrap;
+                font-size: 0.8rem;
             
             }
 
