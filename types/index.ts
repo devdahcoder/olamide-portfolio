@@ -37,3 +37,17 @@ export type WorkType = {
     className: string;
 
 }
+
+export type HeaderLinkType = {
+
+    
+
+}
+
+export type QuoteApiType = {
+
+    author: string;
+    category: string;
+    quote: string;
+
+}

@@ -170,3 +170,5 @@ export const workContent: Array<WorkType> = [
     // },
 
 ]
+
+export const headerLinksContent = []

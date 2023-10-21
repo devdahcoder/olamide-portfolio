@@ -8,12 +8,12 @@ import Work from "./component/sections/work/work";
 function App() {
 	return (
 		<>
-			<Header />
-			<Hero />
+			{/* <Header />
+			<Hero /> */}
 			<Quote />
-			<WorkFlow />
+			{/* <WorkFlow />
 			<Work />
-			<Footer />
+			<Footer /> */}
 		</>
 	);
 }
