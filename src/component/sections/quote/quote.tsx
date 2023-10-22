@@ -1,6 +1,7 @@
 import { Component, createEffect, createSignal } from "solid-js";
 import "./quote.scss";
 import { QuoteApiType } from "../../../../types";
+import { quoteContent } from "../../../../contents";
 
 const headers = {
 	method: "GET",
@@ -12,29 +13,26 @@ const headers = {
 
 const Quote: Component<{}> = () => {
 
-	const [quote, setQuote] = createSignal<QuoteApiType>({
-		author: "Cory House",
-		category: "programming",
-		quote: "Code is like humor. When you have to explain it, it's bad.",
-	});
+	const [quote, setQuote] = createSignal<QuoteApiType>();
 
-	createEffect(async () => {
-		try {
-			const response = await fetch(
-				"https://api.api-ninjas.com/v1/quotes?category=happiness",
-				headers
-			);
+	// createEffect(async () => {
+	// 	try {
+	// 		const response = await fetch(
+	// 			"https://api.api-ninjas.com/v1/quotes?category=happiness",
+	// 			headers
+	// 		);
 
-			if (response.ok) {
-				const data = await response.json();
-				setQuote(data[0]);
-			} else {
-				console.error("Error:", response.status);
-			}
-		} catch (error) {
-			console.error("Error:", error);
-		}
-	});
+	// 		if (response.ok) {
+	// 			const data = await response.json();
+	// 			setQuote(data[0]);
+	// 		} else {
+	// 			console.error("Error:", response.status);
+	// 		}
+	// 	} catch (error) {
+	// 		console.error("Error:", error);
+	// 		setQuote(quoteContent);
+	// 	}
+	// });
 
 	return (
 		<div class="quote--container">

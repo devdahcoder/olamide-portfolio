@@ -1,4 +1,4 @@
-import { SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { QuoteApiType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -171,4 +171,10 @@ export const workContent: Array<WorkType> = [
 
 ]
 
-export const headerLinksContent = []
+export const headerLinksContent = [];
+
+export const quoteContent: QuoteApiType = {
+    author: "Cory House",
+    category: "programming",
+    quote: "Code is like humor. When you have to explain it, it's bad.",
+}

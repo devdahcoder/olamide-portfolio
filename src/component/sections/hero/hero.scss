@@ -14,7 +14,7 @@
         .hero--text--container {
         
             @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
-            row-gap: 4rem;
+            row-gap: 4.5rem;
 
             .hero--main--text--container {
 
@@ -43,6 +43,7 @@
                 
                     width: 45%;
                     color: variables.$primary--text--color;
+                    letter-spacing: 0.06rem;
 
                 }
 
@@ -54,7 +55,7 @@
     
             @include mixins.center--element;
             width: 100%;
-            margin-top: 3rem;
+            margin-top: 1.5rem;
 
             .hero--link {
             
@@ -88,7 +89,7 @@
     
             @include mixins.center--element;
             width: 100%;
-            margin-top: 3.5rem;
+            margin-top: 2rem;
 
             .hero--scroll--more--sub--container {
 
@@ -99,6 +100,7 @@
                 color: variables.$primary--text--color;
                 column-gap: 1.5rem;
                 font-size: 0.8rem;
+                cursor: pointer;
             
             }
 

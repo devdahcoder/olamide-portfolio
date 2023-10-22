@@ -1,30 +1,26 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
 .quote--container {
 
-    padding: 7rem 0;
+    padding: 9rem 0;
 
     .quote--sub--container {
 
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        row-gap: 1.5rem;
+        @include mixins.center--section;
+        @include mixins.flex--layout($direction: column, $align: center, $justify: center);
+        row-gap: 1.2rem;
     
         .quote--text {
         
+            @include mixins.flex--layout($align: center, $justify: center);
             font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
             position: relative;
             font-size: 1.9rem;
-            display: flex;
             flex-wrap: wrap;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
             text-align: center;
             padding: 0 1rem;
-            max-width: 70%;
+            max-width: 60%;
             color: hsl(0, 3%, 73%);
 
         }
