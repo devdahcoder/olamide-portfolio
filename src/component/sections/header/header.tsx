@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, Setter, createEffect, onMount } from "solid-js";
-import UpArrowIcon from "../../../../icon/up-arrow-icon";
+import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
 import Link from "../../link";
 import "./header.scss";
@@ -10,14 +10,6 @@ const animateHeaderSection = () => {
 		".header--sub--container",
 		{ yPercent: -200, opacity: 0 },
 		{ yPercent: 0, duration: 1, opacity: 1 }
-	);
-};
-
-const animateHeaderResumeLinkBorder = () => {
-	gsap.fromTo(
-		".header--resume--link--border",
-		{ width: "0", backgroundColor: "white" },
-		{ width: "100%", backgroundColor: "white" }
 	);
 };
 
@@ -86,11 +78,10 @@ const Header: Component<{
 				<div class="header--util--container">
 					<div class="header--util--sub--container">
 						<Link
-							onMouseEnter={() => animateHeaderResumeLinkBorder()}
 							children={
 								<div class="header--resume--link--inner--container">
 									My Resume
-									<UpArrowIcon
+									<FileIcon
 										width="20"
 										height="20"
 										class="header--resume--link--icon"
