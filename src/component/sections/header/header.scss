@@ -48,6 +48,7 @@
                         border-radius: 100vh;
                         padding: 0.6rem 1rem;
                         color: variables.$primary--text--color;
+                        position: relative;
                     
                         .header--resume--link--inner--container {
                         
@@ -77,6 +78,7 @@
                         padding: 0.3rem;
                         height: fit-content;
                         width: fit-content;
+                        position: relative;
 
                         .header--dropdown--icon--container {
                         
@@ -86,8 +88,9 @@
                             .dropdown--icon {
                             
                                 width: 100%;
-                                border: 1px solid white;
+                                background-color: 1px solid white;
                                 height: 0.01rem;
+                                position: absolute;
 
                             }
 

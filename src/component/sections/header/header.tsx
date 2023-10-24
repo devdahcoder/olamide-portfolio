@@ -13,6 +13,16 @@ const animateHeaderSection = () => {
 	);
 };
 
+const animateHeaderResumeLinkBorder = () => {
+	console.log("helo");
+	
+	gsap.fromTo(
+		".header--resume--link--border",
+		{ width: "0", backgroundColor: "white" },
+		{ width: "100%", backgroundColor: "white" }
+	);
+};
+
 const Header: Component<{}> = () => {
 	onMount(() => {
 		animateHeaderSection();
@@ -28,8 +38,11 @@ const Header: Component<{}> = () => {
 				</div>
 
 				<div class="header--util--container">
-					<div class="header--util--sub--container">
+					<div
+						class="header--util--sub--container"
+					>
 						<Link
+							onMouseEnter={() => animateHeaderResumeLinkBorder()}
 							children={
 								<div class="header--resume--link--inner--container">
 									My Resume
