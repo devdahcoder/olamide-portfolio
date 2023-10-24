@@ -9,7 +9,7 @@
 
         @include mixins.center--section;
         @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
-        row-gap: 5rem;
+        row-gap: 4.5rem;
     
         .hero--text--container {
         
