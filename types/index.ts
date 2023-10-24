@@ -1,3 +1,6 @@
+import { JSXElement } from 'solid-js';
+import { NAVIGATION_TYPE } from './../enum/index';
+
 export type WorkFlowTypes = {
 
     id: number;
@@ -38,16 +41,25 @@ export type WorkType = {
 
 }
 
-export type HeaderLinkType = {
-
-    
-
-}
-
 export type QuoteApiType = {
 
     author: string;
     category: string;
     quote: string;
 
+}
+
+export type StyleType = {
+    style?: string | { [name: string]: any }
+}
+
+export type HeaderLinkType = {
+    id: string | number;
+    href?: string;
+    text?: string;
+    class?: string;
+    style?: StyleType;
+    icon?: JSXElement;
+    containerClassName?: string;
+    type: NAVIGATION_TYPE;
 }

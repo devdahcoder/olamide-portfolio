@@ -3,7 +3,8 @@
 
 .header--container {
 
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
+    overflow-y: hidden;
 
     .header--sub--container {
     
@@ -21,6 +22,127 @@
                 font-size: 2rem;
                 color: white;
                 letter-spacing: 0.2rem;
+                cursor: pointer;
+
+            }
+
+        }
+
+        .header--util--container {
+
+            .header--util--sub--container {
+
+                @include mixins.flex--layout($direction: row, $align: center, $justify: space-between);
+                column-gap: 5rem;
+
+                .header--resume--link--container {
+                
+                    width: 100%;
+
+                    .header--resume--link {
+
+                        @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
+                        @include mixins.center--element;
+                        text-decoration: none;
+                        border: 0.01rem solid variables.$primary--text--color;
+                        border-radius: 100vh;
+                        padding: 0.6rem 1rem;
+                        color: variables.$primary--text--color;
+                    
+                        .header--resume--link--inner--container {
+                        
+                            @include mixins.flex--layout($direction: row, $align: center, $justify: baseline);
+                            column-gap: 0.8rem;
+
+                            .header--resume--link--icon {
+                            
+                                @include mixins.center--element;
+                                transform: rotate(90deg);
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .header--dropdown--button--container {
+                
+                    .header--dropdown--button {
+                    
+                        @include mixins.button;
+                        border: 0.01rem solid variables.$primary--text--color;
+                        border-radius: 100vh;
+                        padding: 0.3rem;
+                        height: fit-content;
+                        width: fit-content;
+
+                        .header--dropdown--icon--container {
+                        
+                            @include mixins.flex--layout($direction: column, $align: center, $justify: baseline);
+                            column-gap: 1rem;
+
+                            .dropdown--icon {
+                            
+                                width: 100%;
+                                border: 1px solid white;
+                                height: 0.01rem;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // @include mixins.center--element;
+                // width: 100%;
+                // margin-top: 1.5rem;
+
+                // .hero--link {
+                
+                //     @include mixins.flex--layout($direction: row, $align: baseline, $justify: baseline);
+                //     @include mixins.center--element;
+                //     text-decoration: none;
+                //     border: 0.01rem solid variables.$primary--text--color;
+                //     border-radius: 100vh;
+                //     padding: 0.8rem 1.5rem;
+                //     color: variables.$primary--text--color;
+
+                //     .hero--link--inner--container {
+                    
+                        // @include mixins.flex--layout($direction: row, $align: center, $justify: baseline);
+                        // column-gap: 1rem;
+
+                //         .hero--link--icon {
+
+                //             @include mixins.center--element;
+                //             transform: rotate(90deg);
+
+                //         }
+
+                //     }
+
+                // }
 
             }
 

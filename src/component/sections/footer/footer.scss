@@ -1,4 +1,5 @@
 @use "../../../styles/mixins";
+@use "../../../styles/variables";
 
 @mixin double--stacked--text($color: hsl(0, 0%, 100%), $direction: row, $align: start, $fontSize: 0.9rem) {
     color: $color;
@@ -83,7 +84,7 @@
                     font-weight: 400;
                     text-transform: uppercase;
                     line-height: 7rem;
-                    color: white;
+                    color: variables.$primary--text--color;
                 
                 }
 
@@ -96,7 +97,7 @@
                     .footer--hero--email--text {
                 
                         @include mixins.flex--layout($direction: row, $align: center, $justify: center);
-                        color: white;
+                        color: variables.$primary--text--color;
                         font-size: 1rem;
 
                     }
@@ -109,7 +110,7 @@
                         
                             width: 100%;
                             @include mixins.flex--layout($direction: row, $align: center, $justify: center);
-                            color: white;
+                            color: variables.$primary--text--color;
                             font-size: 1.3rem;
                             text-decoration: none;
 
@@ -167,7 +168,7 @@
                                 width: 100%;
                                 @include mixins.flex--layout($direction: row, $align: center, $justify: center);
                                 text-decoration: none;
-                                color: white;
+                                color: variables.$primary--text--color;
 
                             }
 
@@ -198,7 +199,7 @@
                                 width: 100%;
                                 @include mixins.flex--layout($direction: row, $align: center, $justify: center);
                                 text-decoration: none;
-                                color: white;
+                                color: variables.$primary--text--color;
                                 font-size: 0.8rem;
                                 text-transform: uppercase;
                                 padding: 0.3rem 1.4rem;
@@ -238,7 +239,7 @@
                             .footer--copy--right--icon {
                             
                                 vertical-align: middle;
-                                color: white;
+                                color: variables.$primary--text--color;
                                 fill: white;
 
                             }
