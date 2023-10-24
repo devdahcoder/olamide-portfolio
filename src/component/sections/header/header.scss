@@ -33,7 +33,7 @@
             .header--util--sub--container {
 
                 @include mixins.flex--layout($direction: row, $align: center, $justify: space-between);
-                column-gap: 5rem;
+                column-gap: 3rem;
 
                 .header--resume--link--container {
                 
@@ -75,23 +75,35 @@
                         @include mixins.button;
                         border: 0.01rem solid variables.$primary--text--color;
                         border-radius: 100vh;
-                        padding: 0.3rem;
-                        height: fit-content;
-                        width: fit-content;
+                        height: 2.8rem;
+                        width: 2.8rem;
                         position: relative;
 
-                        .header--dropdown--icon--container {
-                        
-                            @include mixins.flex--layout($direction: column, $align: center, $justify: baseline);
-                            column-gap: 1rem;
-
-                            .dropdown--icon {
+                        .dropdown--icon {
                             
-                                width: 100%;
-                                background-color: 1px solid white;
-                                height: 0.01rem;
-                                position: absolute;
+                            width: 1.5rem;
+                            background-color: white;
+                            height: 0.01rem;
+                            position: absolute;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
 
+                            &:first-child {
+                        
+                                top: 30%;
+
+                            }
+
+                            &:nth-child(2) {
+                            
+                                top: 50%;
+
+                            }
+
+                            &:last-child {
+
+                                bottom: 30%;
+                            
                             }
 
                         }

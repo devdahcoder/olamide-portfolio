@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { Component, onMount } from "solid-js";
+import { Accessor, Component, Setter, createEffect, onMount } from "solid-js";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import Button from "../../button";
 import Link from "../../link";
@@ -14,8 +14,6 @@ const animateHeaderSection = () => {
 };
 
 const animateHeaderResumeLinkBorder = () => {
-	console.log("helo");
-	
 	gsap.fromTo(
 		".header--resume--link--border",
 		{ width: "0", backgroundColor: "white" },
@@ -23,9 +21,57 @@ const animateHeaderResumeLinkBorder = () => {
 	);
 };
 
-const Header: Component<{}> = () => {
+const animateHeaderFirstHamburgerIcon = (condition: boolean) => {
+	gsap.fromTo(
+		".first--dropdown--icon",
+		{
+			rotate: condition ? "0deg" : "47deg",
+			top: condition ? "30%" : "50%",
+		},
+		{
+			rotate: condition ? "47deg" : "0deg",
+			top: condition ? "50%" : "30%",
+			ease: "back.inOut(1.7)",
+		}
+	);
+};
+
+const animateHeaderSecondHamburgerIcon = (condition: boolean) => {
+	gsap.fromTo(
+		".second--dropdown--icon",
+		{ width: condition ? "1.5rem" : "0rem" },
+		{ width: condition ? "0rem" : "1.5rem", ease: "back.inOut(1.7)" }
+	);
+};
+
+const animateHeaderLastHamburgerIcon = (condition: boolean) => {
+	gsap.fromTo(
+		".last--dropdown--icon",
+		{
+			rotate: condition ? "0deg" : "-47deg",
+			bottom: condition ? "30%" : "50%",
+		},
+		{
+			rotate: condition ? "-47deg" : "0deg",
+			bottom: condition ? "50%" : "30%",
+			ease: "back.inOut(1.7)",
+		}
+	);
+};
+
+const Header: Component<{
+	isNavigationOpen: Accessor<boolean>;
+	setIsNavigationOpen: Setter<boolean>;
+}> = (props) => {
 	onMount(() => {
 		animateHeaderSection();
+	});
+
+	createEffect(() => {
+		props.isNavigationOpen();
+		animateHeaderFirstHamburgerIcon(props.isNavigationOpen());
+		animateHeaderSecondHamburgerIcon(props.isNavigationOpen());
+		animateHeaderLastHamburgerIcon(props.isNavigationOpen());
 	});
 
 	return (
@@ -38,9 +84,7 @@ const Header: Component<{}> = () => {
 				</div>
 
 				<div class="header--util--container">
-					<div
-						class="header--util--sub--container"
-					>
+					<div class="header--util--sub--container">
 						<Link
 							onMouseEnter={() => animateHeaderResumeLinkBorder()}
 							children={
@@ -61,12 +105,17 @@ const Header: Component<{}> = () => {
 						<Button
 							buttonClass="header--dropdown--button"
 							buttonContainerClass="header--dropdown--button--container"
+							onClick={() =>
+								props.setIsNavigationOpen(
+									!props.isNavigationOpen()
+								)
+							}
 							children={
-								<div class="header--dropdown--icon--container">
-									<div class="dropdown--icon"></div>
-									<div class="dropdown--icon"></div>
-									<div class="dropdown--icon"></div>
-								</div>
+								<>
+									<div class="dropdown--icon first--dropdown--icon"></div>
+									<div class="dropdown--icon second--dropdown--icon"></div>
+									<div class="dropdown--icon last--dropdown--icon"></div>
+								</>
 							}
 						/>
 					</div>
