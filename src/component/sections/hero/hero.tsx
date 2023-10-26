@@ -5,18 +5,10 @@ import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
 import "./hero.scss";
 
-const animateHeroMainCharacters = (index: number) => {
-	gsap.fromTo(
-		[".hero--main--text"],
-		{ yPercent: 200 },
-		{ yPercent: 0, delay: 0.2 + index * 0.3 }
-	);
-};
-
-const animateParallaxCharacter = (target: HTMLDivElement, index: number) => {
+const animateHeroMainParallaxCharacter = (target?: HTMLDivElement, index?: number) => {
 
 	gsap.fromTo(
-		target,
+		".hero--main--text",
 		{ yPercent: 90 },
 		{
 			yPercent: 0,
@@ -24,8 +16,19 @@ const animateParallaxCharacter = (target: HTMLDivElement, index: number) => {
 			ease: "expo.out",
 			// ease: "bounce.out",
 			// ease: "back.out(2)",
-			delay: 0.1 + index * 0.1,
+			stagger: 0.1,
+			// delay: 0.1 + index * 0.1,
 		}
+	);
+
+}
+
+const animateSubHeroParallaxCharacter = () => {
+
+	gsap.fromTo(
+		".hero--sub--text",
+		{ yPercent: 100, opacity: 0 },
+		{ yPercent: 0, opacity: 1, duration: 2, ease: "sin.inOut" }
 	);
 
 }
@@ -35,8 +38,10 @@ const Hero: Component<{}> = () => {
 	const parallaxCharacterElement: HTMLDivElement[] = [];
 
 	onMount(() => {
+		animateHeroMainParallaxCharacter();
+		animateSubHeroParallaxCharacter();
 		// animateHeroMainCharacters(1 + 1);
-		parallaxCharacterElement.forEach((element, index) => animateParallaxCharacter(element, index))
+		// parallaxCharacterElement.forEach((element, index) => animateParallaxCharacter(element, index))
 	});
 
 	return (
