@@ -22,14 +22,14 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: space-between;
-                column-gap: 2rem;
+                // justify-content: space-between;
+                // column-gap: 2rem;
                 text-align: justify;
                 font-size: 9.2vw;
                 line-height: 9rem;
                 font-weight: 700;
                 color: variables.$primary--text--color;
-                overflow: hidden;
+                overflow-y: hidden;
 
             }
 
