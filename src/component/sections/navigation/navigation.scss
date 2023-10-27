@@ -1,0 +1,33 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
+.navigation--container {
+
+    .navigation--sub--container {
+    
+        @include mixins.flex--layout($align: baseline, $justify: baseline);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+
+        .navigation--grid {
+        
+            width: 100%;
+            height: 100vh;
+            background-color: hsl(0, 5%, 25%);
+            border-right: 0.01rem solid rgb(209, 201, 201);
+
+            &:last-child {
+            
+                border: none;
+                border: 0rem;
+
+            }
+
+        }
+
+
+    }
+
+}

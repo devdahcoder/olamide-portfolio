@@ -6,6 +6,7 @@ import Hero from "./component/sections/hero/hero";
 import Quote from "./component/sections/quote/quote";
 import WorkFlow from "./component/sections/work-flow/work-flow";
 import Work from "./component/sections/work/work";
+import Navigation from "./component/sections/navigation/navigation";
 
 function App() {
 
@@ -13,16 +14,19 @@ function App() {
 
 	return (
 		<>
-			<Header
-				isNavigationOpen={isNavigationOpen}
-				setIsNavigationOpen={setIsNavigationOpen}
-			/>
-			<Hero />
-			<AboutMe />
-			{/* <Quote /> */}
-			<Work />
-			<WorkFlow />
-			<Footer />
+			<Navigation isNavigationOpen={isNavigationOpen()} />
+			<div>
+				<Header
+					isNavigationOpen={isNavigationOpen}
+					setIsNavigationOpen={setIsNavigationOpen}
+				/>
+				<Hero isNavigationOpen={isNavigationOpen()} />
+				<AboutMe />
+				{/* <Quote /> */}
+				<Work />
+				<WorkFlow />
+				<Footer />
+			</div>
 		</>
 	);
 }

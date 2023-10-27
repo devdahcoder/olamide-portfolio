@@ -5,8 +5,10 @@ import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
 import "./hero.scss";
 
-const animateHeroMainParallaxCharacter = (target?: HTMLDivElement, index?: number) => {
-
+const animateHeroMainParallaxCharacter = (
+	target?: HTMLDivElement,
+	index?: number
+) => {
 	gsap.fromTo(
 		".hero--main--text",
 		{ yPercent: 90 },
@@ -20,20 +22,17 @@ const animateHeroMainParallaxCharacter = (target?: HTMLDivElement, index?: numbe
 			// delay: 0.1 + index * 0.1,
 		}
 	);
-
-}
+};
 
 const animateSubHeroParallaxCharacter = () => {
-
 	gsap.fromTo(
 		".hero--sub--text",
 		{ yPercent: 100, opacity: 0 },
 		{ yPercent: 0, opacity: 1, duration: 2, ease: "sin.inOut" }
 	);
+};
 
-}
-
-const Hero: Component<{}> = () => {
+const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
 	const parallaxCharacterElement: HTMLDivElement[] = [];
 
@@ -45,7 +44,7 @@ const Hero: Component<{}> = () => {
 	});
 
 	return (
-		<div class="hero--container">
+		<div style={props.isNavigationOpen ? {"margin-top": "10.4rem"} : {}} class="hero--container">
 			<div class="hero--sub--container">
 				<div class="hero--text--container">
 					<div class="hero--main--text--container">

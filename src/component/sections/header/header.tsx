@@ -67,7 +67,10 @@ const Header: Component<{
 	});
 
 	return (
-		<div class="header--container">
+		<div
+			style={props.isNavigationOpen() ? { position: "fixed", top: "0", left: 0, width: "100vw" } : {}}
+			class="header--container"
+		>
 			<div class="header--sub--container">
 				<div class="header--logo--container">
 					<div class="header--logo">
