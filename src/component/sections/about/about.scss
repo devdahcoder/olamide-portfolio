@@ -1,21 +1,35 @@
 @use "../../../styles/mixins";
 @use "../../../styles/variables";
 
-.about--me--container {
+.about--container {
 
-    padding: 2rem 0;
+    padding: 9rem 0;
 
-    .about--me--sub--container {
+    .about--sub--container {
 
         @include mixins.center--section;
+        @include mixins.flex--layout($direction: column, $align: center, $justify: center);
+        row-gap: 1.2rem;
     
-        .about--me--header--container {
+        .about--text {
+        
+            @include mixins.flex--layout($align: center, $justify: center);
+            position: relative;
+            font-size: 1.7rem;
+            font-weight: 400;
+            flex-wrap: wrap;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 80%;
+            color: hsl(0, 3%, 73%);
 
-            .about--me--sub--header--container {
+        }
+
+        .about--author {
             
-                
-
-            }
+            font-size: 1rem;
+            font-weight: 500;
+            color: hsl(0, 0%, 56%);
 
         }
 
