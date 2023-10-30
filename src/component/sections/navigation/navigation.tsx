@@ -3,25 +3,27 @@ import { Component, For, createEffect } from "solid-js";
 import "./navigation.scss";
 
 const animateOpenNavigationContainer = (condition: boolean) => {
+
 	const conditionCheck = true;
 
 	gsap.fromTo(
 		".navigation--container",
 		{
-			opacity: condition === conditionCheck ? 0 : 1,
-			visibility: condition === conditionCheck ? "hidden" : "visible",
-			position: condition === conditionCheck ? "relative" : "fixed",
-			zIndex: condition === conditionCheck ? "-100" : "-100",
-			pointerEvents: condition === conditionCheck ? "none" : "auto",
+			opacity: condition ? 0 : 1,
+			visibility: condition ? "hidden" : "visible",
+			position: condition ? "relative" : "fixed",
+			zIndex: condition ? "-100" : "90",
+			pointerEvents: condition ? "none" : "auto",
 		},
 		{
-			opacity: condition === conditionCheck ? 1 : 0,
-			visibility: condition === conditionCheck ? "visible" : "hidden",
-			position: condition === conditionCheck ? "fixed" : "relative",
-			zIndex: condition === conditionCheck ? "90" : "90",
-			pointerEvents: condition === conditionCheck ? "auto" : "none",
+			opacity: condition ? 1 : 0,
+			visibility: condition ? "visible" : "hidden",
+			position: condition ? "fixed" : "relative",
+			zIndex: condition ? "90" : "-100",
+			pointerEvents: condition ? "auto" : "none",
 			ease: "power4.out",
-			duration: 1.7,
+			duration: condition ? 1.7 : 2.5,
+			delay: condition ? 0 : 3,
 		}
 	);
 };
@@ -43,9 +45,8 @@ const animateNavigationGrid = (condition: boolean) => {
 
 const Navigation: Component<{ isNavigationOpen: boolean }> = (props) => {
 	createEffect(() => {
-		console.log(props.isNavigationOpen);
 		props.isNavigationOpen;
-		// animateNavigationGrid(props.isNavigationOpen);
+		animateNavigationGrid(props.isNavigationOpen);
 		animateOpenNavigationContainer(props.isNavigationOpen);
 	});
 
