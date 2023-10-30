@@ -1,5 +1,6 @@
 import gsap from "gsap";
-import { Component, For, createSignal, onMount } from "solid-js";
+import { Component, For, createEffect, createSignal, onMount } from "solid-js";
+import { elementObserver } from "../../../../hooks";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
@@ -28,30 +29,48 @@ const animateSubHeroParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--sub--text",
 		{ yPercent: 100, opacity: 0 },
-		{ yPercent: 0, opacity: 1, duration: 2, ease: "sin.inOut", stagger: 0.3 }
+		{
+			yPercent: 0,
+			opacity: 1,
+			duration: 2,
+			ease: "sin.inOut",
+			stagger: 0.3,
+		}
 	);
 };
 
 const animateHeroLink = () => {
-
-	gsap.fromTo(".hero--link", { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.5 });
-
-}
+	gsap.fromTo(
+		".hero--link",
+		{ yPercent: 100, opacity: 0 },
+		{ yPercent: 0, opacity: 1, duration: 1.5 }
+	);
+};
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
 	const parallaxCharacterElement: HTMLDivElement[] = [];
+	let heroRefSection: HTMLDivElement | any;
 
 	onMount(() => {
-		animateHeroMainParallaxCharacter();
-		animateSubHeroParallaxCharacter();
-		animateHeroLink();
 		// animateHeroMainCharacters(1 + 1);
 		// parallaxCharacterElement.forEach((element, index) => animateParallaxCharacter(element, index))
 	});
 
+	createEffect(() => {
+		elementObserver(heroRefSection, (entry, observer) => {
+			if (entry.isIntersecting) {
+				animateHeroMainParallaxCharacter();
+				animateSubHeroParallaxCharacter();
+				animateHeroLink();
+			}
+			observer.unobserve(entry.target);
+		});
+	});
+
 	return (
 		<div
+			ref={heroRefSection}
 			style={props.isNavigationOpen ? { "margin-top": "10.4rem" } : {}}
 			class="hero--container"
 		>
