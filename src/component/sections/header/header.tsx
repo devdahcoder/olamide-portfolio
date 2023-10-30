@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, Setter, createEffect, onMount } from "solid-js";
+import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
 import Link from "../../link";
@@ -10,6 +11,22 @@ const animateHeaderSection = () => {
 		".header--sub--container",
 		{ yPercent: -200, opacity: 0 },
 		{ yPercent: 0, duration: 1, opacity: 1 }
+	);
+};
+
+const animateHeaderPosition = (condition: boolean) => {
+	gsap.fromTo(
+		".header--container",
+		{
+			position: condition ? "relative" : "fixed",
+			top: condition ? "" : "0",
+			left: condition ? "" : "0",
+		},
+		{
+			position: condition ? "fixed" : "relative",
+			top: condition ? "0" : "",
+			left: condition ? "0" : "",
+		}
 	);
 };
 
@@ -55,20 +72,27 @@ const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
 }> = (props) => {
-	onMount(() => {
-		animateHeaderSection();
-	});
+	let headerSectionRef: HTMLDivElement | any;
 
 	createEffect(() => {
 		props.isNavigationOpen();
 		animateHeaderFirstHamburgerIcon(props.isNavigationOpen());
 		animateHeaderSecondHamburgerIcon(props.isNavigationOpen());
 		animateHeaderLastHamburgerIcon(props.isNavigationOpen());
+		animateHeaderPosition(props.isNavigationOpen());
+	});
+
+	createEffect(() => {
+		elementObserver(headerSectionRef, (entry, observer) => {
+			if (entry.isIntersecting) animateHeaderSection();
+			observer.unobserve(entry.target);
+		});
 	});
 
 	return (
 		<div
-			style={props.isNavigationOpen() ? { position: "fixed", top: "0", left: 0, width: "100vw" } : {}}
+			ref={headerSectionRef}
+			style={props.isNavigationOpen() ? { width: "100vw" } : {}}
 			class="header--container"
 		>
 			<div class="header--sub--container">

@@ -13,7 +13,7 @@ function App() {
 
 	return (
 		<>
-			<Navigation isNavigationOpen={isNavigationOpen()} />
+			<Navigation isNavigationOpen={isNavigationOpen} />
 			<Header
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
