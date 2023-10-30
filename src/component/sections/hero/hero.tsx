@@ -28,9 +28,15 @@ const animateSubHeroParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--sub--text",
 		{ yPercent: 100, opacity: 0 },
-		{ yPercent: 0, opacity: 1, duration: 2, ease: "sin.inOut" }
+		{ yPercent: 0, opacity: 1, duration: 2, ease: "sin.inOut", stagger: 0.3 }
 	);
 };
+
+const animateHeroLink = () => {
+
+	gsap.fromTo(".hero--link", { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.5 });
+
+}
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
@@ -39,12 +45,16 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	onMount(() => {
 		animateHeroMainParallaxCharacter();
 		animateSubHeroParallaxCharacter();
+		animateHeroLink();
 		// animateHeroMainCharacters(1 + 1);
 		// parallaxCharacterElement.forEach((element, index) => animateParallaxCharacter(element, index))
 	});
 
 	return (
-		<div style={props.isNavigationOpen ? {"margin-top": "10.4rem"} : {}} class="hero--container">
+		<div
+			style={props.isNavigationOpen ? { "margin-top": "10.4rem" } : {}}
+			class="hero--container"
+		>
 			<div class="hero--sub--container">
 				<div class="hero--text--container">
 					<div class="hero--main--text--container">
@@ -117,13 +127,12 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 						role="button"
 						class="hero--scroll--more--sub--container"
 					>
-						<p>Scroll Down</p>
-
 						<UpArrowIcon
 							width="20"
 							height="20"
-							class="hero--scroll--more----icon"
+							class="hero--scroll--more--icon"
 						/>
+						<p>Scroll Down</p>
 					</div>
 				</div>
 			</div>

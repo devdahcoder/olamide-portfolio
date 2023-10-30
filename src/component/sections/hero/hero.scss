@@ -16,6 +16,7 @@
         
             @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
             row-gap: 4.5rem;
+            overflow-y: hidden;
 
             .hero--main--text--container {
 
@@ -96,13 +97,28 @@
 
                 @include mixins.flex--layout($direction: row-reverse, $align: baseline, $justify: baseline);
                 writing-mode: vertical-lr; 
-                transform: rotate(180deg);
                 letter-spacing: 0.4rem;
                 color: variables.$primary--text--color;
                 column-gap: 1.5rem;
                 font-size: 0.8rem;
                 cursor: pointer;
+                animation: bounce 1s infinite alternate;
+
+                .hero--scroll--more--icon {
+                
+                    transform: rotate(180deg);
+
+                }
             
+            }
+
+            @keyframes bounce {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(0, -10px);
+                }
             }
 
         }
