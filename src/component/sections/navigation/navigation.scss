@@ -2,15 +2,15 @@
 @use "../../../styles/variables";
 
 .navigation--container {
+    background-color: white;
 
     .navigation--sub--container {
     
         @include mixins.flex--layout($align: baseline, $justify: baseline);
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        // width: 100vw;
-        // background-color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
 
         .navigation--grid {
         
@@ -18,6 +18,13 @@
             height: 100vh;
             background-color: hsl(0, 5%, 25%);
             border-right: 0.01rem solid rgb(209, 201, 201);
+
+            .navigation--content--container {
+            
+                @include mixins.flex--layout($direction:column, $align: center, $justify: baseline);
+                
+
+            }
 
             &:last-child {
             

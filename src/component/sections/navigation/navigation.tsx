@@ -43,6 +43,7 @@ const animateCloseNavigationContainer = () => {
 			pointerEvents: "none",
 			ease: "power4.out",
 			duration: 1,
+			delay: 1,
 		}
 	);
 };
@@ -75,9 +76,7 @@ const animateCloseNavigationGrid = (condition: boolean) => {
 			duration: 1.5,
 			ease: "power4.out",
 			onComplete: () => {
-				condition !== true
-					? animateCloseNavigationContainer()
-					: () => {};
+				condition ? animateCloseNavigationContainer() : () => {};
 			},
 		}
 	);
@@ -87,12 +86,13 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
 	createEffect(() => {
-		if (props.isNavigationOpen()) {
+		props.isNavigationOpen();
+		if (props.isNavigationOpen() === true) {
 			animateOpenNavigationContainer();
-			// animateOpenNavigationGrid();
+			animateOpenNavigationGrid();
 		} else {
-			animateCloseNavigationContainer();
-			// animateCloseNavigationGrid(props.isNavigationOpen());
+			// animateCloseNavigationContainer();
+			animateCloseNavigationGrid(props.isNavigationOpen());
 		}
 	});
 
@@ -111,9 +111,15 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 			class="navigation--container"
 		>
 			<div class="navigation--sub--container">
-				{/* <For each={Array.of(1, 2, 3, 4, 5, 6)}>
-					{() => <div class="navigation--grid"></div>}
-				</For> */}
+				<For each={Array.of(1, 2, 3, 4, 5, 6)}>
+					{() => (
+						<div class="navigation--grid">
+							<div class="navigation--content--container">
+								
+							</div>
+						</div>
+					)}
+				</For>
 			</div>
 		</div>
 	);
