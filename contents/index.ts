@@ -1,4 +1,5 @@
-import { QuoteApiType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { NAVIGATION_TYPE } from "../enum";
+import { HeaderLinkType, QuoteApiType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -19,7 +20,7 @@ export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
     },
     {
-    
+
         id: 3,
         figure: 0o3,
         text: "setting up the environment",
@@ -32,10 +33,10 @@ export const workFlowArrayContent: Array<WorkFlowTypes> = [
         figure: 0o4,
         text: "programming",
         class: "",
-    
+
     },
     {
-    
+
         id: 5,
         figure: 0o5,
         text: "testing my results",
@@ -43,7 +44,7 @@ export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
     },
     {
-    
+
         id: 6,
         figure: 0o6,
         text: "supporting and scaling my code",
@@ -56,28 +57,28 @@ export const workFlowArrayContent: Array<WorkFlowTypes> = [
 export const socialMediaContent: Array<SocialMediaTypes> = [
 
     {
-    
+
         id: 1,
         text: "Github",
         link: "",
 
     },
     {
-    
+
         id: 2,
         text: "LinkedIn",
         link: "https://www.linkedin.com/yourprofile",
 
     },
     {
-    
+
         id: 3,
         text: "Twitter",
         link: "https://twitter.com/yourhandle",
 
     },
     {
-    
+
         id: 5,
         text: "Medium",
         link: "https://medium.com/@yourusername",
@@ -171,7 +172,50 @@ export const workContent: Array<WorkType> = [
 
 ]
 
-export const headerLinksContent = [];
+export const headerLinksContent: Array<HeaderLinkType> = [
+
+    {
+        id: 1,
+        href: "#",
+        text: "Home",
+        class: "",
+        style: {},
+        type: NAVIGATION_TYPE.LINK,
+    },
+    {
+        id: 2,
+        href: "#about",
+        text: "About",
+        class: "",
+        style: {},
+        type: NAVIGATION_TYPE.LINK,
+    },
+    {
+        id: 3,
+        href: "#work",
+        text: "Work",
+        class: "",
+        style: {},
+        type: NAVIGATION_TYPE.LINK,
+    },
+    {
+        id: 4,
+        href: "#work-flow",
+        text: "WorkFlow",
+        class: "",
+        style: {},
+        type: NAVIGATION_TYPE.LINK,
+    },
+    {
+        id: 5,
+        href: "#contact",
+        text: "Contact",
+        class: "",
+        style: {},
+        type: NAVIGATION_TYPE.LINK,
+    },
+
+];
 
 export const quoteContent: QuoteApiType = {
     author: "Cory House",

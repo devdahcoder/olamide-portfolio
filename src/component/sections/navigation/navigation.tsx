@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, For, createEffect } from "solid-js";
+import { headerLinksContent } from "../../../../contents";
 import "./navigation.scss";
 
 const animateOpenNavigationContainer = () => {
@@ -11,6 +12,7 @@ const animateOpenNavigationContainer = () => {
 			position: "relative",
 			zIndex: "-100",
 			pointerEvents: "none",
+			display: "none",
 		},
 		{
 			opacity: 1,
@@ -20,7 +22,7 @@ const animateOpenNavigationContainer = () => {
 			pointerEvents: "auto",
 			ease: "power4.out",
 			duration: 1.7,
-			// onComplete: () => animateOpenNavigationGrid(),
+			display: "block",
 		}
 	);
 };
@@ -34,6 +36,7 @@ const animateCloseNavigationContainer = () => {
 			position: "fixed",
 			zIndex: "90",
 			pointerEvents: "auto",
+			display: "block",
 		},
 		{
 			opacity: 0,
@@ -44,6 +47,7 @@ const animateCloseNavigationContainer = () => {
 			ease: "power4.out",
 			duration: 1,
 			delay: 1,
+			display: "none",
 		}
 	);
 };
@@ -82,6 +86,51 @@ const animateCloseNavigationGrid = (condition: boolean) => {
 	);
 };
 
+const animateOpenNavigationLink = () => {
+	gsap.fromTo(
+		".navigation--link--container",
+		{
+			yPercent: 200,
+		},
+		{
+			yPercent: 0,
+			stagger: 0.1,
+			duration: 0.5,
+		}
+	);
+};
+
+const animateCloseNavigationLink = () => {
+	gsap.fromTo(
+		".navigation--link--container",
+		{
+			yPercent: 0,
+		},
+		{
+			yPercent: 200,
+			stagger: 0.2,
+			duration: 1.5,
+			delay: 0.6,
+		}
+	);
+};
+
+const animateOpenBodyPosition = () => {
+	gsap.fromTo(
+		"body",
+		{ position: "relative" },
+		{ position: "fixed", duration: 1, ease: "power4" }
+	);
+};
+
+const animateCloseBodyPosition = () => {
+	gsap.fromTo(
+		"body",
+		{ position: "fixed" },
+		{ position: "relative", duration: 1, ease: "power4" }
+	);
+};
+
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
@@ -90,9 +139,12 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		if (props.isNavigationOpen() === true) {
 			animateOpenNavigationContainer();
 			animateOpenNavigationGrid();
+			animateOpenNavigationLink();
+			animateOpenBodyPosition();
 		} else {
-			// animateCloseNavigationContainer();
 			animateCloseNavigationGrid(props.isNavigationOpen());
+			animateCloseNavigationLink();
+			animateCloseBodyPosition();
 		}
 	});
 
@@ -111,15 +163,26 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 			class="navigation--container"
 		>
 			<div class="navigation--sub--container">
-				<For each={Array.of(1, 2, 3, 4, 5, 6)}>
-					{() => (
-						<div class="navigation--grid">
-							<div class="navigation--content--container">
-								
-							</div>
-						</div>
-					)}
+				<For each={Array.of(1, 2, 3, 4, 5, 6, 7)}>
+					{() => <div class="navigation--grid"></div>}
 				</For>
+
+				<div class="navigation--content--container">
+					<div class="navigation--content--sub--container">
+						<For each={headerLinksContent}>
+							{(props) => (
+								<div class="navigation--link--container">
+									<a
+										href={`${props.href}`}
+										class="navigation--link"
+									>
+										{props.text}
+									</a>
+								</div>
+							)}
+						</For>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
