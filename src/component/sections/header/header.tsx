@@ -82,7 +82,7 @@ const animateCloseFirstHeaderResumeLinkText = () => {
 	gsap.fromTo(
 		".first--header--resume--link--text",
 		{ yPercent: -100 },
-		{ yPercent: 0 }
+		{ yPercent: -5 }
 	);
 };
 
@@ -90,17 +90,17 @@ const animateOpenSecondHeaderResumeLinkText = () => {
 	gsap.fromTo(
 		".second--header--resume--link--text",
 		{
-			yPercent: 100,
+			yPercent: 50,
 		},
-		{ yPercent: 0 }
+		{ yPercent: -100 }
 	);
 };
 
 const animateCloseSecondHeaderResumeLinkText = () => {
 	gsap.fromTo(
 		".second--header--resume--link--text",
-		{ yPercent: 0 },
-		{ yPercent: 100 }
+		{ yPercent: -100 },
+		{ yPercent: 10 }
 	);
 };
 
