@@ -3,55 +3,37 @@ import { Accessor, Component, For, createEffect } from "solid-js";
 import { headerLinksContent } from "../../../../contents";
 import "./navigation.scss";
 
-const animateOpenNavigationContainer = () => {
+const animateOpenNavigationLink = () => {
 	gsap.fromTo(
-		".navigation--container",
+		".navigation--link--container",
 		{
-			opacity: 0,
-			visibility: "hidden",
-			position: "relative",
-			zIndex: "-100",
-			pointerEvents: "none",
-			display: "none",
+			yPercent: 500,
 		},
 		{
-			opacity: 1,
-			visibility: "visible",
-			position: "fixed",
-			zIndex: "90",
-			pointerEvents: "auto",
-			ease: "power4.out",
-			duration: 1.7,
-			display: "block",
-		}
-	);
-};
-
-const animateCloseNavigationContainer = () => {
-	gsap.fromTo(
-		".navigation--container",
-		{
-			opacity: 1,
-			visibility: "visible",
-			position: "fixed",
-			zIndex: "90",
-			pointerEvents: "auto",
-			display: "block",
-		},
-		{
-			opacity: 0,
-			visibility: "hidden",
-			position: "relative",
-			zIndex: "-100",
-			pointerEvents: "none",
-			ease: "power4.out",
+			yPercent: 0,
+			stagger: 0.2,
 			duration: 1,
-			delay: 1,
-			display: "none",
+			delay: 0.5,
 		}
 	);
 };
 
+const animateCloseNavigationLink = () => {
+	gsap.fromTo(
+		".navigation--link--container",
+		{
+			yPercent: 0,
+		},
+		{
+			yPercent: 500,
+			stagger: -0.2,
+			duration: 1,
+			delay: 0.1,
+		}
+	);
+};
+
+// Grid animation
 const animateOpenNavigationGrid = () => {
 	gsap.fromTo(
 		".navigation--grid",
@@ -79,38 +61,60 @@ const animateCloseNavigationGrid = (condition: boolean) => {
 			stagger: 0.2,
 			duration: 1.5,
 			ease: "power4.out",
+			delay: 0.3,
 			onComplete: () => {
 				condition ? animateCloseNavigationContainer() : () => {};
 			},
 		}
 	);
 };
+// End grid animation
 
-const animateOpenNavigationLink = () => {
+const animateOpenNavigationContainer = () => {
 	gsap.fromTo(
-		".navigation--link--container",
+		".navigation--container",
 		{
-			yPercent: 200,
+			opacity: 0,
+			visibility: "hidden",
+			position: "relative",
+			zIndex: "-100",
+			pointerEvents: "none",
+			// display: "none",
 		},
 		{
-			yPercent: 0,
-			stagger: 0.1,
-			duration: 0.5,
+			opacity: 1,
+			visibility: "visible",
+			position: "fixed",
+			zIndex: "90",
+			pointerEvents: "auto",
+			ease: "power4.out",
+			duration: 1.7,
+			// display: "block",
 		}
 	);
 };
 
-const animateCloseNavigationLink = () => {
+const animateCloseNavigationContainer = () => {
 	gsap.fromTo(
-		".navigation--link--container",
+		".navigation--container",
 		{
-			yPercent: 0,
+			opacity: 1,
+			visibility: "visible",
+			position: "fixed",
+			zIndex: "90",
+			pointerEvents: "auto",
+			// display: "block",
 		},
 		{
-			yPercent: 200,
-			stagger: 0.2,
-			duration: 1.5,
-			delay: 0.6,
+			opacity: 0,
+			visibility: "hidden",
+			position: "relative",
+			zIndex: "-100",
+			pointerEvents: "none",
+			ease: "power4.out",
+			duration: 1,
+			delay: 1,
+			// display: "none",
 		}
 	);
 };
@@ -131,6 +135,55 @@ const animateCloseBodyPosition = () => {
 	);
 };
 
+const animateOpenNavigationContentContainer = () => {
+	gsap.fromTo(
+		".navigation--content--container",
+		{
+			opacity: 0,
+			visibility: "hidden",
+			position: "relative",
+			zIndex: "-100",
+			pointerEvents: "none",
+			display: "none",
+		},
+		{
+			opacity: 1,
+			visibility: "visible",
+			position: "fixed",
+			zIndex: "90",
+			pointerEvents: "auto",
+			ease: "power4.out",
+			duration: 1.7,
+			display: "block",
+		}
+	);
+};
+
+const animateCloseNavigationContentContainer = () => {
+	gsap.fromTo(
+		".navigation--content--container",
+		{
+			opacity: 1,
+			visibility: "visible",
+			position: "fixed",
+			zIndex: "90",
+			pointerEvents: "auto",
+			display: "block",
+		},
+		{
+			opacity: 0,
+			visibility: "hidden",
+			position: "relative",
+			zIndex: "-100",
+			pointerEvents: "none",
+			ease: "power4.out",
+			duration: 1,
+			delay: 1,
+			display: "none",
+		}
+	);
+};
+
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
@@ -141,10 +194,12 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 			animateOpenNavigationGrid();
 			animateOpenNavigationLink();
 			animateOpenBodyPosition();
+			animateOpenNavigationContentContainer();
 		} else {
 			animateCloseNavigationGrid(props.isNavigationOpen());
 			animateCloseNavigationLink();
 			animateCloseBodyPosition();
+			// animateCloseNavigationContentContainer();
 		}
 	});
 
@@ -163,7 +218,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 			class="navigation--container"
 		>
 			<div class="navigation--sub--container">
-				<For each={Array.of(1, 2, 3, 4, 5, 6, 7)}>
+				<For each={Array.of(1, 2, 3, 4, 5, 6)}>
 					{() => <div class="navigation--grid"></div>}
 				</For>
 

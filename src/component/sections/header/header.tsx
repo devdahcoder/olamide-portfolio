@@ -68,6 +68,42 @@ const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 	);
 };
 
+const animateOpenFirstHeaderResumeLinkText = () => {
+	gsap.fromTo(
+		".first--header--resume--link--text",
+		{
+			yPercent: 50,
+		},
+		{ yPercent: -100 }
+	);
+};
+
+const animateCloseFirstHeaderResumeLinkText = () => {
+	gsap.fromTo(
+		".first--header--resume--link--text",
+		{ yPercent: -100 },
+		{ yPercent: 0 }
+	);
+};
+
+const animateOpenSecondHeaderResumeLinkText = () => {
+	gsap.fromTo(
+		".second--header--resume--link--text",
+		{
+			yPercent: 100,
+		},
+		{ yPercent: 0 }
+	);
+};
+
+const animateCloseSecondHeaderResumeLinkText = () => {
+	gsap.fromTo(
+		".second--header--resume--link--text",
+		{ yPercent: 0 },
+		{ yPercent: 100 }
+	);
+};
+
 const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
@@ -107,7 +143,14 @@ const Header: Component<{
 						<Link
 							children={
 								<div class="header--resume--link--inner--container">
-									My Resume
+									<div class="header--resume--link--text--container">
+										<div class="header--resume--link--text first--header--resume--link--text">
+											My Resume
+										</div>
+										<div class="header--resume--link--text second--header--resume--link--text">
+											My Resume
+										</div>
+									</div>
 									<FileIcon
 										width="20"
 										height="20"
@@ -115,6 +158,14 @@ const Header: Component<{
 									/>
 								</div>
 							}
+							onMouseEnter={() => {
+								animateOpenFirstHeaderResumeLinkText();
+								animateOpenSecondHeaderResumeLinkText();
+							}}
+							onMouseLeave={() => {
+								animateCloseFirstHeaderResumeLinkText();
+								animateCloseSecondHeaderResumeLinkText();
+							}}
 							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
 							linkClass="header--resume--link"
 							linkContainerClass="header--resume--link--container"

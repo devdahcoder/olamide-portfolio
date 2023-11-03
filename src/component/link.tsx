@@ -6,6 +6,7 @@ type Props = {
 	linkContainerClass: string;
 	href?: string;
 	onMouseEnter?: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> | any;
+	onMouseLeave?: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> | any;
 };
 
 const Link: Component<Props> = (props) => {
@@ -16,6 +17,9 @@ const Link: Component<Props> = (props) => {
 					? {
 							onMouseEnter: () => props?.onMouseEnter?.(),
 					  }
+					: {})}
+				{...(props.onMouseLeave
+					? { onMouseLeave: () => props?.onMouseLeave?.() }
 					: {})}
 				class={props.linkClass}
 				href={`${props.href}`}
