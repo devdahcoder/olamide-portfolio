@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { Accessor, Component, Setter, createEffect, onMount } from "solid-js";
+import { Accessor, Component, Setter, createEffect } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
@@ -69,13 +69,11 @@ const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 };
 
 const animateOpenFirstHeaderResumeLinkText = () => {
-	gsap.fromTo(
-		".first--header--resume--link--text",
-		{
-			yPercent: 50,
-		},
-		{ yPercent: -100 }
-	);
+	gsap.to(".first--header--resume--link--text", {
+		yPercent: -100,
+		duration: 1,
+		ease: "power4.out",
+	});
 };
 
 const animateCloseFirstHeaderResumeLinkText = () => {
