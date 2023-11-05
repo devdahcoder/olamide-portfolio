@@ -14,9 +14,11 @@ const animateNavigationLink = (show: boolean) => {
 		target,
 		{
 			yPercent: show ? 500 : 0,
+			opacity: show ? 0 : 1,
 		},
 		{
 			yPercent: show ? 0 : 500,
+			opacity: show ? 1 : 0,
 			stagger,
 			duration,
 			delay,
@@ -50,7 +52,7 @@ const animateLinkContainer = (show: boolean) => {
 		gsap.to(target, {
 			opacity: 0,
 			display: "none",
-			delay: 1
+			delay: 1,
 		});
 	}
 };
@@ -244,7 +246,7 @@ const animateNavigationContainer = (show: boolean) => {
 				zIndex: "90",
 				pointerEvents: "auto",
 				ease: "power4.out",
-				display: "block",
+				display: "flex",
 			}
 		);
 	} else {
@@ -281,20 +283,6 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		animateNavigationGrid(props.isNavigationOpen());
 		animateLinkContainer(props.isNavigationOpen());
 		animateNavigationLink(props.isNavigationOpen());
-		// if (props.isNavigationOpen() === true) {
-		// 	animateOpenNavigationContainer(props.isNavigationOpen());
-		// 	// animateOpenNavigationGrid();
-		// 	// animateOpenNavigationLink();
-		// 	// animateOpenBodyPosition();
-		// 	// animateOpenNavigationContentContainer();
-		// 	// animateOpenNavigationSubContainer()
-		// } else {
-		// 	animateCloseNavigationContainer();
-		// 	// animateCloseNavigationGrid(props.isNavigationOpen());
-		// 	// animateCloseNavigationLink();
-		// 	// animateCloseBodyPosition();
-		// 	// animateCloseNavigationContentContainer();
-		// }
 	});
 
 	return (

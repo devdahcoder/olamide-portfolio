@@ -2,9 +2,10 @@
 @use "../../../styles/variables";
 
 .navigation--container {
-	background-color: rgb(214, 210, 210);
+	background-color: rgb(52, 49, 49);
 	width: 100vw;
 	height: 100vh;
+	display: none;
 
 	.navigation--sub--container {
 		@include mixins.flex--layout($align: stretch, $justify: stretch);
@@ -16,7 +17,7 @@
 		.navigation--grid {
 			width: 100%;
 			height: 100vh;
-			background-color: hsl(0, 5%, 25%);
+			background-color: hsl(0, 0%, 9%);
 			border-right: 0.01rem solid rgb(209, 201, 201);
 
 			&:last-child {
@@ -44,10 +45,9 @@
 				width: 100vw;
 				height: 100vh;
 				margin-top: 0rem;
-                margin-top: 8rem;
+				margin-top: 8rem;
 
 				.navigation--link--container {
-					border: 1px solid white;
 					.navigation--link {
 						@include mixins.center--element;
 						width: 100%;
