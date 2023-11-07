@@ -49,7 +49,7 @@ const animateHeroLink = () => {
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
-	const parallaxCharacterElement: HTMLDivElement[] = [];
+	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | any;
 
 	onMount(() => {
@@ -86,9 +86,9 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 									index={index()}
 									class="hero--main--text"
 									children={character}
-									// parallaxCharacterElement={
-									// 	parallaxCharacterElement
-									// }
+									parallaxCharacterElement={
+										parallaxCharacterElement
+									}
 								/>
 							)}
 						</For>

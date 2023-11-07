@@ -4,7 +4,6 @@ import { headerLinksContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
 
-// =======> Link animation <=======
 const animateNavigationLink = (show: boolean) => {
 	const target = ".navigation--link--container";
 	const duration = 1;
@@ -26,9 +25,6 @@ const animateNavigationLink = (show: boolean) => {
 		}
 	);
 };
-// ======> End link animation <======
-
-//  ======> Link container animation <======
 
 const animateLinkContainer = (show: boolean) => {
 	const target = ".navigation--content--sub--container";
@@ -58,9 +54,6 @@ const animateLinkContainer = (show: boolean) => {
 	}
 };
 
-//  ======> End link container animation <======
-
-// ======> Grid animation <======
 const animateNavigationGrid = (show: boolean) => {
 	const target = ".navigation--grid";
 	const duration = 1.2;
@@ -92,57 +85,6 @@ const animateNavigationGrid = (show: boolean) => {
 		});
 	}
 };
-// ======> End grid animation <=====
-
-// =====><=====
-// const animateOpenNavigationContentContainer = () => {
-// 	gsap.fromTo(
-// 		".navigation--content--container",
-// 		{
-// 			opacity: 0,
-// 			visibility: "hidden",
-// 			position: "relative",
-// 			zIndex: "-100",
-// 			pointerEvents: "none",
-// 			display: "none",
-// 		},
-// 		{
-// 			opacity: 1,
-// 			visibility: "visible",
-// 			position: "fixed",
-// 			zIndex: "90",
-// 			pointerEvents: "auto",
-// 			ease: "power4.out",
-// 			duration: 1.7,
-// 			display: "block",
-// 		}
-// 	);
-// };
-
-// const animateCloseNavigationContentContainer = () => {
-// 	gsap.fromTo(
-// 		".navigation--content--container",
-// 		{
-// 			opacity: 1,
-// 			visibility: "visible",
-// 			position: "fixed",
-// 			zIndex: "90",
-// 			pointerEvents: "auto",
-// 			display: "block",
-// 		},
-// 		{
-// 			opacity: 0,
-// 			visibility: "hidden",
-// 			position: "relative",
-// 			zIndex: "-100",
-// 			pointerEvents: "none",
-// 			ease: "power4.out",
-// 			duration: 1,
-// 			delay: 1,
-// 			display: "none",
-// 		}
-// 	);
-// };
 
 const animateNavigationContentContainer = (show: boolean) => {
 	const target = ".navigation--sub--container";
@@ -171,9 +113,7 @@ const animateNavigationContentContainer = (show: boolean) => {
 		});
 	}
 };
-// ======><======
 
-// ======><======
 const animateNavigationSubContainer = (show: boolean) => {
 	const target = ".navigation--sub--container";
 	const duration = show ? 1.7 : 1;
@@ -217,9 +157,7 @@ const animateNavigationSubContainer = (show: boolean) => {
 		});
 	}
 };
-// =======><======
 
-// ======> Animate navigation container <======
 const animateNavigationContainer = (show: boolean) => {
 	const target = ".navigation--container";
 	const duration = 1.2;
@@ -259,7 +197,6 @@ const animateNavigationContainer = (show: boolean) => {
 		});
 	}
 };
-// =====> End navigation container animation <======
 
 const animateBodyPosition = (show: boolean) => {
 	const target = "body";
@@ -280,21 +217,28 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	const resetAnchor = (element: HTMLDivElement) => {
 		gsap.to(element, {
 			scale: 1,
-			duration: 0.6,
+			delay: 0.3,
+			duration: 0.8,
 			color: "#FFFFFF",
+			fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
 		});
 	};
 
 	const animateNavigationLinkText = (index: number) => {
-		linkRef[index].map((element, index) =>
+		linkRef[index].forEach((element, index) =>
 			gsap.fromTo(
 				element,
-				{ scale: 1, color: "#ffffff" },
+				{
+					scale: 1,
+					color: "#ffffff",
+					fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
+				},
 				{
 					scale: 1.2,
-					duration: 0.1,
+					duration: 0.8,
 					delay: 0.1 + index * 0.1,
 					color: "#F96F21",
+					fontFamily: `Tanker, -apple-system, Helvetica Neue, sans-serif`,
 					onComplete: () => {
 						resetAnchor(element);
 					},
@@ -302,8 +246,6 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 			)
 		);
 	};
-
-	console.log(linkRef);
 
 	createEffect(() => {
 		props.isNavigationOpen();
