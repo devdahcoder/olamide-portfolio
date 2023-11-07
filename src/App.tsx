@@ -18,7 +18,7 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
-			<Hero isNavigationOpen={isNavigationOpen()} />
+			{/* <Hero isNavigationOpen={isNavigationOpen()} /> */}
 			<About />
 			<Work />
 			<WorkFlow />

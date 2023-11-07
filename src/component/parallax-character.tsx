@@ -4,11 +4,17 @@ const ParallaxCharacter: Component<{
 	index: number;
 	children: string;
 	class: string;
-	parallaxCharacterElement: HTMLDivElement[];
+	parallaxCharacterElement: HTMLDivElement[][];
 }> = (props) => {
 	return (
 		<div
-			ref={(element) => props.parallaxCharacterElement.push(element)}
+			ref={(element) => {
+				if (!props.parallaxCharacterElement[props.index]) {
+				
+					props.parallaxCharacterElement[props.index] = []
+				} 
+				props.parallaxCharacterElement[props.index].push(element!)
+			}}
 			class={props.class}
 		>
 			{props.children === " " ? (

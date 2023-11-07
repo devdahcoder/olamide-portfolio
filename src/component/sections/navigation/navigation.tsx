@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { Accessor, Component, For, createEffect } from "solid-js";
 import { headerLinksContent } from "../../../../contents";
+import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
 
 // =======> Link animation <=======
@@ -274,6 +275,36 @@ const animateBodyPosition = (show: boolean) => {
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
+	let linkRef: HTMLDivElement[][] = [];
+
+	const resetAnchor = (element: HTMLDivElement) => {
+		gsap.to(element, {
+			scale: 1,
+			duration: 0.6,
+			color: "#FFFFFF",
+		});
+	};
+
+	const animateNavigationLinkText = (index: number) => {
+		linkRef[index].map((element, index) =>
+			gsap.fromTo(
+				element,
+				{ scale: 1, color: "#ffffff" },
+				{
+					scale: 1.2,
+					duration: 0.1,
+					delay: 0.1 + index * 0.1,
+					color: "#F96F21",
+					onComplete: () => {
+						resetAnchor(element);
+					},
+				}
+			)
+		);
+	};
+
+	console.log(linkRef);
+
 	createEffect(() => {
 		props.isNavigationOpen();
 		animateNavigationContainer(props.isNavigationOpen());
@@ -295,13 +326,31 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 				<div class="navigation--content--container">
 					<div class="navigation--content--sub--container">
 						<For each={headerLinksContent}>
-							{(props) => (
-								<div class="navigation--link--container">
+							{(props, index) => (
+								<div
+									onMouseEnter={() =>
+										animateNavigationLinkText(index())
+									}
+									class="navigation--link--container"
+								>
 									<a
 										href={`${props.href}`}
 										class="navigation--link"
 									>
-										{props.text}
+										<For
+											each={props.text?.trim()?.split("")}
+										>
+											{(character) => (
+												<ParallaxCharacter
+													index={index()}
+													class="navigation--link--text"
+													children={character}
+													parallaxCharacterElement={
+														linkRef
+													}
+												/>
+											)}
+										</For>
 									</a>
 								</div>
 							)}

@@ -86,9 +86,9 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 									index={index()}
 									class="hero--main--text"
 									children={character}
-									parallaxCharacterElement={
-										parallaxCharacterElement
-									}
+									// parallaxCharacterElement={
+									// 	parallaxCharacterElement
+									// }
 								/>
 							)}
 						</For>
