@@ -1,0 +1,34 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
+.quote--container {
+	padding: 9rem 0;
+
+	.quote--sub--container {
+		@include mixins.center--section;
+		@include mixins.flex--layout(
+			$direction: column,
+			$align: center,
+			$justify: center
+		);
+		row-gap: 1.2rem;
+
+		.quote--text {
+			@include mixins.flex--layout($align: center, $justify: center);
+			font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+			position: relative;
+			font-size: 1.9rem;
+			flex-wrap: wrap;
+			text-align: center;
+			padding: 0 1rem;
+			max-width: 60%;
+			color: hsl(0, 3%, 73%);
+		}
+
+		.quote--author {
+			font-size: 1rem;
+			font-weight: 500;
+			color: hsl(0, 0%, 56%);
+		}
+	}
+}

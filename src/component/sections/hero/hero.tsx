@@ -6,10 +6,7 @@ import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
 import "./hero.scss";
 
-const animateHeroMainParallaxCharacter = (
-	target?: HTMLDivElement,
-	index?: number
-) => {
+const animateHeroMainParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--main--text",
 		{ yPercent: 90 },
@@ -17,10 +14,7 @@ const animateHeroMainParallaxCharacter = (
 			yPercent: 0,
 			duration: 2.5,
 			ease: "expo.out",
-			// ease: "bounce.out",
-			// ease: "back.out(2)",
 			stagger: 0.1,
-			// delay: 0.1 + index * 0.1,
 		}
 	);
 };
@@ -52,11 +46,6 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | any;
 
-	onMount(() => {
-		// animateHeroMainCharacters(1 + 1);
-		// parallaxCharacterElement.forEach((element, index) => animateParallaxCharacter(element, index))
-	});
-
 	createEffect(() => {
 		elementObserver(heroRefSection, (entry, observer) => {
 			if (entry.isIntersecting) {
@@ -77,9 +66,6 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			<div class="hero--sub--container">
 				<div class="hero--text--container">
 					<div class="hero--main--text--container">
-						<div class="hero--main--text">
-							{/* <p>Full-Stack Developer</p> */}
-						</div>
 						<For each={role().trim().split("")}>
 							{(character, index) => (
 								<ParallaxCharacter
@@ -137,6 +123,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 							/>
 						</div>
 					}
+					href={`https://medium.com/@adigunolamide200`}
 					linkClass="hero--link"
 					linkContainerClass="hero--link--container"
 				/>

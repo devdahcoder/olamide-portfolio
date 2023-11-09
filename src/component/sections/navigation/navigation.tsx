@@ -266,7 +266,14 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 				</For>
 
 				<div class="navigation--content--container">
-					<div class="navigation--content--sub--container">
+					<div
+						onMouseOver={() =>
+							gsap.effects.fade(
+								".navigation--content--sub--container"
+							)
+						}
+						class="navigation--content--sub--container"
+					>
 						<For each={headerLinksContent}>
 							{(props, index) => (
 								<div

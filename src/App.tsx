@@ -6,6 +6,7 @@ import Hero from "./component/sections/hero/hero";
 import Navigation from "./component/sections/navigation/navigation";
 import WorkFlow from "./component/sections/work-flow/work-flow";
 import Work from "./component/sections/work/work";
+import Quote from "./component/sections/quote/quote";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -19,7 +20,8 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			<About />
+			<Quote />
+			{/* <About /> */}
 			<Work />
 			<WorkFlow />
 			<Footer />

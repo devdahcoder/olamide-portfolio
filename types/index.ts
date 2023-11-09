@@ -63,3 +63,12 @@ export type HeaderLinkType = {
     containerClassName?: string;
     type: NAVIGATION_TYPE;
 }
+
+export type GsapFadeElementType = {
+
+    duration: string;
+    opacity: 1,
+    display: string;
+    ease: string;
+
+}
