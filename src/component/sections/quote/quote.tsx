@@ -1,7 +1,11 @@
-import { Component, createEffect, createSignal } from "solid-js";
-import "./quote.scss";
-import { QuoteApiType } from "../../../../types";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Component, createEffect, createSignal, onMount } from "solid-js";
 import { quoteContent } from "../../../../contents";
+import { QuoteApiType } from "../../../../types";
+import "./quote.scss";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const headers = {
 	method: "GET",
@@ -11,9 +15,11 @@ const headers = {
 	},
 };
 
+let sectionRef: HTMLDivElement | undefined | any;
+
 const Quote: Component<{}> = () => {
-    // const [quote, setQuote] = createSignal<QuoteApiType>();
-    const [quote, setQuote] = createSignal<QuoteApiType>({
+	// const [quote, setQuote] = createSignal<QuoteApiType>();
+	const [quote, setQuote] = createSignal<QuoteApiType>({
 		author: "Cory House",
 		category: "programming",
 		quote: "Code is like humor. When you have to explain it, it's bad.",
@@ -36,13 +42,34 @@ const Quote: Component<{}> = () => {
 	// 		console.error("Error:", error);
 	// 		setQuote(quoteContent);
 	// 	}
-	// });
+    // });
+    let elRef: HTMLDivElement | any;
+
+    createEffect(() => {
+		gsap.fromTo(
+			".quote--sub--container",
+			{ opacity: 0, scale: 0 },
+			{
+				opacity: 1,
+				duration: 2,
+				ease: "sine.out",
+				scale: 1,
+				scrollTrigger: {
+					trigger: ".quote--container",
+					start: "top 70%",
+					markers: true,
+				},
+			}
+		);
+	});
 
 	return (
 		<div class="quote--container">
 			<div class="quote--sub--container">
 				<div class="quote--text">{quote()?.quote}</div>
-				<div class="quote--author">&lt;/{quote()?.author}&gt;</div>
+				<div ref={sectionRef} class="quote--author">
+					&lt;/{quote()?.author}&gt;
+				</div>
 			</div>
 		</div>
 	);

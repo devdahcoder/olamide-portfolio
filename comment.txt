@@ -30,8 +30,6 @@
 			left: 0;
 			width: 100vw;
 			height: 100vh;
-			overflow-y: scroll;
-			overflow-x: hidden;
 			border: 1px solid white;
 
 			.navigation--content--sub--container {
@@ -43,15 +41,20 @@
 				row-gap: 1.5rem;
 				width: 100vw;
 				height: 100vh;
-				margin-top: 10rem;
+				padding: 10rem;
+				border: 1px solid white;
+				overflow-y: scroll;
+				overflow-x: hidden;
 
 				.navigation--link--container {
+					border: 1px solid white;
+					// width: 100%;
+					min-width: max-content;
 					.navigation--link {
 						@include mixins.center--element;
 						flex-direction: row;
 						width: 100%;
 						text-decoration: none;
-						color: white;
 						font-size: 4rem;
 						font-weight: 400;
 						font-family: Zodiak, Satoshi, -apple-system,
@@ -62,23 +65,19 @@
 					}
 				}
 
-				.scaled {
-					transform: scale(2);
+				&::-webkit-scrollbar {
+					width: 0.3rem;
 				}
-			}
 
-			&::-webkit-scrollbar {
-				width: 0.3rem;
-			}
+				&::-webkit-scrollbar-track {
+					box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
+				}
 
-			&::-webkit-scrollbar-track {
-				box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
-			}
-
-			&::-webkit-scrollbar-thumb {
-				background-color: hsl(225, 14%, 89%);
-				border-radius: 20px;
-				color: hsl(0, 0%, 96%);
+				&::-webkit-scrollbar-thumb {
+					background-color: hsl(225, 14%, 89%);
+					border-radius: 20px;
+					color: hsl(0, 0%, 96%);
+				}
 			}
 		}
 	}

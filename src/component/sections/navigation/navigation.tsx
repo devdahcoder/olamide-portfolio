@@ -1,8 +1,19 @@
 import gsap from "gsap";
-import { Accessor, Component, For, createEffect } from "solid-js";
+import {
+	Accessor,
+	Component,
+	For,
+	createEffect,
+	createSignal,
+	onCleanup,
+} from "solid-js";
 import { headerLinksContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
+
+let contentContainerRef: HTMLDivElement | undefined;
+let linkRef: HTMLDivElement[][] = [];
+let linkListContainer: HTMLDivElement[] = [];
 
 const animateNavigationLink = (show: boolean) => {
 	const target = ".navigation--link--container";
@@ -209,43 +220,43 @@ const animateBodyPosition = (show: boolean) => {
 	gsap.fromTo(target, positionProps, { duration, ease });
 };
 
+const resetAnchor = (element: HTMLDivElement) => {
+	gsap.to(element, {
+		scale: 1,
+		delay: 0.3,
+		duration: 0.8,
+		color: "#FFFFFF",
+		fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
+	});
+};
+
+const animateNavigationLinkText = (index: number) => {
+	linkRef[index].forEach((element, index) =>
+		gsap.fromTo(
+			element,
+			{
+				scale: 1,
+				color: "#ffffff",
+				fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
+			},
+			{
+				scale: 1.2,
+				duration: 0.8,
+				delay: 0.1 + index * 0.1,
+				color: "#F96F21",
+				fontFamily: `Tanker, -apple-system, Helvetica Neue, sans-serif`,
+				onComplete: () => {
+					resetAnchor(element);
+				},
+			}
+		)
+	);
+};
+
+
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
-	let linkRef: HTMLDivElement[][] = [];
-
-	const resetAnchor = (element: HTMLDivElement) => {
-		gsap.to(element, {
-			scale: 1,
-			delay: 0.3,
-			duration: 0.8,
-			color: "#FFFFFF",
-			fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
-		});
-	};
-
-	const animateNavigationLinkText = (index: number) => {
-		linkRef[index].forEach((element, index) =>
-			gsap.fromTo(
-				element,
-				{
-					scale: 1,
-					color: "#ffffff",
-					fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
-				},
-				{
-					scale: 1.2,
-					duration: 0.8,
-					delay: 0.1 + index * 0.1,
-					color: "#F96F21",
-					fontFamily: `Tanker, -apple-system, Helvetica Neue, sans-serif`,
-					onComplete: () => {
-						resetAnchor(element);
-					},
-				}
-			)
-		);
-	};
 
 	createEffect(() => {
 		props.isNavigationOpen();
@@ -265,18 +276,17 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 					{() => <div class="navigation--grid"></div>}
 				</For>
 
-				<div class="navigation--content--container">
-					<div
-						onMouseOver={() =>
-							gsap.effects.fade(
-								".navigation--content--sub--container"
-							)
-						}
-						class="navigation--content--sub--container"
-					>
+				<div
+					ref={contentContainerRef}
+					class="navigation--content--container"
+				>
+					<div class="navigation--content--sub--container">
 						<For each={headerLinksContent}>
 							{(props, index) => (
 								<div
+									ref={(element) =>
+										linkListContainer.push(element)
+									}
 									onMouseEnter={() =>
 										animateNavigationLinkText(index())
 									}

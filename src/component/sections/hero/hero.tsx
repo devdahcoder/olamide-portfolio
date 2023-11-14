@@ -44,9 +44,10 @@ const animateHeroLink = () => {
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
-	let heroRefSection: HTMLDivElement | any;
+	let heroRefSection: HTMLDivElement | undefined;
 
 	createEffect(() => {
+		const el = heroRefSection;
 		elementObserver(heroRefSection, (entry, observer) => {
 			if (entry.isIntersecting) {
 				animateHeroMainParallaxCharacter();
