@@ -20,9 +20,9 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			{/* <Quote /> */}
+			<Quote />
 			{/* <About /> */}
-			<Work />
+			{/* <Work /> */}
 			<WorkFlow />
 			<Footer />
 		</>

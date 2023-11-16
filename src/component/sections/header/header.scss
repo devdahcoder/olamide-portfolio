@@ -8,7 +8,7 @@
 
 	.header--sub--container {
 		@include mixins.center--section;
-		@include mixins.flex--layout($align: baseline);
+		@include mixins.flex--layout($align: center);
 		padding: 1rem 0;
 
 		.header--logo--container {

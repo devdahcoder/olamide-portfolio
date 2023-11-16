@@ -2,11 +2,11 @@
 @use "../../../styles/variables";
 
 .quote--container {
-	padding: 9rem 0;
-    margin: 8rem 0;
-    // min-height: 100vh;
-    // height: 100%;
-    border: 1px solid white;
+	// padding: 9rem 0;
+	@include mixins.center--element;
+	margin: 8rem 0;
+	min-height: 100vh;
+	height: 100%;
 
 	.quote--sub--container {
 		@include mixins.center--section;
@@ -17,16 +17,23 @@
 		);
 		row-gap: 1.2rem;
 
-		.quote--text {
+		.quote--text--container {
 			@include mixins.flex--layout($align: center, $justify: center);
 			font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-			position: relative;
-			font-size: 1.9rem;
 			flex-wrap: wrap;
-			text-align: center;
-			padding: 0 1rem;
-			max-width: 60%;
-			color: hsl(0, 3%, 73%);
+			column-gap: 1rem;
+			// row-gap: 0.01rem;
+			line-height: 5rem;
+			// width: 80%;
+
+			.quote--text {
+				position: relative;
+				font-size: 4rem;
+				text-align: center;
+				// padding: 0 1rem;
+				max-width: 80%;
+				// color: hsl(0, 4%, 14%);
+			}
 		}
 
 		.quote--author {

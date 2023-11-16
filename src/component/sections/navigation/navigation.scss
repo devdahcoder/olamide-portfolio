@@ -25,6 +25,11 @@
 		}
 
 		.navigation--content--container {
+			@include mixins.flex--layout(
+				$direction: column,
+				$align: center,
+				$justify: baseline
+			);
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -33,39 +38,50 @@
 			overflow-y: scroll;
 			overflow-x: hidden;
 			border: 1px solid white;
+			row-gap: 2.5rem;
+			padding-bottom: 30rem;
+			padding-top: 15rem;
 
-			.navigation--content--sub--container {
-				@include mixins.flex--layout(
-					$direction: column,
-					$align: center,
-					$justify: baseline
-				);
-				row-gap: 1.5rem;
-				width: 100vw;
-				height: 100vh;
-				margin-top: 10rem;
+			// .navigation--content--sub--container {
+			// 	@include mixins.flex--layout(
+			// 		$direction: column,
+			// 		$align: center,
+			// 		$justify: baseline
+			// 	);
+			// 	row-gap: 1.5rem;
+			// 	width: 100vw;
+			// 	height: 100vh;
+			// 	margin-top: 15rem;
+			// 	border: 1px solid blue;
 
-				.navigation--link--container {
-					.navigation--link {
-						@include mixins.center--element;
-						flex-direction: row;
-						width: 100%;
-						text-decoration: none;
-						color: white;
-						font-size: 4rem;
-						font-weight: 400;
-						font-family: Zodiak, Satoshi, -apple-system,
-							Helvetica Neue, sans-serif;
-						text-align: justify;
-						color: variables.$primary--text--color;
-						overflow: hidden;
-					}
+			.navigation--link--container {
+				border: 1px solid rgb(204, 20, 20);
+				transform: scale(0.8);
+
+				.navigation--link {
+					@include mixins.center--element;
+					flex-direction: row;
+					width: 100%;
+					text-decoration: none;
+					color: white;
+					font-size: 4rem;
+					font-weight: 400;
+					font-family: Zodiak, Satoshi, -apple-system, Helvetica Neue,
+						sans-serif;
+					text-align: justify;
+					color: variables.$primary--text--color;
+					overflow: hidden;
 				}
 
-				.scaled {
-					transform: scale(2);
-				}
+				// &:first-child {
+				// 	margin-top: 15rem;
+				// }
 			}
+
+			.active {
+				transform: scale(2) !important;
+			}
+			// }
 
 			&::-webkit-scrollbar {
 				width: 0.3rem;

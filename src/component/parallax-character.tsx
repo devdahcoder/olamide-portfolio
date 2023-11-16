@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import { Component, children } from "solid-js";
 
 const ParallaxCharacter: Component<{
 	index: number;
@@ -6,6 +6,7 @@ const ParallaxCharacter: Component<{
 	class: string;
 	parallaxCharacterElement: HTMLDivElement[][];
 }> = (props) => {
+	
 	return (
 		<div
 			ref={(element) => {

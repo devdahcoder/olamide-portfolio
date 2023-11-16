@@ -26,10 +26,12 @@ const animateNavigationLink = (show: boolean) => {
 		{
 			yPercent: show ? 500 : 0,
 			opacity: show ? 0 : 1,
+			// scale: show ? 0.5 : 1
 		},
 		{
 			yPercent: show ? 0 : 500,
 			opacity: show ? 1 : 0,
+			scale: 1,
 			stagger,
 			duration,
 			delay,
@@ -253,10 +255,62 @@ const animateNavigationLinkText = (index: number) => {
 	);
 };
 
-
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
+
+	const [firstLinkPosition, setFirstLinkPosition] = createSignal<number>(0);
+
+	const handleScroll = () => {
+		let scrollPosition = contentContainerRef?.scrollTop;
+		console.log("This is a link position", linkListContainer[0].offsetTop);
+		console.log("scroll position", scrollPosition);
+		const viewportHeight = contentContainerRef?.clientHeight;
+
+		// linkListContainer.forEach((item) => {
+		// 	const itemTop = item.offsetTop;
+		// 	const itemBottom = itemTop + item.offsetHeight;
+
+		// 	const shouldScale =
+		// 		itemTop < scrollPosition + viewportHeight &&
+		// 		itemBottom > scrollPosition;
+
+		// 	if (shouldScale) {
+		// 		// item.classList.add("scaled");
+		// 		gsap.fromTo(item, { scale: 0.8 }, { scale: 1.4 });
+		// 	} else {
+		// 		// item.classList.remove("scaled");
+		// 		gsap.fromTo(item, { scale: 1.4 }, { scale: 0.8 });
+		// 	}
+		// });
+
+		// linkListContainer.forEach((element, index) => {
+		// 	let linkPosition = element.offsetTop;
+
+		// 	if (scrollPosition >= linkPosition) {
+		// 		console.log("scroll position", scrollPosition);
+
+		// 		linkListContainer.forEach((otherLink, otherIndex) => {
+		// 			if (otherIndex !== index) {
+		// 				gsap.fromTo(element, { scale: 1.4 }, { scale: 0.8 });
+		// 			}
+		// 		});
+
+		// 		gsap.fromTo(element, {scale: 0.8}, {scale: 1.4});
+		// 	}
+		// });
+	};
+
+	// createEffect(() => {
+	// 	console.log("This is a link position", linkListContainer[0].offsetTop);
+	// });
+
+	createEffect(() => {
+		contentContainerRef?.addEventListener("scroll", handleScroll);
+		onCleanup(() => {
+			contentContainerRef?.removeEventListener("scroll", handleScroll);
+		});
+	});
 
 	createEffect(() => {
 		props.isNavigationOpen();
@@ -267,6 +321,16 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		animateNavigationGrid(props.isNavigationOpen());
 		animateLinkContainer(props.isNavigationOpen());
 		animateNavigationLink(props.isNavigationOpen());
+		if (props.isNavigationOpen()) {
+			console.log(
+				"first liknk position",
+				linkListContainer[0].offsetWidth,
+				linkListContainer[0].offsetTop,
+				linkListContainer[0].offsetHeight,
+				linkListContainer[0].offsetLeft
+			);
+			
+		}
 	});
 
 	return (
@@ -280,7 +344,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 					ref={contentContainerRef}
 					class="navigation--content--container"
 				>
-					<div class="navigation--content--sub--container">
+					{/* <div class="navigation--content--sub--container"> */}
 						<For each={headerLinksContent}>
 							{(props, index) => (
 								<div
@@ -314,7 +378,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 								</div>
 							)}
 						</For>
-					</div>
+					{/* </div> */}
 				</div>
 			</div>
 		</div>
