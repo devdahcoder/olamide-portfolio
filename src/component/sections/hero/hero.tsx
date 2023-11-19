@@ -1,10 +1,12 @@
 import gsap from "gsap";
-import { Component, For, createEffect, createSignal, onMount } from "solid-js";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Component, For, createEffect, createSignal } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
 import "./hero.scss";
+gsap.registerPlugin(ScrollTrigger);
 
 const animateHeroMainParallaxCharacter = () => {
 	gsap.fromTo(
@@ -41,13 +43,14 @@ const animateHeroLink = () => {
 	);
 };
 
-const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
+const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
+	// ✺❋
+	// const [role] = createSignal<string>("Software Developer");
 	const [role] = createSignal<string>("Full-Stack Developer");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
 
 	createEffect(() => {
-		const el = heroRefSection;
 		elementObserver(heroRefSection, (entry, observer) => {
 			if (entry.isIntersecting) {
 				animateHeroMainParallaxCharacter();
@@ -56,6 +59,40 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			}
 			observer.unobserve(entry.target);
 		});
+
+		// gsap.fromTo(
+		// 	".hero--main--text--container",
+		// 	{ yPercent: 0 },
+		// 	{
+		// 		yPercent: -100,
+		// 		duration: 2,
+		// 		ease: "power4.in",
+		// 		scrollTrigger: {
+		// 			trigger: ".hero--main--text--container",
+		// 			start: "top 15%",
+		// 			end: "bottom 10%",
+		// 			scrub: true,
+		// 			markers: true
+		// 		},
+		// 	}
+		// );
+		// gsap.fromTo(
+		// 	".hero--sub--text--container",
+		// 	{ yPercent: 0 },
+		// 	{
+		// 		yPercent: -50,
+		// 		duration: 30,
+		// 		ease: "power4.in",
+		// 		scrollTrigger: {
+		// 			trigger: ".hero--sub--text--container",
+		// 			start: "top 15%",
+		// 			end: "bottom 10%",
+		// 			scrub: true,
+		// 			markers: true,
+
+		// 		},
+		// 	}
+		// );
 	});
 
 	return (

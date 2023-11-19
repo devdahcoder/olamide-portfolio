@@ -2,37 +2,70 @@
 @use "../../../styles/variables";
 
 .about--container {
+	padding: 15rem 0rem 6rem 0;
+    min-height: 100vh;
 
-    padding: 10rem 0rem 6rem 0;
+	.about--sub--container {
+		@include mixins.center--section;
+		@include mixins.flex--layout(
+			$direction: column,
+			$align: baseline,
+			$justify: baseline
+		);
+		row-gap: 2rem;
 
-    .about--sub--container {
+		.about--text--header {
+			@include mixins.flex--layout(
+				$direction: column,
+				$align: start,
+				$justify: start
+			);
+			color: white;
+			font-size: 1.5rem;
+			font-weight: 300;
+			text-transform: uppercase;
+			width: 55%;
+		}
 
-        @include mixins.center--section;
-        @include mixins.flex--layout($direction: column, $align: center, $justify: center);
-        row-gap: 1.2rem;
-    
-        .about--text {
-        
-            @include mixins.flex--layout($align: center, $justify: center);
-            position: relative;
-            font-size: 1.7rem;
-            font-weight: 400;
-            flex-wrap: wrap;
-            text-align: center;
-            padding: 0 1rem;
-            max-width: 80%;
-            color: hsl(0, 3%, 73%);
+		.about--text--container {
+			@include mixins.flex--layout($align: start, $justify: baseline);
+			color: hsl(0, 3%, 73%);
+			position: relative;
+			font-size: 1.2rem;
+			font-weight: 300;
 
-        }
+			.about--text--title {
+				flex-grow: 1;
+                width: 100%;
+                color: white;
+                
+                p {
+                    width: 70%;
+                }
+			}
 
-        .about--author {
-            
-            font-size: 1rem;
-            font-weight: 500;
-            color: hsl(0, 0%, 56%);
+			.about--text {
+                @include mixins.flex--layout(
+				$direction: column,
+				$align: start,
+				$justify: start
+			);
+				flex-grow: 1;
+                width: 100%;
+                row-gap: 3rem;
+			}
+		}
 
-        }
-
-    }
-
+		// .about--text {
+		// 	@include mixins.flex--layout($align: center, $justify: center);
+		// 	position: relative;
+		// 	font-size: 1.7rem;
+		// 	font-weight: 400;
+		// 	flex-wrap: wrap;
+		// 	text-align: center;
+		// 	padding: 0 1rem;
+		// 	max-width: 80%;
+		// 	color: hsl(0, 3%, 73%);
+		// }
+	}
 }
