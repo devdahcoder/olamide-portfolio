@@ -2,6 +2,8 @@
 
 .project--container {
 	border: 1px solid white;
+	min-height: 100vh;
+
 	.project--sub--container {
 		@include mixins.center--section($width: 70%);
 		@include mixins.flex--layout(
@@ -14,17 +16,22 @@
 		.project--item--container {
 			border: 1px solid white;
 			width: 100%;
-            position: relative;
+			position: relative;
 
 			.image--container {
 				position: absolute;
 				display: block;
+				pointer-events: none;
+				user-select: none;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 
 				.image--sub--container {
 					@include mixins.image--sub--container(27rem, 20rem);
 					border: 1px solid white;
-					height: 20rem;
-					border-radius: 0.3rem;
+					// height: 20rem;
+					// border-radius: 0.3rem;
 
 					.image {
 						@include mixins.image($height: 27rem);

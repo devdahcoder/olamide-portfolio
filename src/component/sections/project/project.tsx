@@ -13,7 +13,7 @@ const Project: Component<{}> = (props) => {
 	const handleItemEnter = (e: MouseEvent, imageSelector: Element | null) => {
 		gsap.to(imageSelector, {
 			opacity: 1,
-			duration: 0.3,
+			duration: 0.2,
 			x:
 				e.clientX -
 				e.currentTarget.getBoundingClientRect().left -
@@ -22,6 +22,7 @@ const Project: Component<{}> = (props) => {
 				e.clientY -
 				e.currentTarget.getBoundingClientRect().top -
 				e.currentTarget.offsetHeight / 2,
+			ease: "sine.inOut",
 		});
 	};
 
@@ -35,7 +36,7 @@ const Project: Component<{}> = (props) => {
 	createEffect(() => {
 		projectRef.forEach((item) => {
 			let imageSelector = item.querySelector(".image--container");
-			item.addEventListener("mouseenter", (e: MouseEvent) =>
+			item.addEventListener("mousemove", (e: MouseEvent) =>
 				handleItemEnter(e, imageSelector)
 			);
 			item.addEventListener("mouseleave", (e: MouseEvent) =>
@@ -45,7 +46,7 @@ const Project: Component<{}> = (props) => {
 		onCleanup(() => {
 			projectRef.forEach((item) => {
 				let imageSelector = item.querySelector(".image--container");
-				item.removeEventListener("mouseenter", (e: MouseEvent) =>
+				item.removeEventListener("mousemove", (e: MouseEvent) =>
 					handleItemEnter(e, imageSelector)
 				);
 				item.removeEventListener("mouseleave", (e: MouseEvent) =>
