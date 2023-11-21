@@ -38,6 +38,7 @@ export type WorkType = {
     link: string;
     companyName: string;
     className: string;
+    tools?: string[];
 
 }
 

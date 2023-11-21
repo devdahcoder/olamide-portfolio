@@ -104,6 +104,7 @@ export const workContent: Array<WorkType> = [
         link: 'work-1-link',
         companyName: "OkaLane",
         className: "start",
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"]
     },
     {
         id: 2,
@@ -120,57 +121,62 @@ export const workContent: Array<WorkType> = [
         link: 'work-2-link',
         companyName: "ScaleIn",
         className: "end",
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"]
     },
-    // {
-    //     id: 3,
-    //     image: {
-    //         imageSrc: 'image3.jpg',
-    //         imageAlt: 'Image 3',
-    //         imageClass: 'image-class-3',
-    //         imageContainerClass: 'container-3',
-    //         imageSubContainerClass: 'sub-container-3',
-    //     },
-    //     title: 'Work 3',
-    //     description: 'Description for Work 3',
-    //     date: '2023-03-25',
-    //     link: 'work-3-link',
-    //     companyName: "Disney World",
-    //     className: "start",
-    // },
-    // {
-    //     id: 4,
-    //     image: {
-    //         imageSrc: 'image4.jpg',
-    //         imageAlt: 'Image 4',
-    //         imageClass: 'image-class-4',
-    //         imageContainerClass: 'container-4',
-    //         imageSubContainerClass: 'sub-container-4',
-    //     },
-    //     title: 'Work 4',
-    //     description: 'Description for Work 4',
-    //     date: '2023-04-30',
-    //     link: 'work-4-link',
-    //     companyName: "Disney World",
-    //     className: "end",
-    // },
-    // {
-    //     id: 5,
-    //     image: {
-    //         imageSrc: 'image5.jpg',
-    //         imageAlt: 'Image 5',
-    //         imageClass: 'image-class-5',
-    //         imageContainerClass: 'container-5',
-    //         imageSubContainerClass: 'sub-container-5',
-    //     },
-    //     title: 'Work 5',
-    //     description: 'Description for Work 5',
-    //     date: '2023-05-05',
-    //     link: 'work-5-link',
-    //     companyName: "Disney World",
-    //     className: "start",
-    // },
+    {
+        id: 3,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_3',
+            imageAlt: 'Image 3',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 1',
+        description: 'Description for New Project 1',
+        date: '2023-03-10',
+        link: 'new-project-1-link',
+        companyName: "NewProject1",
+        className: "middle",
+        tools: ["React", "Redux", "TypeScript", "Styled Components"]
+    },
+    {
+        id: 4,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_4',
+            imageAlt: 'Image 4',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 2',
+        description: 'Description for New Project 2',
+        date: '2023-04-05',
+        link: 'new-project-2-link',
+        companyName: "NewProject2",
+        className: "middle",
+        tools: ["Vue.js", "Vuex", "SCSS", "Webpack"]
+    },
+    {
+        id: 5,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_5',
+            imageAlt: 'Image 5',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 3',
+        description: 'Description for New Project 3',
+        date: '2023-05-15',
+        link: 'new-project-3-link',
+        companyName: "NewProject3",
+        className: "end",
+        tools: ["Angular", "RxJS", "NgRx", "Bootstrap"]
+    }
 
-]
+];
+
 
 export const headerLinksContent: Array<HeaderLinkType> = [
 

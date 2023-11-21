@@ -1,11 +1,31 @@
-import { Component, For } from "solid-js";
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { Component, For, createEffect } from "solid-js";
 import { workContent } from "../../../../contents";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./work.scss";
+gsap.registerPlugin(ScrollToPlugin);
 
 const Work: Component<{}> = () => {
+	createEffect(() => {
+		gsap.fromTo(
+			".image--container",
+			{ width: "0%" },
+			{
+				width: "100%",
+				scrollTrigger: {
+					trigger: ".work--container",
+					start: "top 70%",
+					end: "bottom center",
+					scrub: true,
+					markers: true,
+				},
+			}
+		);
+	});
+
 	return (
 		<div class="work--container">
 			<div class="work--sub--container">

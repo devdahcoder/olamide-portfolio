@@ -7,7 +7,7 @@ const About: Component<{}> = () => {
 			<div class="about--sub--container">
 				<div class="about--text--header">
 					<p>
-						Hello! I'm Olamide, a passionate full-stack developer
+						Hello! I'm Olamide, a passionate software developer
 						from Nigeria, who crafts beautiful web and mobile
 						experiences and digital solutions with a real impact.
 					</p>
@@ -44,7 +44,7 @@ const About: Component<{}> = () => {
 								so whether you're a fellow developer, potential
 								client, or someone with a great idea, let's
 								connect and create something amazing. Explore my
-								work and [contact me](#contact). Excited for the
+								work and <span class="contact"><a href="http://" target="_blank" rel="noopener noreferrer">adigunolamide200@gmail.com</a></span>. Excited for the
 								next chapter of innovation and creativity!
 							</p>
 						</div>

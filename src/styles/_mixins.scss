@@ -20,7 +20,8 @@
 @mixin image--container {
 	position: relative;
 	display: block;
-	width: 100%;
+	border: 1px solid white;
+	// width: 100%;
 }
 
 @mixin image--sub--container($height, $width) {
@@ -33,7 +34,7 @@
 }
 
 @mixin image($height: 100%, $width: 100%) {
-	object-fit: cover;
+	object-fit: contain;
 	left: 0;
 	width: $width;
 	height: $height;
