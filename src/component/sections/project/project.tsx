@@ -1,19 +1,28 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Component, For, Show, createEffect, onCleanup } from "solid-js";
 import { workContent } from "../../../../contents";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./project.scss";
+gsap.registerPlugin(ScrollTrigger);
 
-const Project: Component<{}> = (props) => {
-	let projectRef: HTMLDivElement[] = [];
-	let imageRef: HTMLDivElement | any;
+const handleItemEnter = (
+	e: MouseEvent | any,
+	imageSelector: Element | null,
+	prevX: number
+) => {
+	if (imageSelector) {
+		const currentX =
+			e.clientX -
+			e.currentTarget.getBoundingClientRect().left -
+			e.currentTarget.offsetWidth / 2;
 
-	const handleItemEnter = (e: MouseEvent, imageSelector: Element | null) => {
+		const direction = currentX > prevX ? "right" : "left";
+
 		gsap.to(imageSelector, {
-			opacity: 1,
-			duration: 0.2,
+			duration: 0.5,
 			x:
 				e.clientX -
 				e.currentTarget.getBoundingClientRect().left -
@@ -23,41 +32,126 @@ const Project: Component<{}> = (props) => {
 				e.currentTarget.getBoundingClientRect().top -
 				e.currentTarget.offsetHeight / 2,
 			ease: "sine.inOut",
+			opacity: 0.9,
+			boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
+		});
+	}
+};
+
+const handleItemLeave = (e: MouseEvent, imageSelector: Element | null) => {
+	if (imageSelector) {
+		gsap.to(imageSelector, {
+			opacity: 0,
+			duration: 0.5,
+		});
+	}
+};
+
+const handleItemHover = () => {
+	gsap.to(".project--background--image", {
+		ease: "sine.in",
+		duration: 2.5,
+		opacity: 0.9,
+		delay: 0,
+	});
+};
+
+const handleItemOut = () => {
+	gsap.to(".project--background--image", {
+		duration: 2.5,
+		opacity: 0,
+	});
+};
+
+const handleProjectToolsAnimation = (show: boolean) => {
+	gsap.fromTo(
+		".project--tool",
+		{ yPercent: 100, opacity: 0 },
+		{ yPercent: 0, opacity: 1, duration: 0.7, ease: "sine.in", stagger: show ? 0.5 : -0.5 }
+	);
+};
+
+const Project: Component<{}> = () => {
+	let projectRef: HTMLDivElement[] = [];
+
+	const attachEventListeners = (item: HTMLDivElement) => {
+		const projectContainerSelector = document.querySelector(
+			".project--container"
+		);
+		const projectBackgroundImageSelector =
+			projectContainerSelector?.querySelector(
+				".project--background--image"
+			) as HTMLImageElement;
+		const imageSelector = item.querySelector(".image--container");
+		const imageSubSelector = imageSelector?.querySelector(
+			".image--sub--container"
+		);
+		const imageElem = imageSubSelector?.querySelector(
+			".image"
+		) as HTMLImageElement;
+		let prevX = 0;
+
+		item.addEventListener("mouseenter", () => {
+			if (projectBackgroundImageSelector) {
+				projectBackgroundImageSelector.src = imageElem.src;
+				handleItemHover();
+				handleProjectToolsAnimation(true);
+			}
+		});
+
+		item.addEventListener("mousemove", (e: MouseEvent) => {
+			handleItemEnter(e, imageSelector, prevX);
+
+			prevX = e.clientX;
+		});
+
+		item.addEventListener("mouseleave", (e: MouseEvent) => {
+			handleItemLeave(e, imageSelector);
+			handleItemOut();
 		});
 	};
 
-	const handleItemLeave = (e: MouseEvent, imageSelector: Element | null) => {
-		gsap.to(imageSelector, {
-			opacity: 0,
-			duration: 0.3,
+	const removeEventListeners = (item: HTMLDivElement) => {
+		const imageSelector = item.querySelector(".image--container");
+
+		item.removeEventListener("mousemove", (e: MouseEvent) =>
+			handleItemEnter(e, imageSelector, 0)
+		);
+		item.removeEventListener("mouseenter", () => handleItemHover());
+		item.removeEventListener("mouseleave", (e: MouseEvent) => {
+			handleItemLeave(e, imageSelector);
+			handleItemOut();
 		});
 	};
 
 	createEffect(() => {
-		projectRef.forEach((item) => {
-			let imageSelector = item.querySelector(".image--container");
-			item.addEventListener("mousemove", (e: MouseEvent) =>
-				handleItemEnter(e, imageSelector)
-			);
-			item.addEventListener("mouseleave", (e: MouseEvent) =>
-				handleItemLeave(e, imageSelector)
-			);
-		});
-		onCleanup(() => {
-			projectRef.forEach((item) => {
-				let imageSelector = item.querySelector(".image--container");
-				item.removeEventListener("mousemove", (e: MouseEvent) =>
-					handleItemEnter(e, imageSelector)
-				);
-				item.removeEventListener("mouseleave", (e: MouseEvent) =>
-					handleItemLeave(e, imageSelector)
-				);
-			});
-		});
+		// gsap.to(
+		// "",
+		// 	// ".project--item--container",
+		// 	// { yPercent: 100 },
+		// 	{
+		// 		// yPercent: 0,
+		// 		scrollTrigger: {
+		// 			trigger: ".project--container",
+		// 			start: "top top",
+		// 			end: "bottom center",
+		// 			scrub: true,
+		// 			pin: true,
+		// 			markers: true,
+		// 		},
+		// 	}
+		// );
+		projectRef.forEach(attachEventListeners);
+		onCleanup(() => projectRef.forEach(removeEventListeners));
 	});
 
 	return (
 		<div class="project--container">
+			<img
+				src=""
+				alt="background-image"
+				class="project--background--image"
+			/>
 			<div class="project--sub--container">
 				<For each={workContent}>
 					{(props, index) => (

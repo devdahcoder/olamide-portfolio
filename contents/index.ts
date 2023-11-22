@@ -123,57 +123,57 @@ export const workContent: Array<WorkType> = [
         className: "end",
         tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"]
     },
-    // {
-    //     id: 3,
-    //     image: {
-    //         imageSrc: 'URL_FOR_IMAGE_3',
-    //         imageAlt: 'Image 3',
-    //         imageClass: 'image',
-    //         imageContainerClass: 'image--container',
-    //         imageSubContainerClass: 'image--sub--container',
-    //     },
-    //     title: 'New Project 1',
-    //     description: 'Description for New Project 1',
-    //     date: '2023-03-10',
-    //     link: 'new-project-1-link',
-    //     companyName: "NewProject1",
-    //     className: "middle",
-    //     tools: ["React", "Redux", "TypeScript", "Styled Components"]
-    // },
-    // {
-    //     id: 4,
-    //     image: {
-    //         imageSrc: 'URL_FOR_IMAGE_4',
-    //         imageAlt: 'Image 4',
-    //         imageClass: 'image',
-    //         imageContainerClass: 'image--container',
-    //         imageSubContainerClass: 'image--sub--container',
-    //     },
-    //     title: 'New Project 2',
-    //     description: 'Description for New Project 2',
-    //     date: '2023-04-05',
-    //     link: 'new-project-2-link',
-    //     companyName: "NewProject2",
-    //     className: "middle",
-    //     tools: ["Vue.js", "Vuex", "SCSS", "Webpack"]
-    // },
-    // {
-    //     id: 5,
-    //     image: {
-    //         imageSrc: 'URL_FOR_IMAGE_5',
-    //         imageAlt: 'Image 5',
-    //         imageClass: 'image',
-    //         imageContainerClass: 'image--container',
-    //         imageSubContainerClass: 'image--sub--container',
-    //     },
-    //     title: 'New Project 3',
-    //     description: 'Description for New Project 3',
-    //     date: '2023-05-15',
-    //     link: 'new-project-3-link',
-    //     companyName: "NewProject3",
-    //     className: "end",
-    //     tools: ["Angular", "RxJS", "NgRx", "Bootstrap"]
-    // }
+    {
+        id: 3,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_3',
+            imageAlt: 'Image 3',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 1',
+        description: 'Description for New Project 1',
+        date: '2023-03-10',
+        link: 'new-project-1-link',
+        companyName: "NewProject1",
+        className: "middle",
+        tools: ["React", "Redux", "TypeScript", "Styled Components"]
+    },
+    {
+        id: 4,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_4',
+            imageAlt: 'Image 4',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 2',
+        description: 'Description for New Project 2',
+        date: '2023-04-05',
+        link: 'new-project-2-link',
+        companyName: "NewProject2",
+        className: "middle",
+        tools: ["Vue.js", "Vuex", "SCSS", "Webpack"]
+    },
+    {
+        id: 5,
+        image: {
+            imageSrc: 'URL_FOR_IMAGE_5',
+            imageAlt: 'Image 5',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'New Project 3',
+        description: 'Description for New Project 3',
+        date: '2023-05-15',
+        link: 'new-project-3-link',
+        companyName: "NewProject3",
+        className: "end",
+        tools: ["Angular", "RxJS", "NgRx", "Bootstrap"]
+    }
 
 ];
 

@@ -3,6 +3,24 @@
 .project--container {
 	border: 1px solid white;
 	min-height: 100vh;
+	padding: 4rem 0;
+	position: relative;
+    box-shadow: inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1);
+
+	// opacity: 0.6;
+	// background-color: wheat;
+
+	.project--background--image {
+		opacity: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+        pointer-events: none;
+        box-shadow: inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1);
+		z-index: -100;
+	}
 
 	.project--sub--container {
 		@include mixins.center--section($width: 70%);
@@ -12,9 +30,10 @@
 			$justify: baseline
 		);
 		row-gap: 4rem;
+		border: 1px solid white;
 
 		.project--item--container {
-			border: 1px solid white;
+			// border: 1px solid white;
 			width: 100%;
 			position: relative;
 
@@ -26,15 +45,19 @@
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
+				opacity: 0;
 
 				.image--sub--container {
-					@include mixins.image--sub--container(27rem, 20rem);
-					border: 1px solid white;
-					// height: 20rem;
-					// border-radius: 0.3rem;
+					@include mixins.image--sub--container(20rem, 20rem);
+					overflow: visible;
+					padding-bottom: 0;
+					pointer-events: none;
+					user-select: none;
 
 					.image {
-						@include mixins.image($height: 27rem);
+						@include mixins.image($height: 20rem);
+						pointer-events: none;
+						user-select: none;
 					}
 				}
 			}

@@ -11,15 +11,13 @@ const Image: Component<{
 	return (
 		<div ref={props.imageRef} class={props.imageContainerClass}>
 			<div class={props.imageSubContainerClass}>
-				<div>
-					<img
-						class={props.imageClass}
-						src={props.imageSrc}
-						alt={props.imageAlt}
-						sizes=""
-						srcset=""
-					/>
-				</div>
+				<img
+					class={props.imageClass}
+					src={props.imageSrc}
+					alt={props.imageAlt}
+					sizes=""
+					srcset=""
+				/>
 			</div>
 		</div>
 	);
