@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 
 .project--container {
-	border: 1px solid white;
+	// border: 1px solid white;
 	min-height: 100vh;
 	padding: 4rem 0;
 	position: relative;
@@ -30,12 +30,13 @@
 			$justify: baseline
 		);
 		row-gap: 4rem;
-		border: 1px solid white;
+		// border: 1px solid white;
 
 		.project--item--container {
 			// border: 1px solid white;
 			width: 100%;
 			position: relative;
+            z-index: 1;
 
 			.image--container {
 				position: absolute;
@@ -48,14 +49,14 @@
 				opacity: 0;
 
 				.image--sub--container {
-					@include mixins.image--sub--container(20rem, 20rem);
+					@include mixins.image--sub--container(15rem, 20rem);
 					overflow: visible;
 					padding-bottom: 0;
 					pointer-events: none;
 					user-select: none;
 
 					.image {
-						@include mixins.image($height: 20rem);
+						@include mixins.image($height: 15rem);
 						pointer-events: none;
 						user-select: none;
 					}

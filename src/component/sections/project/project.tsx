@@ -1,6 +1,13 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Component, For, Show, createEffect, onCleanup } from "solid-js";
+import {
+	Component,
+	For,
+	Show,
+	createEffect,
+	createSignal,
+	onCleanup,
+} from "solid-js";
 import { workContent } from "../../../../contents";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import IconButton from "../../icon-button";
@@ -8,71 +15,84 @@ import Image from "../../image";
 import "./project.scss";
 gsap.registerPlugin(ScrollTrigger);
 
-const handleItemEnter = (
-	e: MouseEvent | any,
-	imageSelector: Element | null,
-	prevX: number
-) => {
-	if (imageSelector) {
-		const currentX =
-			e.clientX -
-			e.currentTarget.getBoundingClientRect().left -
-			e.currentTarget.offsetWidth / 2;
-
-		const direction = currentX > prevX ? "right" : "left";
-
-		gsap.to(imageSelector, {
-			duration: 0.5,
-			x:
-				e.clientX -
-				e.currentTarget.getBoundingClientRect().left -
-				e.currentTarget.offsetWidth / 2,
-			y:
-				e.clientY -
-				e.currentTarget.getBoundingClientRect().top -
-				e.currentTarget.offsetHeight / 2,
-			ease: "sine.inOut",
-			opacity: 0.9,
-			boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
-		});
-	}
-};
-
-const handleItemLeave = (e: MouseEvent, imageSelector: Element | null) => {
-	if (imageSelector) {
-		gsap.to(imageSelector, {
-			opacity: 0,
-			duration: 0.5,
-		});
-	}
-};
-
-const handleItemHover = () => {
-	gsap.to(".project--background--image", {
-		ease: "sine.in",
-		duration: 2.5,
-		opacity: 0.9,
-		delay: 0,
-	});
-};
-
-const handleItemOut = () => {
-	gsap.to(".project--background--image", {
-		duration: 2.5,
-		opacity: 0,
-	});
-};
-
-const handleProjectToolsAnimation = (show: boolean) => {
-	gsap.fromTo(
-		".project--tool",
-		{ yPercent: 100, opacity: 0 },
-		{ yPercent: 0, opacity: 1, duration: 0.7, ease: "sine.in", stagger: show ? 0.5 : -0.5 }
-	);
-};
-
 const Project: Component<{}> = () => {
 	let projectRef: HTMLDivElement[] = [];
+
+	const [prevMousePosition, setPreviousMousePosition] =
+		createSignal<number>(0);
+
+	const handleItemEnter = (
+		e: MouseEvent | any,
+		imageSelector: Element | null,
+		prevX: number
+	) => {
+		if (imageSelector) {
+			let prevX = e.clientX;
+			const currentX =
+				e.clientX -
+				e.currentTarget.getBoundingClientRect().left -
+				e.currentTarget.offsetWidth / 2;
+
+			const direction = prevX >= prevMousePosition() ? "right" : "left";
+			const tiltAmount = direction === "right" ? 10 : -10;
+
+			gsap.to(imageSelector, {
+				duration: 0.8,
+				x:
+					e.clientX -
+					e.currentTarget.getBoundingClientRect().left -
+					e.currentTarget.offsetWidth / 2,
+				y:
+					e.clientY -
+					e.currentTarget.getBoundingClientRect().top -
+					e.currentTarget.offsetHeight / 2,
+				ease: "power1.out",
+				rotation: tiltAmount,
+				opacity: 0.9,
+				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
+			});
+			setPreviousMousePosition(prevX);
+		}
+	};
+
+	const handleItemLeave = (e: MouseEvent, imageSelector: Element | null) => {
+		if (imageSelector) {
+			gsap.to(imageSelector, {
+				opacity: 0,
+				duration: 0.8,
+			});
+		}
+	};
+
+	const handleItemHover = () => {
+		gsap.to(".project--background--image", {
+			ease: "sine.in",
+			duration: 2.5,
+			opacity: 0.9,
+			delay: 0,
+		});
+	};
+
+	const handleItemOut = () => {
+		gsap.to(".project--background--image", {
+			duration: 2.5,
+			opacity: 0,
+		});
+	};
+
+	const handleProjectToolsAnimation = (show: boolean) => {
+		gsap.fromTo(
+			".project--tool",
+			{ yPercent: 100, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				duration: 0.7,
+				ease: "sine.in",
+				stagger: show ? 0.5 : -0.5,
+			}
+		);
+	};
 
 	const attachEventListeners = (item: HTMLDivElement) => {
 		const projectContainerSelector = document.querySelector(
@@ -95,13 +115,12 @@ const Project: Component<{}> = () => {
 			if (projectBackgroundImageSelector) {
 				projectBackgroundImageSelector.src = imageElem.src;
 				handleItemHover();
-				handleProjectToolsAnimation(true);
+				// handleProjectToolsAnimation(true);
 			}
 		});
 
 		item.addEventListener("mousemove", (e: MouseEvent) => {
 			handleItemEnter(e, imageSelector, prevX);
-
 			prevX = e.clientX;
 		});
 

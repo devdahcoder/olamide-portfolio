@@ -8,6 +8,7 @@ import WorkFlow from "./component/sections/work-flow/work-flow";
 import Work from "./component/sections/work/work";
 import Quote from "./component/sections/quote/quote";
 import Project from "./component/sections/project/project";
+import InfiniteTextScroll from "./component/infinit";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -21,9 +22,10 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			{/* <About />
-			<Quote /> */}
+			<About />
+			{/* <Quote /> */}
 			{/* <Work /> */}
+			{/* <InfiniteTextScroll /> */}
 			<Project />
 			<WorkFlow />
 			<Footer />
