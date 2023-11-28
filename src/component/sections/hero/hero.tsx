@@ -12,13 +12,14 @@ gsap.registerPlugin(ScrollTrigger);
 const animateHeroMainParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--main--text",
-		{ yPercent: 100, rotation: 20 },
+		{ yPercent: 100, rotation: 20, opacity: 0.3 },
 		{
 			yPercent: 0,
-			duration: 2,
-			ease: "expo.out",
+			duration: 1,
+			ease: "back.out(1.7)",
 			stagger: 0.1,
 			rotation: 0,
+			opacity: 1,
 		}
 	);
 };
@@ -45,7 +46,7 @@ const animateHeroLink = () => {
 	);
 };
 
-const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
+const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	// ✺❋
 	// const [role] = createSignal<string>("Software Developer");
 	const [role] = createSignal<string>("Full-Stack Developer");
@@ -74,7 +75,7 @@ const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 					start: "top 15%",
 					end: "bottom 5%",
 					scrub: true,
-					markers: true
+					markers: true,
 				},
 			}
 		);
@@ -96,7 +97,6 @@ const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 		// 	}
 		// );
 	});
-
 
 	return (
 		<div

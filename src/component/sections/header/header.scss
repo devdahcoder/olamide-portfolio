@@ -56,6 +56,8 @@
 								$justify: baseline
 							);
 							column-gap: 0.8rem;
+							pointer-events: none;
+							user-select: none;
 
 							.header--resume--link--text--container {
 								@include mixins.flex--layout(

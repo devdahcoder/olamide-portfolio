@@ -71,8 +71,9 @@ const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 const animateOpenFirstHeaderResumeLinkText = () => {
 	gsap.to(".first--header--resume--link--text", {
 		yPercent: -100,
-		duration: 1,
-		ease: "power4.out",
+		duration: 0.8,
+		// ease: "power4.out",
+		ease: "back.in(3)",
 	});
 };
 
@@ -80,7 +81,7 @@ const animateCloseFirstHeaderResumeLinkText = () => {
 	gsap.fromTo(
 		".first--header--resume--link--text",
 		{ yPercent: -100 },
-		{ yPercent: -5 }
+		{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
 	);
 };
 
@@ -90,7 +91,7 @@ const animateOpenSecondHeaderResumeLinkText = () => {
 		{
 			yPercent: 50,
 		},
-		{ yPercent: -100 }
+		{ yPercent: -100, duration: 0.6, delay: 0.8, ease: "bounce.out" }
 	);
 };
 
@@ -156,11 +157,11 @@ const Header: Component<{
 									/>
 								</div>
 							}
-							onMouseEnter={() => {
+							onMouseOver={() => {
 								animateOpenFirstHeaderResumeLinkText();
 								animateOpenSecondHeaderResumeLinkText();
 							}}
-							onMouseLeave={() => {
+							onMouseOut={() => {
 								animateCloseFirstHeaderResumeLinkText();
 								animateCloseSecondHeaderResumeLinkText();
 							}}
