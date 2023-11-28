@@ -23,7 +23,7 @@ function App() {
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
 			<About />
-			{/* <Quote /> */}
+			<Quote />
 			{/* <Work /> */}
 			{/* <InfiniteTextScroll /> */}
 			<Project />

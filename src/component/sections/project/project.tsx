@@ -13,10 +13,12 @@ import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./project.scss";
+import { animate, scroll } from "motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
 	let projectRef: HTMLDivElement[] = [];
+	let projectContainerRef: HTMLDivElement;
 
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
@@ -115,7 +117,6 @@ const Project: Component<{}> = () => {
 			if (projectBackgroundImageSelector) {
 				projectBackgroundImageSelector.src = imageElem.src;
 				handleItemHover();
-				// handleProjectToolsAnimation(true);
 			}
 		});
 
@@ -144,22 +145,27 @@ const Project: Component<{}> = () => {
 	};
 
 	createEffect(() => {
-		// gsap.to(
-		// "",
-		// 	// ".project--item--container",
-		// 	// { yPercent: 100 },
-		// 	{
-		// 		// yPercent: 0,
+		// gsap.to(projectContainerRef, {
+		// 	scrollTrigger: {
+		// 		trigger: ".project--container",
+		// 		start: "top top",
+		// 		pin: true,
+		// 		end: () => `+=${projectContainerRef.clientHeight}`, // Adjust as needed
+		// 		markers: true,
+		// 	},
+		// });
+
+		// projectRef.forEach((item, index) => {
+		// 	gsap.to(item, {
 		// 		scrollTrigger: {
-		// 			trigger: ".project--container",
-		// 			start: "top top",
-		// 			end: "bottom center",
-		// 			scrub: true,
-		// 			pin: true,
-		// 			markers: true,
+		// 			trigger: item,
+		// 			start: "top center+=100", // Adjust the start position
+		// 			end: "bottom center-=100", // Adjust the end position
+		// 			toggleClass: "active", // Add a class when in view
 		// 		},
-		// 	}
-		// );
+		// 		backgroundColor: index % 2 === 0 ? "lightblue" : "lightgreen", // Change colors as needed
+		// 	});
+		// });
 		projectRef.forEach(attachEventListeners);
 		onCleanup(() => projectRef.forEach(removeEventListeners));
 	});

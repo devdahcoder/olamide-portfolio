@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 
 .project--container {
-	// border: 1px solid white;
+	border: 1px solid white;
 	min-height: 100vh;
 	padding: 4rem 0;
 	position: relative;
@@ -30,13 +30,15 @@
 			$justify: baseline
 		);
 		row-gap: 4rem;
-		// border: 1px solid white;
+		border: 1px solid white;
 
 		.project--item--container {
 			// border: 1px solid white;
 			width: 100%;
 			position: relative;
             z-index: 1;
+
+			
 
 			.image--container {
 				position: absolute;

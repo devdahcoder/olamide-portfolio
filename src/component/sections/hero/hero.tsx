@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { animate, scroll } from "motion";
 import { Component, For, createEffect, createSignal } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
@@ -11,12 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 const animateHeroMainParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--main--text",
-		{ yPercent: 90 },
+		{ yPercent: 100, rotation: 20 },
 		{
 			yPercent: 0,
-			duration: 2.5,
+			duration: 2,
 			ease: "expo.out",
 			stagger: 0.1,
+			rotation: 0,
 		}
 	);
 };
@@ -60,22 +62,22 @@ const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			observer.unobserve(entry.target);
 		});
 
-		// gsap.fromTo(
-		// 	".hero--main--text--container",
-		// 	{ yPercent: 0 },
-		// 	{
-		// 		yPercent: -100,
-		// 		duration: 2,
-		// 		ease: "power4.in",
-		// 		scrollTrigger: {
-		// 			trigger: ".hero--main--text--container",
-		// 			start: "top 15%",
-		// 			end: "bottom 10%",
-		// 			scrub: true,
-		// 			markers: true
-		// 		},
-		// 	}
-		// );
+		gsap.fromTo(
+			".hero--main--text--container",
+			{ yPercent: 0 },
+			{
+				yPercent: -100,
+				duration: 2,
+				ease: "power4.in",
+				scrollTrigger: {
+					trigger: ".hero--main--text--container",
+					start: "top 15%",
+					end: "bottom 5%",
+					scrub: true,
+					markers: true
+				},
+			}
+		);
 		// gsap.fromTo(
 		// 	".hero--sub--text--container",
 		// 	{ yPercent: 0 },
@@ -94,6 +96,7 @@ const  Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 		// 	}
 		// );
 	});
+
 
 	return (
 		<div
