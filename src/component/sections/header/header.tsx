@@ -16,7 +16,7 @@ const animateHeaderSection = () => {
 
 const animateHeaderPosition = (condition: boolean) => {
 	gsap.fromTo(
-		".header--container",
+		".header--main--container",
 		{
 			position: condition ? "relative" : "fixed",
 			top: condition ? "" : "0",
@@ -32,7 +32,7 @@ const animateHeaderPosition = (condition: boolean) => {
 
 const animateHeaderFirstHamburgerIcon = (condition: boolean) => {
 	gsap.fromTo(
-		".first--dropdown--icon",
+		".first--navigation--icon",
 		{
 			rotate: condition ? "0deg" : "47deg",
 			top: condition ? "30%" : "50%",
@@ -47,7 +47,7 @@ const animateHeaderFirstHamburgerIcon = (condition: boolean) => {
 
 const animateHeaderSecondHamburgerIcon = (condition: boolean) => {
 	gsap.fromTo(
-		".second--dropdown--icon",
+		".second--navigation--icon",
 		{ width: condition ? "1.5rem" : "0rem" },
 		{ width: condition ? "0rem" : "1.5rem", ease: "back.inOut(1.7)" }
 	);
@@ -55,7 +55,7 @@ const animateHeaderSecondHamburgerIcon = (condition: boolean) => {
 
 const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 	gsap.fromTo(
-		".last--dropdown--icon",
+		".last--navigation--icon",
 		{
 			rotate: condition ? "0deg" : "-47deg",
 			bottom: condition ? "30%" : "50%",
@@ -68,39 +68,36 @@ const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 	);
 };
 
-const animateOpenFirstHeaderResumeLinkText = () => {
-	gsap.to(".first--header--resume--link--text", {
-		yPercent: -100,
-		duration: 0.8,
-		// ease: "power4.out",
-		ease: "back.in(3)",
-	});
+const animateHeaderResumeLinkText = (isOpen: boolean) => {
+	const target = ".first--header--resume--link--children--text";
+
+	if (isOpen) {
+		gsap.to(target, {
+			yPercent: -100,
+			duration: 0.8,
+			ease: "back.in(3)",
+		});
+	} else {
+		gsap.fromTo(
+			target,
+			{ yPercent: -100 },
+			{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
+		);
+	}
 };
 
-const animateCloseFirstHeaderResumeLinkText = () => {
-	gsap.fromTo(
-		".first--header--resume--link--text",
-		{ yPercent: -100 },
-		{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
-	);
-};
+const animateOpenSecondHeaderResumeLinkText = (isOpen: boolean) => {
+	const target = ".second--header--resume--link--children--text";
 
-const animateOpenSecondHeaderResumeLinkText = () => {
-	gsap.fromTo(
-		".second--header--resume--link--text",
-		{
-			yPercent: 50,
-		},
-		{ yPercent: -100, duration: 0.6, delay: 0.8, ease: "bounce.out" }
-	);
-};
-
-const animateCloseSecondHeaderResumeLinkText = () => {
-	gsap.fromTo(
-		".second--header--resume--link--text",
-		{ yPercent: -100 },
-		{ yPercent: 10 }
-	);
+	if (isOpen) {
+		gsap.fromTo(
+			target,
+			{ yPercent: 50 },
+			{ yPercent: -100, duration: 0.6, delay: 0.8, ease: "bounce.out" }
+		);
+	} else {
+		gsap.fromTo(target, { yPercent: -100 }, { yPercent: 10 });
+	}
 };
 
 const Header: Component<{
@@ -128,7 +125,7 @@ const Header: Component<{
 		<div
 			ref={headerSectionRef}
 			style={props.isNavigationOpen() ? { width: "100vw" } : {}}
-			class="header--container"
+			class="header--main--container"
 		>
 			<div class="header--sub--container">
 				<div class="header--logo--container">
@@ -137,16 +134,16 @@ const Header: Component<{
 					</div>
 				</div>
 
-				<div class="header--util--container">
+				<div class="header--util--main--container">
 					<div class="header--util--sub--container">
 						<Link
 							children={
-								<div class="header--resume--link--inner--container">
-									<div class="header--resume--link--text--container">
-										<div class="header--resume--link--text first--header--resume--link--text">
+								<div class="header--resume--link--children--container">
+									<div class="header--resume--link--children--text--container">
+										<div class="header--resume--link--children--text first--header--resume--link--children--text">
 											My Resume
 										</div>
-										<div class="header--resume--link--text second--header--resume--link--text">
+										<div class="header--resume--link--children--text second--header--resume--link--children--text">
 											My Resume
 										</div>
 									</div>
@@ -158,12 +155,12 @@ const Header: Component<{
 								</div>
 							}
 							onMouseOver={() => {
-								animateOpenFirstHeaderResumeLinkText();
-								animateOpenSecondHeaderResumeLinkText();
+								animateHeaderResumeLinkText(true);
+								animateOpenSecondHeaderResumeLinkText(true);
 							}}
 							onMouseOut={() => {
-								animateCloseFirstHeaderResumeLinkText();
-								animateCloseSecondHeaderResumeLinkText();
+								animateHeaderResumeLinkText(false);
+								animateOpenSecondHeaderResumeLinkText(false);
 							}}
 							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
 							linkClass="header--resume--link"
@@ -171,8 +168,8 @@ const Header: Component<{
 						/>
 
 						<Button
-							buttonClass="header--dropdown--button"
-							buttonContainerClass="header--dropdown--button--container"
+							buttonClass="header--navigation--button"
+							buttonContainerClass="header--navigation--button--container"
 							onClick={() =>
 								props.setIsNavigationOpen(
 									!props.isNavigationOpen()
@@ -180,9 +177,9 @@ const Header: Component<{
 							}
 							children={
 								<>
-									<div class="dropdown--icon first--dropdown--icon"></div>
-									<div class="dropdown--icon second--dropdown--icon"></div>
-									<div class="dropdown--icon last--dropdown--icon"></div>
+									<div class="navigation--icon first--navigation--icon"></div>
+									<div class="navigation--icon second--navigation--icon"></div>
+									<div class="navigation--icon last--navigation--icon"></div>
 								</>
 							}
 						/>

@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 @use "../../../styles/variables";
 
-.header--container {
+.header--main--container {
 	overflow-y: hidden;
 	z-index: 100;
 	width: 100vw;
@@ -23,7 +23,7 @@
 			}
 		}
 
-		.header--util--container {
+		.header--util--main--container {
 			.header--util--sub--container {
 				@include mixins.flex--layout(
 					$direction: row,
@@ -49,7 +49,7 @@
 						color: variables.$primary--text--color;
 						position: relative;
 
-						.header--resume--link--inner--container {
+						.header--resume--link--children--container {
 							@include mixins.flex--layout(
 								$direction: row,
 								$align: center,
@@ -59,7 +59,7 @@
 							pointer-events: none;
 							user-select: none;
 
-							.header--resume--link--text--container {
+							.header--resume--link--children--text--container {
 								@include mixins.flex--layout(
 									$direction: column,
 									$align: center,
@@ -70,7 +70,7 @@
 			                    height: 100%;
                                 position: relative;
 
-								.header--resume--link--text {
+								.header--resume--link--children--text {
                                     height: fit-content;
                                     display: flex;
                                     flex-direction: row;
@@ -80,13 +80,13 @@
                                     width: 100%;
 								}
 
-                                .first--header--resume--link--text {
+                                .first--header--resume--link--children--text {
                                 
                                     transform: translate(0px, 50%);
 
                                 }
 
-                                .second--header--resume--link--text {
+                                .second--header--resume--link--children--text {
                                 
                                     transform: translate(0px, 50%);
 
@@ -100,8 +100,8 @@
 					}
 				}
 
-				.header--dropdown--button--container {
-					.header--dropdown--button {
+				.header--navigation--button--container {
+					.header--navigation--button {
 						@include mixins.button;
 						border: 0.01rem solid variables.$primary--text--color;
 						border-radius: 100vh;
@@ -109,7 +109,7 @@
 						width: 2.8rem;
 						position: relative;
 
-						.dropdown--icon {
+						.navigation--icon {
 							width: 1.5rem;
 							background-color: white;
 							height: 0.01rem;

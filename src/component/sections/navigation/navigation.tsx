@@ -248,29 +248,6 @@ const resetAnchor = (element: HTMLDivElement) => {
 	});
 };
 
-const animateNavigationLinkText = (index: number) => {
-	navigationLinkRef[index].forEach((element, index) =>
-		gsap.fromTo(
-			element,
-			{
-				scale: 1,
-				color: "#ffffff",
-				fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
-			},
-			{
-				scale: 1.2,
-				duration: 0.8,
-				delay: 0.1 + index * 0.1,
-				color: "#F96F21",
-				fontFamily: `Tanker, -apple-system, Helvetica Neue, sans-serif`,
-				onComplete: () => {
-					resetAnchor(element);
-				},
-			}
-		)
-	);
-};
-
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {

@@ -17,7 +17,7 @@
             @include mixins.flex--layout($direction: column, $align: baseline, $justify: baseline);
             row-gap: 4.5rem;
             overflow-y: visible hidden;    
-            border: 1px solid white;        
+            // border: 1px solid white;        
 
             .hero--main--text--container {
 
@@ -33,7 +33,7 @@
                 font-weight: 700;
                 color: variables.$primary--text--color;
                 overflow: hidden;
-                border: 1px solid white;
+                // border: 1px solid white;
 
             }
 
@@ -42,14 +42,14 @@
                 display: flex;
                 align-items: baseline;
                 justify-content: space-between;
-                border: 1px solid white;
+                // border: 1px solid white;
 
                 .hero--sub--text {
                 
                     width: 45%;
                     color: variables.$primary--text--color;
                     letter-spacing: 0.06rem;
-                    border: 1px solid white;
+                    // border: 1px solid white;
 
                 }
 
