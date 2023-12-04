@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 @use "../../../styles/variables";
 
-.navigation--container {
+.navigation--main--container {
 	background-color: rgb(52, 49, 49);
 	width: 100vw;
 	height: 100vh;
@@ -24,7 +24,7 @@
 			}
 		}
 
-		.navigation--content--container {
+		.navigation--content--main--container {
 			@include mixins.flex--layout(
 				$direction: column,
 				$align: center,
