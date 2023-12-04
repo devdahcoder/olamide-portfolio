@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { animate, scroll } from "motion";
+import { animate, scroll, stagger } from "motion";
 import { Component, For, createEffect, createSignal } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
@@ -12,7 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 const animateHeroMainParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--main--text",
-		{ yPercent: 100, rotation: 20, opacity: 0.3 },
+		{
+			yPercent: 100,
+			rotation: 20,
+			opacity: 0.3,
+		},
 		{
 			yPercent: 0,
 			duration: 1,
@@ -52,6 +56,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const [role] = createSignal<string>("Full-Stack Developer");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
+	let heroSubTextContainer: HTMLDivElement | undefined;
 
 	createEffect(() => {
 		elementObserver(heroRefSection, (entry, observer) => {
@@ -63,39 +68,14 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			observer.unobserve(entry.target);
 		});
 
-		gsap.fromTo(
-			".hero--main--text--container",
-			{ yPercent: 0 },
-			{
-				yPercent: -100,
-				duration: 2,
-				ease: "power4.in",
-				scrollTrigger: {
-					trigger: ".hero--main--text--container",
-					start: "top 15%",
-					end: "bottom 5%",
-					scrub: true,
-					markers: true,
-				},
-			}
+		scroll(
+			animate(
+				".hero--main--text--container",
+				{ y: [null, -300, -500, -700] },
+				{ duration: 2, easing: "linear" }
+			)
 		);
-		// gsap.fromTo(
-		// 	".hero--sub--text--container",
-		// 	{ yPercent: 0 },
-		// 	{
-		// 		yPercent: -50,
-		// 		duration: 30,
-		// 		ease: "power4.in",
-		// 		scrollTrigger: {
-		// 			trigger: ".hero--sub--text--container",
-		// 			start: "top 15%",
-		// 			end: "bottom 10%",
-		// 			scrub: true,
-		// 			markers: true,
-
-		// 		},
-		// 	}
-		// );
+		
 	});
 
 	return (
@@ -121,7 +101,10 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 						</For>
 					</div>
 
-					<div class="hero--sub--text--container">
+					<div
+						ref={heroSubTextContainer}
+						class="hero--sub--text--container"
+					>
 						<div class="hero--sub--text">
 							<p>
 								Hi, My name is Olamide. I'm a passionate

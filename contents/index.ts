@@ -1,4 +1,7 @@
 import { NAVIGATION_TYPE } from "../enum";
+import BigStarIcon from '../icon/big-star-icon';
+import LoveIcon from '../icon/love-icon';
+import SmallStartIcon from '../icon/small-star-icon';
 import { HeaderLinkType, QuoteApiType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
@@ -187,6 +190,8 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         class: "",
         style: {},
         type: NAVIGATION_TYPE.LINK,
+        leftLinkElement: BigStarIcon,
+        rightLinkElement: BigStarIcon,
     },
     {
         id: 2,
@@ -195,6 +200,8 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         class: "",
         style: {},
         type: NAVIGATION_TYPE.LINK,
+        leftLinkElement: LoveIcon,
+        rightLinkElement: BigStarIcon,
     },
     {
         id: 3,
@@ -203,6 +210,9 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         class: "",
         style: {},
         type: NAVIGATION_TYPE.LINK,
+        rightLinkElement: BigStarIcon,
+        leftLinkElement: SmallStartIcon,
+
     },
     {
         id: 4,
@@ -211,6 +221,8 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         class: "",
         style: {},
         type: NAVIGATION_TYPE.LINK,
+        leftLinkElement: LoveIcon,
+        rightLinkElement: BigStarIcon,
     },
     {
         id: 5,
@@ -219,6 +231,8 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         class: "",
         style: {},
         type: NAVIGATION_TYPE.LINK,
+        leftLinkElement: BigStarIcon,
+        rightLinkElement: BigStarIcon,
     },
 
 ];

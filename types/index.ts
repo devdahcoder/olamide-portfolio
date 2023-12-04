@@ -1,4 +1,4 @@
-import { JSXElement } from 'solid-js';
+import { Component, JSXElement } from 'solid-js';
 import { NAVIGATION_TYPE } from './../enum/index';
 
 export type WorkFlowTypes = {
@@ -63,6 +63,10 @@ export type HeaderLinkType = {
     icon?: JSXElement;
     containerClassName?: string;
     type: NAVIGATION_TYPE;
+    topLinkElement?: Element;
+    leftLinkElement?: any;
+    rightLinkElement?: any;
+    bottomLinkElement?: Element;
 }
 
 export type GsapFadeElementType = {

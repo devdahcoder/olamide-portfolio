@@ -1,19 +1,35 @@
 import gsap from "gsap";
-import {
-	Accessor,
-	Component,
-	For,
-	createEffect,
-	createSignal,
-	onCleanup,
-} from "solid-js";
+import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
 import { headerLinksContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
 
-let contentContainerRef: HTMLDivElement | undefined;
-let linkRef: HTMLDivElement[][] = [];
-let linkListContainer: HTMLDivElement[] = [];
+let navigationContentContainerRef: HTMLDivElement | undefined;
+let navigationLinkRef: HTMLDivElement[][] = [];
+let navigationLinkContainerRef: HTMLDivElement[] = [];
+
+const animateLinkFocus = (
+	entry: Element,
+	link: HTMLAnchorElement,
+	isFocused: boolean
+) => {
+	const borderElement = entry.querySelector(
+		".navigation--link--container--border"
+	) as HTMLDivElement;
+	const linkSvgElement = link.querySelectorAll(".icon") as any;
+
+	if (isFocused) {
+		gsap.to(entry, { scale: 1.5 });
+		gsap.to(linkSvgElement, { scale: 0.8 });
+		gsap.to(borderElement, { xPercent: 0 });
+		gsap.to(link, { color: "white" });
+	} else {
+		gsap.to(entry, { scale: 0.8 });
+		gsap.to(linkSvgElement, { scale: 0 });
+		gsap.to(borderElement, { xPercent: -200 });
+		gsap.to(link, { color: "grey" });
+	}
+};
 
 const animateNavigationLink = (show: boolean) => {
 	const target = ".navigation--link--container";
@@ -233,7 +249,7 @@ const resetAnchor = (element: HTMLDivElement) => {
 };
 
 const animateNavigationLinkText = (index: number) => {
-	linkRef[index].forEach((element, index) =>
+	navigationLinkRef[index].forEach((element, index) =>
 		gsap.fromTo(
 			element,
 			{
@@ -258,60 +274,6 @@ const animateNavigationLinkText = (index: number) => {
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
-
-	const [firstLinkPosition, setFirstLinkPosition] = createSignal<number>(0);
-
-	const handleScroll = () => {
-		let scrollPosition = contentContainerRef?.scrollTop;
-		console.log("This is a link position", linkListContainer[0].offsetTop);
-		console.log("scroll position", scrollPosition);
-		const viewportHeight = contentContainerRef?.clientHeight;
-
-		// linkListContainer.forEach((item) => {
-		// 	const itemTop = item.offsetTop;
-		// 	const itemBottom = itemTop + item.offsetHeight;
-
-		// 	const shouldScale =
-		// 		itemTop < scrollPosition + viewportHeight &&
-		// 		itemBottom > scrollPosition;
-
-		// 	if (shouldScale) {
-		// 		// item.classList.add("scaled");
-		// 		gsap.fromTo(item, { scale: 0.8 }, { scale: 1.4 });
-		// 	} else {
-		// 		// item.classList.remove("scaled");
-		// 		gsap.fromTo(item, { scale: 1.4 }, { scale: 0.8 });
-		// 	}
-		// });
-
-		// linkListContainer.forEach((element, index) => {
-		// 	let linkPosition = element.offsetTop;
-
-		// 	if (scrollPosition >= linkPosition) {
-		// 		console.log("scroll position", scrollPosition);
-
-		// 		linkListContainer.forEach((otherLink, otherIndex) => {
-		// 			if (otherIndex !== index) {
-		// 				gsap.fromTo(element, { scale: 1.4 }, { scale: 0.8 });
-		// 			}
-		// 		});
-
-		// 		gsap.fromTo(element, {scale: 0.8}, {scale: 1.4});
-		// 	}
-		// });
-	};
-
-	// createEffect(() => {
-	// 	console.log("This is a link position", linkListContainer[0].offsetTop);
-	// });
-
-	createEffect(() => {
-		contentContainerRef?.addEventListener("scroll", handleScroll);
-		onCleanup(() => {
-			contentContainerRef?.removeEventListener("scroll", handleScroll);
-		});
-	});
-
 	createEffect(() => {
 		props.isNavigationOpen();
 		animateNavigationContainer(props.isNavigationOpen());
@@ -321,16 +283,33 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		animateNavigationGrid(props.isNavigationOpen());
 		animateLinkContainer(props.isNavigationOpen());
 		animateNavigationLink(props.isNavigationOpen());
-		if (props.isNavigationOpen()) {
-			console.log(
-				"first liknk position",
-				linkListContainer[0].offsetWidth,
-				linkListContainer[0].offsetTop,
-				linkListContainer[0].offsetHeight,
-				linkListContainer[0].offsetLeft
-			);
-			
-		}
+
+		let observe = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					let link = entry?.target?.querySelector(
+						".navigation--link"
+					) as HTMLAnchorElement;
+					if (entry.isIntersecting) {
+						animateLinkFocus(entry.target, link, true);
+					} else {
+						animateLinkFocus(entry.target, link, false);
+					}
+				});
+			},
+			{
+				threshold: [0.1, 0.2],
+				rootMargin: "-46% 0px -46%",
+			}
+		);
+
+		navigationLinkContainerRef.forEach((element) =>
+			observe.observe(element)
+		);
+
+		onCleanup(() => {
+			observe.disconnect();
+		});
 	});
 
 	return (
@@ -341,18 +320,15 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 				</For>
 
 				<div
-					ref={contentContainerRef}
+					ref={navigationContentContainerRef}
 					class="navigation--content--container"
 				>
-					{/* <div class="navigation--content--sub--container"> */}
+					<div class="navigation--content--sub--container">
 						<For each={headerLinksContent}>
 							{(props, index) => (
 								<div
 									ref={(element) =>
-										linkListContainer.push(element)
-									}
-									onMouseEnter={() =>
-										animateNavigationLinkText(index())
+										navigationLinkContainerRef.push(element)
 									}
 									class="navigation--link--container"
 								>
@@ -360,6 +336,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 										href={`${props.href}`}
 										class="navigation--link"
 									>
+										{props.leftLinkElement}
 										<For
 											each={props.text?.trim()?.split("")}
 										>
@@ -369,16 +346,18 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 													class="navigation--link--text"
 													children={character}
 													parallaxCharacterElement={
-														linkRef
+														navigationLinkRef
 													}
 												/>
 											)}
 										</For>
+										{props.rightLinkElement}
 									</a>
+									<div class="navigation--link--container--border"></div>
 								</div>
 							)}
 						</For>
-					{/* </div> */}
+					</div>
 				</div>
 			</div>
 		</div>
