@@ -51,9 +51,7 @@ const animateHeroLink = () => {
 };
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
-	// ✺❋
-	// const [role] = createSignal<string>("Software Developer");
-	const [role] = createSignal<string>("Full-Stack Developer");
+	const [role] = createSignal<string>("Software Developer");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
 	let heroSubTextContainer: HTMLDivElement | undefined;
@@ -70,23 +68,22 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 
 		scroll(
 			animate(
-				".hero--main--text--container",
+				".hero--text--container",
 				{ y: [null, -300, -500, -700] },
 				{ duration: 2, easing: "linear" }
 			)
 		);
-		
 	});
 
 	return (
 		<div
 			ref={heroRefSection}
 			style={props.isNavigationOpen ? { "margin-top": "10.4rem" } : {}}
-			class="hero--container"
+			class="hero--main--container"
 		>
 			<div class="hero--sub--container">
-				<div class="hero--text--container">
-					<div class="hero--main--text--container">
+				<div class="hero--text--main--container">
+					<div class="hero--text--container">
 						<For each={role().trim().split("")}>
 							{(character, index) => (
 								<ParallaxCharacter
@@ -115,8 +112,9 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 								My journey in software development has been
 								marked by an unwavering eagerness to tackle more
 								complex challenges and a commitment to finding
-								ways to maximize user efficiency.
+								ways to maximize user efficiency .
 							</p>
+							<div class="hero--sub--text--icon">✺</div>
 						</div>
 
 						<div class="hero--sub--text">
@@ -130,15 +128,16 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 								experiences through writing which you can check
 								out the link to my blog posts down below. I am
 								excited about the limitless possibilities that
-								lie ahead in the ever-evolving tech landscape.
+								lie ahead in the ever-evolving tech landscape .
 							</p>
+							<div class="hero--sub--text--icon">❋</div>
 						</div>
 					</div>
 				</div>
 
 				<Link
 					children={
-						<div class="hero--link--inner--container">
+						<div class="hero--link--children--container">
 							See Blog Posts Here
 							<UpArrowIcon
 								width="20"
@@ -152,7 +151,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 					linkContainerClass="hero--link--container"
 				/>
 
-				<div class="hero--scroll--more--container">
+				<div class="hero--scroll--more--main--container">
 					<div
 						role="button"
 						class="hero--scroll--more--sub--container"
