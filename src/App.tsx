@@ -10,6 +10,7 @@ import Quote from "./component/sections/quote/quote";
 import Project from "./component/sections/project/project";
 import InfiniteTextScroll from "./component/infinit";
 import "./styles/index.scss"
+import GlobalProjectImage from "./component/global-project-image";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -17,9 +18,7 @@ function App() {
 
 	return (
 		<>
-			<div class="project--background--image--container">
-				<img class="project--background--image" src="" alt="" />
-			</div>
+			<GlobalProjectImage />
 			<Navigation isNavigationOpen={isNavigationOpen} />
 			<Header
 				isNavigationOpen={isNavigationOpen}

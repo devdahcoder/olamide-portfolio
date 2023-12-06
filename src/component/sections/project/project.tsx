@@ -21,10 +21,9 @@ const Project: Component<{}> = () => {
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
 
-	const handleItemEnter = (
+	const handleMouseMove = (
 		e: MouseEvent | any,
 		imageSelector: Element | null,
-		prevX: number
 	) => {
 		if (imageSelector) {
 			let prevX = e.clientX;
@@ -33,45 +32,48 @@ const Project: Component<{}> = () => {
 				e.currentTarget.getBoundingClientRect().left -
 				e.currentTarget.offsetWidth / 2;
 
+			const currentY =
+				e.clientY -
+				e.currentTarget.getBoundingClientRect().top -
+				e.currentTarget.offsetHeight / 2;
+
 			const direction = prevX >= prevMousePosition() ? "right" : "left";
 
 			const tiltAmount = direction === "right" ? 10 : -10;
+			gsap.set(imageSelector, {
+				x: currentX,
+				y: currentY,
+			});
 
 			gsap.to(imageSelector, {
-				duration: 0.8,
-				x:
-					e.clientX -
-					e.currentTarget.getBoundingClientRect().left -
-					e.currentTarget.offsetWidth / 2,
-				y:
-					e.clientY -
-					e.currentTarget.getBoundingClientRect().top -
-					e.currentTarget.offsetHeight / 2,
+				duration: 1.5,
+				x: currentX,
+				y: currentY,
 				ease: "power1.out",
 				rotation: tiltAmount,
 				opacity: 0.9,
 				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
 				onComplete: () => {
-					gsap.to(imageSelector, { rotate: 0 });
+					gsap.to(imageSelector, { rotate: 0, ease: "power1.out", });
 				},
 			});
 			setPreviousMousePosition(prevX);
 		}
 	};
 
-	const handleItemLeave = (e: MouseEvent, imageSelector: Element | null) => {
+	const handleMouseLeave = (e: MouseEvent, imageSelector: Element | null) => {
 		if (imageSelector) {
 			gsap.to(imageSelector, {
 				opacity: 0,
-				duration: 0.8,
+				duration: 1.5,
 			});
 		}
 	};
 
-	const handleItemHover = (
+	const handleMouseEnter = (
 		e: MouseEvent | any,
 		imageSelector: Element | null,
-		prevX?: number
+		globalProjectBackgroundImage: HTMLImageElement
 	) => {
 		if (imageSelector) {
 			let prevX = e.clientX;
@@ -80,36 +82,37 @@ const Project: Component<{}> = () => {
 
 			const tiltAmount = direction === "right" ? 10 : -10;
 
-			gsap.set(imageSelector, {
-				x:
-					e.clientX -
-					e.currentTarget.getBoundingClientRect().left -
-					e.currentTarget.offsetWidth / 2,
-				y:
-					e.clientY -
-					e.currentTarget.getBoundingClientRect().top -
-					e.currentTarget.offsetHeight / 2,
-				ease: "power1.out",
-				rotation: tiltAmount,
-				duration: 1.5,
-				opacity: 0.9,
-				onComplete: () => {
-					gsap.to(imageSelector, { rotate: 0 });
-				},
-			});
+			// gsap.set(imageSelector, {
+			// 	x:
+			// 		e.clientX -
+			// 		e.currentTarget.getBoundingClientRect().left -
+			// 		e.currentTarget.offsetWidth / 2,
+			// 	y:
+			// 		e.clientY -
+			// 		e.currentTarget.getBoundingClientRect().top -
+			// 		e.currentTarget.offsetHeight / 2,
+			// 	// ease: "power1.out",
+			// 	// rotation: tiltAmount,
+			// 	// duration: 1.5,
+			// 	// opacity: 0.9,
+			// 	// onComplete: () => {
+			// 	// 	gsap.to(imageSelector, { rotate: 0 });
+			// 	// },
+			// });
 		}
-		gsap.to(".project--background--image", {
+		gsap.to(globalProjectBackgroundImage, {
 			ease: "sine.in",
-			duration: 2.5,
+			duration: 2,
 			opacity: 0.9,
-			delay: 0,
+			visibility: "visible",
 		});
 	};
 
-	const handleItemOut = () => {
-		gsap.to(".project--background--image", {
+	const handleMouseOut = (globalProjectBackgroundImage: HTMLImageElement) => {
+		gsap.to(globalProjectBackgroundImage, {
 			duration: 1,
-			opacity: 0,
+			opacity: 0.5,
+			visibility: "hidden",
 		});
 	};
 
@@ -128,13 +131,9 @@ const Project: Component<{}> = () => {
 	};
 
 	const attachEventListeners = (item: HTMLDivElement) => {
-		const projectContainerSelector = document.querySelector(
-			".project--main--container"
-		);
-		const projectBackgroundImageSelector =
-			projectContainerSelector?.querySelector(
-				".project--background--image"
-			) as HTMLImageElement;
+		const globalProjectBackgroundImage = document?.querySelector(
+			".global--project--background--image"
+		) as HTMLImageElement;
 		const imageSelector = item.querySelector(".image--container");
 		const imageSubSelector = imageSelector?.querySelector(
 			".image--sub--container"
@@ -145,35 +144,44 @@ const Project: Component<{}> = () => {
 		let prevX = 0;
 
 		item.addEventListener("mouseenter", (e: MouseEvent) => {
-			if (projectBackgroundImageSelector) {
-				projectBackgroundImageSelector.src = imageElem.src;
-				handleItemHover(e, imageSelector, prevX);
+			console.log(globalProjectBackgroundImage);
+			
+			if (globalProjectBackgroundImage) {
+				globalProjectBackgroundImage.src = imageElem.src;
+				handleMouseEnter(
+					e,
+					imageSelector,
+					globalProjectBackgroundImage
+				);
 			}
 		});
 
 		item.addEventListener("mousemove", (e: MouseEvent) => {
-			handleItemEnter(e, imageSelector, prevX);
+			handleMouseMove(e, imageSelector);
 			prevX = e.clientX;
 		});
 
 		item.addEventListener("mouseleave", (e: MouseEvent) => {
-			handleItemLeave(e, imageSelector);
-			handleItemOut();
+			handleMouseLeave(e, imageSelector);
+			handleMouseOut(globalProjectBackgroundImage);
 		});
 	};
 
 	const removeEventListeners = (item: HTMLDivElement) => {
 		const imageSelector = item.querySelector(".image--container");
+		const globalProjectBackgroundImage = document?.querySelector(
+			".global--project--background--image"
+		) as HTMLImageElement;
 
 		item.removeEventListener("mousemove", (e: MouseEvent) =>
-			handleItemEnter(e, imageSelector, 0)
+			handleMouseMove(e, imageSelector)
 		);
 		item.removeEventListener("mouseenter", (e: MouseEvent) =>
-			handleItemHover(e, imageSelector, 0)
+			handleMouseEnter(e, imageSelector, globalProjectBackgroundImage)
 		);
 		item.removeEventListener("mouseleave", (e: MouseEvent) => {
-			handleItemLeave(e, imageSelector);
-			handleItemOut();
+			handleMouseLeave(e, imageSelector);
+			handleMouseOut(globalProjectBackgroundImage);
 		});
 	};
 
@@ -205,11 +213,11 @@ const Project: Component<{}> = () => {
 
 	return (
 		<div class="project--main--container">
-			<img
+			{/* <img
 				src=""
 				alt="background-image"
 				class="project--background--image"
-			/>
+			/> */}
 			<div class="project--sub--container">
 				<For each={workContent}>
 					{(props, index) => (
