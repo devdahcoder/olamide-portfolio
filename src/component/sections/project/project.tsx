@@ -9,11 +9,9 @@ import {
 	onCleanup,
 } from "solid-js";
 import { workContent } from "../../../../contents";
-import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./project.scss";
-import { animate, scroll } from "motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
@@ -36,6 +34,7 @@ const Project: Component<{}> = () => {
 				e.currentTarget.offsetWidth / 2;
 
 			const direction = prevX >= prevMousePosition() ? "right" : "left";
+
 			const tiltAmount = direction === "right" ? 10 : -10;
 
 			gsap.to(imageSelector, {
@@ -52,6 +51,9 @@ const Project: Component<{}> = () => {
 				rotation: tiltAmount,
 				opacity: 0.9,
 				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
+				onComplete: () => {
+					gsap.to(imageSelector, { rotate: 0 });
+				},
 			});
 			setPreviousMousePosition(prevX);
 		}
@@ -66,7 +68,36 @@ const Project: Component<{}> = () => {
 		}
 	};
 
-	const handleItemHover = () => {
+	const handleItemHover = (
+		e: MouseEvent | any,
+		imageSelector: Element | null,
+		prevX?: number
+	) => {
+		if (imageSelector) {
+			let prevX = e.clientX;
+
+			const direction = prevX >= prevMousePosition() ? "right" : "left";
+
+			const tiltAmount = direction === "right" ? 10 : -10;
+
+			gsap.set(imageSelector, {
+				x:
+					e.clientX -
+					e.currentTarget.getBoundingClientRect().left -
+					e.currentTarget.offsetWidth / 2,
+				y:
+					e.clientY -
+					e.currentTarget.getBoundingClientRect().top -
+					e.currentTarget.offsetHeight / 2,
+				ease: "power1.out",
+				rotation: tiltAmount,
+				duration: 1.5,
+				opacity: 0.9,
+				onComplete: () => {
+					gsap.to(imageSelector, { rotate: 0 });
+				},
+			});
+		}
 		gsap.to(".project--background--image", {
 			ease: "sine.in",
 			duration: 2.5,
@@ -77,7 +108,7 @@ const Project: Component<{}> = () => {
 
 	const handleItemOut = () => {
 		gsap.to(".project--background--image", {
-			duration: 2.5,
+			duration: 1,
 			opacity: 0,
 		});
 	};
@@ -98,7 +129,7 @@ const Project: Component<{}> = () => {
 
 	const attachEventListeners = (item: HTMLDivElement) => {
 		const projectContainerSelector = document.querySelector(
-			".project--container"
+			".project--main--container"
 		);
 		const projectBackgroundImageSelector =
 			projectContainerSelector?.querySelector(
@@ -113,10 +144,10 @@ const Project: Component<{}> = () => {
 		) as HTMLImageElement;
 		let prevX = 0;
 
-		item.addEventListener("mouseenter", () => {
+		item.addEventListener("mouseenter", (e: MouseEvent) => {
 			if (projectBackgroundImageSelector) {
 				projectBackgroundImageSelector.src = imageElem.src;
-				handleItemHover();
+				handleItemHover(e, imageSelector, prevX);
 			}
 		});
 
@@ -137,7 +168,9 @@ const Project: Component<{}> = () => {
 		item.removeEventListener("mousemove", (e: MouseEvent) =>
 			handleItemEnter(e, imageSelector, 0)
 		);
-		item.removeEventListener("mouseenter", () => handleItemHover());
+		item.removeEventListener("mouseenter", (e: MouseEvent) =>
+			handleItemHover(e, imageSelector, 0)
+		);
 		item.removeEventListener("mouseleave", (e: MouseEvent) => {
 			handleItemLeave(e, imageSelector);
 			handleItemOut();
@@ -147,7 +180,7 @@ const Project: Component<{}> = () => {
 	createEffect(() => {
 		// gsap.to(projectContainerRef, {
 		// 	scrollTrigger: {
-		// 		trigger: ".project--container",
+		// 		trigger: ".project--main--container",
 		// 		start: "top top",
 		// 		pin: true,
 		// 		end: () => `+=${projectContainerRef.clientHeight}`, // Adjust as needed
@@ -171,7 +204,7 @@ const Project: Component<{}> = () => {
 	});
 
 	return (
-		<div class="project--container">
+		<div class="project--main--container">
 			<img
 				src=""
 				alt="background-image"
@@ -236,11 +269,9 @@ const Project: Component<{}> = () => {
 									<div class="project--tool--container">
 										<For each={props.tools?.slice(0, 4)}>
 											{(tool) => (
-												<>
-													<div class="project--tool">
-														{tool}
-													</div>
-												</>
+												<div class="project--tool">
+													{tool}
+												</div>
 											)}
 										</For>
 										<Show

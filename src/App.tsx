@@ -25,9 +25,9 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
-			<Hero isNavigationOpen={isNavigationOpen()} />
+			{/* <Hero isNavigationOpen={isNavigationOpen()} />
 			<About />
-			<Quote />
+			<Quote /> */}
 			{/* <Work /> */}
 			{/* <InfiniteTextScroll /> */}
 			<Project />
