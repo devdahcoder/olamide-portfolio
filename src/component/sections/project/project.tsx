@@ -21,6 +21,36 @@ const Project: Component<{}> = () => {
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
 
+	const getDOMVariables = (item: HTMLDivElement) => {
+		const globalProjectBackgroundImage = document?.querySelector(
+			".global--project--background--image"
+		) as HTMLImageElement;
+		const projectToolsContainer = item?.querySelector(
+			".project--tool--container"
+		) as HTMLDivElement;
+		const projectTools = projectToolsContainer?.querySelectorAll(
+			".project--tool"
+		) as NodeListOf<HTMLDivElement>;
+		const imageSelector = item?.querySelector(".image--container");
+		const imageSubSelector = imageSelector?.querySelector(
+			".image--sub--container"
+		) as HTMLDivElement;
+		const imageElem = imageSubSelector?.querySelector(
+			".image"
+		) as HTMLImageElement;
+
+		let prevX = 0;
+
+		return {
+			globalProjectBackgroundImage,
+			imageSelector,
+			imageSubSelector,
+			imageElem,
+			prevX,
+			projectTools,
+		};
+	};
+
 	const handleMouseMove = (
 		e: MouseEvent | any,
 		imageSelector: Element | null
@@ -112,53 +142,38 @@ const Project: Component<{}> = () => {
 		});
 	};
 
-	const handleProjectToolsAnimation = (show: boolean) => {
+	const handleProjectToolsAnimation = (
+		show: boolean,
+		element: HTMLDivElement | NodeListOf<HTMLDivElement> | string
+	) => {
 		gsap.fromTo(
-			".project--tool",
-			{ yPercent: 100, opacity: 0 },
+			element,
+			{ yPercent: show ? 200 : 0, opacity: show ? 0 : 1, rotate: show ? 20 : 0, },
 			{
-				yPercent: 0,
-				opacity: 1,
-				duration: 0.7,
-				ease: "sine.in",
-				stagger: show ? 0.5 : -0.5,
+				yPercent: show ? 0 : 200,
+				opacity: show ? 1 : 0,
+				duration: 1,
+				ease: "power3.out",
+				stagger: show ? 0.1 : -0.1,
+				rotate: show ? 0 : 20,
 			}
 		);
 	};
 
-	const getDOMVariables = (item: HTMLDivElement) => {
-		const globalProjectBackgroundImage = document?.querySelector(
-			".global--project--background--image"
-		) as HTMLImageElement;
-
-		const imageSelector = item?.querySelector(".image--container");
-		const imageSubSelector = imageSelector?.querySelector(
-			".image--sub--container"
-		);
-		const imageElem = imageSubSelector?.querySelector(
-			".image"
-		) as HTMLImageElement;
-
-		let prevX = 0;
-
-		return {
+	const attachEventListeners = (item: HTMLDivElement) => {
+		const {
 			globalProjectBackgroundImage,
 			imageSelector,
-			imageSubSelector,
 			imageElem,
-			prevX,
-		};
-	};
-
-	const attachEventListeners = (item: HTMLDivElement) => {
-		const { globalProjectBackgroundImage, imageSelector, imageElem } =
-			getDOMVariables(item);
+			projectTools,
+		} = getDOMVariables(item);
 
 		item.addEventListener("mousemove", (e: MouseEvent) => {
 			handleMouseMove(e, imageSelector);
 		});
 
 		item.addEventListener("mouseenter", (e: MouseEvent) => {
+			handleProjectToolsAnimation(true, projectTools);
 			if (globalProjectBackgroundImage) {
 				handleGlobalProjectBackgroundImage(
 					globalProjectBackgroundImage,
@@ -173,6 +188,7 @@ const Project: Component<{}> = () => {
 		});
 
 		item.addEventListener("mouseleave", (e: MouseEvent) => {
+			handleProjectToolsAnimation(false, projectTools);
 			handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
 		});
 	};
