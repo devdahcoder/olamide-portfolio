@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { animate } from "motion";
 import {
 	Component,
 	For,
@@ -41,7 +42,7 @@ const Project: Component<{}> = () => {
 			const tiltAmount = direction === "right" ? 10 : -10;
 
 			gsap.to(imageSelector, {
-				duration: 1,
+				duration: 0.8,
 				x: currentX,
 				y: currentY,
 				ease: "power1.out",
@@ -66,29 +67,48 @@ const Project: Component<{}> = () => {
 				rotate: 0,
 			});
 		}
-		gsap.to(globalProjectBackgroundImage, {
-			ease: "sine.in",
-			duration: 2,
-			opacity: 0.9,
-			visibility: "visible",
-		});
 	};
 
-	const handleMouseLeave = (e: MouseEvent, imageSelector: Element | null) => {
+	const handleMouseLeave = (
+		e: MouseEvent,
+		imageSelector: Element | null,
+		globalProjectBackgroundImage: HTMLImageElement
+	) => {
 		if (imageSelector) {
 			gsap.to(imageSelector, {
 				opacity: 0,
-				duration: 1,
+				duration: 0.8,
 				rotate: 0,
 			});
 		}
+		// gsap.to(globalProjectBackgroundImage, {
+		// 	duration: 1,
+		// 	opacity: 0.5,
+		// 	visibility: "hidden",
+		// });
 	};
 
-	const handleMouseOut = (globalProjectBackgroundImage: HTMLImageElement) => {
+	const handleGlobalProjectBackgroundImage = (
+		globalProjectBackgroundImage: HTMLImageElement,
+		imageElem: HTMLImageElement
+	) => {
+		globalProjectBackgroundImage.src = imageElem.src;
+		animate(
+			globalProjectBackgroundImage,
+			{ opacity: 0.5, visibility: "visible" },
+			{ easing: "linear" }
+		);
+	};
+
+	const animateProjectFocus = (
+		imageSelector: Element | null,
+		globalProjectBackgroundImage: HTMLImageElement
+	) => {
 		gsap.to(globalProjectBackgroundImage, {
-			duration: 1,
+			ease: "sine.in",
+			duration: 2,
 			opacity: 0.5,
-			visibility: "hidden",
+			visibility: "visible",
 		});
 	};
 
@@ -106,11 +126,12 @@ const Project: Component<{}> = () => {
 		);
 	};
 
-	const attachEventListeners = (item: HTMLDivElement) => {
+	const getDOMVariables = (item: HTMLDivElement) => {
 		const globalProjectBackgroundImage = document?.querySelector(
 			".global--project--background--image"
 		) as HTMLImageElement;
-		const imageSelector = item.querySelector(".image--container");
+
+		const imageSelector = item?.querySelector(".image--container");
 		const imageSubSelector = imageSelector?.querySelector(
 			".image--sub--container"
 		);
@@ -118,13 +139,31 @@ const Project: Component<{}> = () => {
 			".image"
 		) as HTMLImageElement;
 
+		let prevX = 0;
+
+		return {
+			globalProjectBackgroundImage,
+			imageSelector,
+			imageSubSelector,
+			imageElem,
+			prevX,
+		};
+	};
+
+	const attachEventListeners = (item: HTMLDivElement) => {
+		const { globalProjectBackgroundImage, imageSelector, imageElem } =
+			getDOMVariables(item);
+
 		item.addEventListener("mousemove", (e: MouseEvent) => {
 			handleMouseMove(e, imageSelector);
 		});
 
 		item.addEventListener("mouseenter", (e: MouseEvent) => {
 			if (globalProjectBackgroundImage) {
-				globalProjectBackgroundImage.src = imageElem.src;
+				handleGlobalProjectBackgroundImage(
+					globalProjectBackgroundImage,
+					imageElem
+				);
 				handleMouseEnter(
 					e,
 					imageSelector,
@@ -134,15 +173,13 @@ const Project: Component<{}> = () => {
 		});
 
 		item.addEventListener("mouseleave", (e: MouseEvent) => {
-			handleMouseLeave(e, imageSelector);
+			handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
 		});
 	};
 
 	const removeEventListeners = (item: HTMLDivElement) => {
-		const imageSelector = item.querySelector(".image--container");
-		const globalProjectBackgroundImage = document?.querySelector(
-			".global--project--background--image"
-		) as HTMLImageElement;
+		const { globalProjectBackgroundImage, imageSelector } =
+			getDOMVariables(item);
 
 		item.removeEventListener("mousemove", (e: MouseEvent) =>
 			handleMouseMove(e, imageSelector)
@@ -151,7 +188,7 @@ const Project: Component<{}> = () => {
 			handleMouseEnter(e, imageSelector, globalProjectBackgroundImage)
 		);
 		item.removeEventListener("mouseleave", (e: MouseEvent) => {
-			handleMouseLeave(e, imageSelector);
+			handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
 		});
 	};
 
@@ -177,8 +214,36 @@ const Project: Component<{}> = () => {
 		// 		backgroundColor: index % 2 === 0 ? "lightblue" : "lightgreen", // Change colors as needed
 		// 	});
 		// });
+
+		let observe = new IntersectionObserver(
+			(entries) => {
+				const globalProjectBackgroundImage = document?.querySelector(
+					".global--project--background--image"
+				) as HTMLImageElement;
+
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+					} else {
+						// animateLinkFocus(entry.target, link, false);
+					}
+				});
+			},
+			{
+				threshold: [0.1, 0.2],
+				rootMargin: "-46% 0px -46%",
+			}
+		);
+
+		projectRef.forEach((element) => observe.observe(element));
+
+		onCleanup(() => {
+			observe.disconnect();
+		});
 		projectRef.forEach(attachEventListeners);
-		onCleanup(() => projectRef.forEach(removeEventListeners));
+		onCleanup(() => {
+			observe.disconnect();
+			projectRef.forEach(removeEventListeners);
+		});
 	});
 
 	return (
@@ -239,6 +304,7 @@ const Project: Component<{}> = () => {
 										</div>
 										<span>{index()}</span>
 									</div>
+
 									<div class="project--tool--container">
 										<For each={props.tools?.slice(0, 4)}>
 											{(tool) => (

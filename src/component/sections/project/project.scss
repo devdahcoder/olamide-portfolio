@@ -88,6 +88,8 @@
 						);
 						color: white;
 						column-gap: 0.7rem;
+						transform: translateY(-100);
+						opacity: 0;
 
 						.project--icon--container {
 							@include mixins.flex--layout(
@@ -127,6 +129,8 @@
 							padding: 0.2rem 0.6rem;
 							font-size: 0.9rem;
 							color: white;
+							transform: translateY(-100);
+							opacity: 0;
 						}
 					}
 				}

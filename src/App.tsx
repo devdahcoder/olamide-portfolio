@@ -23,15 +23,15 @@ function App() {
 			<Header
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
-			/> */}
-			{/* <Hero isNavigationOpen={isNavigationOpen()} /> */}
-			{/* <About /> */}
+			/> 
+			<Hero isNavigationOpen={isNavigationOpen()} /> */}
+			<About />
 			{/* <Quote /> */}
 			{/* <Work /> */}
 			{/* <InfiniteTextScroll /> */}
 			<Project />
 			{/* <WorkFlow /> */}
-			{/* <Footer /> */}
+			<Footer />
 		</>
 	);
 }
