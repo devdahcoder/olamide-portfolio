@@ -33,6 +33,7 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				opacity: 0;
+				backface-visibility: hidden;
 
 				.image--sub--container {
 					@include mixins.image--sub--container(15rem, 20rem);

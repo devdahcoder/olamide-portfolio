@@ -16,14 +16,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
 	let projectRef: HTMLDivElement[] = [];
-	let projectContainerRef: HTMLDivElement;
 
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
 
 	const handleMouseMove = (
 		e: MouseEvent | any,
-		imageSelector: Element | null,
+		imageSelector: Element | null
 	) => {
 		if (imageSelector) {
 			let prevX = e.clientX;
@@ -40,13 +39,9 @@ const Project: Component<{}> = () => {
 			const direction = prevX >= prevMousePosition() ? "right" : "left";
 
 			const tiltAmount = direction === "right" ? 10 : -10;
-			gsap.set(imageSelector, {
-				x: currentX,
-				y: currentY,
-			});
 
 			gsap.to(imageSelector, {
-				duration: 1.5,
+				duration: 1,
 				x: currentX,
 				y: currentY,
 				ease: "power1.out",
@@ -54,19 +49,10 @@ const Project: Component<{}> = () => {
 				opacity: 0.9,
 				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
 				onComplete: () => {
-					gsap.to(imageSelector, { rotate: 0, ease: "power1.out", });
+					gsap.to(imageSelector, { rotate: 0, ease: "power1.out" });
 				},
 			});
 			setPreviousMousePosition(prevX);
-		}
-	};
-
-	const handleMouseLeave = (e: MouseEvent, imageSelector: Element | null) => {
-		if (imageSelector) {
-			gsap.to(imageSelector, {
-				opacity: 0,
-				duration: 1.5,
-			});
 		}
 	};
 
@@ -76,29 +62,9 @@ const Project: Component<{}> = () => {
 		globalProjectBackgroundImage: HTMLImageElement
 	) => {
 		if (imageSelector) {
-			let prevX = e.clientX;
-
-			const direction = prevX >= prevMousePosition() ? "right" : "left";
-
-			const tiltAmount = direction === "right" ? 10 : -10;
-
-			// gsap.set(imageSelector, {
-			// 	x:
-			// 		e.clientX -
-			// 		e.currentTarget.getBoundingClientRect().left -
-			// 		e.currentTarget.offsetWidth / 2,
-			// 	y:
-			// 		e.clientY -
-			// 		e.currentTarget.getBoundingClientRect().top -
-			// 		e.currentTarget.offsetHeight / 2,
-			// 	// ease: "power1.out",
-			// 	// rotation: tiltAmount,
-			// 	// duration: 1.5,
-			// 	// opacity: 0.9,
-			// 	// onComplete: () => {
-			// 	// 	gsap.to(imageSelector, { rotate: 0 });
-			// 	// },
-			// });
+			gsap.set(imageSelector, {
+				rotate: 0,
+			});
 		}
 		gsap.to(globalProjectBackgroundImage, {
 			ease: "sine.in",
@@ -106,6 +72,16 @@ const Project: Component<{}> = () => {
 			opacity: 0.9,
 			visibility: "visible",
 		});
+	};
+
+	const handleMouseLeave = (e: MouseEvent, imageSelector: Element | null) => {
+		if (imageSelector) {
+			gsap.to(imageSelector, {
+				opacity: 0,
+				duration: 1,
+				rotate: 0,
+			});
+		}
 	};
 
 	const handleMouseOut = (globalProjectBackgroundImage: HTMLImageElement) => {
@@ -141,11 +117,12 @@ const Project: Component<{}> = () => {
 		const imageElem = imageSubSelector?.querySelector(
 			".image"
 		) as HTMLImageElement;
-		let prevX = 0;
+
+		item.addEventListener("mousemove", (e: MouseEvent) => {
+			handleMouseMove(e, imageSelector);
+		});
 
 		item.addEventListener("mouseenter", (e: MouseEvent) => {
-			console.log(globalProjectBackgroundImage);
-			
 			if (globalProjectBackgroundImage) {
 				globalProjectBackgroundImage.src = imageElem.src;
 				handleMouseEnter(
@@ -156,14 +133,8 @@ const Project: Component<{}> = () => {
 			}
 		});
 
-		item.addEventListener("mousemove", (e: MouseEvent) => {
-			handleMouseMove(e, imageSelector);
-			prevX = e.clientX;
-		});
-
 		item.addEventListener("mouseleave", (e: MouseEvent) => {
 			handleMouseLeave(e, imageSelector);
-			handleMouseOut(globalProjectBackgroundImage);
 		});
 	};
 
@@ -181,7 +152,6 @@ const Project: Component<{}> = () => {
 		);
 		item.removeEventListener("mouseleave", (e: MouseEvent) => {
 			handleMouseLeave(e, imageSelector);
-			handleMouseOut(globalProjectBackgroundImage);
 		});
 	};
 
@@ -213,11 +183,6 @@ const Project: Component<{}> = () => {
 
 	return (
 		<div class="project--main--container">
-			{/* <img
-				src=""
-				alt="background-image"
-				class="project--background--image"
-			/> */}
 			<div class="project--sub--container">
 				<For each={workContent}>
 					{(props, index) => (
