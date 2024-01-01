@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 
 .project--main--container {
-	// border: 1px solid white;
+	border: 1px solid white;
 	min-height: 100vh;
 	padding: 4rem 0;
 	position: relative;
@@ -16,10 +16,10 @@
 			$justify: baseline
 		);
 		row-gap: 4rem;
-		// border: 1px solid white;
+		border: 1px solid white;
 
 		.project--item--container {
-			// border: 1px solid white;
+			border: 1px solid white;
 			width: 100%;
 			position: relative;
 			z-index: 1;
@@ -63,7 +63,7 @@
 					);
 					font-size: 4.5rem;
 					font-weight: 500;
-					color: rgb(59, 54, 54);
+					color: rgb(225, 220, 220);
 					width: 50%;
 
 					p {

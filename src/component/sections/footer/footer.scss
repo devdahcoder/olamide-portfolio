@@ -61,7 +61,7 @@
 		}
 
 		.footer--hero--container {
-			padding: 6rem 0 3rem 0;
+			padding: 5rem 0 3rem 0;
 
 			.footer--hero--sub--container {
 				@include mixins.center--section;
@@ -71,7 +71,7 @@
 					$justify: center
 				);
 				text-align: center;
-				row-gap: 2.5rem;
+				row-gap: 2rem;
 
 				.footer--hero--text {
 					font-family: Tanker, -apple-system, Helvetica Neue,
@@ -125,6 +125,17 @@
 							font-size: 1.3rem;
 							text-decoration: none;
 						}
+					}
+
+					.email--copy--button {
+						height: fit-content;
+						width: fit-content;
+						padding: 0.2rem 1rem;
+						color: white;
+						border: 1px solid white;
+						border-radius: 100vh;
+						margin-top: 0.5rem;
+						visibility: hidden;
 					}
 				}
 			}

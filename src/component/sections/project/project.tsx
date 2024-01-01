@@ -21,7 +21,7 @@ const Project: Component<{}> = () => {
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
 
-	const getDOMVariables = (item: HTMLDivElement) => {
+	const getDOMVariables = (item: HTMLDivElement | Element) => {
 		const globalProjectBackgroundImage = document?.querySelector(
 			".global--project--background--image"
 		) as HTMLImageElement;
@@ -78,6 +78,7 @@ const Project: Component<{}> = () => {
 				ease: "power1.out",
 				rotation: tiltAmount,
 				opacity: 0.9,
+				zIndex: 1,
 				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
 				onComplete: () => {
 					gsap.to(imageSelector, { rotate: 0, ease: "power1.out" });
@@ -148,7 +149,11 @@ const Project: Component<{}> = () => {
 	) => {
 		gsap.fromTo(
 			element,
-			{ yPercent: show ? 200 : 0, opacity: show ? 0 : 1, rotate: show ? 20 : 0, },
+			{
+				yPercent: show ? 200 : 0,
+				opacity: show ? 0 : 1,
+				rotate: show ? 20 : 0,
+			},
 			{
 				yPercent: show ? 0 : 200,
 				opacity: show ? 1 : 0,
@@ -194,30 +199,39 @@ const Project: Component<{}> = () => {
 	};
 
 	const removeEventListeners = (item: HTMLDivElement) => {
-		const { globalProjectBackgroundImage, imageSelector } =
-			getDOMVariables(item);
+		const {
+			globalProjectBackgroundImage,
+			imageSelector,
+			imageElem,
+			projectTools,
+		} = getDOMVariables(item);
 
 		item.removeEventListener("mousemove", (e: MouseEvent) =>
 			handleMouseMove(e, imageSelector)
 		);
-		item.removeEventListener("mouseenter", (e: MouseEvent) =>
-			handleMouseEnter(e, imageSelector, globalProjectBackgroundImage)
-		);
+		item.removeEventListener("mouseenter", (e: MouseEvent) => {
+			handleProjectToolsAnimation(true, projectTools);
+			handleGlobalProjectBackgroundImage(
+				globalProjectBackgroundImage,
+				imageElem
+			);
+			handleMouseEnter(e, imageSelector, globalProjectBackgroundImage);
+		});
 		item.removeEventListener("mouseleave", (e: MouseEvent) => {
 			handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
 		});
 	};
 
 	createEffect(() => {
-		// gsap.to(projectContainerRef, {
-		// 	scrollTrigger: {
-		// 		trigger: ".project--main--container",
-		// 		start: "top top",
-		// 		pin: true,
-		// 		end: () => `+=${projectContainerRef.clientHeight}`, // Adjust as needed
-		// 		markers: true,
-		// 	},
-		// });
+		gsap.to(".project--main--container", {
+			opacity: 1,
+			scrollTrigger: {
+				trigger: ".project--main--container",
+				start: "top center",
+				// pin: true,
+				markers: true,
+			},
+		});
 
 		// projectRef.forEach((item, index) => {
 		// 	gsap.to(item, {
@@ -231,33 +245,44 @@ const Project: Component<{}> = () => {
 		// 	});
 		// });
 
-		let observe = new IntersectionObserver(
-			(entries) => {
-				const globalProjectBackgroundImage = document?.querySelector(
-					".global--project--background--image"
-				) as HTMLImageElement;
+		// let observe = new IntersectionObserver(
+		// 	(entries) => {
+		// 		entries.forEach((entry) => {
+		// 			if (entry.isIntersecting) {
+		// 				const {
+		// 					globalProjectBackgroundImage,
+		// 					imageSelector,
+		// 					imageElem,
+		// 					projectTools,
+		// 				} = getDOMVariables(entry.target);
 
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-					} else {
-						// animateLinkFocus(entry.target, link, false);
-					}
-				});
-			},
-			{
-				threshold: [0.1, 0.2],
-				rootMargin: "-46% 0px -46%",
-			}
-		);
+		// 				handleGlobalProjectBackgroundImage(
+		// 					globalProjectBackgroundImage,
+		// 					imageElem
+		// 				);
+		// 				handleProjectToolsAnimation(true, projectTools);
+		// 			} else {
+		// 				const {
+		// 					globalProjectBackgroundImage,
+		// 					imageSelector,
+		// 					imageElem,
+		// 					projectTools,
+		// 				} = getDOMVariables(entry.target);
+		// 				handleProjectToolsAnimation(false, projectTools);
+		// 			}
+		// 		});
+		// 	},
+		// 	{
+		// 		threshold: 0.1,
+		// 		rootMargin: "-45% 0px -46%",
+		// 	}
+		// );
 
-		projectRef.forEach((element) => observe.observe(element));
+		// projectRef.forEach((element) => observe.observe(element));
 
-		onCleanup(() => {
-			observe.disconnect();
-		});
 		projectRef.forEach(attachEventListeners);
 		onCleanup(() => {
-			observe.disconnect();
+			// observe.disconnect();
 			projectRef.forEach(removeEventListeners);
 		});
 	});

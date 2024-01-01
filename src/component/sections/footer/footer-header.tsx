@@ -17,7 +17,7 @@ const FooterHeader: Component<{}> = () => {
 				<DoubleStackedText
 					containerClass="footer--year--container"
 					subContainerClass="footer--year--sub--container"
-					firstStack={<p>Full-Stack Engineer & Creative Developer</p>}
+					firstStack={<p>Software / Creative Developer</p>}
 					secondStack={<p>Portfolio 2024 - 2025</p>}
 					firstStackClass="footer--role--text"
 					secondStackClass="footer--year--text"
@@ -25,7 +25,7 @@ const FooterHeader: Component<{}> = () => {
 				<DoubleStackedText
 					containerClass="footer--location--container"
 					subContainerClass="footer--location--sub--container"
-					firstStack={<p>{ formattedLocation }</p>}
+					firstStack={<p>{formattedLocation}</p>}
 					secondStack={<p>Available for freelance work</p>}
 					firstStackClass="footer--availability--text"
 					secondStackClass="footer--location--text"

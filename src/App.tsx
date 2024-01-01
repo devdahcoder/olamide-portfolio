@@ -19,17 +19,17 @@ function App() {
 	return (
 		<>
 			<GlobalProjectImage />
-			{/* <Navigation isNavigationOpen={isNavigationOpen} />
+			<Navigation isNavigationOpen={isNavigationOpen} />
 			<Header
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/> 
-			<Hero isNavigationOpen={isNavigationOpen()} /> */}
+			<Hero isNavigationOpen={isNavigationOpen()} />
 			<About />
-			{/* <Quote /> */}
+			<Quote />
 			{/* <Work /> */}
 			{/* <InfiniteTextScroll /> */}
-			<Project />
+			{/* <Project /> */}
 			{/* <WorkFlow /> */}
 			<Footer />
 		</>
