@@ -1,12 +1,14 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { animate, scroll, stagger } from "motion";
+import { animate, scroll } from "motion";
 import { Component, For, createEffect, createSignal } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import UpArrowIcon from "../../../../icon/up-arrow-icon";
 import Link from "../../link";
 import ParallaxCharacter from "../../parallax-character";
 import "./hero.scss";
+import HeroSubText from "./hero-sub-text";
+import HeroIntro from "./hero-intro";
 gsap.registerPlugin(ScrollTrigger);
 
 const animateHeroMainParallaxCharacter = () => {
@@ -28,6 +30,24 @@ const animateHeroMainParallaxCharacter = () => {
 	);
 };
 
+const animateHeroIntroExpertiseParallaxCharacter = () => {
+	gsap.fromTo(
+		".hero--intro--expertise--text",
+		{
+			yPercent: 100,
+			rotation: 20,
+			opacity: 0.3,
+		},
+		{
+			yPercent: 0,
+			duration: 1.5,
+			ease: "sine.out",
+			rotation: 0,
+			opacity: 1,
+		}
+	);
+};
+
 const animateSubHeroParallaxCharacter = () => {
 	gsap.fromTo(
 		".hero--sub--text",
@@ -42,6 +62,10 @@ const animateSubHeroParallaxCharacter = () => {
 	);
 };
 
+const animateHeroSkills = () => {
+	gsap.fromTo(".hero--intro--skills--container", {yPercent: 200}, {yPercent: 0, duration: 2.5, ease: "power4.out"});
+}
+
 const animateHeroLink = () => {
 	gsap.fromTo(
 		".hero--link",
@@ -51,8 +75,10 @@ const animateHeroLink = () => {
 };
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
-	const [role] = createSignal<string>("Software Developer");
+	const [role] = createSignal<string>("Adigun Olamide");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
+	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
+	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
 	let heroSubTextContainer: HTMLDivElement | undefined;
 
@@ -61,6 +87,8 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			if (entry.isIntersecting) {
 				animateHeroMainParallaxCharacter();
 				animateSubHeroParallaxCharacter();
+				animateHeroIntroExpertiseParallaxCharacter();
+				animateHeroSkills();
 				animateHeroLink();
 			}
 			observer.unobserve(entry.target);
@@ -70,7 +98,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			animate(
 				".hero--text--container",
 				{ y: [null, -300, -500, -700] },
-				{ duration: 2, easing: "linear" }
+				{ duration: 3, easing: "linear" }
 			)
 		);
 	});
@@ -98,41 +126,15 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 						</For>
 					</div>
 
-					<div
-						ref={heroSubTextContainer}
-						class="hero--sub--text--container"
-					>
-						<div class="hero--sub--text">
-							<p>
-								Hi, My name is Olamide. I'm a passionate
-								software engineer with a strong background in
-								software technologies. I thrive on the dynamic
-								nature of the tech industry and constantly seek
-								out innovative solutions to everyday problems.
-								My journey in software development has been
-								marked by an unwavering eagerness to tackle more
-								complex challenges and a commitment to finding
-								ways to maximize user efficiency .
-							</p>
-							<div class="hero--sub--text--icon">✺</div>
-						</div>
+					<HeroIntro
+						firstExpertiseParallaxCharacterElement={
+							firstExpertiseParallaxCharacterElement
+						}
+						secondExpertiseParallaxCharacterElement={
+							secondExpertiseParallaxCharacterElement
+						}
+					/>
 
-						<div class="hero--sub--text">
-							<p>
-								Spanning both backend and frontend development,
-								my expertise enables me to deliver holistic
-								solutions that excel in functionality and user
-								experience. When I'm not immersed in code,
-								debugging, or reading tech articles, I'm sharing
-								my latest tech interests and learning
-								experiences through writing which you can check
-								out the link to my blog posts down below. I am
-								excited about the limitless possibilities that
-								lie ahead in the ever-evolving tech landscape .
-							</p>
-							<div class="hero--sub--text--icon">❋</div>
-						</div>
-					</div>
 				</div>
 
 				<Link

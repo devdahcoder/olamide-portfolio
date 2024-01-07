@@ -20,7 +20,7 @@
 				$align: baseline,
 				$justify: baseline
 			);
-			row-gap: 4.5rem;
+			row-gap: 3.5rem;
 			overflow-y: visible hidden;
 
 			.hero--text--container {
@@ -29,11 +29,80 @@
 				flex-direction: row;
 				align-items: center;
 				text-align: justify;
-				font-size: 9.7vw;
-				line-height: 9rem;
-				font-weight: 700;
+				font-size: 12vw;
+				line-height: 12.8rem;
+				font-weight: 600;
 				color: variables.$primary--text--color;
 				overflow: hidden;
+			}
+
+			.hero--intro--container {
+				width: 100%;
+				.hero--intro--sub--container {
+					@include mixins.flex--layout(
+						$direction: row,
+						$align: end,
+						$justify: space-between
+					);
+
+					.hero--intro--skills--container {
+						@include mixins.flex--layout(
+							$direction: column,
+							$align: baseline,
+							$justify: baseline
+						);
+						width: 30%;
+						padding: 0.5rem;
+						row-gap: 0.7rem;
+						font-weight: 300;
+						font-size: 0.9rem;
+						.hero--intro--skills--header {
+							color: rgb(146, 136, 136);
+							text-transform: uppercase;
+						}
+
+						.hero--intro--main--skills {
+							@include mixins.flex--layout(
+								$direction: row,
+								$align: center,
+								$justify: baseline
+							);
+							flex-wrap: wrap;
+							color: hsl(0, 0%, 100%);
+							column-gap: 0.3rem;
+							width: 100%;
+							text-wrap: wrap;
+							word-wrap: break-word;
+
+							.and--more {
+								margin-left: 0.1rem;
+								color: hsl(0, 4%, 55%);
+							}
+						}
+					}
+
+					.hero--intro--expertise {
+						width: 100%;
+						@include mixins.flex--layout(
+							$direction: column,
+							$align: end,
+							$justify: end
+						);
+						font-weight: 500;
+						margin-left: auto;
+						font-size: 5rem;
+						line-height: 6rem;
+						color: hsl(0, 7%, 59%);
+
+						.intro--expertise {
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							text-align: justify;
+							overflow: hidden;
+						}
+					}
+				}
 			}
 
 			.hero--sub--text--container {

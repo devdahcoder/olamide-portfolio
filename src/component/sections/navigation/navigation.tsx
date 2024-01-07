@@ -259,8 +259,8 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 				});
 			},
 			{
-				threshold: [0.1, 0.2],
-				rootMargin: "-46% 0px -46%",
+				threshold: 0.1,
+				rootMargin: "-47% 0px -47%",
 			}
 		);
 
