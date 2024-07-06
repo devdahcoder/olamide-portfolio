@@ -229,7 +229,7 @@ const Project: Component<{}> = () => {
 				trigger: ".project--main--container",
 				start: "top center",
 				// pin: true,
-				markers: true,
+				// markers: true,
 			},
 		});
 

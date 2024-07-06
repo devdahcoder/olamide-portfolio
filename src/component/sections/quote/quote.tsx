@@ -10,40 +10,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 let sectionRef: HTMLDivElement | undefined | any;
 
-const Quote: Component<{}> = () => {
-	const [quote, setQuote] = createSignal<QuoteApiType>({
-		author: "Olamide Adigun",
-		category: "programming",
-		quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",
-	});
+type Props = {
+	quote: QuoteApiType
+};
 
-	createEffect(() => {
-		gsap.fromTo(
-			".quote--text",
-			{
-				color: "hsl(0, 4%, 14%)",
-			},
-			{
-				scrollTrigger: {
-					trigger: ".quote--container",
-					start: "top top",
-					end: "bottom center",
-					scrub: true,
-					pin: true,
-				},
-				duration: 3,
-				color: "white",
-				ease: "sine.in",
-				stagger: 2,
-			}
-		);
-	});
+const Quote: Component<Props> = (props) => {
+	// const [quote, setQuote] = createSignal<QuoteApiType>({
+	// 	author: "Olamide Adigun",
+	// 	category: "programming",
+	// 	quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",
+	// });
+
+	// createEffect(() => {
+	// 	gsap.fromTo(
+	// 		".quote--text",
+	// 		{
+	// 			color: "hsl(0, 4%, 14%)",
+	// 		},
+	// 		{
+	// 			scrollTrigger: {
+	// 				trigger: ".quote--container",
+	// 				start: "top top",
+	// 				// end: "bottom center",
+	// 				end: `+=${quote().quote.split(' ').length * 100}`,
+	// 				scrub: true,
+	// 				pin: true,
+	// 			},
+	// 			duration: 3,
+	// 			color: "white",
+	// 			ease: "sine.in",
+	// 			stagger: 2,
+	// 		}
+	// 	);
+	// });
 
 	return (
 		<div class="quote--container">
 			<div class="quote--sub--container">
 				<div class="quote--text--container">
-					<For each={quote()?.quote?.split(" ")}>
+					<For each={props?.quote?.quote?.split(" ")}>
 						{(props) => (
 							<div class="quote--text">
 								{props === " " ? (
@@ -57,7 +62,7 @@ const Quote: Component<{}> = () => {
 				</div>
 
 				<div ref={sectionRef} class="quote--author">
-					&lt;/{quote()?.author}&gt;
+					&lt;/{props?.quote?.author}&gt;
 				</div>
 			</div>
 		</div>

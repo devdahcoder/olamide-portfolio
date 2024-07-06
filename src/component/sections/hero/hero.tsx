@@ -63,7 +63,8 @@ const animateSubHeroParallaxCharacter = () => {
 };
 
 const animateHeroSkills = () => {
-	gsap.fromTo(".hero--intro--skills--container", {yPercent: 200}, {yPercent: 0, duration: 2.5, ease: "power4.out"});
+	gsap.fromTo(".hero--intro--skills--container",
+		{ yPercent: 200 }, { yPercent: 0, duration: 2.5, ease: "power4.out" });
 }
 
 const animateHeroLink = () => {
@@ -75,7 +76,7 @@ const animateHeroLink = () => {
 };
 
 const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
-	const [role] = createSignal<string>("Adigun Olamide");
+	const [name] = createSignal<string>("Adigun Olamide");
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
@@ -112,7 +113,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
 					<div class="hero--text--container">
-						<For each={role().trim().split("")}>
+						<For each={name().trim().split("")}>
 							{(character, index) => (
 								<ParallaxCharacter
 									index={index()}
@@ -134,10 +135,9 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 							secondExpertiseParallaxCharacterElement
 						}
 					/>
-
 				</div>
 
-				<Link
+				{/* <Link
 					children={
 						<div class="hero--link--children--container">
 							See Blog Posts Here
@@ -153,9 +153,24 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 					linkContainerClass="hero--link--container"
 				/>
 
+				<div class="xl:h-[100px] xl:w-[100px] 2xl:w-[125px] 2xl:h-[125px] flex items-center justify-center">
+					<div >
+						<svg height="100" width="100">
+							<path id="ellipse-id-r2-" style="fill: none;" d="M0 50a50 50 0 1 0 100 0a50 50 0 1 0 -100 0"></path>
+							<text style="font-size: 11px; letter-spacing: 7.5px; fill: rgb(244, 244, 244);">
+								<textPath xlink:href="#ellipse-id-r2-" startOffset="0">
+									<tspan>SEE MY BLOG POSTS HERE</tspan>
+								</textPath></text>
+						</svg>
+					</div>
+					<div class="absolute h-[16px] w-[16px]" style="translate: none; rotate: none; scale: none; transform: translate3d(0px, 0px, 0px) rotate(-257.076deg);">
+						<img src="/icons/asterisk.svg" alt="asterisk" class="object-contain" />
+					</div>
+				</div>
+
 				<div class="hero--scroll--more--main--container">
 					<div
-						role="button"
+						name="button"
 						class="hero--scroll--more--sub--container"
 					>
 						<UpArrowIcon
@@ -165,7 +180,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 						/>
 						<p>Scroll Down</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

@@ -20,7 +20,7 @@ const Work: Component<{}> = () => {
 					start: "top 70%",
 					end: "bottom center",
 					scrub: true,
-					markers: true,
+					// markers: true,
 				},
 			}
 		);

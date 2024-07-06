@@ -2,70 +2,111 @@
 @use "../../../styles/variables";
 
 .about--container {
-	padding: 15rem 0rem 6rem 0;
-    min-height: 100vh;
+    padding: 0rem 0rem 0rem 0;
+    // min-height: 100vh;
 
-	.about--sub--container {
-		@include mixins.center--section;
-		@include mixins.flex--layout(
-			$direction: column,
-			$align: baseline,
-			$justify: baseline
-		);
-		row-gap: 2rem;
+    .about--sub--container {
+        @include mixins.center--section;
+        @include mixins.flex--layout($direction: column,
+            $align: center,
+            $justify: center);
+        width: 100%;
+        height: 100%;
+        row-gap: 3rem;
+        position: relative;
 
-		.about--text--header {
-			@include mixins.flex--layout(
-				$direction: column,
-				$align: start,
-				$justify: start
-			);
-			color: white;
-			font-size: 1.5rem;
-			font-weight: 300;
-			text-transform: uppercase;
-			width: 55%;
-		}
+        .image--container {
+            position: relative;
+            display: block;
+            inset: 0px auto auto 0px;
+            width: 100%;
+            height: 654px;
 
-		.about--text--container {
-			@include mixins.flex--layout($align: start, $justify: baseline);
-			color: hsl(0, 3%, 73%);
-			position: relative;
-			font-size: 1.2rem;
-			font-weight: 300;
+            .image--sub--container {
+                position: relative;
+                z-index: 0;
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                transform: scale(0.8, 0.8);
+                clip-path: inset(0% 30%);
+                height: 641px;
+                
 
-			.about--text--title {
-				flex-grow: 1;
+                .image {
+                    max-width: 100%;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    display: block;
+                    z-index: 0;
+                    object-position: center;
+                    object-fit: cover;
+                }
+
+                .image--shadow {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    z-index: 10;
+                    -webkit-mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
+                    mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
+                    background-color: hsl(0, 0%, 5%);
+                    transform: translate(0px, 0px);
+                    opacity: 0;
+                    height: 192px;
+                }
+            }
+        }
+
+        .about--text--header {
+            @include mixins.flex--layout($direction: column,
+                $align: start,
+                $justify: start);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            width: 55%;
+        }
+
+        .about--text--container {
+            @include mixins.flex--layout($align: start, $justify: baseline);
+            color: hsl(0, 3%, 73%);
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: 300;
+
+            .about--text--title {
+                flex-grow: 1;
                 width: 100%;
                 color: white;
-                
+
                 p {
                     width: 70%;
                 }
-			}
+            }
 
-			.about--text {
-                @include mixins.flex--layout(
-				$direction: column,
-				$align: start,
-				$justify: start
-			);
-				flex-grow: 1;
+            .about--text {
+                @include mixins.flex--layout($direction: column,
+                    $align: start,
+                    $justify: start);
+                flex-grow: 1;
                 width: 100%;
                 row-gap: 3rem;
-			}
-		}
+            }
+        }
 
-		// .about--text {
-		// 	@include mixins.flex--layout($align: center, $justify: center);
-		// 	position: relative;
-		// 	font-size: 1.7rem;
-		// 	font-weight: 400;
-		// 	flex-wrap: wrap;
-		// 	text-align: center;
-		// 	padding: 0 1rem;
-		// 	max-width: 80%;
-		// 	color: hsl(0, 3%, 73%);
-		// }
-	}
+        // .about--text {
+        // 	@include mixins.flex--layout($align: center, $justify: center);
+        // 	position: relative;
+        // 	font-size: 1.7rem;
+        // 	font-weight: 400;
+        // 	flex-wrap: wrap;
+        // 	text-align: center;
+        // 	padding: 0 1rem;
+        // 	max-width: 80%;
+        // 	color: hsl(0, 3%, 73%);
+        // }
+    }
 }

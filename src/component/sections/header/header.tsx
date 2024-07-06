@@ -137,23 +137,6 @@ const Header: Component<{
 				<div class="header--util--main--container">
 					<div class="header--util--sub--container">
 						<Link
-							children={
-								<div class="header--resume--link--children--container">
-									<div class="header--resume--link--children--text--container">
-										<div class="header--resume--link--children--text first--header--resume--link--children--text">
-											My Resume
-										</div>
-										<div class="header--resume--link--children--text second--header--resume--link--children--text">
-											My Resume
-										</div>
-									</div>
-									<FileIcon
-										width="20"
-										height="20"
-										class="header--resume--link--icon"
-									/>
-								</div>
-							}
 							onMouseOver={() => {
 								animateHeaderResumeLinkText(true);
 								animateOpenSecondHeaderResumeLinkText(true);
@@ -165,7 +148,23 @@ const Header: Component<{
 							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
 							linkClass="header--resume--link"
 							linkContainerClass="header--resume--link--container"
-						/>
+						>
+							<div class="header--resume--link--children--container">
+								<div class="header--resume--link--children--text--container">
+									<div class="header--resume--link--children--text first--header--resume--link--children--text">
+										My Resume
+									</div>
+									<div class="header--resume--link--children--text second--header--resume--link--children--text">
+										My Resume
+									</div>
+								</div>
+								<FileIcon
+									width="20"
+									height="20"
+									class="header--resume--link--icon"
+								/>
+							</div>
+						</Link>
 
 						<Button
 							buttonClass="header--navigation--button"
@@ -175,14 +174,11 @@ const Header: Component<{
 									!props.isNavigationOpen()
 								)
 							}
-							children={
-								<>
-									<div class="navigation--icon first--navigation--icon"></div>
-									<div class="navigation--icon second--navigation--icon"></div>
-									<div class="navigation--icon last--navigation--icon"></div>
-								</>
-							}
-						/>
+						>
+							<div class="navigation--icon first--navigation--icon"></div>
+							<div class="navigation--icon second--navigation--icon"></div>
+							<div class="navigation--icon last--navigation--icon"></div>
+						</Button>
 					</div>
 				</div>
 			</div>
