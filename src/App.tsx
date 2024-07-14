@@ -12,6 +12,9 @@ import InfiniteTextScroll from "./component/infinit";
 import "./styles/index.scss"
 import GlobalProjectImage from "./component/global-project-image";
 import Card from "./component/sections/card/card";
+import Stack from "./component/sections/stack/stack";
+import Service from "./component/sections/service/service";
+import AboutMe from "./component/sections/about-me/about-me";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -26,14 +29,17 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			{/* <Card /> */}
 			<About />
+			<AboutMe />
+			{/* <Project /> */}
+			{/* <Service /> */}
+			{/* <WorkFlow /> */}
+			{/* <Footer /> */}
+			{/* <Stack /> */}
+			{/* <Card /> */}
 			{/* <Quote /> */}
 			{/* <Work /> */}
 			{/* <InfiniteTextScroll /> */}
-			{/* <Project />
-			<WorkFlow /> */}
-			<Footer />
 		</>
 	);
 }

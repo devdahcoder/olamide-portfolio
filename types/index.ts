@@ -51,10 +51,13 @@ export type QuoteApiType = {
 }
 
 export type StyleType = {
+
     style?: string | { [name: string]: any }
+
 }
 
 export type HeaderLinkType = {
+
     id: string | number;
     href?: string;
     text?: string;
@@ -67,13 +70,21 @@ export type HeaderLinkType = {
     leftLinkElement?: any;
     rightLinkElement?: any;
     bottomLinkElement?: Element;
+
 }
 
 export type GsapFadeElementType = {
 
     duration: string;
-    opacity: 1,
+    opacity: number,
     display: string;
     ease: string;
+
+}
+
+export type ServiceType = {
+
+    id: number | string;
+    services: string[];
 
 }

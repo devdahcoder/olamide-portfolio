@@ -3,8 +3,7 @@
 
 .about--container {
     padding: 0rem 0rem 0rem 0;
-    // min-height: 100vh;
-
+    
     .about--sub--container {
         @include mixins.center--section;
         @include mixins.flex--layout($direction: column,

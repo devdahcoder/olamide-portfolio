@@ -2,7 +2,7 @@ import { NAVIGATION_TYPE } from "../enum";
 import BigStarIcon from '../icon/big-star-icon';
 import LoveIcon from '../icon/love-icon';
 import SmallStartIcon from '../icon/small-star-icon';
-import { HeaderLinkType, QuoteApiType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { HeaderLinkType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -242,3 +242,18 @@ export const quoteContent: QuoteApiType = {
     category: "programming",
     quote: "Code is like humor. When you have to explain it, it's bad.",
 }
+
+export const serviceContent: ServiceType[] = [
+    {
+        id: 1,
+        services: ["Web Design", "Mobile Apps"]
+    },
+    {
+        id: 2,
+        services: ["Web Development", "Branding"]
+    },
+    {
+        id: 3,
+        services: ["Web Flow", "Framer Motion"]
+    },
+]

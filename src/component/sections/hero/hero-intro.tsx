@@ -1,6 +1,7 @@
 import { Component, For, createSignal } from "solid-js";
 import "./hero.scss";
 import ParallaxCharacter from "../../parallax-character";
+import StarIcon from "../../../../public/icon/star-icon";
 
 const HeroIntro: Component<{
 	firstExpertiseParallaxCharacterElement: HTMLDivElement[][];
@@ -38,6 +39,7 @@ const HeroIntro: Component<{
 
 				<div class="hero--intro--expertise">
 					<div class="intro--expertise">
+						<StarIcon class="w-8 h-8 mr-3 animate-spin ease-linear duration-1000" />
 						<For each={"Software &".split("")}>
 							{(character, index) => (
 								<ParallaxCharacter

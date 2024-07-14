@@ -1,0 +1,47 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
+.about--me--container {
+    margin-bottom: 1rem;
+    .about--me--sub--container {
+        @include mixins.flex--layout($direction: row,
+            $align: start,
+            $justify: start);
+        @include mixins.center--section;
+
+        .about--me--title {
+            width: 50%;
+            @include mixins.flex--layout($direction: row,
+                $align: start,
+                $justify: start);
+            font-size: 1.2vw;
+            font-weight: 400;
+            color: variables.$tertiary--text--color;
+            overflow: hidden;
+            column-gap: 5rem;
+        }
+
+        .about--me--text--container {
+            width: 100%;
+            @include mixins.flex--layout($direction: column,
+                $align: start,
+                $justify: start);
+            row-gap: 2.5rem;
+
+            .about--me--text {
+                @include mixins.flex--layout($direction: column,
+                    $align: start,
+                    $justify: start);
+                font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+                font-size: 2.6vw;
+                font-weight: 400;
+                color: hsl(0, 7%, 59%);
+                overflow: hidden;
+
+                span {
+                    color: variables.$tertiary--text--color;
+                }
+            }
+        }
+    }
+}

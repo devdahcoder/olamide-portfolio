@@ -95,13 +95,13 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 			observer.unobserve(entry.target);
 		});
 
-		scroll(
-			animate(
-				".hero--text--container",
-				{ y: [null, -300, -500, -700] },
-				{ duration: 3, easing: "linear" }
-			)
-		);
+		// scroll(
+		// 	animate(
+		// 		".hero--text--container",
+		// 		{ y: [null, -300, -500, -700] },
+		// 		{ duration: 3, easing: "linear" }
+		// 	)
+		// );
 	});
 
 	return (

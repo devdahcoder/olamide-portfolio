@@ -1,0 +1,41 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
+.service--container {
+
+    .service--sub--container {
+
+        .service--text--container {
+            @include mixins.flex--layout($direction: column,
+                $align: baseline,
+                $justify: baseline);
+            row-gap: 3rem;
+
+            .service--text--sub--container {
+                width: 100%;
+                @include mixins.flex--layout;
+                border: 1px solid hsl(0, 1%, 60%);
+                border-radius: 30px;
+
+                .dele {
+                    @include mixins.center--section;
+                    @include mixins.flex--layout;
+                    padding: 0.9rem 0;
+
+                    .service--text {
+                        font-size: 5.5vw;
+                        font-weight: 200;
+                        color: hsl(0, 0%, 100%);
+                        align-items: end;
+                        text-transform: uppercase;
+
+                        &:nth-child(2) {
+                            color: hsl(0, 2%, 62%);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
