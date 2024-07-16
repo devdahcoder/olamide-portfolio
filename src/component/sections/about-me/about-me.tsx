@@ -6,21 +6,34 @@ const AboutMe: Component<{}> = (props) => {
 	return (
 		<div class="about--me--container">
 			<div class="about--me--sub--container">
-				<div class="about--me--title">
-					<p>About Me</p>
-					<div>
-						<Arrow />
+				<div class="about--me--title--and--social--container">
+					<div class="about--me--title">
+						<p>About Me</p>
+						<div>
+							<Arrow />
+						</div>
 					</div>
+
+					{/* <div class="about--me--social--container">
+
+						<div class="about--me--social--title">
+							<p>Social Links</p>
+						</div>
+
+						<div class="about--me--social--links--container">
+
+						</div>
+
+					</div> */}
 				</div>
 				<div class="about--me--text--container">
 					<div class="about--me--text">
 						<p>
 							Hello! I'm <span>Olamide</span>, a passionate
-							software developer, who crafts
-							beautiful web and mobile experiences and digital
-							solutions with a real impact that helps businesses
-							grow and connect with their audience all over the
-							world.
+							software developer, who crafts beautiful web and
+							mobile experiences and digital solutions with a real
+							impact that helps businesses grow and connect with
+							their audience all over the world.
 						</p>
 					</div>
 					<div class="about--me--text">

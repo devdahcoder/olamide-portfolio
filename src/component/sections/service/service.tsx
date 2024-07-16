@@ -1,10 +1,17 @@
-import { Component, For } from "solid-js";
+import { Component, createSignal, For } from "solid-js";
 import "./service.scss";
 import { serviceContent } from "../../../../contents";
 
 type Props = {};
 
 const Service: Component<Props> = (props) => {
+	const [images, setImages] = createSignal<string[]>([
+		"images/box-1.svg",
+		"images/box.svg",
+		"images/pyramid-1.svg",
+		"images/pyramid.svg",
+	]);
+
 	return (
 		<div class="service--container">
 			<div class="service--sub--container">
@@ -16,9 +23,39 @@ const Service: Component<Props> = (props) => {
 									<For each={services}>
 										{(service, index) => (
 											<div class="service--text">
-												{index() % 2 !== 0 ? "" : "*"}
-												{service}
-												{index() % 2 === 0 ? "" : "*"}
+												{index() % 2 !== 0 ? (
+													""
+												) : (
+													<img
+														src={`${
+															images()[
+																Math.floor(
+																	Math.random() *
+																		images()
+																			.length
+																)
+															]
+														}`}
+														alt=""
+													/>
+												)}
+												<div>{service}</div>
+												{index() % 2 === 0 ? (
+													""
+												) : (
+													<img
+														src={`${
+															images()[
+																Math.floor(
+																	Math.random() *
+																		images()
+																			.length
+																)
+															]
+														}`}
+														alt=""
+													/>
+												)}
 											</div>
 										)}
 									</For>

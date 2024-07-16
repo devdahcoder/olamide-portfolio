@@ -3,22 +3,43 @@
 
 .about--me--container {
     margin-bottom: 1rem;
+
     .about--me--sub--container {
         @include mixins.flex--layout($direction: row,
             $align: start,
             $justify: start);
         @include mixins.center--section;
 
-        .about--me--title {
-            width: 50%;
-            @include mixins.flex--layout($direction: row,
+        .about--me--title--and--social--container {
+            width: 70%;
+            @include mixins.flex--layout($direction: column,
                 $align: start,
                 $justify: start);
-            font-size: 1.2vw;
-            font-weight: 400;
-            color: variables.$tertiary--text--color;
-            overflow: hidden;
-            column-gap: 5rem;
+            height: 100%;
+
+            .about--me--title {
+                @include mixins.flex--layout($direction: row,
+                    $align: start,
+                    $justify: start);
+                font-size: 1.2vw;
+                font-weight: 400;
+                color: variables.$tertiary--text--color;
+                overflow: hidden;
+                column-gap: 5rem;
+            }
+
+            .about--me--social--container {
+                @include mixins.flex--layout($direction: column,
+                    $align: start,
+                    $justify: start);
+
+                .about--me--social--title {
+
+                }
+
+                .about--me--social--links--container {
+                }
+             }
         }
 
         .about--me--text--container {
@@ -33,7 +54,7 @@
                     $align: start,
                     $justify: start);
                 font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                font-size: 2.6vw;
+                font-size: 2.3vw;
                 font-weight: 400;
                 color: hsl(0, 7%, 59%);
                 overflow: hidden;

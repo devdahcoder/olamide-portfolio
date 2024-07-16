@@ -30,6 +30,7 @@ body {
         width: 100vw;
         height: 100vh;
         pointer-events: none;
+        -webkit-user-select: none;
         user-select: none;
         box-shadow: inset 0px -7px 100px 50px rgb(0, 0, 0);
         opacity: 0.4;

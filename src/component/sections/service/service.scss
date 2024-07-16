@@ -23,12 +23,17 @@
                     padding: 0.9rem 0;
 
                     .service--text {
+                        @include mixins.flex--layout($direction: row,
+                            $align: center,
+                            $justify: center);
+                        vertical-align: middle;
                         font-size: 5.5vw;
                         font-weight: 200;
                         color: hsl(0, 0%, 100%);
                         align-items: end;
                         text-transform: uppercase;
-
+                        position: relative;
+                        
                         &:nth-child(2) {
                             color: hsl(0, 2%, 62%);
                         }

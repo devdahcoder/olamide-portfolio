@@ -256,4 +256,8 @@ export const serviceContent: ServiceType[] = [
         id: 3,
         services: ["Web Flow", "Framer Motion"]
     },
+    {
+        id: 3,
+        services: ["Web Flow", "Framer Motion"]
+    },
 ]

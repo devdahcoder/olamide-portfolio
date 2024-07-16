@@ -4,6 +4,7 @@
 .stack--container {
     height: 100vh;
     @include mixins.center--element;
+    position: relative;
 
     .stack--sub--container {
         @include mixins.center--section;
