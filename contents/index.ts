@@ -107,7 +107,8 @@ export const workContent: Array<WorkType> = [
         link: 'work-1-link',
         companyName: "OkaLane",
         className: "start",
-        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"]
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
     },
     {
         id: 2,
@@ -124,7 +125,9 @@ export const workContent: Array<WorkType> = [
         link: 'work-2-link',
         companyName: "ScaleIn",
         className: "end",
-        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"]
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+
     },
     {
         id: 3,
@@ -141,7 +144,9 @@ export const workContent: Array<WorkType> = [
         link: 'new-project-1-link',
         companyName: "NewProject1",
         className: "middle",
-        tools: ["React", "Redux", "TypeScript", "Styled Components"]
+        tools: ["React", "Redux", "TypeScript", "Styled Components"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+
     },
     {
         id: 4,
@@ -158,7 +163,9 @@ export const workContent: Array<WorkType> = [
         link: 'new-project-2-link',
         companyName: "NewProject2",
         className: "middle",
-        tools: ["Vue.js", "Vuex", "SCSS", "Webpack"]
+        tools: ["Vue.js", "Vuex", "SCSS", "Webpack"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+
     },
     {
         id: 5,
@@ -175,7 +182,9 @@ export const workContent: Array<WorkType> = [
         link: 'new-project-3-link',
         companyName: "NewProject3",
         className: "end",
-        tools: ["Angular", "RxJS", "NgRx", "Bootstrap"]
+        tools: ["Angular", "RxJS", "NgRx", "Bootstrap"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+
     }
 
 ];
