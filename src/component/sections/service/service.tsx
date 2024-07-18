@@ -15,6 +15,10 @@ const Service: Component<Props> = (props) => {
 	return (
 		<div class="service--container">
 			<div class="service--sub--container">
+				<div class="service--header--container">
+					<div class="service--header--title">Services</div>
+				</div>
+
 				<div class="service--text--container">
 					<For each={serviceContent}>
 						{({ id, services }) => (

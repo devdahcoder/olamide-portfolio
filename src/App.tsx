@@ -18,25 +18,26 @@ import AboutMe from "./component/sections/about-me/about-me";
 import Intro from "./component/sections/intro/intro";
 
 function App() {
-	// const [isNavigationOpen, setIsNavigationOpen] =
-	// 	createSignal<boolean>(false);
+	const [isNavigationOpen, setIsNavigationOpen] =
+		createSignal<boolean>(false);
 
 	return (
 		<>
-			{/* <GlobalProjectImage /> */}
-			{/* <Navigation isNavigationOpen={isNavigationOpen} /> */}
-			{/* <Header
+			<GlobalProjectImage />
+			<Navigation isNavigationOpen={isNavigationOpen} />
+			<Header
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
-			/> */}
-			{/* <Hero isNavigationOpen={isNavigationOpen()} /> */}
-			{/* <About /> */}
-			{/* <Intro /> */}
-			{/* <Service /> */}
-			{/* <Stack /> */}
-			{/* <Footer /> */}
-			{/* <AboutMe /> */}
+			/>
+			<Hero isNavigationOpen={isNavigationOpen()} />
+			<About />
+			<Intro />
 			<Project />
+			{/* Experience */}
+			<Service />
+			{/* <Stack /> */}
+			<Footer />
+			{/* <AboutMe /> */}
 			{/* <WorkFlow /> */}
 			{/* <Stack /> */}
 			{/* <Card /> */}

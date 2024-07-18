@@ -13,111 +13,193 @@ import { workContent } from "../../../../contents";
 import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./project.scss";
+import ParallaxCharacter from "../../parallax-character";
+import DoubleArrowIcon from "../../../../public/icon/double-arrow-icon";
+import { DOMElement } from "solid-js/jsx-runtime";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
 	let projectRef: HTMLDivElement[] = [];
+	const parallaxCharacterElement: HTMLDivElement[][] = [];
 
-	// const [prevMousePosition, setPreviousMousePosition] =
-	// 	createSignal<number>(0);
+	const [prevMousePosition, setPreviousMousePosition] =
+		createSignal<number>(0);
+	const [currentMouseIndex, setCurrentMouseIndex] = createSignal<
+		number | null
+	>(0);
 
-	// const getDOMVariables = (item: HTMLDivElement | Element) => {
-	// 	const globalProjectBackgroundImage = document?.querySelector(
-	// 		".global--project--background--image"
-	// 	) as HTMLImageElement;
-	// 	const projectToolsContainer = item?.querySelector(
-	// 		".project--tool--container"
-	// 	) as HTMLDivElement;
-	// 	const projectTools = projectToolsContainer?.querySelectorAll(
-	// 		".project--tool"
-	// 	) as NodeListOf<HTMLDivElement>;
-	// 	const imageSelector = item?.querySelector(".image--container");
-	// 	const imageSubSelector = imageSelector?.querySelector(
-	// 		".image--sub--container"
-	// 	) as HTMLDivElement;
-	// 	const imageElem = imageSubSelector?.querySelector(
-	// 		".image"
-	// 	) as HTMLImageElement;
+	const getDOMVariables = (item: HTMLDivElement | Element) => {
+		const globalProjectBackgroundImage = document?.querySelector(
+			".global--project--background--image"
+		) as HTMLImageElement;
+		const projectToolsContainer = item?.querySelector(
+			".project--tool--container"
+		) as HTMLDivElement;
+		const projectTools = projectToolsContainer?.querySelectorAll(
+			".project--tool"
+		) as NodeListOf<HTMLDivElement>;
+		const imageSelector = item?.querySelector(".image--container");
+		const imageSubSelector = imageSelector?.querySelector(
+			".image--sub--container"
+		) as HTMLDivElement;
+		const imageElem = imageSubSelector?.querySelector(
+			".image"
+		) as HTMLImageElement;
 
-	// 	let prevX = 0;
+		let prevX = 0;
 
-	// 	return {
-	// 		globalProjectBackgroundImage,
-	// 		imageSelector,
-	// 		imageSubSelector,
-	// 		imageElem,
-	// 		prevX,
-	// 		projectTools,
-	// 	};
-	// };
+		return {
+			globalProjectBackgroundImage,
+			imageSelector,
+			imageSubSelector,
+			imageElem,
+			prevX,
+			projectTools,
+		};
+	};
 
-	// const handleMouseMove = (
-	// 	e: MouseEvent | any,
-	// 	imageSelector: Element | null
-	// ) => {
-	// 	if (imageSelector) {
-	// 		let prevX = e.clientX;
-	// 		const currentX =
-	// 			e.clientX -
-	// 			e.currentTarget.getBoundingClientRect().left -
-	// 			e.currentTarget.offsetWidth / 2;
+	const handleMouseMove = (
+		e: MouseEvent | any,
+		imageSelector: Element | null
+	) => {
+		if (imageSelector) {
+			let prevX = e.clientX;
+			const currentX =
+				e.clientX -
+				e.currentTarget.getBoundingClientRect().left -
+				e.currentTarget.offsetWidth / 2;
 
-	// 		const currentY =
-	// 			e.clientY -
-	// 			e.currentTarget.getBoundingClientRect().top -
-	// 			e.currentTarget.offsetHeight / 2;
+			const currentY =
+				e.clientY -
+				e.currentTarget.getBoundingClientRect().top -
+				e.currentTarget.offsetHeight / 2;
 
-	// 		const direction = prevX >= prevMousePosition() ? "right" : "left";
+			const direction = prevX >= prevMousePosition() ? "right" : "left";
 
-	// 		const tiltAmount = direction === "right" ? 10 : -10;
+			const tiltAmount = direction === "right" ? 10 : -10;
 
-	// 		gsap.to(imageSelector, {
-	// 			duration: 0.8,
-	// 			x: currentX,
-	// 			y: currentY,
-	// 			ease: "power1.out",
-	// 			rotation: tiltAmount,
-	// 			opacity: 0.9,
-	// 			zIndex: 1,
-	// 			boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
-	// 			onComplete: () => {
-	// 				gsap.to(imageSelector, { rotate: 0, ease: "power1.out" });
-	// 			},
-	// 		});
-	// 		setPreviousMousePosition(prevX);
-	// 	}
-	// };
+			gsap.to(imageSelector, {
+				duration: 0.8,
+				x: currentX,
+				y: currentY,
+				ease: "power1.out",
+				rotation: tiltAmount,
+				opacity: 0.9,
+				zIndex: 1,
+				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
+				onComplete: () => {
+					gsap.to(imageSelector, { rotate: 0, ease: "power1.out" });
+				},
+			});
+			setPreviousMousePosition(prevX);
+		}
+	};
 
-	// const handleMouseEnter = (
-	// 	e: MouseEvent | any,
-	// 	imageSelector: Element | null,
-	// 	globalProjectBackgroundImage: HTMLImageElement
-	// ) => {
-	// 	if (imageSelector) {
-	// 		gsap.set(imageSelector, {
-	// 			rotate: 0,
-	// 		});
-	// 	}
-	// };
+	const handleMouseEnter = (
+		e: MouseEvent & {
+			currentTarget: HTMLAnchorElement;
+			target: DOMElement;
+		},
+		index: number
+		// imageSelector: Element | null,
+		// globalProjectBackgroundImage: HTMLImageElement
+	) => {
+		const allElements = document.querySelectorAll(
+			".project--util--icon--container"
+		);
+		const selectedElement = allElements[index];
+		const selectedElementIconElement =
+			selectedElement.querySelector(`.project--util--icon`);
 
-	// const handleMouseLeave = (
-	// 	e: MouseEvent,
-	// 	imageSelector: Element | null,
-	// 	globalProjectBackgroundImage: HTMLImageElement
-	// ) => {
-	// 	if (imageSelector) {
-	// 		gsap.to(imageSelector, {
-	// 			opacity: 0,
-	// 			duration: 0.8,
-	// 			rotate: 0,
-	// 		});
-	// 	}
-	// 	// gsap.to(globalProjectBackgroundImage, {
-	// 	// 	duration: 1,
-	// 	// 	opacity: 0.5,
-	// 	// 	visibility: "hidden",
-	// 	// });
-	// };
+		gsap.fromTo(
+			selectedElement,
+			{
+				width: 0,
+				height: 0,
+				visibility: "hidden",
+			},
+			{
+				width: "2.5rem",
+				height: "2.5rem",
+				visibility: "visible",
+				duration: 0.6,
+			}
+		);
+		gsap.fromTo(
+			selectedElementIconElement,
+			{
+				scale: 0,
+			},
+			{
+				scale: 1,
+				duration: 0.6,
+			}
+		);
+		// if (imageSelector) {
+		// 	gsap.set(imageSelector, {
+		// 		rotate: 0,
+		// 	});
+		// }
+		// setCurrentMouseIndex(index);
+		
+	};
+
+	const handleMouseLeave = (
+		e: MouseEvent & {
+			currentTarget: HTMLAnchorElement;
+			target: DOMElement;
+		},
+		index: number
+		// e: MouseEvent,
+		// imageSelector: Element | null,
+		// globalProjectBackgroundImage: HTMLImageElement
+	) => {
+		// setCurrentMouseIndex(null);
+
+		const allElements = document.querySelectorAll(
+			".project--util--icon--container"
+		);
+		const selectedElement = allElements[index];
+		const selectedElementIconElement =
+			selectedElement.querySelector(`.project--util--icon`);
+
+		gsap.fromTo(
+			selectedElement,
+			{
+				width: "2.5rem",
+				height: "2.5rem",
+				visibility: "visible",
+			},
+			{
+				width: 0,
+				height: 0,
+				// visibility: "hidden",
+				duration: 1,
+			}
+		);
+		gsap.fromTo(
+			selectedElementIconElement,
+			{
+				scale: 1,
+			},
+			{
+				scale: 0,
+				duration: 1,
+			}
+		);
+		// if (imageSelector) {
+		// 	gsap.to(imageSelector, {
+		// 		opacity: 0,
+		// 		duration: 0.8,
+		// 		rotate: 0,
+		// 	});
+		// }
+		// gsap.to(globalProjectBackgroundImage, {
+		// 	duration: 1,
+		// 	opacity: 0.5,
+		// 	visibility: "hidden",
+		// });
+	};
 
 	// const handleGlobalProjectBackgroundImage = (
 	// 	globalProjectBackgroundImage: HTMLImageElement,
@@ -287,15 +369,82 @@ const Project: Component<{}> = () => {
 	// 	});
 	// });
 
+	// createEffect(() => {
+	// 	currentMouseIndex();
+
+	// 	const allElements = document.querySelectorAll(
+	// 		".project--util--icon--container"
+	// 	);
+	// 	const selectedElement = allElements[currentMouseIndex()];
+	// 	const selectedElementIconElement =
+	// 		selectedElement.querySelector(`.project--util--icon`);
+
+	// 	if (typeof currentMouseIndex() === "number") {
+
+	// 		gsap.fromTo(
+	// 			selectedElement,
+	// 			{
+	// 				width: 0,
+	// 				height: 0,
+	// 				visibility: "hidden",
+	// 			},
+	// 			{
+	// 				width: "2.5rem",
+	// 				height: "2.5rem",
+	// 				visibility: "visible",
+	// 				duration: 1,
+	// 			}
+	// 		);
+	// 		gsap.fromTo(
+	// 			selectedElementIconElement,
+	// 			{
+	// 				scale: 0,
+	// 			},
+	// 			{
+	// 				scale: 1,
+	// 				duration: 1,
+	// 			}
+	// 		);
+	// 	} else {
+	// 		gsap.fromTo(
+	// 			selectedElement,
+	// 			{
+	// 				width: "2.5rem",
+	// 				height: "2.5rem",
+	// 				visibility: "visible",
+	// 			},
+	// 			{
+	// 				width: 0,
+	// 				height: 0,
+	// 				// visibility: "hidden",
+	// 				duration: 1,
+	// 			}
+	// 		);
+	// 		gsap.fromTo(
+	// 			selectedElementIconElement,
+	// 			{
+	// 				scale: 1,
+	// 			},
+	// 			{
+	// 				scale: 0,
+	// 				duration: 1,
+	// 			}
+	// 		);
+	// 	}
+	// });
+
 	return (
-		<div class="project--container border">
+		<div class="project--container">
 			<div class="project--sub--container">
-				<div class="project--list--container">
+				<div class="project--header--container">
+					<div class="project--header--title">My few works</div>
+				</div>
+				<div class="project--list">
 					<For each={workContent}>
 						{(props, index) => (
 							<div
 								ref={(e) => projectRef.push(e)}
-								class="project--item--container"
+								class="project--item"
 							>
 								{/* <Image
 								imageSrc={props?.image?.imageSrc}
@@ -309,80 +458,64 @@ const Project: Component<{}> = () => {
 								}
 							/> */}
 								<a
+									onMouseEnter={(e) =>
+										handleMouseEnter(e, index())
+									}
+									onMouseLeave={(e) =>
+										handleMouseLeave(e, index())
+									}
 									href={`http://${props.link}`}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="project--link"
+									class="project--item--link"
 								>
 									<div class="project--title--container">
 										<div class="project--title">
-											<p>{props.title}</p>
-										</div>
-
-										<div class="project--type">
-											<For each={props.type}>
-												{(type) => (
-													<>
-														<span>{type},</span>
-													</>
+											<For
+												each={props.title
+													.trim()
+													.split("")}
+											>
+												{(character, index) => (
+													<ParallaxCharacter
+														index={index()}
+														class="project--title--character"
+														children={character}
+														style={{
+															margin: "0rem 0.5rem",
+														}}
+														parallaxCharacterElement={
+															parallaxCharacterElement
+														}
+													/>
 												)}
 											</For>
 										</div>
 									</div>
 
-									<div class="project--item--utils--container">
-										<div class="project--number--container">
-											<span>0</span>
-											<div>
-												<IconButton
-													icon={
-														<svg
-															data-v-1c16fc4a=""
-															xmlns="http://www.w3.org/2000/svg"
-															width="15"
-															height="12"
-															fill="none"
-															viewBox="0 0 15 12"
-														>
-															<path
-																fill="currentColor"
-																fill-rule="evenodd"
-																d="M14.709 6.478 15 6.122l-.283-.362L10.58.473l-.904.707 3.411 4.362H.03V6.69H13.05l-3.365 4.108.888.728 4.136-5.048Zm-1.224-.429v.11l.044-.053-.044-.057Z"
-																clip-rule="evenodd"
-															></path>
-														</svg>
-													}
-													iconButtonClass="project--icon--button"
-													iconButtonContainerClass="project--icon--container"
-												/>
-											</div>
-											<span>{index()}</span>
-										</div>
-
-										<div class="project--tool--container">
-											<For
-												each={props.tools?.slice(0, 4)}
-											>
-												{(tool) => (
-													<div class="project--tool">
-														{tool}
-													</div>
+									<div class="project--type--container">
+										<div class="project--type">
+											<For each={props.type}>
+												{(type) => (
+													<p>
+														{type}{" "}
+														<span class="mx-0.5">
+															/
+														</span>
+													</p>
 												)}
 											</For>
-											<Show
-												when={
-													props.tools?.slice(4)
-														?.length ?? 0 > 0
-												}
-											>
-												<div class="project--tool">
-													+{" "}
-													{
-														props.tools?.slice(4)
-															?.length
-													}
-												</div>
-											</Show>
+										</div>
+									</div>
+
+									<div class="project--util--container">
+										<div class="project--util">
+											<div class="project--util--link">
+												View
+											</div>
+											<div class="project--util--icon--container">
+												<DoubleArrowIcon class="project--util--icon scale-0 " />
+											</div>
 										</div>
 									</div>
 								</a>

@@ -1,25 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("../assets/fonts/Satoshi/Satoshi-Light.woff") format("woff"), 
-    url("../assets/fonts/Satoshi/Satoshi-Light.woff2") format("woff2");
-	font-weight: 300;
-	font-style: normal;
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi/Satoshi-Light.woff") format("woff"),
+        url("../assets/fonts/Satoshi/Satoshi-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("../assets/fonts/Satoshi/Satoshi-Regular.woff") format("woff"),
-    url("../assets/fonts/Satoshi/Satoshi-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi/Satoshi-Regular.woff") format("woff"),
+        url("../assets/fonts/Satoshi/Satoshi-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
     font-family: "Satoshi";
     src: url("../assets/fonts/Satoshi/Satoshi-Medium.woff") format("woff"),
-    url("../assets/fonts/Satoshi/Satoshi-Medium.woff2") format("woff2");
+        url("../assets/fonts/Satoshi/Satoshi-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
 }
@@ -27,87 +28,87 @@
 @font-face {
     font-family: "Satoshi";
     src: url("../assets/fonts/Satoshi/Satoshi-Bold.woff") format("woff"),
-    url("../assets/fonts/Satoshi/Satoshi-Bold.woff2") format("woff2");
+        url("../assets/fonts/Satoshi/Satoshi-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-	font-family: "Passenger Sans";
-	src: url("../assets/fonts/passenger-sans/PassengerSans-Light.woff") format("woff"), 
-    url("../assets/fonts/passenger-sans/PassengerSans-Light.woff2") format("woff2");
-	font-weight: 300;
-	font-style: normal;
+    font-family: "Passenger Sans";
+    src: url("../assets/fonts/passenger-sans/PassengerSans-Light.woff") format("woff"),
+        url("../assets/fonts/passenger-sans/PassengerSans-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Passenger Sans";
-	src: url("../assets/fonts/passenger-sans/PassengerSans-Regular.woff") format("woff"), 
-    url("../assets/fonts/passenger-sans/PassengerSans-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Passenger Sans";
+    src: url("../assets/fonts/passenger-sans/PassengerSans-Regular.woff") format("woff"),
+        url("../assets/fonts/passenger-sans/PassengerSans-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Passenger Sans";
-	src: url("../assets/fonts/passenger-sans/PassengerSans-Medium.woff") format("woff"), 
-    url("../assets/fonts/passenger-sans/PassengerSans-Medium.woff2") format("woff2");
-	font-weight: 500;
-	font-style: normal;
+    font-family: "Passenger Sans";
+    src: url("../assets/fonts/passenger-sans/PassengerSans-Medium.woff") format("woff"),
+        url("../assets/fonts/passenger-sans/PassengerSans-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Tanker";
-	src: url("../assets/fonts/tanker/Tanker-Regular.woff") format("woff"), 
-    url("../assets/fonts/passenger-sans/Tanker-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Tanker";
+    src: url("../assets/fonts/tanker/Tanker-Regular.woff") format("woff"),
+        url("../assets/fonts/passenger-sans/Tanker-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Boska";
-	src: url("../assets/fonts/boska/Boska-Light.woff") format("woff"),
-	url("../assets/fonts/boska/Boska-Light.woff2") format("woff2");
-	font-weight: 300;
-	font-style: normal;
+    font-family: "Boska";
+    src: url("../assets/fonts/boska/Boska-Light.woff") format("woff"),
+        url("../assets/fonts/boska/Boska-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Boska";
-	src: url("../assets/fonts/boska/Boska-Regular.woff") format("woff"),
-	url("../assets/fonts/boska/Boska-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Boska";
+    src: url("../assets/fonts/boska/Boska-Regular.woff") format("woff"),
+        url("../assets/fonts/boska/Boska-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Boska";
-	src: url("../assets/fonts/boska/Boska-Medium.woff") format("woff"),
-	url("../assets/fonts/boska/Boska-Medium.woff2") format("woff2");
-	font-weight: 500;
-	font-style: normal;
+    font-family: "Boska";
+    src: url("../assets/fonts/boska/Boska-Medium.woff") format("woff"),
+        url("../assets/fonts/boska/Boska-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Zodiak";
-	src: url("../assets/fonts/zodiak/Zodiak-Light.woff") format("woff"),
-	url("../assets/fonts/zodiak/Zodiak-Light.woff2") format("woff2");
-	font-weight: 300;
-	font-style: normal;
+    font-family: "Zodiak";
+    src: url("../assets/fonts/zodiak/Zodiak-Light.woff") format("woff"),
+        url("../assets/fonts/zodiak/Zodiak-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Zodiak";
-	src: url("../assets/fonts/zodiak/Zodiak-Regular.woff") format("woff"),
-	url("../assets/fonts/zodiak/Zodiak-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Zodiak";
+    src: url("../assets/fonts/zodiak/Zodiak-Regular.woff") format("woff"),
+        url("../assets/fonts/zodiak/Zodiak-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "Zodiak";
-	src: url("../assets/fonts/zodiak/Zodiak-Bold.woff") format("woff"),
-	url("../assets/fonts/zodiak/Zodiak-Bold.woff2") format("woff2");
-	font-weight: 500;
-	font-style: normal;
+    font-family: "Zodiak";
+    src: url("../assets/fonts/zodiak/Zodiak-Bold.woff") format("woff"),
+        url("../assets/fonts/zodiak/Zodiak-Bold.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
 }

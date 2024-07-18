@@ -2,210 +2,202 @@
 @use "../../../styles/variables";
 
 .hero--main--container {
-	min-height: 100vh;
-	margin-top: 4.5rem;
+    min-height: 100vh;
+    margin-top: 4.5rem;
 
-	.hero--sub--container {
-		@include mixins.center--section;
-		@include mixins.flex--layout(
-			$direction: column,
-			$align: baseline,
-			$justify: baseline
-		);
-		row-gap: 4.5rem;
+    .hero--sub--container {
+        @include mixins.center--section;
+        @include mixins.flex--layout($direction: column,
+            $align: baseline,
+            $justify: baseline);
+        row-gap: 4.5rem;
 
-		.hero--text--main--container {
-			@include mixins.flex--layout(
-				$direction: column,
-				$align: baseline,
-				$justify: baseline
-			);
-			row-gap: 3.5rem;
-			overflow-y: visible hidden;
+        .hero--text--main--container {
+            @include mixins.flex--layout($direction: column,
+                $align: baseline,
+                $justify: baseline);
+            row-gap: 3.5rem;
+            overflow-y: visible hidden;
 
-			.hero--text--container {
-				font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				text-align: justify;
-				font-size: 12vw;
-				line-height: 12.8rem;
-				font-weight: 600;
-				color: variables.$primary--text--color;
-				overflow: hidden;
-			}
+            .hero--text--container {
+                font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: justify;
+                font-size: 12vw;
+                line-height: 12.8rem;
+                font-weight: 600;
+                color: variables.$primary--text--color;
+                overflow: hidden;
 
-			.hero--intro--container {
-				width: 100%;
-				.hero--intro--sub--container {
-					@include mixins.flex--layout(
-						$direction: row,
-						$align: end,
-						$justify: space-between
-					);
+                .hero--main--text {
+                }
+            }
 
-					.hero--intro--skills--container {
-						@include mixins.flex--layout(
-							$direction: column,
-							$align: baseline,
-							$justify: baseline
-						);
-						width: 30%;
-						padding: 0.5rem;
-						row-gap: 0.7rem;
-						font-weight: 300;
-						font-size: 0.9rem;
-						.hero--intro--skills--header {
-							color: rgb(146, 136, 136);
-							text-transform: uppercase;
-						}
+            .hero--intro--container {
+                width: 100%;
 
-						.hero--intro--main--skills {
-							@include mixins.flex--layout(
-								$direction: row,
-								$align: center,
-								$justify: baseline
-							);
-							flex-wrap: wrap;
-							color: hsl(0, 0%, 100%);
-							column-gap: 0.3rem;
-							width: 100%;
-							text-wrap: wrap;
-							word-wrap: break-word;
+                .hero--intro--sub--container {
+                    @include mixins.flex--layout($direction: row,
+                        $align: end,
+                        $justify: space-between);
 
-							.and--more {
-								margin-left: 0.1rem;
-								color: hsl(0, 4%, 55%);
-							}
-						}
-					}
+                    .hero--intro--skills--container {
+                        @include mixins.flex--layout($direction: column,
+                            $align: baseline,
+                            $justify: baseline);
+                        width: 30%;
+                        padding: 0.5rem;
+                        row-gap: 0.7rem;
+                        font-weight: 300;
+                        font-size: 0.9rem;
 
-					.hero--intro--expertise {
-						width: 100%;
-						@include mixins.flex--layout(
-							$direction: column,
-							$align: end,
-							$justify: end
-						);
-						font-weight: 500;
-						margin-left: auto;
-						font-size: 5rem;
-						line-height: 6rem;
-						color: hsl(0, 7%, 59%);
+                        .hero--intro--skills--header {
+                            color: rgb(146, 136, 136);
+                            text-transform: uppercase;
+                        }
 
-						.intro--expertise {
-							display: flex;
-							flex-direction: row;
-							align-items: center;
-							text-align: justify;
-							overflow: hidden;
-						}
-					}
-				}
-			}
+                        .hero--intro--main--skills {
+                            @include mixins.flex--layout($direction: row,
+                                $align: center,
+                                $justify: baseline);
+                            flex-wrap: wrap;
+                            color: hsl(0, 0%, 100%);
+                            column-gap: 0.3rem;
+                            width: 100%;
+                            text-wrap: wrap;
+                            word-wrap: break-word;
 
-			.hero--sub--text--container {
-				display: flex;
-				align-items: baseline;
-				justify-content: space-between;
+                            .and--more {
+                                margin-left: 0.1rem;
+                                color: hsl(0, 4%, 55%);
+                            }
+                        }
+                    }
 
-				.hero--sub--text {
-					width: 45%;
-					color: variables.$primary--text--color;
-					letter-spacing: 0.06rem;
+                    .hero--intro--expertise {
+                        width: 100%;
+                        @include mixins.flex--layout($direction: column,
+                            $align: end,
+                            $justify: end);
+                        font-weight: 500;
+                        margin-left: auto;
+                        font-size: 5rem;
+                        line-height: 6rem;
+                        color: hsl(0, 7%, 59%);
 
-					.hero--sub--text--icon {
-						animation: rotateAnimation 2s linear infinite;
+                        .intro--expertise {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            text-align: justify;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
 
-						@keyframes rotateAnimation {
-							0% {
-								transform: rotate(0deg);
-							}
-							20% {
-								transform: rotate(-40deg);
-							}
-							50% {
-								transform: rotate(-80deg);
-							}
-							70% {
-								transform: rotate(200deg);
-							}
-							100% {
-								transform: rotate(360deg);
-							}
-						}
-					}
-				}
-			}
-		}
+            .hero--sub--text--container {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
 
-		.hero--link--container {
-			@include mixins.center--element;
-			width: 100%;
-			margin-top: 1.5rem;
+                .hero--sub--text {
+                    width: 45%;
+                    color: variables.$primary--text--color;
+                    letter-spacing: 0.06rem;
 
-			.hero--link {
-				@include mixins.flex--layout(
-					$direction: row,
-					$align: baseline,
-					$justify: baseline
-				);
-				@include mixins.center--element;
-				text-decoration: none;
-				border: 0.01rem solid variables.$primary--text--color;
-				border-radius: 100vh;
-				padding: 0.8rem 1.5rem;
-				color: variables.$primary--text--color;
+                    .hero--sub--text--icon {
+                        animation: rotateAnimation 2s linear infinite;
 
-				.hero--link--children--container {
-					@include mixins.flex--layout(
-						$direction: row,
-						$align: center,
-						$justify: baseline
-					);
-					column-gap: 1rem;
+                        @keyframes rotateAnimation {
+                            0% {
+                                transform: rotate(0deg);
+                            }
 
-					.hero--link--icon {
-						@include mixins.center--element;
-						transform: rotate(90deg);
-					}
-				}
-			}
-		}
+                            20% {
+                                transform: rotate(-40deg);
+                            }
 
-		.hero--scroll--more--main--container {
-			@include mixins.center--element;
-			width: 100%;
-			margin-top: 2rem;
+                            50% {
+                                transform: rotate(-80deg);
+                            }
 
-			.hero--scroll--more--sub--container {
-				@include mixins.flex--layout(
-					$direction: row-reverse,
-					$align: baseline,
-					$justify: baseline
-				);
-				writing-mode: vertical-lr;
-				letter-spacing: 0.4rem;
-				color: variables.$primary--text--color;
-				column-gap: 1.5rem;
-				font-size: 0.8rem;
-				cursor: pointer;
-				animation: bounce 1s infinite alternate;
+                            70% {
+                                transform: rotate(200deg);
+                            }
 
-				.hero--scroll--more--icon {
-					transform: rotate(180deg);
-				}
-			}
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-			@keyframes bounce {
-				0% {
-					transform: translate(0, 0);
-				}
-				100% {
-					transform: translate(0, -10px);
-				}
-			}
-		}
-	}
+        .hero--link--container {
+            @include mixins.center--element;
+            width: 100%;
+            margin-top: 1.5rem;
+
+            .hero--link {
+                @include mixins.flex--layout($direction: row,
+                    $align: baseline,
+                    $justify: baseline);
+                @include mixins.center--element;
+                text-decoration: none;
+                border: 0.01rem solid variables.$primary--text--color;
+                border-radius: 100vh;
+                padding: 0.8rem 1.5rem;
+                color: variables.$primary--text--color;
+
+                .hero--link--children--container {
+                    @include mixins.flex--layout($direction: row,
+                        $align: center,
+                        $justify: baseline);
+                    column-gap: 1rem;
+
+                    .hero--link--icon {
+                        @include mixins.center--element;
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+
+        .hero--scroll--more--main--container {
+            @include mixins.center--element;
+            width: 100%;
+            margin-top: 2rem;
+
+            .hero--scroll--more--sub--container {
+                @include mixins.flex--layout($direction: row-reverse,
+                    $align: baseline,
+                    $justify: baseline);
+                writing-mode: vertical-lr;
+                letter-spacing: 0.4rem;
+                color: variables.$primary--text--color;
+                column-gap: 1.5rem;
+                font-size: 0.8rem;
+                cursor: pointer;
+                animation: bounce 1s infinite alternate;
+
+                .hero--scroll--more--icon {
+                    transform: rotate(180deg);
+                }
+            }
+
+            @keyframes bounce {
+                0% {
+                    transform: translate(0, 0);
+                }
+
+                100% {
+                    transform: translate(0, -10px);
+                }
+            }
+        }
+    }
 }
