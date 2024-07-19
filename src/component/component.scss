@@ -1,0 +1,57 @@
+@use "../styles/mixins";
+@use "../styles/variables";
+
+.slider--container {
+    @include mixins.center--section;
+    height: var(--height);
+    position: relative;
+    @include mixins.flex--layout($direction: row,
+        $align: baseline,
+        $justify: baseline);
+    mask-image: linear-gradient(to right, transparent, #dfd3d3, transparent);
+
+    .slider--sub--container {
+        @include mixins.flex--layout($direction: row,
+            $align: start,
+            $justify: start);
+        width: 100%;
+        max-width: calc(var(100%) * var(--quantity));
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        column-gap: 2rem;
+
+        .slider {
+            min-width: fit-content;
+            font-size: 3rem;
+            max-width: fit-content;
+            height: var(--height);
+            color: white;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: -15%;
+                top: 0;
+                background: #fffbfb;
+                width: 1rem;
+                height: 1rem;
+                border-radius: 100vh;
+
+            }
+            // animation: autoRun 5s linear infinite;
+            // animation-delay: calc(5s / var(--quantity) * (var(--position) - 1));
+
+            // @keyframes autoRun {
+            //     from {
+            //         left: 100%;
+            //     }
+
+            //     to {
+            //         left: calc(var(--width) * -1);
+            //     }
+            // }
+        }
+    }
+}

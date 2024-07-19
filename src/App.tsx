@@ -16,6 +16,7 @@ import Stack from "./component/sections/stack/stack";
 import Service from "./component/sections/service/service";
 import AboutMe from "./component/sections/about-me/about-me";
 import Intro from "./component/sections/intro/intro";
+import Slider from "./component/slider";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -30,13 +31,13 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
+			<Slider />
 			<About />
 			<Intro />
 			<Project />
-			{/* Experience */}
-			<Service />
+			{/* Experience */};{/* <Service /> */}
 			{/* <Stack /> */}
-			<Footer />
+			{/* <Footer /> */}
 			{/* <AboutMe /> */}
 			{/* <WorkFlow /> */}
 			{/* <Stack /> */}
