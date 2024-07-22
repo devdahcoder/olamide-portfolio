@@ -17,6 +17,7 @@ import Service from "./component/sections/service/service";
 import AboutMe from "./component/sections/about-me/about-me";
 import Intro from "./component/sections/intro/intro";
 import Slider from "./component/slider";
+import Playground from "./component/sections/playground/playground";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -35,9 +36,11 @@ function App() {
 			<About />
 			<Intro />
 			<Project />
-			{/* Experience */};{/* <Service /> */}
+			{/* Experience */}
+			{/* <Service /> */}
 			{/* <Stack /> */}
-			{/* <Footer /> */}
+			<Playground />
+			<Footer />
 			{/* <AboutMe /> */}
 			{/* <WorkFlow /> */}
 			{/* <Stack /> */}

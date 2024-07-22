@@ -89,3 +89,12 @@ export type ServiceType = {
     services: string[];
 
 }
+
+export type PlaygroundType = {
+    id: number | string;
+    name: string;
+    description?: string;
+    image?: string;
+    link: string;
+    tools: string[]
+}

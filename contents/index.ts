@@ -2,7 +2,7 @@ import { NAVIGATION_TYPE } from "../enum";
 import BigStarIcon from '../icon/big-star-icon';
 import LoveIcon from '../icon/love-icon';
 import SmallStartIcon from '../icon/small-star-icon';
-import { HeaderLinkType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { HeaderLinkType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -268,5 +268,50 @@ export const serviceContent: ServiceType[] = [
     {
         id: 3,
         services: ["Web Flow", "Framer Motion"]
+    },
+]
+
+export const playgroundContent: PlaygroundType[] = [
+    {
+        id: 1,
+        name: "Web design",
+        description: "This is project 1",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+    {
+        id: 2,
+        name: "Project 2",
+        description: "This is project 2",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+    {
+        id: 3,
+        name: "Project 3",
+        description: "This is project 3",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+    {
+        id: 4,
+        name: "Project 4",
+        description: "This is project 4",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+    {
+        id: 5,
+        name: "Project 5",
+        description: "This is project 5",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+    {
+        id: 6,
+        name: "Project 6",
+        description: "This is project 6",
+        link: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        tools: ["Reactjs", "TypeScript", "Html", "Css"]
     },
 ]

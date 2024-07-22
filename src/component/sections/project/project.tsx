@@ -16,11 +16,14 @@ import "./project.scss";
 import ParallaxCharacter from "../../parallax-character";
 import DoubleArrowIcon from "../../../../public/icon/double-arrow-icon";
 import { DOMElement } from "solid-js/jsx-runtime";
+import { elementObserver } from "../../../../hooks";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
 	let projectRef: HTMLDivElement[] = [];
+	let r: HTMLDivElement | undefined;
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
+	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 
 	const [prevMousePosition, setPreviousMousePosition] =
 		createSignal<number>(0);
@@ -111,37 +114,36 @@ const Project: Component<{}> = () => {
 		const selectedElementIconElement =
 			selectedElement.querySelector(`.project--util--icon`);
 
-		gsap.fromTo(
-			selectedElement,
-			{
-				width: 0,
-				height: 0,
-				visibility: "hidden",
-			},
-			{
-				width: "2.5rem",
-				height: "2.5rem",
-				visibility: "visible",
-				duration: 0.6,
-			}
-		);
-		gsap.fromTo(
-			selectedElementIconElement,
-			{
-				scale: 0,
-			},
-			{
-				scale: 1,
-				duration: 0.6,
-			}
-		);
+		// gsap.fromTo(
+		// 	selectedElement,
+		// 	{
+		// 		width: 0,
+		// 		height: 0,
+		// 		visibility: "hidden",
+		// 	},
+		// 	{
+		// 		width: "2.5rem",
+		// 		height: "2.5rem",
+		// 		visibility: "visible",
+		// 		duration: 0.6,
+		// 	}
+		// );
+		// gsap.fromTo(
+		// 	selectedElementIconElement,
+		// 	{
+		// 		scale: 0,
+		// 	},
+		// 	{
+		// 		scale: 1,
+		// 		duration: 0.6,
+		// 	}
+		// );
 		// if (imageSelector) {
 		// 	gsap.set(imageSelector, {
 		// 		rotate: 0,
 		// 	});
 		// }
 		// setCurrentMouseIndex(index);
-		
 	};
 
 	const handleMouseLeave = (
@@ -433,11 +435,48 @@ const Project: Component<{}> = () => {
 	// 	}
 	// });
 
+
+	const animateHeaderText = () => {
+		gsap.fromTo(".project--title-character", {
+			opacity: 0.4,
+			x: 100
+		}, {
+			opacity: 1,
+			x: 0,
+			stagger: 0.1,
+			duration: 1,
+			ease: "power3.out"
+		});
+	}
+
+	createEffect(() => {
+		elementObserver(r, (entry, observer) => {
+			if (entry.isIntersecting) {
+				animateHeaderText();
+				observer.unobserve(entry.target);
+			}
+			
+		});
+	});
+
 	return (
-		<div class="project--container">
+		<div ref={r} class="project--container">
 			<div class="project--sub--container">
 				<div class="project--header--container">
-					<div class="project--header--title">My few works</div>
+					<For each={"Portfolio".split("")}>
+						{(character, index) => (
+							<ParallaxCharacter
+								index={index()}
+								class="project--header--title"
+								characterClass="project--title-character"
+								children={character}
+								parallaxCharacterElement={
+									headerParallaxCharacterElement
+								}
+							/>
+						)}
+					</For>
+					<div class="project--header--title"></div>
 				</div>
 				<div class="project--list">
 					<For each={workContent}>

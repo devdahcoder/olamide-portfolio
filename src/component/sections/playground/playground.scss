@@ -1,0 +1,125 @@
+@use "../../../styles/mixins";
+@use "../../../styles/variables";
+
+.playground--container {
+    .playground--sub--container {
+        @include mixins.flex--layout($direction: column,
+            $align: center,
+            $justify: center);
+        border-radius: 3.5rem 3.5rem 0 0;
+        background-color: white;
+        row-gap: 4rem;
+
+        .playground--header--container {
+            @include mixins.flex--layout($direction: row,
+                $align: start,
+                $justify: start);
+            row-gap: 1.1rem;
+            width: 100%;
+
+            .playground--title--empty {
+                width: 60%;
+                flex-grow: 2;
+            }
+
+            .playground--title--container {
+                width: 100%;
+
+                .playground--title--sub--container {
+                    max-width: 100%;
+                    width: 30rem;
+                    @include mixins.flex--layout($direction: column,
+                        $align: start,
+                        $justify: start);
+                    row-gap: 1rem;
+
+                    .playground--title {
+                        font-size: 1rem;
+                        font-weight: 600;
+                    }
+
+                    .playground--sub--title {
+                        font-size: 1.6rem;
+                        line-height: 2rem;
+                    }
+                }
+
+            }
+
+        }
+
+        .playground--list {
+            font-family: Manrope, -apple-system, Helvetica Neue,
+                sans-serif;
+            @include mixins.flex--layout($direction: column,
+                $align: baseline,
+                $justify: baseline);
+            width: 100%;
+
+            .playground--item--container {
+                width: 100%;
+                border-top: 1px solid rgb(205, 196, 196);
+
+                .playground--item--sub--container {
+                    @include mixins.center--section;
+                    @include mixins.flex--layout($direction: row,
+                        $align: center,
+                        $justify: center);
+                    row-gap: 1.1rem;
+                    height: 9rem;
+
+                    .playground--index {
+                        width: 56%;
+                        flex-grow: 2;
+                        font-weight: 500;
+                    }
+
+                    .playground--title--container {
+                        width: 100%;
+                        @include mixins.flex--layout($direction: column,
+                            $align: start,
+                            $justify: start);
+                        row-gap: 0.5rem;
+
+                        .playground--title {
+                            font-size: 2.4rem;
+                            font-weight: 600;
+
+                        }
+
+                        .playground--tool--list {
+                            @include mixins.flex--layout($direction: row,
+                                $align: center,
+                                $justify: start);
+                            column-gap: 1rem;
+
+                            .playground--tool--item {
+                                font-weight: 600;
+                                // border: 1px solid black;
+                            }
+                        }
+                    }
+
+                }
+
+                .playground--link--container {
+                    // &:hover {
+                    //     animation: increaseHeight 2s ease;
+                    // }
+
+                    // @keyframes increaseHeight {
+                    //     from {
+                    //         height: 0rem;
+                    //     }
+
+                    //     to {
+                    //         height: 5rem;
+                    //     }
+                    // }
+                }
+            }
+        }
+
+
+    }
+}
