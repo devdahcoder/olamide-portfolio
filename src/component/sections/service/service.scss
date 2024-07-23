@@ -2,38 +2,76 @@
 @use "../../../styles/variables";
 
 .service--container {
+    height: 1200px;
 
     .service--sub--container {
+        @include mixins.flex--layout($direction: column,
+            $align: start,
+            $justify: start);
+        row-gap: 3rem;
 
-        .service--text--container {
+        .service--header--container {
+            @include mixins.center--section;
+            @include mixins.flex--layout($direction: row,
+                $align: start,
+                $justify: start);
+
+            .service--header--title {
+                font-family: sans-serif;
+                font-size: 7vw;
+                color: hsl(0, 0%, 100%);
+                font-weight: 600;
+                overflow-x: hidden;
+
+                .service--title--character {
+                    transform: translate(100%, 0%);
+                }
+            }
+        }
+
+
+        .service--list {
             @include mixins.flex--layout($direction: column,
                 $align: baseline,
                 $justify: baseline);
             row-gap: 3rem;
+            width: 100%;
 
-            .service--text--sub--container {
+            .service--item {
                 width: 100%;
                 @include mixins.flex--layout;
                 border: 1px solid hsl(0, 1%, 60%);
                 border-radius: 30px;
 
-                .dele {
+                .service--item--container {
                     @include mixins.center--section;
                     @include mixins.flex--layout;
                     padding: 0.9rem 0;
 
-                    .service--text {
+                    .service--text--container {
                         @include mixins.flex--layout($direction: row,
                             $align: center,
                             $justify: center);
                         vertical-align: middle;
-                        font-size: 5.5vw;
+                        font-size: 5vw;
                         font-weight: 200;
                         color: hsl(0, 0%, 100%);
                         align-items: end;
                         text-transform: uppercase;
                         position: relative;
-                        
+
+                        .service--text--sub--container {
+                            @include mixins.flex--layout($direction: row,
+                                $align: center,
+                                $justify: center);
+
+                            .service--text {
+                                border: 1px solid wheat;
+                                overflow-y: hidden;
+
+                            }
+                        }
+
                         &:nth-child(2) {
                             color: hsl(0, 2%, 62%);
                         }

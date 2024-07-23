@@ -17,6 +17,7 @@ import ParallaxCharacter from "../../parallax-character";
 import DoubleArrowIcon from "../../../../public/icon/double-arrow-icon";
 import { DOMElement } from "solid-js/jsx-runtime";
 import { elementObserver } from "../../../../hooks";
+import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
@@ -435,19 +436,22 @@ const Project: Component<{}> = () => {
 	// 	}
 	// });
 
-
 	const animateHeaderText = () => {
-		gsap.fromTo(".project--title-character", {
-			opacity: 0.4,
-			x: 100
-		}, {
-			opacity: 1,
-			x: 0,
-			stagger: 0.1,
-			duration: 1,
-			ease: "power3.out"
-		});
-	}
+		gsap.fromTo(
+			".project--title--character",
+			{
+				opacity: 0.4,
+				x: 100,
+			},
+			{
+				opacity: 1,
+				x: 0,
+				stagger: 0.1,
+				duration: 1,
+				ease: "power3.out",
+			}
+		);
+	};
 
 	createEffect(() => {
 		elementObserver(r, (entry, observer) => {
@@ -455,29 +459,19 @@ const Project: Component<{}> = () => {
 				animateHeaderText();
 				observer.unobserve(entry.target);
 			}
-			
 		});
 	});
 
 	return (
 		<div ref={r} class="project--container">
 			<div class="project--sub--container">
-				<div class="project--header--container">
-					<For each={"Portfolio".split("")}>
-						{(character, index) => (
-							<ParallaxCharacter
-								index={index()}
-								class="project--header--title"
-								characterClass="project--title-character"
-								children={character}
-								parallaxCharacterElement={
-									headerParallaxCharacterElement
-								}
-							/>
-						)}
-					</For>
-					<div class="project--header--title"></div>
-				</div>
+				<SectionHeader
+					parallaxCharacterElement={headerParallaxCharacterElement}
+					title="Portfolio"
+					characterClassName="project--title--character"
+					class="project--header--title"
+					titleContainerClassNam="project--header--container"
+				/>
 				<div class="project--list">
 					<For each={workContent}>
 						{(props, index) => (

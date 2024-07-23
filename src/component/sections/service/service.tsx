@@ -1,10 +1,20 @@
-import { Component, createSignal, For } from "solid-js";
+import { Component, createEffect, createSignal, For } from "solid-js";
 import "./service.scss";
 import { serviceContent } from "../../../../contents";
+import SectionHeader from "../../section-header";
+import { elementObserver } from "../../../../hooks";
+import gsap from "gsap";
+import ParallaxCharacter from "../../parallax-character";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 type Props = {};
 
 const Service: Component<Props> = (props) => {
+	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
+	const parallaxCharacterElement: HTMLDivElement[][] = [];
+	let serviceSectionRefElement: HTMLDivElement | undefined;
+
 	const [images, setImages] = createSignal<string[]>([
 		"images/box-1.svg",
 		"images/box.svg",
@@ -12,25 +22,89 @@ const Service: Component<Props> = (props) => {
 		"images/pyramid.svg",
 	]);
 
-	return (
-		<div class="service--container">
-			<div class="service--sub--container">
-				<div class="service--header--container">
-					<div class="service--header--title">Services</div>
-				</div>
+	const animateHeaderText = () => {
+		gsap.fromTo(
+			".service--title--character",
+			{
+				opacity: 0.4,
+				x: 100,
+			},
+			{
+				opacity: 1,
+				x: 0,
+				stagger: 0.1,
+				duration: 1,
+				ease: "power3.out",
+			}
+		);
+	};
 
-				<div class="service--text--container">
+	// const animate
+
+	createEffect(() => {
+		elementObserver(serviceSectionRefElement, (entry, observer) => {
+			if (entry.isIntersecting) {
+				animateHeaderText();
+				observer.unobserve(entry.target);
+			}
+		});
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".service--container",
+				start: `top 40%`,
+				end: `+=1000px`,
+				toggleActions: "play none none reverse",
+			},
+		});
+
+		tl.fromTo(".service--text--character", {
+			opacity: 0.4,
+			y: 100,
+
+		}, {
+			opacity: 1,
+			y: 0,
+			// stagger: 0.1,
+			duration: 1,
+			ease: "power3.out",
+		});
+
+		tl.fromTo(".service--image", {
+			opacity: 0.4,
+			scale: 0.5
+		}, {
+			opacity: 1,
+			scale: 1,
+			duration: 1,
+			ease: "power3.out",
+		}, "-=0.9");
+	});
+
+	return (
+		<div ref={serviceSectionRefElement} class="service--container">
+			<div class="service--sub--container">
+				<SectionHeader
+					parallaxCharacterElement={headerParallaxCharacterElement}
+					title="Services"
+					characterClassName="service--title--character"
+					class="service--header--title"
+					titleContainerClassNam="service--header--container"
+				/>
+
+				<div class="service--list">
 					<For each={serviceContent}>
 						{({ id, services }) => (
-							<div class="service--text--sub--container">
-								<div class="dele">
+							<div class="service--item">
+								<div class="service--item--container">
 									<For each={services}>
 										{(service, index) => (
-											<div class="service--text">
+											<div class="service--text--container">
 												{index() % 2 !== 0 ? (
 													""
 												) : (
 													<img
+														class="service--image"
 														src={`${
 															images()[
 																Math.floor(
@@ -43,11 +117,33 @@ const Service: Component<Props> = (props) => {
 														alt=""
 													/>
 												)}
-												<div>{service}</div>
+
+												<div class="service--text--sub--container">
+													<For
+														each={service?.split(
+															""
+														)}
+													>
+														{(character, index) => (
+															<ParallaxCharacter
+																index={index()}
+																class={`service--text`}
+																characterClass={`service--text--character`}
+																children={
+																	character
+																}
+																parallaxCharacterElement={
+																	parallaxCharacterElement
+																}
+															/>
+														)}
+													</For>
+												</div>
 												{index() % 2 === 0 ? (
 													""
 												) : (
 													<img
+														class="service--image"
 														src={`${
 															images()[
 																Math.floor(

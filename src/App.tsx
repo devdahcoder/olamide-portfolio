@@ -31,16 +31,16 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
-			<Hero isNavigationOpen={isNavigationOpen()} />
+			{/* <Hero isNavigationOpen={isNavigationOpen()} />
 			<Slider />
 			<About />
 			<Intro />
 			<Project />
-			{/* Experience */}
-			{/* <Service /> */}
-			{/* <Stack /> */}
-			<Playground />
+			<Service /> */}
 			<Footer />
+			{/* Experience */}
+			{/* <Stack /> */}
+			{/* <Playground /> */}
 			{/* <AboutMe /> */}
 			{/* <WorkFlow /> */}
 			{/* <Stack /> */}
