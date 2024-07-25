@@ -54,6 +54,7 @@ const Service: Component<Props> = (props) => {
 				trigger: ".service--container",
 				start: `top 40%`,
 				end: `+=1000px`,
+				once: true,
 				toggleActions: "play none none reverse",
 			},
 		});

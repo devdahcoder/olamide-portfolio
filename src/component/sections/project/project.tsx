@@ -8,6 +8,7 @@ import {
 	createEffect,
 	createSignal,
 	onCleanup,
+	onMount,
 } from "solid-js";
 import { workContent } from "../../../../contents";
 import IconButton from "../../icon-button";
@@ -21,8 +22,8 @@ import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project: Component<{}> = () => {
-	let projectRef: HTMLDivElement[] = [];
-	let r: HTMLDivElement | undefined;
+	let projectItemRef: HTMLDivElement[] = [];
+	let projectSectionRefElement: HTMLDivElement | undefined;
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 
@@ -147,62 +148,62 @@ const Project: Component<{}> = () => {
 		// setCurrentMouseIndex(index);
 	};
 
-	const handleMouseLeave = (
-		e: MouseEvent & {
-			currentTarget: HTMLAnchorElement;
-			target: DOMElement;
-		},
-		index: number
-		// e: MouseEvent,
-		// imageSelector: Element | null,
-		// globalProjectBackgroundImage: HTMLImageElement
-	) => {
-		// setCurrentMouseIndex(null);
+	// const handleMouseLeave = (
+	// 	e: MouseEvent & {
+	// 		currentTarget: HTMLAnchorElement;
+	// 		target: DOMElement;
+	// 	},
+	// 	index: number
+	// 	// e: MouseEvent,
+	// 	// imageSelector: Element | null,
+	// 	// globalProjectBackgroundImage: HTMLImageElement
+	// ) => {
+	// 	// setCurrentMouseIndex(null);
 
-		const allElements = document.querySelectorAll(
-			".project--util--icon--container"
-		);
-		const selectedElement = allElements[index];
-		const selectedElementIconElement =
-			selectedElement.querySelector(`.project--util--icon`);
+	// 	const allElements = document.querySelectorAll(
+	// 		".project--util--icon--container"
+	// 	);
+	// 	const selectedElement = allElements[index];
+	// 	const selectedElementIconElement =
+	// 		selectedElement.querySelector(`.project--util--icon`);
 
-		gsap.fromTo(
-			selectedElement,
-			{
-				width: "2.5rem",
-				height: "2.5rem",
-				visibility: "visible",
-			},
-			{
-				width: 0,
-				height: 0,
-				// visibility: "hidden",
-				duration: 1,
-			}
-		);
-		gsap.fromTo(
-			selectedElementIconElement,
-			{
-				scale: 1,
-			},
-			{
-				scale: 0,
-				duration: 1,
-			}
-		);
-		// if (imageSelector) {
-		// 	gsap.to(imageSelector, {
-		// 		opacity: 0,
-		// 		duration: 0.8,
-		// 		rotate: 0,
-		// 	});
-		// }
-		// gsap.to(globalProjectBackgroundImage, {
-		// 	duration: 1,
-		// 	opacity: 0.5,
-		// 	visibility: "hidden",
-		// });
-	};
+	// 	gsap.fromTo(
+	// 		selectedElement,
+	// 		{
+	// 			width: "2.5rem",
+	// 			height: "2.5rem",
+	// 			visibility: "visible",
+	// 		},
+	// 		{
+	// 			width: 0,
+	// 			height: 0,
+	// 			// visibility: "hidden",
+	// 			duration: 1,
+	// 		}
+	// 	);
+	// 	gsap.fromTo(
+	// 		selectedElementIconElement,
+	// 		{
+	// 			scale: 1,
+	// 		},
+	// 		{
+	// 			scale: 0,
+	// 			duration: 1,
+	// 		}
+	// 	);
+	// 	// if (imageSelector) {
+	// 	// 	gsap.to(imageSelector, {
+	// 	// 		opacity: 0,
+	// 	// 		duration: 0.8,
+	// 	// 		rotate: 0,
+	// 	// 	});
+	// 	// }
+	// 	// gsap.to(globalProjectBackgroundImage, {
+	// 	// 	duration: 1,
+	// 	// 	opacity: 0.5,
+	// 	// 	visibility: "hidden",
+	// 	// });
+	// };
 
 	// const handleGlobalProjectBackgroundImage = (
 	// 	globalProjectBackgroundImage: HTMLImageElement,
@@ -438,7 +439,7 @@ const Project: Component<{}> = () => {
 
 	const animateHeaderText = () => {
 		gsap.fromTo(
-			".project--title--character",
+			".project--header--title--character",
 			{
 				opacity: 0.4,
 				x: 100,
@@ -454,7 +455,7 @@ const Project: Component<{}> = () => {
 	};
 
 	createEffect(() => {
-		elementObserver(r, (entry, observer) => {
+		elementObserver(projectSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting) {
 				animateHeaderText();
 				observer.unobserve(entry.target);
@@ -462,13 +463,92 @@ const Project: Component<{}> = () => {
 		});
 	});
 
+	createEffect(() => {
+		if (!projectItemRef) return;
+
+		const handleMouseEnter = (e: MouseEvent) => {
+			const item: any = e.currentTarget;
+			const element: HTMLDivElement = item?.querySelector(
+				".project--util--icon--container"
+			) as HTMLDivElement;
+			const iconElement: any = element.querySelector(
+				`.project--util--icon`
+			) as SVGElement;
+
+			gsap.killTweensOf(e.target, element, iconElement);
+
+			gsap.to(e.target, {
+				scale: 1.1,
+				duration: 0.3,
+				overwrite: true,
+			});
+			gsap.to(element, {
+				width: "2.5rem",
+				height: "2.5rem",
+				visibility: "visible",
+				duration: 0.6,
+				overwrite: true,
+			});
+			gsap.to(iconElement, {
+				scale: 1,
+				duration: 0.6,
+				overwrite: true,
+			});
+		};
+
+		const handleMouseLeave = (e: MouseEvent) => {
+			const item: any = e.currentTarget;
+			const element: HTMLDivElement = item?.querySelector(
+				".project--util--icon--container"
+			) as HTMLDivElement;
+			const iconElement: any = element.querySelector(
+				`.project--util--icon`
+			) as SVGElement;
+			gsap.killTweensOf(e.target, element, iconElement);
+
+			gsap.killTweensOf(e.target);
+			gsap.to(e.target, {
+				scale: 1,
+				duration: 0.3,
+				overwrite: true,
+			});
+			gsap.to(element, {
+				width: 0,
+				height: 0,
+				duration: 0.6,
+				overwrite: true,
+			});
+			gsap.to(iconElement, {
+				scale: 0,
+				duration: 0.6,
+				overwrite: true,
+			});
+		};
+
+		Array.from(projectItemRef).forEach((item) => {
+			item.addEventListener("mouseenter", (e) => handleMouseEnter(e));
+			item.addEventListener("mouseleave", (e) => handleMouseLeave(e));
+		});
+
+		onCleanup(() => {
+			Array.from(projectItemRef).forEach((item) => {
+				item.removeEventListener("mouseenter", (e) =>
+					handleMouseEnter(e)
+				);
+				item.removeEventListener("mouseleave", (e) =>
+					handleMouseLeave(e)
+				);
+			});
+		});
+	});
+
 	return (
-		<div ref={r} class="project--container">
+		<div ref={projectSectionRefElement} class="project--container">
 			<div class="project--sub--container">
 				<SectionHeader
 					parallaxCharacterElement={headerParallaxCharacterElement}
 					title="Portfolio"
-					characterClassName="project--title--character"
+					characterClassName="project--header--title--character"
 					class="project--header--title"
 					titleContainerClassNam="project--header--container"
 				/>
@@ -476,27 +556,21 @@ const Project: Component<{}> = () => {
 					<For each={workContent}>
 						{(props, index) => (
 							<div
-								ref={(e) => projectRef.push(e)}
+								ref={(element) => projectItemRef.push(element)}
 								class="project--item"
 							>
 								{/* <Image
-								imageSrc={props?.image?.imageSrc}
-								imageAlt={props?.image?.imageAlt}
-								imageClass={props?.image?.imageClass}
-								imageContainerClass={
-									props?.image?.imageContainerClass
-								}
-								imageSubContainerClass={
-									props?.image?.imageSubContainerClass
-								}
-							/> */}
+									imageSrc={props?.image?.imageSrc}
+									imageAlt={props?.image?.imageAlt}
+									imageClass={props?.image?.imageClass}
+									imageContainerClass={
+										props?.image?.imageContainerClass
+									}
+									imageSubContainerClass={
+										props?.image?.imageSubContainerClass
+									}
+								/> */}
 								<a
-									onMouseEnter={(e) =>
-										handleMouseEnter(e, index())
-									}
-									onMouseLeave={(e) =>
-										handleMouseLeave(e, index())
-									}
 									href={`http://${props.link}`}
 									target="_blank"
 									rel="noopener noreferrer"

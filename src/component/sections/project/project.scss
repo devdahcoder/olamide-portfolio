@@ -43,7 +43,7 @@
             width: 100%;
 
             .project--item {
-                // border: 1px solid rgb(75, 34, 172);
+                border: 1px solid rgb(75, 34, 172);
                 width: 100%;
                 position: relative;
                 z-index: 1;
@@ -51,9 +51,8 @@
                 .project--item--link {
                     @include mixins.center--section;
                     @include mixins.flex--layout;
-                    // height: 100%;
                     text-decoration: none;
-                    // border: 1px solid white;
+                    border: 1px solid white;
                     height: 7rem;
 
                     .project--title--container {
@@ -64,7 +63,7 @@
                         flex-grow: 1;
                         max-width: 20rem;
                         width: 100%;
-                        // border: 1px solid white;
+                        border: 1px solid white;
 
                         .project--title {
                             @include mixins.flex--layout($direction: row,
@@ -75,7 +74,7 @@
                                 font-size: 3.5rem;
                                 font-weight: 500;
                                 color: hsl(0, 8%, 87%);
-                                // border: 1px solid white;
+                                border: 1px solid white;
                                 overflow-y: hidden;
                                 line-height: 6rem;
                             }
@@ -85,7 +84,7 @@
                     }
 
                     .project--type--container {
-                        // border: 1px solid white;
+                        border: 1px solid white;
 
                         .project--type {
                             font-family: Work Sans, -apple-system, Helvetica Neue,

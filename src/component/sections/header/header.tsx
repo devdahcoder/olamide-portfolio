@@ -1,9 +1,8 @@
 import gsap from "gsap";
-import { Accessor, Component, Setter, createEffect } from "solid-js";
+import { Accessor, Component, Setter, createEffect, onCleanup } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
-import Link from "../../link";
 import "./header.scss";
 
 const animateHeaderSection = () => {
@@ -68,43 +67,12 @@ const animateHeaderLastHamburgerIcon = (condition: boolean) => {
 	);
 };
 
-const animateHeaderResumeLinkText = (isOpen: boolean) => {
-	const target = ".first--header--resume--link--children--text";
-
-	if (isOpen) {
-		gsap.to(target, {
-			yPercent: -100,
-			duration: 0.8,
-			ease: "back.in(3)",
-		});
-	} else {
-		gsap.fromTo(
-			target,
-			{ yPercent: -100 },
-			{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
-		);
-	}
-};
-
-const animateOpenSecondHeaderResumeLinkText = (isOpen: boolean) => {
-	const target = ".second--header--resume--link--children--text";
-
-	if (isOpen) {
-		gsap.fromTo(
-			target,
-			{ yPercent: 50 },
-			{ yPercent: -100, duration: 0.6, delay: 0.8, ease: "bounce.out" }
-		);
-	} else {
-		gsap.fromTo(target, { yPercent: -100 }, { yPercent: 10 });
-	}
-};
-
 const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
 }> = (props) => {
 	let headerSectionRef: HTMLDivElement | any;
+	let resumeLinkRefElement: HTMLAnchorElement;
 
 	createEffect(() => {
 		props.isNavigationOpen();
@@ -118,6 +86,107 @@ const Header: Component<{
 		elementObserver(headerSectionRef, (entry, observer) => {
 			if (entry.isIntersecting) animateHeaderSection();
 			observer.unobserve(entry.target);
+		});
+	});
+
+	createEffect(() => {
+		if (!resumeLinkRefElement) return;
+		const handleMouseEnter = (e: MouseEvent) => {
+			const targetedElement: any = e.currentTarget as HTMLAnchorElement;
+			const targetContainerElement: HTMLDivElement =
+				targetedElement?.querySelector(
+					".header--resume--link--children--container"
+				) as HTMLDivElement;
+			const targetSubContainerElement: HTMLDivElement =
+				targetContainerElement?.querySelector(
+					".header--resume--link--children--text--container"
+				) as HTMLDivElement;
+			const targetFirstLinkElementText: HTMLDivElement =
+				targetSubContainerElement?.querySelector(
+					".first--header--resume--link--children--text"
+				) as HTMLDivElement;
+			const targetSecondLinkElementText: HTMLDivElement =
+				targetSubContainerElement?.querySelector(
+					".second--header--resume--link--children--text"
+				) as HTMLDivElement;
+
+			gsap.killTweensOf([
+				e.target,
+				targetContainerElement,
+				targetSubContainerElement,
+				targetFirstLinkElementText,
+				targetSecondLinkElementText,
+			]);
+			gsap.to(e.target, {
+				scale: 1,
+				duration: 0.3,
+				overwrite: true,
+			});
+			gsap.to(targetFirstLinkElementText, {
+				yPercent: -100,
+				duration: 0.8,
+				ease: "back.in(3)",
+				overwrite: true,
+			});
+			gsap.to(targetSecondLinkElementText, {
+				yPercent: -100,
+				duration: 0.6,
+				delay: 0.8,
+				ease: "bounce.out",
+			});
+		};
+
+		const handleMouseLeave = (e: MouseEvent) => {
+			const targetedElement: any = e.currentTarget as HTMLAnchorElement;
+			const targetContainerElement: HTMLDivElement =
+				targetedElement?.querySelector(
+					".header--resume--link--children--container"
+				) as HTMLDivElement;
+			const targetSubContainerElement: HTMLDivElement =
+				targetContainerElement?.querySelector(
+					".header--resume--link--children--text--container"
+				) as HTMLDivElement;
+			const targetFirstLinkElementText: HTMLDivElement =
+				targetSubContainerElement?.querySelector(
+					".first--header--resume--link--children--text"
+				) as HTMLDivElement;
+			const targetSecondLinkElementText: HTMLDivElement =
+				targetSubContainerElement?.querySelector(
+					".second--header--resume--link--children--text"
+				) as HTMLDivElement;
+
+			gsap.killTweensOf([
+				e.target,
+				targetContainerElement,
+				targetSubContainerElement,
+				targetFirstLinkElementText,
+				targetSecondLinkElementText,
+			]);
+			gsap.to(e.target, {
+				scale: 1,
+				duration: 0.3,
+				overwrite: true,
+			});
+			gsap.to(
+				targetFirstLinkElementText,
+				{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
+			);
+
+			gsap.to(targetSecondLinkElementText, { yPercent: 10 });
+		};
+		resumeLinkRefElement.addEventListener("mouseenter", (e) =>
+			handleMouseEnter(e)
+		);
+		resumeLinkRefElement.addEventListener("mouseleave", (e) =>
+			handleMouseLeave(e)
+		);
+		onCleanup(() => {
+			resumeLinkRefElement.removeEventListener("mouseenter", (e) =>
+				handleMouseEnter(e)
+			);
+			resumeLinkRefElement.removeEventListener("mouseleave", (e) =>
+				handleMouseLeave(e)
+			);
 		});
 	});
 
@@ -136,35 +205,31 @@ const Header: Component<{
 
 				<div class="header--util--main--container">
 					<div class="header--util--sub--container">
-						<Link
-							onMouseOver={() => {
-								animateHeaderResumeLinkText(true);
-								animateOpenSecondHeaderResumeLinkText(true);
-							}}
-							onMouseOut={() => {
-								animateHeaderResumeLinkText(false);
-								animateOpenSecondHeaderResumeLinkText(false);
-							}}
-							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
-							linkClass="header--resume--link"
-							linkContainerClass="header--resume--link--container"
-						>
-							<div class="header--resume--link--children--container">
-								<div class="header--resume--link--children--text--container">
-									<div class="header--resume--link--children--text first--header--resume--link--children--text">
-										My Resume
+						<div class="header--resume--link--container">
+							<a
+								href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="header--resume--link"
+								ref={resumeLinkRefElement}
+							>
+								<div class="header--resume--link--children--container">
+									<div class="header--resume--link--children--text--container">
+										<div class="header--resume--link--children--text first--header--resume--link--children--text">
+											My Resume
+										</div>
+										<div class="header--resume--link--children--text second--header--resume--link--children--text">
+											My Resume
+										</div>
 									</div>
-									<div class="header--resume--link--children--text second--header--resume--link--children--text">
-										My Resume
-									</div>
+									<FileIcon
+										width="20"
+										height="20"
+										class="header--resume--link--icon"
+									/>
 								</div>
-								<FileIcon
-									width="20"
-									height="20"
-									class="header--resume--link--icon"
-								/>
-							</div>
-						</Link>
+							</a>
+						</div>
 
 						<Button
 							buttonClass="header--navigation--button"
