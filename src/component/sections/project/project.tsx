@@ -468,6 +468,34 @@ const Project: Component<{}> = () => {
 
 		const handleMouseEnter = (e: MouseEvent) => {
 			const item: any = e.currentTarget;
+			const titleContainerElement: HTMLDivElement = item?.querySelector(
+				".project--title--container"
+			) as HTMLDivElement;
+			const titleElement: HTMLDivElement =
+				titleContainerElement?.querySelector(
+					".project--title"
+				) as HTMLDivElement;
+			const titleCharacterContainerElement: NodeListOf<HTMLDivElement> =
+				titleElement?.querySelectorAll(
+					".project--title--character--container"
+				) as NodeListOf<HTMLDivElement>;
+			const firstTitleCharacterElements: HTMLElement[] = [];
+			const secondTitleCharacterElements: HTMLElement[] = [];
+
+			titleCharacterContainerElement.forEach((element) => {
+				const firstCharElement = element.querySelector(
+					".first--project--title--character"
+				);
+				const secondCharElement = element.querySelector(
+					".second--project--title--character"
+				);
+				if (firstCharElement instanceof HTMLElement) {
+					firstTitleCharacterElements.push(firstCharElement);
+				}
+				if (secondCharElement instanceof HTMLElement) {
+					secondTitleCharacterElements.push(secondCharElement);
+				}
+			});
 			const element: HTMLDivElement = item?.querySelector(
 				".project--util--icon--container"
 			) as HTMLDivElement;
@@ -475,13 +503,17 @@ const Project: Component<{}> = () => {
 				`.project--util--icon`
 			) as SVGElement;
 
-			gsap.killTweensOf(e.target, element, iconElement);
-
-			gsap.to(e.target, {
-				scale: 1.1,
-				duration: 0.3,
-				overwrite: true,
-			});
+			gsap.killTweensOf([
+				e.target,
+				element,
+				iconElement,
+				titleContainerElement,
+				titleElement,
+				titleCharacterContainerElement,
+				titleCharacterContainerElement,
+				firstTitleCharacterElements,
+				secondTitleCharacterElements,
+			]);
 			gsap.to(element, {
 				width: "2.5rem",
 				height: "2.5rem",
@@ -494,24 +526,66 @@ const Project: Component<{}> = () => {
 				duration: 0.6,
 				overwrite: true,
 			});
+			gsap.to(firstTitleCharacterElements, {
+				yPercent: -100,
+				stagger: 0.1,
+				overwrite: true,
+			});
+			gsap.to(secondTitleCharacterElements, {
+				yPercent: -100,
+				stagger: 0.1,
+				overwrite: true,
+			});
 		};
 
 		const handleMouseLeave = (e: MouseEvent) => {
 			const item: any = e.currentTarget;
+			const titleContainerElement: HTMLDivElement = item?.querySelector(
+				".project--title--container"
+			) as HTMLDivElement;
+			const titleElement: HTMLDivElement =
+				titleContainerElement?.querySelector(
+					".project--title"
+				) as HTMLDivElement;
+			const titleCharacterContainerElement: NodeListOf<HTMLDivElement> =
+				titleElement?.querySelectorAll(
+					".project--title--character--container"
+				) as NodeListOf<HTMLDivElement>;
+			const firstTitleCharacterElements: HTMLElement[] = [];
+			const secondTitleCharacterElements: HTMLElement[] = [];
+
+			titleCharacterContainerElement.forEach((element) => {
+				const firstCharElement = element.querySelector(
+					".first--project--title--character"
+				);
+				const secondCharElement = element.querySelector(
+					".second--project--title--character"
+				);
+				if (firstCharElement instanceof HTMLElement) {
+					firstTitleCharacterElements.push(firstCharElement);
+				}
+				if (secondCharElement instanceof HTMLElement) {
+					secondTitleCharacterElements.push(secondCharElement);
+				}
+			});
 			const element: HTMLDivElement = item?.querySelector(
 				".project--util--icon--container"
 			) as HTMLDivElement;
 			const iconElement: any = element.querySelector(
 				`.project--util--icon`
 			) as SVGElement;
-			gsap.killTweensOf(e.target, element, iconElement);
 
-			gsap.killTweensOf(e.target);
-			gsap.to(e.target, {
-				scale: 1,
-				duration: 0.3,
-				overwrite: true,
-			});
+			gsap.killTweensOf([
+				e.target,
+				element,
+				iconElement,
+				titleContainerElement,
+				titleElement,
+				titleCharacterContainerElement,
+				titleCharacterContainerElement,
+				firstTitleCharacterElements,
+				secondTitleCharacterElements,
+			]);
 			gsap.to(element, {
 				width: 0,
 				height: 0,
@@ -521,6 +595,16 @@ const Project: Component<{}> = () => {
 			gsap.to(iconElement, {
 				scale: 0,
 				duration: 0.6,
+				overwrite: true,
+			});
+			gsap.to(firstTitleCharacterElements, {
+				yPercent: 0,
+				stagger: 0.1,
+				overwrite: true,
+			});
+			gsap.to(secondTitleCharacterElements, {
+				yPercent: 0,
+				stagger: 0.1,
 				overwrite: true,
 			});
 		};
@@ -584,17 +668,30 @@ const Project: Component<{}> = () => {
 													.split("")}
 											>
 												{(character, index) => (
-													<ParallaxCharacter
-														index={index()}
-														class="project--title--character"
-														children={character}
-														style={{
-															margin: "0rem 0.5rem",
-														}}
-														parallaxCharacterElement={
-															parallaxCharacterElement
-														}
-													/>
+													<div class="project--title--character--container ">
+														<ParallaxCharacter
+															index={index()}
+															class="project--title--character first--project--title--character z-20"
+															children={character}
+															style={{
+																margin: "0rem 0.5rem",
+															}}
+															parallaxCharacterElement={
+																parallaxCharacterElement
+															}
+														/>
+														<ParallaxCharacter
+															index={index()}
+															class="project--title--character second--project--title--character z-20"
+															children={character}
+															style={{
+																margin: "0rem 0.5rem",
+															}}
+															parallaxCharacterElement={
+																parallaxCharacterElement
+															}
+														/>
+													</div>
 												)}
 											</For>
 										</div>
