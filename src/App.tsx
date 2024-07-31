@@ -32,7 +32,7 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			<Slider />
+			{/* <Slider /> */}
 			<About />
 			<Intro />
 			<Project />

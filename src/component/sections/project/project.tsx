@@ -528,11 +528,13 @@ const Project: Component<{}> = () => {
 			});
 			gsap.to(firstTitleCharacterElements, {
 				yPercent: -100,
+				duration: 0.5,
 				stagger: 0.1,
 				overwrite: true,
 			});
 			gsap.to(secondTitleCharacterElements, {
 				yPercent: -100,
+				duration: 0.5,
 				stagger: 0.1,
 				overwrite: true,
 			});
@@ -599,11 +601,13 @@ const Project: Component<{}> = () => {
 			});
 			gsap.to(firstTitleCharacterElements, {
 				yPercent: 0,
+				duration: 0.5,
 				stagger: 0.1,
 				overwrite: true,
 			});
 			gsap.to(secondTitleCharacterElements, {
 				yPercent: 0,
+				duration: 0.5,
 				stagger: 0.1,
 				overwrite: true,
 			});

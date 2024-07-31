@@ -5,68 +5,6 @@ import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
 import "./header.scss";
 
-const animateHeaderSection = () => {
-	gsap.fromTo(
-		".header--sub--container",
-		{ yPercent: -200, opacity: 0 },
-		{ yPercent: 0, duration: 1, opacity: 1 }
-	);
-};
-
-const animateHeaderPosition = (condition: boolean) => {
-	gsap.fromTo(
-		".header--main--container",
-		{
-			position: condition ? "relative" : "fixed",
-			top: condition ? "" : "0",
-			left: condition ? "" : "0",
-		},
-		{
-			position: condition ? "fixed" : "relative",
-			top: condition ? "0" : "",
-			left: condition ? "0" : "",
-		}
-	);
-};
-
-const animateHeaderFirstHamburgerIcon = (condition: boolean) => {
-	gsap.fromTo(
-		".first--navigation--icon",
-		{
-			rotate: condition ? "0deg" : "47deg",
-			top: condition ? "30%" : "50%",
-		},
-		{
-			rotate: condition ? "47deg" : "0deg",
-			top: condition ? "50%" : "30%",
-			ease: "back.inOut(1.7)",
-		}
-	);
-};
-
-const animateHeaderSecondHamburgerIcon = (condition: boolean) => {
-	gsap.fromTo(
-		".second--navigation--icon",
-		{ width: condition ? "1.5rem" : "0rem" },
-		{ width: condition ? "0rem" : "1.5rem", ease: "back.inOut(1.7)" }
-	);
-};
-
-const animateHeaderLastHamburgerIcon = (condition: boolean) => {
-	gsap.fromTo(
-		".last--navigation--icon",
-		{
-			rotate: condition ? "0deg" : "-47deg",
-			bottom: condition ? "30%" : "50%",
-		},
-		{
-			rotate: condition ? "-47deg" : "0deg",
-			bottom: condition ? "50%" : "30%",
-			ease: "back.inOut(1.7)",
-		}
-	);
-};
-
 const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
@@ -74,18 +12,76 @@ const Header: Component<{
 	let headerSectionRef: HTMLDivElement | any;
 	let resumeLinkRefElement: HTMLAnchorElement;
 
+	const animateHeaderContainer = (condition: boolean) => {
+		gsap.fromTo(
+			".header--sub--container",
+			{
+				position: condition ? "relative" : "fixed",
+			},
+			{
+				position: condition ? "fixed" : "relative",
+			}
+		);
+	};
+
+	const animateHeaderSubContainer = () => {
+		gsap.fromTo(
+			".header--sub--container",
+			{ yPercent: -200, opacity: 0 },
+			{ yPercent: 100, duration: 1.5, opacity: 1, ease: "power2.out" }
+		);
+	};
+
+	const animateFirstNavigationIcon = (condition: boolean) => {
+		gsap.fromTo(
+			".first--navigation--icon",
+			{
+				rotate: condition ? "0deg" : "47deg",
+				top: condition ? "30%" : "50%",
+			},
+			{
+				rotate: condition ? "47deg" : "0deg",
+				top: condition ? "50%" : "30%",
+				ease: "back.inOut(1.7)",
+			}
+		);
+	};
+
+	const animateSecondNavigationIcon = (condition: boolean) => {
+		gsap.fromTo(
+			".second--navigation--icon",
+			{ width: condition ? "1.5rem" : "0rem" },
+			{ width: condition ? "0rem" : "1.5rem", ease: "back.inOut(1.7)" }
+		);
+	};
+
+	const animateLastNavigationIcon = (condition: boolean) => {
+		gsap.fromTo(
+			".last--navigation--icon",
+			{
+				rotate: condition ? "0deg" : "-47deg",
+				bottom: condition ? "30%" : "50%",
+			},
+			{
+				rotate: condition ? "-47deg" : "0deg",
+				bottom: condition ? "50%" : "30%",
+				ease: "back.inOut(1.7)",
+			}
+		);
+	};
+
 	createEffect(() => {
 		props.isNavigationOpen();
-		animateHeaderFirstHamburgerIcon(props.isNavigationOpen());
-		animateHeaderSecondHamburgerIcon(props.isNavigationOpen());
-		animateHeaderLastHamburgerIcon(props.isNavigationOpen());
-		animateHeaderPosition(props.isNavigationOpen());
+		animateFirstNavigationIcon(props.isNavigationOpen());
+		animateSecondNavigationIcon(props.isNavigationOpen());
+		animateLastNavigationIcon(props.isNavigationOpen());
+		animateHeaderContainer(props.isNavigationOpen());
 	});
 
 	createEffect(() => {
 		elementObserver(headerSectionRef, (entry, observer) => {
-			if (entry.isIntersecting) animateHeaderSection();
-			observer.unobserve(entry.target);
+			if (entry.isIntersecting) {animateHeaderSubContainer(); observer.unobserve(entry.target);}
+			
 		});
 	});
 
@@ -95,19 +91,19 @@ const Header: Component<{
 			const targetedElement: any = e.currentTarget as HTMLAnchorElement;
 			const targetContainerElement: HTMLDivElement =
 				targetedElement?.querySelector(
-					".header--resume--link--children--container"
+					".header--resume--link--container"
 				) as HTMLDivElement;
 			const targetSubContainerElement: HTMLDivElement =
 				targetContainerElement?.querySelector(
-					".header--resume--link--children--text--container"
+					".header--resume--link--text--container"
 				) as HTMLDivElement;
 			const targetFirstLinkElementText: HTMLDivElement =
 				targetSubContainerElement?.querySelector(
-					".first--header--resume--link--children--text"
+					".first--header--resume--link--text"
 				) as HTMLDivElement;
 			const targetSecondLinkElementText: HTMLDivElement =
 				targetSubContainerElement?.querySelector(
-					".second--header--resume--link--children--text"
+					".second--header--resume--link--text"
 				) as HTMLDivElement;
 
 			gsap.killTweensOf([
@@ -140,19 +136,19 @@ const Header: Component<{
 			const targetedElement: any = e.currentTarget as HTMLAnchorElement;
 			const targetContainerElement: HTMLDivElement =
 				targetedElement?.querySelector(
-					".header--resume--link--children--container"
+					".header--resume--link--container"
 				) as HTMLDivElement;
 			const targetSubContainerElement: HTMLDivElement =
 				targetContainerElement?.querySelector(
-					".header--resume--link--children--text--container"
+					".header--resume--link--text--container"
 				) as HTMLDivElement;
 			const targetFirstLinkElementText: HTMLDivElement =
 				targetSubContainerElement?.querySelector(
-					".first--header--resume--link--children--text"
+					".first--header--resume--link--text"
 				) as HTMLDivElement;
 			const targetSecondLinkElementText: HTMLDivElement =
 				targetSubContainerElement?.querySelector(
-					".second--header--resume--link--children--text"
+					".second--header--resume--link--text"
 				) as HTMLDivElement;
 
 			gsap.killTweensOf([
@@ -191,11 +187,7 @@ const Header: Component<{
 	});
 
 	return (
-		<div
-			ref={headerSectionRef}
-			style={props.isNavigationOpen() ? { width: "100vw" } : {}}
-			class="header--main--container"
-		>
+		<div ref={headerSectionRef} class="header--container">
 			<div class="header--sub--container">
 				<div class="header--logo--container">
 					<div class="header--logo">
@@ -203,33 +195,31 @@ const Header: Component<{
 					</div>
 				</div>
 
-				<div class="header--util--main--container">
+				<div class="header--util--container">
 					<div class="header--util--sub--container">
-						<div class="header--resume--link--container">
-							<a
-								href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="header--resume--link"
-								ref={resumeLinkRefElement}
-							>
-								<div class="header--resume--link--children--container">
-									<div class="header--resume--link--children--text--container">
-										<div class="header--resume--link--children--text first--header--resume--link--children--text">
-											My Resume
-										</div>
-										<div class="header--resume--link--children--text second--header--resume--link--children--text">
-											My Resume
-										</div>
+						<a
+							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="header--resume--link"
+							ref={(e) => resumeLinkRefElement = e}
+						>
+							<div class="header--resume--link--container">
+								<div class="header--resume--link--text--container">
+									<div class="header--resume--link--text first--header--resume--link--text">
+										My Resume
 									</div>
-									<FileIcon
-										width="20"
-										height="20"
-										class="header--resume--link--icon"
-									/>
+									<div class="header--resume--link--text second--header--resume--link--text">
+										My Resume
+									</div>
 								</div>
-							</a>
-						</div>
+								<FileIcon
+									width="20"
+									height="20"
+									class="header--resume--link--icon"
+								/>
+							</div>
+						</a>
 
 						<Button
 							buttonClass="header--navigation--button"

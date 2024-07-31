@@ -1,15 +1,22 @@
 @use "../../../styles/mixins";
 @use "../../../styles/variables";
 
-.header--main--container {
+.header--container {
     overflow-y: hidden;
     z-index: 100;
     width: 100vw;
+    height: 100%;
+    min-height: 5.1rem;
+    @include mixins.center--element;
+
 
     .header--sub--container {
         @include mixins.center--section;
         @include mixins.flex--layout($align: center);
         padding: 1rem 0;
+        transform: translate(0%, -100%);
+        opacity: 0;
+        z-index: 999999;
 
         .header--logo--container {
             @include mixins.center--element;
@@ -30,71 +37,67 @@
             }
         }
 
-        .header--util--main--container {
+        .header--util--container {
             .header--util--sub--container {
                 @include mixins.flex--layout($direction: row,
                     $align: center,
                     $justify: space-between);
                 column-gap: 2rem;
 
-                .header--resume--link--container {
-                    width: 100%;
+                .header--resume--link {
+                    @include mixins.flex--layout($direction: row,
+                        $align: baseline,
+                        $justify: baseline);
+                    @include mixins.center--element;
+                    text-decoration: none;
+                    border: 0.01rem solid variables.$primary--text--color;
+                    border-radius: 100vh;
+                    padding: 0.6rem 1rem;
+                    color: variables.$primary--text--color;
+                    position: relative;
 
-                    .header--resume--link {
+                    .header--resume--link--container {
                         @include mixins.flex--layout($direction: row,
-                            $align: baseline,
+                            $align: center,
                             $justify: baseline);
-                        @include mixins.center--element;
-                        text-decoration: none;
-                        border: 0.01rem solid variables.$primary--text--color;
-                        border-radius: 100vh;
-                        padding: 0.6rem 1rem;
-                        color: variables.$primary--text--color;
-                        position: relative;
+                        column-gap: 0.8rem;
+                        pointer-events: none;
+                        -webkit-user-select: none;
+                        user-select: none;
 
-                        .header--resume--link--children--container {
-                            @include mixins.flex--layout($direction: row,
+                        .header--resume--link--text--container {
+                            @include mixins.flex--layout($direction: column,
                                 $align: center,
-                                $justify: baseline);
-                            column-gap: 0.8rem;
-                            pointer-events: none;
-                            -webkit-user-select: none;
-                            user-select: none;
+                                $justify: center);
+                            overflow-y: hidden;
+                            max-height: 1.5rem;
+                            height: 100%;
+                            position: relative;
 
-                            .header--resume--link--children--text--container {
-                                @include mixins.flex--layout($direction: column,
-                                    $align: center,
-                                    $justify: center);
-                                overflow-y: hidden;
-                                max-height: 1.5rem;
-                                height: 100%;
-                                position: relative;
-
-                                .header--resume--link--children--text {
-                                    height: 1.5rem;
-                                    display: flex;
-                                    flex-direction: row;
-                                    align-items: center;
-                                    justify-content: center;
-                                    width: 100%;
-                                }
-
-                                .first--header--resume--link--children--text {
-
-                                    transform: translate(0px, 50%);
-
-                                }
-
-                                .second--header--resume--link--children--text {
-
-                                    transform: translate(0px, 50%);
-
-                                }
+                            .header--resume--link--text {
+                                height: 1.5rem;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: center;
+                                width: 100%;
                             }
 
-                            .header--resume--link--icon {
-                                @include mixins.center--element;
+                            .first--header--resume--link--text {
+
+                                transform: translate(0px, 50%);
+
                             }
+
+                            .second--header--resume--link--text {
+
+                                transform: translate(0px, 50%);
+
+                            }
+                        }
+
+                        .header--resume--link--icon {
+                            @include mixins.center--element;
                         }
                     }
                 }

@@ -89,6 +89,7 @@
                                     transform: translate(0px, 0%);
                                     // border: 1px solid white;
                                 }
+
                                 .second--project--title--character {
                                     transform: translate(0px, 0%);
                                     // border: 1px solid rgb(211, 19, 19);
@@ -106,7 +107,7 @@
                     .project--type--container {
 
                         .project--type {
-                            font-family: Work Sans, -apple-system, Helvetica Neue,
+                            font-family: Instrument Sans, -apple-system, Helvetica Neue,
                                 sans-serif;
                             @include mixins.flex--layout($direction: row,
                                 $align: start,
