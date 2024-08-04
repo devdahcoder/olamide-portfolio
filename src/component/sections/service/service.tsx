@@ -39,8 +39,6 @@ const Service: Component<Props> = (props) => {
 		);
 	};
 
-	// const animate
-
 	createEffect(() => {
 		elementObserver(serviceSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting) {
@@ -59,17 +57,19 @@ const Service: Component<Props> = (props) => {
 			},
 		});
 
-		tl.fromTo(".service--text--character", {
-			opacity: 0.4,
-			y: 100,
-
-		}, {
-			opacity: 1,
-			y: 0,
-			// stagger: 0.1,
-			duration: 1,
-			ease: "power3.out",
-		});
+		tl.fromTo(
+			".service--text--character",
+			{
+				opacity: 0.4,
+				y: 100,
+			},
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1,
+				ease: "power3.out",
+			}
+		);
 
 		tl.fromTo(".service--image", {
 			opacity: 0.4,

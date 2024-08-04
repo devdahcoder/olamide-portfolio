@@ -5,9 +5,6 @@
     min-height: 100vh;
     padding: 4rem 0;
     position: relative;
-    // border: 1px solid white;
-    // opacity: 0.6;
-    // background-color: wheat;
 
     .project--sub--container {
         @include mixins.flex--layout($direction: column,
@@ -29,7 +26,7 @@
                 font-weight: 600;
                 overflow-x: hidden;
 
-                .project--title--character {
+                .project--header--title--character {
                     transform: translate(100%, 0%);
                     opacity: 0;
                 }
@@ -46,6 +43,7 @@
                 width: 100%;
                 position: relative;
                 z-index: 1;
+                position: relative;
 
                 .project--item--link {
                     @include mixins.center--section;
@@ -53,6 +51,7 @@
                     text-decoration: none;
                     border-bottom: 1px solid rgb(108, 107, 110);
                     height: 8.5rem;
+                    position: relative;
 
                     .project--title--container {
                         @include mixins.flex--layout($direction: column,
@@ -67,7 +66,6 @@
                             @include mixins.flex--layout($direction: row,
                                 $align: start,
                                 $justify: start);
-                            // border: 1px solid red;
                             overflow: hidden;
                             height: 5.4rem;
 
@@ -80,25 +78,18 @@
                                     font-size: 4vw;
                                     font-weight: 500;
                                     color: hsl(0, 8%, 87%);
-                                    // border: 1px solid white;
                                     overflow-y: hidden;
 
                                 }
 
                                 .first--project--title--character {
                                     transform: translate(0px, 0%);
-                                    // border: 1px solid white;
                                 }
 
                                 .second--project--title--character {
                                     transform: translate(0px, 0%);
-                                    // border: 1px solid rgb(211, 19, 19);
                                 }
                             }
-
-                            // .second--project--title--character {
-                            //     transform: translate(-312%, 20%);
-                            // }
                         }
 
 
@@ -132,7 +123,6 @@
                             @include mixins.flex--layout($direction: row,
                                 $align: center,
                                 $justify: center);
-                            // column-gap: 0.8rem;
 
                             .project--util--link {
                                 color: hsl(0, 3%, 50%);
@@ -202,38 +192,45 @@
                         // }
                     }
 
-                    &:hover {
-                        border-bottom: 1px solid hsl(0, 0%, 100%);
-                        transition: border-bottom 0.4s ease-in-out .5s;
+                    .project--item--border {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 0%;
+                        background-color: rgb(255, 255, 255);
+                        height: 0rem;
                     }
+
+                    .image--container {
+                        position: absolute;
+                        display: block;
+                        pointer-events: none;
+                        user-select: none;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        opacity: 0;
+                        backface-visibility: hidden;
+                        border: 1px solid white;
+
+                        .image--sub--container {
+                            @include mixins.image--sub--container(15rem, 20rem);
+                            overflow: visible;
+                            padding-bottom: 0;
+                            pointer-events: none;
+                            user-select: none;
+
+                            .image {
+                                @include mixins.image($height: 15rem);
+                                pointer-events: none;
+                                user-select: none;
+                            }
+                        }
+                    }
+
                 }
 
 
-                // .image--container {
-                //     position: absolute;
-                //     display: block;
-                //     pointer-events: none;
-                //     user-select: none;
-                //     top: 50%;
-                //     left: 50%;
-                //     transform: translate(-50%, -50%);
-                //     opacity: 0;
-                //     backface-visibility: hidden;
-
-                //     .image--sub--container {
-                //         @include mixins.image--sub--container(15rem, 20rem);
-                //         overflow: visible;
-                //         padding-bottom: 0;
-                //         pointer-events: none;
-                //         user-select: none;
-
-                //         .image {
-                //             @include mixins.image($height: 15rem);
-                //             pointer-events: none;
-                //             user-select: none;
-                //         }
-                //     }
-                // }
 
             }
         }

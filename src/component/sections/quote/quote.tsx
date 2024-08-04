@@ -15,34 +15,6 @@ type Props = {
 };
 
 const Quote: Component<Props> = (props) => {
-	// const [quote, setQuote] = createSignal<QuoteApiType>({
-	// 	author: "Olamide Adigun",
-	// 	category: "programming",
-	// 	quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",
-	// });
-
-	// createEffect(() => {
-	// 	gsap.fromTo(
-	// 		".quote--text",
-	// 		{
-	// 			color: "hsl(0, 4%, 14%)",
-	// 		},
-	// 		{
-	// 			scrollTrigger: {
-	// 				trigger: ".quote--container",
-	// 				start: "top top",
-	// 				// end: "bottom center",
-	// 				end: `+=${quote().quote.split(' ').length * 100}`,
-	// 				scrub: true,
-	// 				pin: true,
-	// 			},
-	// 			duration: 3,
-	// 			color: "white",
-	// 			ease: "sine.in",
-	// 			stagger: 2,
-	// 		}
-	// 	);
-	// });
 
 	return (
 		<div class="quote--container">
@@ -59,10 +31,6 @@ const Quote: Component<Props> = (props) => {
 							</div>
 						)}
 					</For>
-				</div>
-
-				<div ref={sectionRef} class="quote--author">
-					&lt;/{props?.quote?.author}&gt;
 				</div>
 			</div>
 		</div>

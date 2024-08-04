@@ -9,6 +9,25 @@
         border-radius: 3.5rem 3.5rem 0 0;
         background-color: white;
         row-gap: 4rem;
+        position: relative;
+
+        // &::after,
+        // &::before {
+        //     box-shadow: 0 0 0 80px #ffffff;
+        //     border-radius: 100%;
+        //     position: absolute;
+        //     height: 150px;
+        //     /* You can change height to increase or decrease concave radius */
+        //     content: '';
+        //     right: -20%;
+        //     left: -20%;
+        //     top: 100%;
+        // }
+
+        // &::after {
+        //     bottom: 100%;
+        //     top: auto;
+        // }
 
         .playground--header--container {
             @include mixins.center--section;

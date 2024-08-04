@@ -33,415 +33,11 @@ const Project: Component<{}> = () => {
 		number | null
 	>(0);
 
-	const getDOMVariables = (item: HTMLDivElement | Element) => {
-		const globalProjectBackgroundImage = document?.querySelector(
-			".global--project--background--image"
-		) as HTMLImageElement;
-		const projectToolsContainer = item?.querySelector(
-			".project--tool--container"
-		) as HTMLDivElement;
-		const projectTools = projectToolsContainer?.querySelectorAll(
-			".project--tool"
-		) as NodeListOf<HTMLDivElement>;
-		const imageSelector = item?.querySelector(".image--container");
-		const imageSubSelector = imageSelector?.querySelector(
-			".image--sub--container"
-		) as HTMLDivElement;
-		const imageElem = imageSubSelector?.querySelector(
-			".image"
-		) as HTMLImageElement;
-
-		let prevX = 0;
-
-		return {
-			globalProjectBackgroundImage,
-			imageSelector,
-			imageSubSelector,
-			imageElem,
-			prevX,
-			projectTools,
-		};
-	};
-
-	const handleMouseMove = (
-		e: MouseEvent | any,
-		imageSelector: Element | null
-	) => {
-		if (imageSelector) {
-			let prevX = e.clientX;
-			const currentX =
-				e.clientX -
-				e.currentTarget.getBoundingClientRect().left -
-				e.currentTarget.offsetWidth / 2;
-
-			const currentY =
-				e.clientY -
-				e.currentTarget.getBoundingClientRect().top -
-				e.currentTarget.offsetHeight / 2;
-
-			const direction = prevX >= prevMousePosition() ? "right" : "left";
-
-			const tiltAmount = direction === "right" ? 10 : -10;
-
-			gsap.to(imageSelector, {
-				duration: 0.8,
-				x: currentX,
-				y: currentY,
-				ease: "power1.out",
-				rotation: tiltAmount,
-				opacity: 0.9,
-				zIndex: 1,
-				boxShadow: "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
-				onComplete: () => {
-					gsap.to(imageSelector, { rotate: 0, ease: "power1.out" });
-				},
-			});
-			setPreviousMousePosition(prevX);
-		}
-	};
-
-	const handleMouseEnter = (
-		e: MouseEvent & {
-			currentTarget: HTMLAnchorElement;
-			target: DOMElement;
-		},
-		index: number
-		// imageSelector: Element | null,
-		// globalProjectBackgroundImage: HTMLImageElement
-	) => {
-		const allElements = document.querySelectorAll(
-			".project--util--icon--container"
-		);
-		const selectedElement = allElements[index];
-		const selectedElementIconElement =
-			selectedElement.querySelector(`.project--util--icon`);
-
-		// gsap.fromTo(
-		// 	selectedElement,
-		// 	{
-		// 		width: 0,
-		// 		height: 0,
-		// 		visibility: "hidden",
-		// 	},
-		// 	{
-		// 		width: "2.5rem",
-		// 		height: "2.5rem",
-		// 		visibility: "visible",
-		// 		duration: 0.6,
-		// 	}
-		// );
-		// gsap.fromTo(
-		// 	selectedElementIconElement,
-		// 	{
-		// 		scale: 0,
-		// 	},
-		// 	{
-		// 		scale: 1,
-		// 		duration: 0.6,
-		// 	}
-		// );
-		// if (imageSelector) {
-		// 	gsap.set(imageSelector, {
-		// 		rotate: 0,
-		// 	});
-		// }
-		// setCurrentMouseIndex(index);
-	};
-
-	// const handleMouseLeave = (
-	// 	e: MouseEvent & {
-	// 		currentTarget: HTMLAnchorElement;
-	// 		target: DOMElement;
-	// 	},
-	// 	index: number
-	// 	// e: MouseEvent,
-	// 	// imageSelector: Element | null,
-	// 	// globalProjectBackgroundImage: HTMLImageElement
-	// ) => {
-	// 	// setCurrentMouseIndex(null);
-
-	// 	const allElements = document.querySelectorAll(
-	// 		".project--util--icon--container"
-	// 	);
-	// 	const selectedElement = allElements[index];
-	// 	const selectedElementIconElement =
-	// 		selectedElement.querySelector(`.project--util--icon`);
-
-	// 	gsap.fromTo(
-	// 		selectedElement,
-	// 		{
-	// 			width: "2.5rem",
-	// 			height: "2.5rem",
-	// 			visibility: "visible",
-	// 		},
-	// 		{
-	// 			width: 0,
-	// 			height: 0,
-	// 			// visibility: "hidden",
-	// 			duration: 1,
-	// 		}
-	// 	);
-	// 	gsap.fromTo(
-	// 		selectedElementIconElement,
-	// 		{
-	// 			scale: 1,
-	// 		},
-	// 		{
-	// 			scale: 0,
-	// 			duration: 1,
-	// 		}
-	// 	);
-	// 	// if (imageSelector) {
-	// 	// 	gsap.to(imageSelector, {
-	// 	// 		opacity: 0,
-	// 	// 		duration: 0.8,
-	// 	// 		rotate: 0,
-	// 	// 	});
-	// 	// }
-	// 	// gsap.to(globalProjectBackgroundImage, {
-	// 	// 	duration: 1,
-	// 	// 	opacity: 0.5,
-	// 	// 	visibility: "hidden",
-	// 	// });
-	// };
-
-	// const handleGlobalProjectBackgroundImage = (
-	// 	globalProjectBackgroundImage: HTMLImageElement,
-	// 	imageElem: HTMLImageElement
-	// ) => {
-	// 	globalProjectBackgroundImage.src = imageElem.src;
-	// 	animate(
-	// 		globalProjectBackgroundImage,
-	// 		{ opacity: 0.5, visibility: "visible" },
-	// 		{ easing: "linear" }
-	// 	);
-	// };
-
-	// const animateProjectFocus = (
-	// 	imageSelector: Element | null,
-	// 	globalProjectBackgroundImage: HTMLImageElement
-	// ) => {
-	// 	gsap.to(globalProjectBackgroundImage, {
-	// 		ease: "sine.in",
-	// 		duration: 2,
-	// 		opacity: 0.5,
-	// 		visibility: "visible",
-	// 	});
-	// };
-
-	// const handleProjectToolsAnimation = (
-	// 	show: boolean,
-	// 	element: HTMLDivElement | NodeListOf<HTMLDivElement> | string
-	// ) => {
-	// 	gsap.fromTo(
-	// 		element,
-	// 		{
-	// 			yPercent: show ? 200 : 0,
-	// 			opacity: show ? 0 : 1,
-	// 			rotate: show ? 20 : 0,
-	// 		},
-	// 		{
-	// 			yPercent: show ? 0 : 200,
-	// 			opacity: show ? 1 : 0,
-	// 			duration: 1,
-	// 			ease: "power3.out",
-	// 			stagger: show ? 0.1 : -0.1,
-	// 			rotate: show ? 0 : 20,
-	// 		}
-	// 	);
-	// };
-
-	// const attachEventListeners = (item: HTMLDivElement) => {
-	// 	const {
-	// 		globalProjectBackgroundImage,
-	// 		imageSelector,
-	// 		imageElem,
-	// 		projectTools,
-	// 	} = getDOMVariables(item);
-
-	// 	item.addEventListener("mousemove", (e: MouseEvent) => {
-	// 		handleMouseMove(e, imageSelector);
-	// 	});
-
-	// 	item.addEventListener("mouseenter", (e: MouseEvent) => {
-	// 		handleProjectToolsAnimation(true, projectTools);
-	// 		if (globalProjectBackgroundImage) {
-	// 			handleGlobalProjectBackgroundImage(
-	// 				globalProjectBackgroundImage,
-	// 				imageElem
-	// 			);
-	// 			handleMouseEnter(
-	// 				e,
-	// 				imageSelector,
-	// 				globalProjectBackgroundImage
-	// 			);
-	// 		}
-	// 	});
-
-	// 	item.addEventListener("mouseleave", (e: MouseEvent) => {
-	// 		handleProjectToolsAnimation(false, projectTools);
-	// 		handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
-	// 	});
-	// };
-
-	// const removeEventListeners = (item: HTMLDivElement) => {
-	// 	const {
-	// 		globalProjectBackgroundImage,
-	// 		imageSelector,
-	// 		imageElem,
-	// 		projectTools,
-	// 	} = getDOMVariables(item);
-
-	// 	item.removeEventListener("mousemove", (e: MouseEvent) =>
-	// 		handleMouseMove(e, imageSelector)
-	// 	);
-	// 	item.removeEventListener("mouseenter", (e: MouseEvent) => {
-	// 		handleProjectToolsAnimation(true, projectTools);
-	// 		handleGlobalProjectBackgroundImage(
-	// 			globalProjectBackgroundImage,
-	// 			imageElem
-	// 		);
-	// 		handleMouseEnter(e, imageSelector, globalProjectBackgroundImage);
-	// 	});
-	// 	item.removeEventListener("mouseleave", (e: MouseEvent) => {
-	// 		handleMouseLeave(e, imageSelector, globalProjectBackgroundImage);
-	// 	});
-	// };
-
-	// createEffect(() => {
-	// 	gsap.to(".project--main--container", {
-	// 		opacity: 1,
-	// 		scrollTrigger: {
-	// 			trigger: ".project--main--container",
-	// 			start: "top center",
-	// 			// pin: true,
-	// 			// markers: true,
-	// 		},
-	// 	});
-
-	// 	// projectRef.forEach((item, index) => {
-	// 	// 	gsap.to(item, {
-	// 	// 		scrollTrigger: {
-	// 	// 			trigger: item,
-	// 	// 			start: "top center+=100", // Adjust the start position
-	// 	// 			end: "bottom center-=100", // Adjust the end position
-	// 	// 			toggleClass: "active", // Add a class when in view
-	// 	// 		},
-	// 	// 		backgroundColor: index % 2 === 0 ? "lightblue" : "lightgreen", // Change colors as needed
-	// 	// 	});
-	// 	// });
-
-	// 	// let observe = new IntersectionObserver(
-	// 	// 	(entries) => {
-	// 	// 		entries.forEach((entry) => {
-	// 	// 			if (entry.isIntersecting) {
-	// 	// 				const {
-	// 	// 					globalProjectBackgroundImage,
-	// 	// 					imageSelector,
-	// 	// 					imageElem,
-	// 	// 					projectTools,
-	// 	// 				} = getDOMVariables(entry.target);
-
-	// 	// 				handleGlobalProjectBackgroundImage(
-	// 	// 					globalProjectBackgroundImage,
-	// 	// 					imageElem
-	// 	// 				);
-	// 	// 				handleProjectToolsAnimation(true, projectTools);
-	// 	// 			} else {
-	// 	// 				const {
-	// 	// 					globalProjectBackgroundImage,
-	// 	// 					imageSelector,
-	// 	// 					imageElem,
-	// 	// 					projectTools,
-	// 	// 				} = getDOMVariables(entry.target);
-	// 	// 				handleProjectToolsAnimation(false, projectTools);
-	// 	// 			}
-	// 	// 		});
-	// 	// 	},
-	// 	// 	{
-	// 	// 		threshold: 0.1,
-	// 	// 		rootMargin: "-45% 0px -46%",
-	// 	// 	}
-	// 	// );
-
-	// 	// projectRef.forEach((element) => observe.observe(element));
-
-	// 	projectRef.forEach(attachEventListeners);
-	// 	onCleanup(() => {
-	// 		// observe.disconnect();
-	// 		projectRef.forEach(removeEventListeners);
-	// 	});
-	// });
-
-	// createEffect(() => {
-	// 	currentMouseIndex();
-
-	// 	const allElements = document.querySelectorAll(
-	// 		".project--util--icon--container"
-	// 	);
-	// 	const selectedElement = allElements[currentMouseIndex()];
-	// 	const selectedElementIconElement =
-	// 		selectedElement.querySelector(`.project--util--icon`);
-
-	// 	if (typeof currentMouseIndex() === "number") {
-
-	// 		gsap.fromTo(
-	// 			selectedElement,
-	// 			{
-	// 				width: 0,
-	// 				height: 0,
-	// 				visibility: "hidden",
-	// 			},
-	// 			{
-	// 				width: "2.5rem",
-	// 				height: "2.5rem",
-	// 				visibility: "visible",
-	// 				duration: 1,
-	// 			}
-	// 		);
-	// 		gsap.fromTo(
-	// 			selectedElementIconElement,
-	// 			{
-	// 				scale: 0,
-	// 			},
-	// 			{
-	// 				scale: 1,
-	// 				duration: 1,
-	// 			}
-	// 		);
-	// 	} else {
-	// 		gsap.fromTo(
-	// 			selectedElement,
-	// 			{
-	// 				width: "2.5rem",
-	// 				height: "2.5rem",
-	// 				visibility: "visible",
-	// 			},
-	// 			{
-	// 				width: 0,
-	// 				height: 0,
-	// 				// visibility: "hidden",
-	// 				duration: 1,
-	// 			}
-	// 		);
-	// 		gsap.fromTo(
-	// 			selectedElementIconElement,
-	// 			{
-	// 				scale: 1,
-	// 			},
-	// 			{
-	// 				scale: 0,
-	// 				duration: 1,
-	// 			}
-	// 		);
-	// 	}
-	// });
-
 	const animateHeaderText = () => {
 		gsap.fromTo(
 			".project--header--title--character",
 			{
-				opacity: 0.4,
+				opacity: 0,
 				x: 100,
 			},
 			{
@@ -452,6 +48,114 @@ const Project: Component<{}> = () => {
 				ease: "power3.out",
 			}
 		);
+	};
+
+	const getDomVariables = (
+		e: MouseEvent
+	): {
+		targetElement: any;
+		currentX: number;
+		titleContainerElement: HTMLDivElement;
+		titleElement: HTMLDivElement;
+		titleCharacterContainerElement: NodeListOf<HTMLDivElement>;
+		firstTitleCharacterElements: HTMLElement[];
+		secondTitleCharacterElements: HTMLElement[];
+		imageContainerElement: Element | null;
+		imageSubElement: Element | null;
+		imageElement: Element | null;
+		borderElement: HTMLDivElement;
+		utilIconContainerElement: HTMLDivElement;
+		iconElement: SVGElement;
+	} => {
+		const targetElement: any = e.currentTarget;
+		const currentX =
+			e.clientX -
+			e.currentTarget?.getBoundingClientRect()?.left -
+			e.currentTarget?.offsetWidth / 2;
+
+		// project title dom manipulation //
+		const titleContainerElement: HTMLDivElement =
+			targetElement?.querySelector(
+				".project--title--container"
+			) as HTMLDivElement;
+		const titleElement: HTMLDivElement =
+			titleContainerElement?.querySelector(
+				".project--title"
+			) as HTMLDivElement;
+		const titleCharacterContainerElement: NodeListOf<HTMLDivElement> =
+			titleElement?.querySelectorAll(
+				".project--title--character--container"
+			);
+		const firstTitleCharacterElements: HTMLElement[] = [];
+		const secondTitleCharacterElements: HTMLElement[] = [];
+
+		titleCharacterContainerElement.forEach((element) => {
+			const firstCharElement = element.querySelector(
+				".first--project--title--character"
+			);
+			const secondCharElement = element.querySelector(
+				".second--project--title--character"
+			);
+			if (firstCharElement instanceof HTMLElement) {
+				firstTitleCharacterElements.push(firstCharElement);
+			}
+			if (secondCharElement instanceof HTMLElement) {
+				secondTitleCharacterElements.push(secondCharElement);
+			}
+		});
+		// end project title dom manipulation //
+
+		// project image dom manipulation //
+		const imageContainerElement =
+			targetElement?.querySelector(".image--container");
+		const imageSubElement = imageContainerElement?.querySelector(
+			".image--sub--container"
+		);
+		const imageElement = imageSubElement?.querySelector(".image");
+		// end project image dom manipulation //
+
+		const borderElement = targetElement?.querySelector(
+			".project--item--border"
+		) as HTMLDivElement;
+		const utilIconContainerElement: HTMLDivElement =
+			targetElement?.querySelector(
+				".project--util--icon--container"
+			) as HTMLDivElement;
+		const iconElement: SVGElement = utilIconContainerElement.querySelector(
+			`.project--util--icon`
+		) as SVGElement;
+
+		gsap.killTweensOf([
+			e.target,
+			utilIconContainerElement,
+			iconElement,
+			titleContainerElement,
+			titleElement,
+			borderElement,
+			imageElement,
+			imageContainerElement,
+			imageContainerElement,
+			titleCharacterContainerElement,
+			titleCharacterContainerElement,
+			firstTitleCharacterElements,
+			secondTitleCharacterElements,
+		]);
+
+		return {
+			targetElement,
+			currentX,
+			titleContainerElement,
+			titleElement,
+			titleCharacterContainerElement,
+			firstTitleCharacterElements,
+			secondTitleCharacterElements,
+			imageContainerElement,
+			imageSubElement,
+			imageElement,
+			borderElement,
+			utilIconContainerElement,
+			iconElement,
+		};
 	};
 
 	createEffect(() => {
@@ -467,128 +171,80 @@ const Project: Component<{}> = () => {
 		if (!projectItemRef) return;
 
 		const handleMouseEnter = (e: MouseEvent) => {
-			const item: any = e.currentTarget;
-			const titleContainerElement: HTMLDivElement = item?.querySelector(
-				".project--title--container"
-			) as HTMLDivElement;
-			const titleElement: HTMLDivElement =
-				titleContainerElement?.querySelector(
-					".project--title"
-				) as HTMLDivElement;
-			const titleCharacterContainerElement: NodeListOf<HTMLDivElement> =
-				titleElement?.querySelectorAll(
-					".project--title--character--container"
-				) as NodeListOf<HTMLDivElement>;
-			const firstTitleCharacterElements: HTMLElement[] = [];
-			const secondTitleCharacterElements: HTMLElement[] = [];
-
-			titleCharacterContainerElement.forEach((element) => {
-				const firstCharElement = element.querySelector(
-					".first--project--title--character"
-				);
-				const secondCharElement = element.querySelector(
-					".second--project--title--character"
-				);
-				if (firstCharElement instanceof HTMLElement) {
-					firstTitleCharacterElements.push(firstCharElement);
-				}
-				if (secondCharElement instanceof HTMLElement) {
-					secondTitleCharacterElements.push(secondCharElement);
-				}
-			});
-			const element: HTMLDivElement = item?.querySelector(
-				".project--util--icon--container"
-			) as HTMLDivElement;
-			const iconElement: any = element.querySelector(
-				`.project--util--icon`
-			) as SVGElement;
-
-			gsap.killTweensOf([
-				e.target,
-				element,
-				iconElement,
+			const {
+				targetElement,
+				currentX,
 				titleContainerElement,
 				titleElement,
 				titleCharacterContainerElement,
-				titleCharacterContainerElement,
 				firstTitleCharacterElements,
 				secondTitleCharacterElements,
-			]);
-			gsap.to(element, {
+				imageContainerElement,
+				imageSubElement,
+				imageElement,
+				borderElement,
+				utilIconContainerElement,
+				iconElement,
+			} = getDomVariables(e);
+
+			gsap.to(utilIconContainerElement, {
 				width: "2.5rem",
 				height: "2.5rem",
 				visibility: "visible",
-				duration: 0.6,
+				duration: 0.4,
 				overwrite: true,
 			});
 			gsap.to(iconElement, {
 				scale: 1,
-				duration: 0.6,
+				duration: 0.4,
 				overwrite: true,
 			});
 			gsap.to(firstTitleCharacterElements, {
 				yPercent: -100,
-				duration: 0.5,
-				stagger: 0.1,
+				duration: 0.3,
+				stagger: 0.04,
 				overwrite: true,
 			});
 			gsap.to(secondTitleCharacterElements, {
 				yPercent: -100,
-				duration: 0.5,
-				stagger: 0.1,
+				duration: 0.3,
+				stagger: 0.04,
 				overwrite: true,
+			});
+			gsap.to(borderElement, {
+				width: "100%",
+				height: "0.05rem",
+				duration: 0.4,
+				overwrite: true,
+			});
+			gsap.to(imageContainerElement, {
+				opacity: 1,
+				duration: 0.4,
+				scale: 1,
+				x: currentX,
+				overwrite: true,
+				
 			});
 		};
 
 		const handleMouseLeave = (e: MouseEvent) => {
-			const item: any = e.currentTarget;
-			const titleContainerElement: HTMLDivElement = item?.querySelector(
-				".project--title--container"
-			) as HTMLDivElement;
-			const titleElement: HTMLDivElement =
-				titleContainerElement?.querySelector(
-					".project--title"
-				) as HTMLDivElement;
-			const titleCharacterContainerElement: NodeListOf<HTMLDivElement> =
-				titleElement?.querySelectorAll(
-					".project--title--character--container"
-				) as NodeListOf<HTMLDivElement>;
-			const firstTitleCharacterElements: HTMLElement[] = [];
-			const secondTitleCharacterElements: HTMLElement[] = [];
-
-			titleCharacterContainerElement.forEach((element) => {
-				const firstCharElement = element.querySelector(
-					".first--project--title--character"
-				);
-				const secondCharElement = element.querySelector(
-					".second--project--title--character"
-				);
-				if (firstCharElement instanceof HTMLElement) {
-					firstTitleCharacterElements.push(firstCharElement);
-				}
-				if (secondCharElement instanceof HTMLElement) {
-					secondTitleCharacterElements.push(secondCharElement);
-				}
-			});
-			const element: HTMLDivElement = item?.querySelector(
-				".project--util--icon--container"
-			) as HTMLDivElement;
-			const iconElement: any = element.querySelector(
-				`.project--util--icon`
-			) as SVGElement;
-
-			gsap.killTweensOf([
-				e.target,
-				element,
-				iconElement,
+			const {
+				targetElement,
+				currentX,
 				titleContainerElement,
 				titleElement,
 				titleCharacterContainerElement,
-				titleCharacterContainerElement,
 				firstTitleCharacterElements,
 				secondTitleCharacterElements,
-			]);
-			gsap.to(element, {
+				imageContainerElement,
+				imageSubElement,
+				imageElement,
+				borderElement,
+				utilIconContainerElement,
+				iconElement,
+			} = getDomVariables(e);
+
+			gsap.to(utilIconContainerElement, {
 				width: 0,
 				height: 0,
 				duration: 0.6,
@@ -611,11 +267,82 @@ const Project: Component<{}> = () => {
 				stagger: 0.1,
 				overwrite: true,
 			});
+			gsap.to(borderElement, {
+				width: "0%",
+				height: "0rem",
+			});
+			gsap.to(imageContainerElement, {
+				opacity: 0,
+				duration: 0.4,
+				scale: 0,
+				x: currentX,
+				overwrite: true,
+			});
+		};
+
+		const handleMouseMove = (
+			e: MouseEvent | any,
+		) => {
+						const targetElement: any = e.currentTarget;
+
+			// project image dom manipulation //
+			const imageContainerElement =
+				targetElement?.querySelector(".image--container");
+			const imageSubElement = imageContainerElement.querySelector(
+				".image--sub--container"
+			);
+			const imageElement = imageSubElement.querySelector(".image");
+			// end project image dom manipulation //
+
+			// gsap.killTweensOf([
+			// 	e.target,
+			// 	imageElement,
+			// 	imageContainerElement,
+			// 	imageContainerElement,
+			// ]);
+
+			if (imageElement) {
+				let prevX = e.clientX;
+				const currentX =
+					e.clientX -
+					e.currentTarget.getBoundingClientRect().left -
+					e.currentTarget.offsetWidth / 2;
+
+				const currentY =
+					e.clientY -
+					e.currentTarget.getBoundingClientRect().top -
+					e.currentTarget.offsetHeight / 2;
+
+				const direction =
+					prevX >= prevMousePosition() ? "right" : "left";
+
+				const tiltAmount = direction === "right" ? 10 : -10;
+
+				gsap.to(imageContainerElement, {
+					// duration: 0.8,
+					x: currentX,
+					y: currentY,
+					// ease: "power1.out",
+					// rotation: tiltAmount,
+					// opacity: 0.9,
+					// zIndex: 1,
+					// boxShadow:
+					// "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
+					onComplete: () => {
+						// gsap.to(imageElement, {
+						// 	rotate: 0,
+						// 	ease: "power1.out",
+						// });
+					},
+				});
+				// setPreviousMousePosition(prevX);
+			}
 		};
 
 		Array.from(projectItemRef).forEach((item) => {
 			item.addEventListener("mouseenter", (e) => handleMouseEnter(e));
 			item.addEventListener("mouseleave", (e) => handleMouseLeave(e));
+			item.addEventListener("mousemove", (e) => handleMouseMove(e));
 		});
 
 		onCleanup(() => {
@@ -625,6 +352,9 @@ const Project: Component<{}> = () => {
 				);
 				item.removeEventListener("mouseleave", (e) =>
 					handleMouseLeave(e)
+				);
+				item.removeEventListener("mousemove", (e) =>
+					handleMouseMove(e)
 				);
 			});
 		});
@@ -647,23 +377,23 @@ const Project: Component<{}> = () => {
 								ref={(element) => projectItemRef.push(element)}
 								class="project--item"
 							>
-								{/* <Image
-									imageSrc={props?.image?.imageSrc}
-									imageAlt={props?.image?.imageAlt}
-									imageClass={props?.image?.imageClass}
-									imageContainerClass={
-										props?.image?.imageContainerClass
-									}
-									imageSubContainerClass={
-										props?.image?.imageSubContainerClass
-									}
-								/> */}
 								<a
 									href={`http://${props.link}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									class="project--item--link"
 								>
+									<Image
+										imageSrc={props?.image?.imageSrc}
+										imageAlt={props?.image?.imageAlt}
+										imageClass={props?.image?.imageClass}
+										imageContainerClass={
+											props?.image?.imageContainerClass
+										}
+										imageSubContainerClass={
+											props?.image?.imageSubContainerClass
+										}
+									/>
 									<div class="project--title--container">
 										<div class="project--title">
 											<For
@@ -726,6 +456,7 @@ const Project: Component<{}> = () => {
 											</div>
 										</div>
 									</div>
+									<div class="project--item--border"></div>
 								</a>
 							</div>
 						)}

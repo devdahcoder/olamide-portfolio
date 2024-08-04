@@ -33,22 +33,17 @@ function App() {
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
 			{/* <Slider /> */}
-			<About />
-			<Intro />
+			{/* <About />
+			<Intro /> */}
+			{/* <Slider /> */}
 			<Project />
+			<WorkFlow />
 			<Service />
-			<Playground />
+			{/* <Work /> */}
+
+			{/* <Playground /> */}
 			{/* <Stack /> */}
 			<Footer />
-			{/* Experience */}
-			{/* <Stack /> */}
-			{/* <Playground /> */}
-			{/* <AboutMe /> */}
-			{/* <WorkFlow /> */}
-			{/* <Stack /> */}
-			{/* <Card /> */}
-			{/* <Work /> */}
-			{/* <InfiniteTextScroll /> */}
 		</>
 	);
 }
