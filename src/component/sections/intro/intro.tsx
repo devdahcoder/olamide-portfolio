@@ -11,8 +11,7 @@ const Intro: Component<{}> = (props) => {
 				trigger: ".intro--container",
 				start: `top center`,
 				scrub: 1,
-				end: `+=900px`,
-				markers: true,
+				end: `+=800px`,
 				toggleActions: "play none none reverse",
 			},
 		});

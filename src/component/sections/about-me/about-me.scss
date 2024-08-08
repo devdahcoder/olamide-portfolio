@@ -2,8 +2,7 @@
 @use "../../../styles/variables";
 
 .about--me--container {
-    margin-bottom: 1rem;
-
+    padding-top: 7rem;
     .about--me--sub--container {
         @include mixins.flex--layout($direction: row,
             $align: start,
@@ -11,7 +10,7 @@
         @include mixins.center--section;
 
         .about--me--title--and--social--container {
-            width: 70%;
+            width: 48%;
             @include mixins.flex--layout($direction: column,
                 $align: start,
                 $justify: start);
@@ -33,34 +32,59 @@
                     $align: start,
                     $justify: start);
 
-                .about--me--social--title {
+                .about--me--social--title {}
 
-                }
-
-                .about--me--social--links--container {
-                }
-             }
+                .about--me--social--links--container {}
+            }
         }
 
-        .about--me--text--container {
+        .about--me--intro {
             width: 100%;
             @include mixins.flex--layout($direction: column,
-                $align: start,
-                $justify: start);
-            row-gap: 2.5rem;
+                $align: baseline,
+                $justify: baseline);
 
-            .about--me--text {
-                @include mixins.flex--layout($direction: column,
+            .about--me--header--container {
+                @include mixins.flex--layout($direction: row,
                     $align: start,
                     $justify: start);
-                font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                font-size: 2.3vw;
-                font-weight: 400;
-                color: hsl(0, 7%, 59%);
-                overflow: hidden;
 
-                span {
-                    color: variables.$tertiary--text--color;
+                .about--me--header--title {
+                    font-family: sans-serif;
+                    font-size: 7vw;
+                    color: hsl(0, 0%, 100%);
+                    font-weight: 600;
+                    overflow-x: hidden;
+
+                    .about--me--title--character {
+                        transform: translate(100%, 0%);
+                        font-family: Instrument Sans, -apple-system, Helvetica Neue,
+                            sans-serif;
+                    }
+                }
+            }
+
+            .about--me--text--container {
+                width: 100%;
+                @include mixins.flex--layout($direction: row,
+                    $align: start,
+                    $justify: start);
+                flex-wrap: wrap;
+                column-gap: 0.5rem;
+
+                .about--me--text {
+                    @include mixins.flex--layout($direction: column,
+                        $align: start,
+                        $justify: start);
+                    font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+                    font-size: 2.3vw;
+                    font-weight: 400;
+                    color: hsl(0, 7%, 59%);
+                    overflow: hidden;
+
+                    span {
+                        color: variables.$tertiary--text--color;
+                    }
                 }
             }
         }

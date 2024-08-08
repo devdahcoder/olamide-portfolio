@@ -215,6 +215,7 @@ const Project: Component<{}> = () => {
 				width: "100%",
 				height: "0.05rem",
 				duration: 0.4,
+				stagger: 0.04,
 				overwrite: true,
 			});
 			gsap.to(imageContainerElement, {
@@ -257,14 +258,14 @@ const Project: Component<{}> = () => {
 			});
 			gsap.to(firstTitleCharacterElements, {
 				yPercent: 0,
-				duration: 0.5,
-				stagger: 0.1,
+				duration: 0.4,
+				stagger: 0.04,
 				overwrite: true,
 			});
 			gsap.to(secondTitleCharacterElements, {
 				yPercent: 0,
-				duration: 0.5,
-				stagger: 0.1,
+				duration: 0.3,
+				stagger: 0.04,
 				overwrite: true,
 			});
 			gsap.to(borderElement, {

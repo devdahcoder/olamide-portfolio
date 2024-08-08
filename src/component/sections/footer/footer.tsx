@@ -15,12 +15,6 @@ const Footer: Component<{}> = () => {
 
 				<FooterHero />
 
-				{/* <IconButton
-					icon={<UpArrowIcon width="20" height="20" />}
-					iconButtonContainerClass="footer--back--to--top--hero--button--container"
-					iconButtonClass="footer--back--to--top--hero--button"
-				/> */}
-
 				<FooterBottom />
 			</div>
 		</div>

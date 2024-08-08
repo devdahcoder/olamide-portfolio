@@ -211,7 +211,6 @@
                         transform: translate(-50%, -50%);
                         opacity: 0;
                         backface-visibility: hidden;
-                        border: 1px solid white;
 
                         .image--sub--container {
                             @include mixins.image--sub--container(15rem, 20rem);
@@ -221,7 +220,7 @@
                             user-select: none;
 
                             .image {
-                                @include mixins.image($height: 15rem);
+                                @include mixins.image($height: 19rem);
                                 pointer-events: none;
                                 user-select: none;
                             }

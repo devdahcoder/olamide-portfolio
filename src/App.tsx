@@ -33,12 +33,17 @@ function App() {
 			/>
 			<Hero isNavigationOpen={isNavigationOpen()} />
 			{/* <Slider /> */}
-			{/* <About />
-			<Intro /> */}
+			{/* <AboutMe /> */}
+
+			{/* <About /> */}
+			{/* <Intro /> */}
 			{/* <Slider /> */}
-			<Project />
-			<WorkFlow />
-			<Service />
+			{/* <Project />
+			<div class=" py-44">
+				<About />
+				<Slider />
+			</div>
+			<Service /> */}
 			{/* <Work /> */}
 
 			{/* <Playground /> */}
