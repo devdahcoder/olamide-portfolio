@@ -2,7 +2,8 @@
 @use "../../../styles/variables";
 
 .service--container {
-    height: 1200px;
+    // height: 1200px;
+    padding: 10rem 0;
 
     .service--sub--container {
         @include mixins.flex--layout($direction: column,
@@ -68,7 +69,6 @@
                                 $justify: center);
 
                             .service--text {
-                                border: 1px solid wheat;
                                 overflow-y: hidden;
 
                             }

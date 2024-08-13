@@ -13,18 +13,24 @@
 }
 
 .footer--container {
-    min-height: 100vh;
-    height: 100%;
 
     .footer--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: normal,
             $justify: baseline);
+        min-height: 100vh;
+        height: 100%;
 
         .footer--header--container {
+            flex-basis: auto;
+
             .footer--header--sub--container {
                 @include mixins.flex--layout;
                 padding: 1rem 2rem;
+
+                @include mixins.responsive(xs) {
+                    padding: 1rem 1rem;
+                }
 
                 .footer--year--container {
                     .footer--year--sub--container {
@@ -55,7 +61,12 @@
         }
 
         .footer--hero--container {
+            @include mixins.flex--layout($direction: column,
+                $align: center,
+                $justify: center);
             padding: 5rem 0 3rem 0;
+            flex-basis: auto;
+            flex-grow: 1;
 
             .footer--hero--sub--container {
                 @include mixins.center--section;
@@ -76,6 +87,11 @@
                     text-transform: uppercase;
                     line-height: 7rem;
                     color: variables.$primary--text--color;
+
+                    @include mixins.responsive(xs) {
+                        font-size: 5rem;
+                        line-height: 5rem;
+                    }
                 }
 
                 .footer--hero--email--container {
@@ -118,8 +134,8 @@
                         border-radius: 100vh;
                         margin-top: 0.5rem;
                         visibility: hidden;
-						transform: translate(0, 30%);
-						opacity: 0;
+                        transform: translate(0, 30%);
+                        opacity: 0;
                     }
                 }
             }
@@ -128,6 +144,7 @@
         .footer--back--to--top--hero--button--container {
             @include mixins.center--element;
             padding: 1.5rem 0;
+            flex-basis: auto;
 
             .footer--back--to--top--hero--button {
                 @include mixins.button;
@@ -140,8 +157,17 @@
         }
 
         .footer--bottom--container {
+            flex-basis: auto;
+            border: 1px solid white;
+
             .footer--bottom--sub--container {
                 @include mixins.flex--layout;
+
+                @include mixins.responsive(mdx) {
+                    display: flex;
+                    flex-direction: column;
+                }
+
                 padding: 1rem 2rem;
 
                 .footer--credit--container {
@@ -169,11 +195,23 @@
                 }
 
                 .footer--social--media--container {
+                    @include mixins.responsive(xs) {
+                        width: 100%;
+                    }
+
                     .footer--social--media--sub--container {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
+                        @include mixins.flex--layout($direction: row,
+                            $align: center,
+                            $justify: baseline);
                         column-gap: 0.7rem;
+
+                        @include mixins.responsive(xs) {
+                            @include mixins.flex--layout($direction: column,
+                                $align: center,
+                                $justify: baseline);
+                            width: 100%;
+                            row-gap: 1rem;
+                        }
 
                         .footer--social--media--item {
                             @include mixins.flex--layout($direction: row,
@@ -184,6 +222,10 @@
                             border-radius: 100vh;
                             position: relative;
                             overflow: hidden;
+
+                            @include mixins.responsive(xs) {
+                                width: 100%;
+                            }
 
                             a {
                                 font-family: Satoshi, -apple-system,

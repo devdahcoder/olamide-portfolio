@@ -8,6 +8,7 @@
 @mixin center--section($width: 90%) {
     width: $width;
     margin: 0 auto;
+
 }
 
 @mixin flex--layout($direction: row, $align: center, $justify: space-between) {
@@ -97,4 +98,48 @@
     cursor: $cursor;
     color: $color;
     font-size: $font-size;
+}
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint==xl {
+        @media only screen and (max-width: 1440px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==lg {
+        @media only screen and (max-width: 1200px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==md {
+        @media only screen and (max-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==mdx {
+        @media only screen and (max-width: 900px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==sm {
+        @media only screen and (max-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==xs {
+        @media only screen and (max-width: 576px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==xxs {
+        @media only screen and (max-width: 375px) {
+            @content;
+        }
+    }
 }

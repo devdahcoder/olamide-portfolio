@@ -10,7 +10,7 @@
         @include mixins.center--section;
 
         .about--me--title--and--social--container {
-            width: 48%;
+            width: 60%;
             @include mixins.flex--layout($direction: column,
                 $align: start,
                 $justify: start);

@@ -1,15 +1,13 @@
 import gsap from "gsap";
 import {
 	Component,
-	Show,
 	createEffect,
-	createSignal,
 	onCleanup,
 } from "solid-js";
 import "./footer.scss";
 
 const FooterHero: Component<{}> = (props) => {
-	let emailRef: HTMLAnchorElement | any;
+	let emailRef: HTMLAnchorElement | undefined;
 	let emailContainerRef: HTMLDivElement | undefined;
 
 	const handleMouseOverOutAnimation = (show: boolean) => {
@@ -52,14 +50,6 @@ const FooterHero: Component<{}> = (props) => {
 		}
 	};
 
-	const handleCopyEmail = async () => {
-		try {
-			await navigator.clipboard.writeText(emailRef.text);
-		} catch (err) {
-			console.log("Failed to copy");
-		}
-	};
-
 	createEffect(() => {
 		if (!emailRef) return;
 
@@ -83,9 +73,6 @@ const FooterHero: Component<{}> = (props) => {
 			});
 		};
 		const handleMouseLeave = (e: MouseEvent) => {
-			const targetElement = e.currentTarget
-				? (e.currentTarget as HTMLAnchorElement)
-				: null;
 			const emailButtonElement: HTMLDivElement =
 				emailContainerRef?.querySelector(
 					".footer--email--copy--button"
