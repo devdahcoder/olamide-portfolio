@@ -11,7 +11,7 @@ const Experience: Component<{}> = () => {
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".experience--container",
-				start: `top top`,
+				start: `top 20%`,
 				scrub: 1,
 				// pin: true,
 				end: `bottom bottom`,
@@ -20,7 +20,7 @@ const Experience: Component<{}> = () => {
 		});
 
 		tl.to(".experience--header--title", {
-			scale: 0.8,
+			scale: 0.3,
 			opacity: 0,
 			duration: 1,
 			position: "sticky",
@@ -34,10 +34,22 @@ const Experience: Component<{}> = () => {
 					scrub: 1,
 					pin: true,
 					end: `bottom bottom`,
-					markers: true,
+					// markers: true,
 					// toggleActions: "play none none reverse",
 				},
-			}).to(element, { opacity: 0 });
+			}).to(
+				element,
+				{
+					opacity: 0,
+					delay: 0,
+					scale: 0.8,
+					y: 50,
+					x: 100,
+					skewX: "10deg",
+					duration: 1,
+				},
+				"<"
+			);
 		});
 	});
 	return (
