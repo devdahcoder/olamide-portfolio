@@ -98,3 +98,9 @@ export type PlaygroundType = {
     link: string;
     tools: string[]
 }
+
+export type ExperienceType = {
+    id: number;
+    title: string;
+    description: string;
+}

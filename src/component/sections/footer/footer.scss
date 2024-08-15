@@ -158,17 +158,16 @@
 
         .footer--bottom--container {
             flex-basis: auto;
-            border: 1px solid white;
 
             .footer--bottom--sub--container {
                 @include mixins.flex--layout;
+                padding: 1rem 2rem;
 
                 @include mixins.responsive(mdx) {
                     display: flex;
                     flex-direction: column;
-                }
 
-                padding: 1rem 2rem;
+                }
 
                 .footer--credit--container {
                     display: flex;
@@ -210,7 +209,7 @@
                                 $align: center,
                                 $justify: baseline);
                             width: 100%;
-                            row-gap: 1rem;
+                            row-gap: 1.5rem;
                         }
 
                         .footer--social--media--item {
@@ -243,6 +242,10 @@
                                 font-weight: 300;
                                 letter-spacing: 0.07rem;
                                 border-radius: 100vh;
+
+                                @include mixins.responsive(xs) {
+                                    padding: 1rem 1.4rem;
+                                }
                             }
 
                             .secondary--social--media--link {

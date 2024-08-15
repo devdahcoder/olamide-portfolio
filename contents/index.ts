@@ -2,7 +2,7 @@ import { NAVIGATION_TYPE } from "../enum";
 import BigStarIcon from '../icon/big-star-icon';
 import LoveIcon from '../icon/love-icon';
 import SmallStartIcon from '../icon/small-star-icon';
-import { HeaderLinkType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { ExperienceType, HeaderLinkType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -313,5 +313,38 @@ export const playgroundContent: PlaygroundType[] = [
         description: "This is project 6",
         link: "XXXXXXXXXXXXXXXXXXXXXXXX",
         tools: ["Reactjs", "TypeScript", "Html", "Css"]
+    },
+]
+
+export const experienceContent: ExperienceType[] = [
+    {
+        id: 1,
+        title: "Discovery",
+        description: "In this initial phase, the goal is to identify your user's pain points and business goals. I gather valuable insights and specific needs that will direct the design process and establish guides for subsequent steps.",
+    },
+    {
+        id: 2,
+        title: "Research",
+        description: "Then I analyze the clear project goals and how they can be achieved. I conduct user research through surveys, competitor analysis, industry trends, and recent design concepts.",
+    },
+    // {
+    //     id: 3,
+    //     title: "Ideation",
+    //     description: "In this initial phase, the goal is to identify your user's pain points and business goals. I gather valuable insights and specific needs that will direct the design process and establish guides for subsequent steps.",
+    // },
+    {
+        id: 3,
+        title: "Development",
+        description: "Afterward, I translate the approved design into a functional product ensuring responsiveness, accessibility, and functionality brining your project to life. ",
+    },
+    {
+        id: 4,
+        title: "Testing",
+        description: "Successively, I conduct usability testing across screen sizes for effective display and functionality and iterate based on the findings.",
+    },
+    {
+        id: 5,
+        title: "Maintenance",
+        description: "Once the product is launched, I provide support to ensure the website continuously meet user needs and business goal.",
     },
 ]

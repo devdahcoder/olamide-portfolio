@@ -18,6 +18,7 @@ import AboutMe from "./component/sections/about-me/about-me";
 import Intro from "./component/sections/intro/intro";
 import Slider from "./component/slider";
 import Playground from "./component/sections/playground/playground";
+import Experience from "./component/sections/experience/experience";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -31,23 +32,17 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
+
 			<Hero isNavigationOpen={isNavigationOpen()} />
-			{/* <Slider /> */}
 			<AboutMe />
 			<Intro />
-			{/* <About /> */}
-
-			{/* <Slider /> */}
 			<Project />
 			<div class=" py-44">
 				<About />
 				<Slider />
 			</div>
+			<Experience />
 			<Service />
-			{/* <Work /> */}
-
-			{/* <Playground /> */}
-			{/* <Stack /> */}
 			<Footer />
 		</>
 	);
