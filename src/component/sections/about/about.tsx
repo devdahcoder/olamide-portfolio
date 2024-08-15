@@ -7,7 +7,7 @@ import { QuoteApiType } from "../../../../types";
 gsap.registerPlugin(ScrollTrigger);
 
 const About: Component<{}> = () => {
-	const [quote, setQuote] = createSignal<QuoteApiType>({
+	const [quote] = createSignal<QuoteApiType>({
 		author: "Olamide Adigun",
 		category: "programming",
 		quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",

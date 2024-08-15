@@ -6,7 +6,7 @@ import {
 } from "solid-js";
 import "./footer.scss";
 
-const FooterHero: Component<{}> = (props) => {
+const FooterHero: Component<{}> = () => {
 	let emailRef: HTMLAnchorElement | undefined;
 	let emailContainerRef: HTMLDivElement | undefined;
 

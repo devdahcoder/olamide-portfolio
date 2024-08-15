@@ -1,8 +1,45 @@
-import { Component, For } from "solid-js";
+import { Component, createEffect, For } from "solid-js";
 import "./experience.scss";
 import { experienceContent } from "../../../../contents";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
-const Experience: Component<{}> = (props) => {
+const Experience: Component<{}> = () => {
+	const experienceElementRef: HTMLDivElement[] = [];
+	createEffect(() => {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".experience--container",
+				start: `top top`,
+				scrub: 1,
+				// pin: true,
+				end: `bottom bottom`,
+				// toggleActions: "play none none reverse",
+			},
+		});
+
+		tl.to(".experience--header--title", {
+			scale: 0.8,
+			opacity: 0,
+			duration: 1,
+			position: "sticky",
+		});
+
+		experienceElementRef.forEach((element, index) => {
+			gsap.timeline({
+				scrollTrigger: {
+					trigger: element,
+					start: `top 30%`,
+					scrub: 1,
+					pin: true,
+					end: `bottom bottom`,
+					markers: true,
+					// toggleActions: "play none none reverse",
+				},
+			}).to(element, { opacity: 0 });
+		});
+	});
 	return (
 		<div class="experience--container">
 			<div class="experience--sub--container">
@@ -17,8 +54,13 @@ const Experience: Component<{}> = (props) => {
 
 				<div class="experience--list">
 					<For each={experienceContent}>
-						{(experience, index) => (
-							<div class="experience--item">
+						{(experience) => (
+							<div
+								ref={(element) =>
+									experienceElementRef.push(element)
+								}
+								class="experience--item"
+							>
 								<div class="experience--title">
 									<div class="text-base">
 										<span>0{experience?.id}.</span>

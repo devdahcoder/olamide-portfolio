@@ -1,6 +1,5 @@
 import { Component, createEffect, For } from "solid-js";
 import "./about-me.scss";
-import Arrow from "../../../../public/icon/arrow";
 import ParallaxCharacter from "../../parallax-character";
 import SectionHeader from "../../section-header";
 import { elementObserver } from "../../../../hooks";
@@ -8,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutMe: Component<{}> = (props) => {
+const AboutMe: Component<{}> = () => {
 		const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let aboutMeSectionRefElement: HTMLDivElement | undefined;
@@ -30,10 +29,18 @@ const AboutMe: Component<{}> = (props) => {
 		);
 	};
 
+	const animateHeaderImage = () => {
+		gsap.fromTo(".image--sub--container", {
+			x: -100,
+			opacity: 0
+		}, {x: 0, opacity: 1, duration: 1});
+	}
+
 	createEffect(() => {
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting) {
 				animateHeaderText();
+				animateHeaderImage();
 				observer.unobserve(entry.target);
 			}
 		});
@@ -64,7 +71,19 @@ const AboutMe: Component<{}> = (props) => {
 		<div ref={aboutMeSectionRefElement} class="about--me--container">
 			<div class="about--me--sub--container">
 				<div class="about--me--title--and--social--container">
-					<div class="about--me--title"></div>
+					<div class="image--container">
+						<div class="image--sub--container">
+							<img
+								src={`/images/pexels-mabble.jpg`}
+								alt=""
+								sizes=""
+								srcset=""
+								class="image"
+							/>
+							<div class="image--shadow"></div>
+
+						</div>
+					</div>
 				</div>
 
 				<div class="about--me--intro">
@@ -99,17 +118,6 @@ const AboutMe: Component<{}> = (props) => {
 								/>
 							)}
 						</For>
-
-						{/* <div class="about--me--text">
-						<p>
-							I'm eager for new challenges and collaborations, so
-							whether you're a fellow developer, potential client,
-							or someone with a great idea, let's connect and
-							create something amazing. Explore my work and .
-							Excited for the next chapter of innovation and
-							creativity!
-						</p>
-					</div> */}
 					</div>
 				</div>
 			</div>

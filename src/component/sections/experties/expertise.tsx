@@ -1,6 +1,6 @@
 import { Component } from "solid-js";
 
-const Expertise: Component<{}> = (props) => {
+const Expertise: Component<{}> = () => {
 	return (
 		<div class="">
 			<div class=""></div>

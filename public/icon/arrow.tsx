@@ -14,7 +14,7 @@ const Arrow: Component<SvgIconProps> = ({
 }) => {
 	return (
 		<svg
-			className={className}
+			class={className}
 			width={width}
 			height={height}
 			viewBox={`0 0 ${width} ${height}`}
@@ -25,16 +25,16 @@ const Arrow: Component<SvgIconProps> = ({
 			<path
 				d="M20 12L4 12"
 				stroke="currentColor"
-				strokeWidth={1.5}
-				strokeLinecap="round"
-				strokeLinejoin="round"
+				stroke-width={1.5}
+				stroke-linecap="round"
+				stroke-linejoin="round"
 			/>
 			<path
 				d="M15 17C15 17 20 13.3176 20 12C20 10.6824 15 7 15 7"
 				stroke="currentColor"
-				strokeWidth={1.5}
-				strokeLinecap="round"
-				strokeLinejoin="round"
+				stroke-width={1.5}
+				stroke-linecap="round"
+				stroke-linejoin="round"
 			/>
 		</svg>
 	);

@@ -3,6 +3,7 @@
 
 .intro--container {
     height: 900px;
+    margin-top: 5rem;
     .intro--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: baseline,
