@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, Setter, createEffect, onCleanup } from "solid-js";
-import { elementObserver } from "../../../../hooks";
+import { elementObserver, useIsLoadedStateHook, usePercentageLoaderHook } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
 import "./header.scss";
@@ -8,6 +8,7 @@ import "./header.scss";
 const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
+	isLoadedComplete: Accessor<boolean>;
 }> = (props) => {
 	let headerSectionRef: HTMLDivElement | any;
 	let resumeLinkRefElement: HTMLAnchorElement;
@@ -79,9 +80,13 @@ const Header: Component<{
 	});
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(headerSectionRef, (entry, observer) => {
-			if (entry.isIntersecting) {animateHeaderSubContainer(); observer.unobserve(entry.target);}
-			
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
+				animateHeaderSubContainer();
+
+				observer.unobserve(entry.target);
+			}
 		});
 	});
 
@@ -163,10 +168,11 @@ const Header: Component<{
 				duration: 0.3,
 				overwrite: true,
 			});
-			gsap.to(
-				targetFirstLinkElementText,
-				{ yPercent: -5, ease: "back.out(3)", delay: 0.2 }
-			);
+			gsap.to(targetFirstLinkElementText, {
+				yPercent: -5,
+				ease: "back.out(3)",
+				delay: 0.2,
+			});
 
 			gsap.to(targetSecondLinkElementText, { yPercent: 10 });
 		};
@@ -202,7 +208,7 @@ const Header: Component<{
 							target="_blank"
 							rel="noopener noreferrer"
 							class="header--resume--link"
-							ref={(e) => resumeLinkRefElement = e}
+							ref={(e) => (resumeLinkRefElement = e)}
 						>
 							<div class="header--resume--link--container">
 								<div class="header--resume--link--text--container">

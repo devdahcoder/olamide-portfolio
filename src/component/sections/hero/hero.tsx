@@ -1,13 +1,16 @@
 import gsap from "gsap";
 import ParallaxCharacter from "../../parallax-character";
 import StarIcon from "../../../../public/icon/star-icon";
-import { Component, createEffect, createSignal, For } from "solid-js";
-import { elementObserver } from "../../../../hooks";
+import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
+import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./hero.scss";
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
+const Hero: Component<{
+	isNavigationOpen: boolean;
+	isLoadedComplete: Accessor<boolean>;
+}> = (props) => {
 	const [name] = createSignal<string>("Adigun Olamide");
 	const [skills] = createSignal<string[]>([
 		"Java",
@@ -24,6 +27,7 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
+
 	const animateHeroMainParallaxCharacter = () => {
 		gsap.fromTo(
 			".hero--main--text",
@@ -92,20 +96,21 @@ const Hero: Component<{ isNavigationOpen: boolean }> = (props) => {
 	};
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(heroRefSection, (entry, observer) => {
-			if (entry.isIntersecting) {
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeroMainParallaxCharacter();
 				animateSubHeroParallaxCharacter();
 				animateHeroIntroExpertiseParallaxCharacter();
 				animateHeroSkills();
 				animateHeroLink();
+				observer.unobserve(entry.target);
 			}
-			observer.unobserve(entry.target);
 		});
 	});
 
 	return (
-		<div ref={heroRefSection} class="hero--main--container">
+		<div ref={heroRefSection} class=" hero--main--container">
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
 					<div class="hero--text--container">

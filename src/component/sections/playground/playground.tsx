@@ -1,12 +1,14 @@
-import { Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For } from "solid-js";
 import "./playground.scss";
 import { playgroundContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
-import { elementObserver } from "../../../../hooks";
+import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import gsap from "gsap";
 import SectionHeader from "../../section-header";
 
-const Playground: Component<{}> = (props) => {
+const Playground: Component<{ isLoadedComplete: Accessor<boolean> }> = (
+	props
+) => {
 	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let playgroundSectionRefElement: HTMLDivElement | undefined;
 
@@ -29,8 +31,9 @@ const Playground: Component<{}> = (props) => {
 	};
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(playgroundSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting) {
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeaderText();
 				observer.unobserve(entry.target);
 			}

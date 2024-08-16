@@ -40,6 +40,7 @@
                 border-radius: 100vh;
 
             }
+
             // animation: autoRun 5s linear infinite;
             // animation-delay: calc(5s / var(--quantity) * (var(--position) - 1));
 
@@ -53,5 +54,45 @@
             //     }
             // }
         }
+    }
+}
+
+.loader--container {
+    background-color: hsl(0, 0%, 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 50;
+    transform: translate(0%, 0%);
+    @include mixins.center--element($direction: column);
+
+    .loader--cover {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        z-index: 50;
+        background-color: hsl(0, 0%, 0%);
+        transform: translate(0%, -100%);
+    }
+
+    .loader--grid--container {
+        width: 100vw;
+        height: 100vh;
+        z-index: 30;
+        visibility: hidden;
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+
+        .loader--grid {
+            width: 100%;
+            height: 100vh;
+            transform: translate(0%, -100%);
+            background-color: rgba(80, 83, 81, 0.864);
+            opacity: 0;
+        }
+
     }
 }

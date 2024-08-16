@@ -1,14 +1,14 @@
-import { Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For } from "solid-js";
 import "./about-me.scss";
 import ParallaxCharacter from "../../parallax-character";
 import SectionHeader from "../../section-header";
-import { elementObserver } from "../../../../hooks";
+import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutMe: Component<{}> = () => {
-		const parallaxCharacterElement: HTMLDivElement[][] = [];
+const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
+	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let aboutMeSectionRefElement: HTMLDivElement | undefined;
 
@@ -30,15 +30,20 @@ const AboutMe: Component<{}> = () => {
 	};
 
 	const animateHeaderImage = () => {
-		gsap.fromTo(".image--sub--container", {
-			x: -100,
-			opacity: 0
-		}, {x: 0, opacity: 1, duration: 1});
-	}
+		gsap.fromTo(
+			".image--sub--container",
+			{
+				x: -100,
+				opacity: 0,
+			},
+			{ x: 0, opacity: 1, duration: 1 }
+		);
+	};
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting) {
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeaderText();
 				animateHeaderImage();
 				observer.unobserve(entry.target);
@@ -64,7 +69,6 @@ const AboutMe: Component<{}> = () => {
 				stagger: 1.2,
 			}
 		);
-
 	});
 
 	return (
@@ -81,7 +85,6 @@ const AboutMe: Component<{}> = () => {
 								class="image"
 							/>
 							<div class="image--shadow"></div>
-
 						</div>
 					</div>
 				</div>

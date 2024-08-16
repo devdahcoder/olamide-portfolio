@@ -1,8 +1,8 @@
-import { Component, createEffect, createSignal, For } from "solid-js";
+import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import "./service.scss";
 import { serviceContent } from "../../../../contents";
 import SectionHeader from "../../section-header";
-import { elementObserver } from "../../../../hooks";
+import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import gsap from "gsap";
 import ParallaxCharacter from "../../parallax-character";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,10 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 type Props = {};
 
-const Service: Component<Props> = (props) => {
+const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let serviceSectionRefElement: HTMLDivElement | undefined;
+
 
 	const [images, setImages] = createSignal<string[]>([
 		"images/box-1.svg",
@@ -40,8 +41,9 @@ const Service: Component<Props> = (props) => {
 	};
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(serviceSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting) {
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeaderText();
 				observer.unobserve(entry.target);
 			}
@@ -71,15 +73,20 @@ const Service: Component<Props> = (props) => {
 			}
 		);
 
-		tl.fromTo(".service--image", {
-			opacity: 0.4,
-			scale: 0.5
-		}, {
-			opacity: 1,
-			scale: 1,
-			duration: 1,
-			ease: "power3.out",
-		}, "-=0.9");
+		tl.fromTo(
+			".service--image",
+			{
+				opacity: 0.4,
+				scale: 0.5,
+			},
+			{
+				opacity: 1,
+				scale: 1,
+				duration: 1,
+				ease: "power3.out",
+			},
+			"-=0.9"
+		);
 	});
 
 	return (

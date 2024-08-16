@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animate } from "motion";
 import {
+	Accessor,
 	Component,
 	For,
 	Show,
@@ -17,11 +18,11 @@ import "./project.scss";
 import ParallaxCharacter from "../../parallax-character";
 import DoubleArrowIcon from "../../../../public/icon/double-arrow-icon";
 import { DOMElement } from "solid-js/jsx-runtime";
-import { elementObserver } from "../../../../hooks";
+import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
-const Project: Component<{}> = () => {
+const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let projectItemRef: HTMLDivElement[] = [];
 	let projectSectionRefElement: HTMLDivElement | undefined;
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
@@ -159,8 +160,9 @@ const Project: Component<{}> = () => {
 	};
 
 	createEffect(() => {
+		props?.isLoadedComplete();
 		elementObserver(projectSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting) {
+			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeaderText();
 				observer.unobserve(entry.target);
 			}
@@ -224,7 +226,6 @@ const Project: Component<{}> = () => {
 				scale: 1,
 				x: currentX,
 				overwrite: true,
-				
 			});
 		};
 
@@ -281,10 +282,8 @@ const Project: Component<{}> = () => {
 			});
 		};
 
-		const handleMouseMove = (
-			e: MouseEvent | any,
-		) => {
-						const targetElement: any = e.currentTarget;
+		const handleMouseMove = (e: MouseEvent | any) => {
+			const targetElement: any = e.currentTarget;
 
 			// project image dom manipulation //
 			const imageContainerElement =

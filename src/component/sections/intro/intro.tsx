@@ -1,10 +1,10 @@
-import { Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For } from "solid-js";
 import "./intro.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const Intro: Component<{}> = (props) => {
+const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	createEffect(() => {
 		const tl = gsap.timeline({
 			scrollTrigger: {
