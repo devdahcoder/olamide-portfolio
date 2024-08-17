@@ -1,5 +1,4 @@
 {
-	"extends": ["development"],
 	"rules": {
 		"no-unused-vars": "off"
 	}

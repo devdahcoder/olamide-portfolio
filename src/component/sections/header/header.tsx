@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, Setter, createEffect, onCleanup } from "solid-js";
-import { elementObserver, useIsLoadedStateHook, usePercentageLoaderHook } from "../../../../hooks";
+import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 import Button from "../../button";
 import "./header.scss";

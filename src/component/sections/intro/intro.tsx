@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
+const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 	createEffect(() => {
 		const tl = gsap.timeline({
 			scrollTrigger: {
@@ -36,7 +36,6 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				start: `top bottom`,
 				scrub: 1,
 				end: `bottom center`,
-				markers: true,
 				toggleActions: "play none none reverse",
 			},
 			duration: 1,

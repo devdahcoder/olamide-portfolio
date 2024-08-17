@@ -26,7 +26,7 @@ const Experience: Component<{}> = () => {
 			position: "sticky",
 		});
 
-		experienceElementRef.forEach((element, index) => {
+		experienceElementRef.forEach((element, _index) => {
 			gsap.timeline({
 				scrollTrigger: {
 					trigger: element,

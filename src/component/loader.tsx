@@ -1,6 +1,6 @@
 import { Accessor, Component, createEffect, For, Setter } from "solid-js";
 import gsap from "gsap";
-import { useIsLoadedStateHook, usePercentageLoaderHook } from "../../hooks";
+import { usePercentageLoaderHook } from "../../hooks";
 import "./component.scss";
 
 const Loader: Component<{

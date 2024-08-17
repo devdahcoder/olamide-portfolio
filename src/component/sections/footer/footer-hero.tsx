@@ -10,53 +10,50 @@ const FooterHero: Component<{}> = () => {
 	let emailRef: HTMLAnchorElement | undefined;
 	let emailContainerRef: HTMLDivElement | undefined;
 
-	const handleMouseOverOutAnimation = (show: boolean) => {
-		const element = ".footer--email--copy--button";
-		const yHidden = 30;
-		const yVisible = 0;
+	// const handleMouseOverOutAnimation = (show: boolean) => {
+	// 	const element = ".footer--email--copy--button";
+	// 	const yHidden = 30;
+	// 	const yVisible = 0;
 
-		if (show) {
-			gsap.fromTo(
-				element,
-				{
-					visibility: "hidden",
-					opacity: 0,
-					y: yHidden,
-				},
-				{
-					visibility: "visible",
-					opacity: 1,
-					y: yVisible,
-					duration: 1,
-					ease: "power4.out",
-				}
-			);
-		} else {
-			gsap.fromTo(
-				element,
-				{
-					visibility: "visible",
-					opacity: 1,
-					y: yVisible,
-				},
-				{
-					visibility: "visible",
-					opacity: 0,
-					y: yHidden,
-					duration: 1,
-					ease: "power4.out",
-				}
-			);
-		}
-	};
+	// 	if (show) {
+	// 		gsap.fromTo(
+	// 			element,
+	// 			{
+	// 				visibility: "hidden",
+	// 				opacity: 0,
+	// 				y: yHidden,
+	// 			},
+	// 			{
+	// 				visibility: "visible",
+	// 				opacity: 1,
+	// 				y: yVisible,
+	// 				duration: 1,
+	// 				ease: "power4.out",
+	// 			}
+	// 		);
+	// 	} else {
+	// 		gsap.fromTo(
+	// 			element,
+	// 			{
+	// 				visibility: "visible",
+	// 				opacity: 1,
+	// 				y: yVisible,
+	// 			},
+	// 			{
+	// 				visibility: "visible",
+	// 				opacity: 0,
+	// 				y: yHidden,
+	// 				duration: 1,
+	// 				ease: "power4.out",
+	// 			}
+	// 		);
+	// 	}
+	// };
 
 	createEffect(() => {
 		if (!emailRef) return;
 
 		const handleMouseEnter = (e: MouseEvent) => {
-			const targetElement = e.currentTarget
-				? (e.currentTarget as HTMLAnchorElement)
-				: null;
 			const emailButtonElement: HTMLDivElement =
 				emailContainerRef?.querySelector(
 					".footer--email--copy--button"

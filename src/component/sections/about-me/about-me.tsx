@@ -2,7 +2,7 @@ import { Accessor, Component, createEffect, For } from "solid-js";
 import "./about-me.scss";
 import ParallaxCharacter from "../../parallax-character";
 import SectionHeader from "../../section-header";
-import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
+import { elementObserver } from "../../../../hooks";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);

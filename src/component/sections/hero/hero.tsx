@@ -2,7 +2,7 @@ import gsap from "gsap";
 import ParallaxCharacter from "../../parallax-character";
 import StarIcon from "../../../../public/icon/star-icon";
 import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
-import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
+import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./hero.scss";
 gsap.registerPlugin(ScrollTrigger);
