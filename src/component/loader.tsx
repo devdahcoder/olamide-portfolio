@@ -4,6 +4,7 @@ import {
 	createEffect,
 	createSignal,
 	For,
+	JSX,
 	Setter,
 } from "solid-js";
 import gsap from "gsap";
@@ -17,7 +18,6 @@ const Loader: Component<{
 	let container: any = null;
 	const { isLoaded, loadingPercentage } = usePercentageLoaderHook();
 	const [firstCount, setFirstCount] = createSignal<string>("0");
-	const firstPercentageCountRefElement: HTMLDivElement[] = [];
 	const [prevFirstCount, setPrevFirstCount] = createSignal("0");
 
 	createEffect(() => {
@@ -65,6 +65,7 @@ const Loader: Component<{
 			gsap.to(`.percentage--number--0`, {
 				yPercent: -100,
 				duration: 0.4,
+				scale: 0.6,
 				ease: "power1.out",
 			});
 		}
@@ -102,6 +103,7 @@ const Loader: Component<{
 				ease: "power1.inOut",
 			}).to(`.percentage--number--${currentDigit}`, {
 				yPercent: -200,
+				scale: 0.6,
 				duration: 0.5,
 				ease: "power1.inOut",
 			});
@@ -114,7 +116,6 @@ const Loader: Component<{
 				ease: "power1.inOut",
 			});
 		}
-
 	});
 
 	return (
@@ -129,88 +130,93 @@ const Loader: Component<{
 
 			<div class={`loader--percentage--container`}>
 				<div class="loader--percentage--sub--container absolute left-0 bottom-0 -translate-x-0 -translate-y-0">
-					<div class="loader--percentage--number--container overflow-y-hidden  relative">
+					<div class="loader--percentage--number--container">
+						<div class="loader--top--shadow"></div>
 						{
 							<For each={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}>
-								{(digit, index) => (
-									<div
-										tabIndex={digit}
-										ref={(element: HTMLDivElement) =>
-											(firstPercentageCountRefElement[
-												digit
-											] = element)
-										}
-										style={{
+								{(digit) => (
+									<LoaderPercentageContainer
+										styles={{
 											transform: `${
 												digit === 0
 													? "translate(0px, 0%)"
 													: "translate(0px, 100%)"
 											}`,
-
 											"z-index": `${digit}`,
 											position: "absolute",
 										}}
-										class={`loader--percentage--number first--loader--percentage--number percentage--number--${digit}`}
-									>
-										<p class="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk">
-											{digit === 10
+										containerClass={`loader--percentage--number first--loader--percentage--number percentage--number--${digit}`}
+										childClass="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk"
+										value={
+											digit === 10
 												? digit.toString()[0]
-												: digit}
-										</p>
-									</div>
+												: digit
+										}
+									/>
 								)}
 							</For>
 						}
+						<div class="loader--bottom--shadow"></div>
 					</div>
-					<div class="loader--percentage--number--container overflow-y-hidden  relative">
-						<p class="percentage--count percentage--count--2 text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk ">
-							{loadingPercentage() < 10
+					<LoaderPercentageContainer
+						containerClass="loader--percentage--number--container"
+						childClass="percentage--count percentage--count--2 text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk "
+						value={
+							loadingPercentage() < 10
 								? loadingPercentage().toString().split("")[0]
-								: loadingPercentage().toString().split("")[1]}
-						</p>
-					</div>
-					<div class="loader--percentage--number--container overflow-y-hidden  relative">
-						<div
-							style={{
+								: loadingPercentage().toString().split("")[1]
+						}
+					/>
+					<div class="loader--percentage--number--container">
+						<LoaderPercentageContainer
+							styles={{
 								transform: `${"translate(0px, 0%)"}`,
 								"z-index": `20`,
 								position: "absolute",
 							}}
-							class={`loader--percentage--sign first--loader--percentage--sign`}
-						>
-							<p class="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk">
-								%
-							</p>
-						</div>
-						<div
-							style={{
+							containerClass="loader--percentage--sign first--loader--percentage--sign"
+							childClass="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk"
+							value="%"
+						/>
+
+						<LoaderPercentageContainer
+							styles={{
 								transform: `${"translate(0px, 100%)"}`,
 								"z-index": `10`,
 								position: "absolute",
 							}}
-							class={`loader--percentage--number third--loader--percentage--number`}
-						>
-							<p class="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk">
-								0
-							</p>
-						</div>
+							containerClass="loader--percentage--number third--loader--percentage--number"
+							childClass="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk"
+							value="0"
+						/>
 					</div>
-					<div class="loader--percentage--number--container overflow-y-hidden  relative">
-						<div
-							style={{
+					<div class="loader--percentage--number--container">
+						<LoaderPercentageContainer
+							styles={{
 								transform: `${"translate(0px, -100%)"}`,
 								"z-index": `20`,
 								position: "absolute",
 							}}
-							class={`loader--percentage--sign second--loader--percentage--sign`}
-						>
-							<p class="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk">
-								%
-							</p>
-						</div>
+							containerClass="loader--percentage--sign second--loader--percentage--sign"
+							childClass="percentage--count text-black text-9xl lg:text-[15rem] font-medium font-cabinetgrotesk"
+							value="%"
+						/>
 					</div>
 				</div>
 			</div>
+		</div>
+	);
+};
+
+const LoaderPercentageContainer: Component<{
+	styles?: JSX.CSSProperties;
+	containerClass?: string;
+	childClass?: string;
+	value?: string | number;
+}> = (props) => {
+	return (
+		<div style={{ ...props?.styles }} class={` ${props?.containerClass}`}>
+			<p class={`${props?.childClass}`}>{props?.value}</p>
 		</div>
 	);
 };

@@ -109,6 +109,7 @@
             overflow: hidden;
 
             .loader--percentage--number--container {
+                position: relative;
                 @include mixins.flex--layout($direction: column,
                     $align: center,
                     $justify: start);
@@ -118,6 +119,18 @@
                 overflow-x: hidden;
                 row-gap: 0;
                 column-gap: 0;
+
+                .loader--bottom--shadow {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    z-index: 10;
+                    -webkit-mask-image: linear-gradient(transparent, hsl(0, 10%, 94%) 85%);
+                    mask-image: linear-gradient(transparent, hsl(0, 10%, 94%) 85%);
+                    background-color: hsl(0, 0%, 100%);
+                    transform: translate(0px, 0px);
+                    height: 180px;
+                }
             }
         }
     }
