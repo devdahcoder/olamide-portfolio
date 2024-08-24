@@ -8,6 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview"
 	},
+	// tsc && 
 	"dependencies": {
 		"gsap": "^3.12.5",
 		"motion": "^10.16.4",

@@ -8,7 +8,6 @@
 @mixin center--section($width: 90%) {
     width: $width;
     margin: 0 auto;
-
 }
 
 @mixin flex--layout($direction: row, $align: center, $justify: space-between) {

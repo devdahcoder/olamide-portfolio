@@ -2,7 +2,7 @@ import { NAVIGATION_TYPE } from "../enum";
 import BigStarIcon from '../icon/big-star-icon';
 import LoveIcon from '../icon/love-icon';
 import SmallStartIcon from '../icon/small-star-icon';
-import { ExperienceType, HeaderLinkType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { ExperienceType, HeaderLinkType, ImageScrollType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -346,5 +346,41 @@ export const experienceContent: ExperienceType[] = [
         id: 5,
         title: "Maintenance",
         description: "Once the product is launched, I provide support to ensure the website continuously meet user needs and business goal.",
+    },
+]
+
+export const imageScrollContent: ImageScrollType[] = [
+    {
+        id: 1,
+        text: "Image 1",
+        image: {
+            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageAlt: 'Image 1',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+    },
+    {
+        id: 2,
+        text: "Image 2",
+        image: {
+            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageAlt: 'Image 2',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+    },
+    {
+        id: 3,
+        text: "Image 3",
+        image: {
+            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageAlt: 'Image 3',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
     },
 ]

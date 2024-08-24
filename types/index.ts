@@ -104,3 +104,9 @@ export type ExperienceType = {
     title: string;
     description: string;
 }
+
+export type ImageScrollType = {
+    id: number;
+    text: string;
+    image: ImageType;
+}

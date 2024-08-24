@@ -217,6 +217,7 @@ const LoaderPercentageContainer: Component<{
 	return (
 		<div style={{ ...props?.styles }} class={` ${props?.containerClass}`}>
 			<p class={`${props?.childClass}`}>{props?.value}</p>
+			<div class="loader--bottom--shadow"></div>
 		</div>
 	);
 };

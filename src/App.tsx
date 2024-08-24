@@ -12,6 +12,8 @@ import Intro from "./component/sections/intro/intro";
 import Slider from "./component/slider";
 import Experience from "./component/sections/experience/experience";
 import Loader from "./component/loader";
+import ImageScroll from "./component/sections/image-scroll/image-scroll";
+import Expertise from "./component/sections/experties/expertise";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -22,10 +24,10 @@ function App() {
 	return (
 		<>
 			<GlobalProjectImage />
-			<Loader
+			{/* <Loader
 				isLoadedComplete={isLoadedComplete}
 				setIsLoadedComplete={setIsLoadedComplete}
-			/>
+			/> */}
 			<Navigation isNavigationOpen={isNavigationOpen} />
 			<Header
 				isLoadedComplete={isLoadedComplete}
@@ -36,7 +38,9 @@ function App() {
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
 			/>
-			<AboutMe isLoadedComplete={isLoadedComplete} />
+			<ImageScroll isLoadedComplete={isLoadedComplete}
+				isNavigationOpen={isNavigationOpen()} />
+			{/* <AboutMe isLoadedComplete={isLoadedComplete} />
 			<Intro isLoadedComplete={isLoadedComplete} />
 			<Project isLoadedComplete={isLoadedComplete} />
 			<div class=" py-44">
@@ -44,7 +48,9 @@ function App() {
 				<Slider />
 			</div>
 			<Experience />
-			<Service isLoadedComplete={isLoadedComplete} />
+			
+			<Service isLoadedComplete={isLoadedComplete} /> */}
+			<Experience />
 			<Footer />
 		</>
 	);

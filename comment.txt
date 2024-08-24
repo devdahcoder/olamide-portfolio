@@ -82,3 +82,13 @@
 		}
 	}
 }
+
+
+
+
+elementObserver(targetElement, (entry, observer) => {
+                if (entry.isIntersecting ) {
+                    tl.to(targetElement, { filter: "blur(0px)"})
+                    observer.unobserve(entry.target);
+                }
+            }, {threshold: 0.8, rootMargin: "-50px 0px -50px 0px"});
