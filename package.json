@@ -5,10 +5,9 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "tsc && vite build",
 		"preview": "vite preview"
 	},
-	// tsc && 
 	"dependencies": {
 		"gsap": "^3.12.5",
 		"motion": "^10.16.4",

@@ -24,10 +24,10 @@ function App() {
 	return (
 		<>
 			<GlobalProjectImage />
-			{/* <Loader
+			<Loader
 				isLoadedComplete={isLoadedComplete}
 				setIsLoadedComplete={setIsLoadedComplete}
-			/> */}
+			/>
 			<Navigation isNavigationOpen={isNavigationOpen} />
 			<Header
 				isLoadedComplete={isLoadedComplete}
@@ -38,9 +38,8 @@ function App() {
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
 			/>
-			<ImageScroll isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen()} />
-			{/* <AboutMe isLoadedComplete={isLoadedComplete} />
+			<ImageScroll />
+			<AboutMe isLoadedComplete={isLoadedComplete} />
 			<Intro isLoadedComplete={isLoadedComplete} />
 			<Project isLoadedComplete={isLoadedComplete} />
 			<div class=" py-44">
@@ -49,7 +48,7 @@ function App() {
 			</div>
 			<Experience />
 			
-			<Service isLoadedComplete={isLoadedComplete} /> */}
+			<Service isLoadedComplete={isLoadedComplete} />
 			<Experience />
 			<Footer />
 		</>

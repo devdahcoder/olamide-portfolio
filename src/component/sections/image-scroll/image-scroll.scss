@@ -2,8 +2,6 @@
 @use "../../../styles/variables";
 
 .image--scroll--container {
-    border: 1px solid white;
-
     .image--scroll--sub--container {
         min-height: 100vh;
         height: 100%;
@@ -40,8 +38,12 @@
                     font-weight: 600;
                     color: variables.$primary--text--color;
                     overflow: hidden;
-                    border: 1px solid white;
                 }
+
+                .glass {top: 0;
+                    box-shadow: 0 0 5px 0;
+                    backdrop-filter: blur(10px);
+                    height: 100%; position: fixed; z-index: 9999999999;}
 
                 .image--container {
                     position: relative;
@@ -55,7 +57,7 @@
                         perspective(150px) rotateX(20deg) translateY(30px);
                     transform-style: preserve-3d;
                     z-index: 999;
-                    filter: blur(7px);
+                    filter: blur(2px);
 
                     .image--sub--container {
                         border-radius: 5vh;
@@ -72,7 +74,7 @@
                             user-select: none;
                             border-radius: 5vh;
                             z-index: -10;
-                            // filter: blur(1px);
+                            // filter: blur(2px);
                         }
                     }
                 }
@@ -115,8 +117,10 @@
                         mix-blend-mode: difference;
 
                         span {
-                            transform: translateX(-50%) translateY(0cap) translateZ(0px);
-                            display: block;
+                            // transform: translateX(-50%) 
+                            // translateY(0cap) 
+                            // translateZ(0px);
+                            // display: block;
                             position: absolute;
                             top: 0;
                             left: 50%;
