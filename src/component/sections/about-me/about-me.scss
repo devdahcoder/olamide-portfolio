@@ -4,11 +4,22 @@
 .about--me--container {
     padding-top: 7rem;
 
+    @include mixins.responsive(sm) {
+        padding-top: 4rem;
+    }
+
     .about--me--sub--container {
         @include mixins.flex--layout($direction: row,
             $align: start,
             $justify: start);
         @include mixins.center--section;
+
+        @include mixins.responsive(sm) {
+            @include mixins.flex--layout($direction: column,
+                $align: start,
+                $justify: start);
+            row-gap: 2rem;
+        }
 
         .about--me--title--and--social--container {
             width: 60%;
@@ -16,6 +27,10 @@
                 $align: start,
                 $justify: start);
             height: 100%;
+
+            @include mixins.responsive(sm) {
+                width: 100%;
+            }
 
             .image--container {
                 margin-top: 1rem;
@@ -40,6 +55,11 @@
                     opacity: 0;
                     transform: translate(-100%, 0);
 
+                    @include mixins.responsive(sm) {
+                        width: 10rem;
+                        height: 6rem;
+                    }
+
                     .image {
                         width: 15rem;
                         height: 8rem;
@@ -48,6 +68,11 @@
                         z-index: 0;
                         object-position: center;
                         object-fit: cover;
+
+                        @include mixins.responsive(sm) {
+                            width: 10rem;
+                            height: 6rem;
+                        }
                     }
 
                     .image--shadow {
@@ -74,6 +99,10 @@
                 color: variables.$tertiary--text--color;
                 overflow: hidden;
                 column-gap: 5rem;
+
+                @include mixins.responsive(sm) {
+                    font-size: 18vw;
+                }
             }
 
             .about--me--social--container {
@@ -93,6 +122,10 @@
                 $align: baseline,
                 $justify: baseline);
 
+            // @include mixins.responsive(sm) {
+            //     row-gap: 5rem;
+            // }
+
             .about--me--header--container {
                 @include mixins.flex--layout($direction: row,
                     $align: start,
@@ -109,6 +142,20 @@
                         color: hsl(0, 0%, 100%);
                         overflow-y: hidden;
                         font-weight: 600;
+
+                        @include mixins.responsive(sm) {
+                            font-size: 14vw;
+
+                            .character--space {
+                                margin: 0.5rem !important;
+                            }
+                        }
+                    }
+
+                    @include mixins.responsive(sm) {
+                        .character--space {
+                            margin: 0.5rem !important;
+                        }
                     }
                 }
             }
@@ -130,6 +177,10 @@
                     font-weight: 400;
                     color: hsl(0, 7%, 59%);
                     overflow: hidden;
+
+                    @include mixins.responsive(sm) {
+                        font-size: 4.2vw;
+                    }
 
                     span {
                         color: variables.$tertiary--text--color;

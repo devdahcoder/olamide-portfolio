@@ -7,6 +7,7 @@
 
     @include mixins.responsive(sm) {
         padding-top: 3rem;
+        min-height: max-content;
     }
 
     .hero--sub--container {

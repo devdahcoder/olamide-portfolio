@@ -4,6 +4,7 @@
 .intro--container {
     height: 900px;
     margin-top: 5rem;
+
     .intro--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: baseline,
@@ -24,6 +25,11 @@
                 color: white;
                 font-size: 1.5vw;
                 font-weight: 200;
+
+                @include mixins.responsive(sm) {
+                    font-size: 4.2vw;
+                    width: 100%;
+                }
             }
         }
 
@@ -62,6 +68,11 @@
                         line-height: 7rem;
                         font-weight: 600;
                         color: variables.$primary--text--color;
+
+                        @include mixins.responsive(sm) {
+                            font-size: 15vw;
+                            line-height: 3rem;
+                        }
                     }
 
                     .intro--top--role--text {
