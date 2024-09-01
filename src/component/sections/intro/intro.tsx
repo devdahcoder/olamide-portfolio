@@ -114,9 +114,9 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 				<div class="intro--text--container intro--text--container--end">
 					<div class="intro--text ">
 						<For
-							each={`Currently, I live in Seattle. In my personal life, I
-							love to travel with my backpack, watch documentaries
-							about geography, and explore new traditional music.`.split(" ")}
+							each={`Currently, I live in Lagos. In my personal life, I
+							love to write blog posts, watch documentaries
+							about geography, wildlife, and explore new music.`.split(" ")}
 						>
 							{(word) => (
 								<div class="mx-0.5 opacity-0 intro--word--end">

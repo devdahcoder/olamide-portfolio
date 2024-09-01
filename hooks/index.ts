@@ -24,28 +24,65 @@ export const elementObserver = (
 
 };
 
-export const usePercentageLoaderHook = () => {
+export const usePercentageLoaderHook = (duration = 5000) => {
     const [loadingPercentage, setLoadingPercentage] = createSignal<number>(0);
     const [isLoaded, setIsLoaded] = createSignal<boolean>(false);
 
-    createEffect(() => {
+    const startLoading = () => {
         const interval = setInterval(() => {
             setLoadingPercentage((prevPercentage) => {
-                if (prevPercentage === 100) {
+                if (prevPercentage >= 100) {
                     clearInterval(interval);
                     setIsLoaded(true);
                     return 100;
                 }
                 return prevPercentage + 1;
             });
-        }, 50);
+        }, duration / 100);
+
         onCleanup(() => {
             clearInterval(interval);
         });
+    };
+
+    createEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (document.readyState === 'complete') {
+                startLoading();
+            } else {
+                window.addEventListener('load', startLoading);
+                onCleanup(() => {
+                    window.removeEventListener('load', startLoading);
+                });
+            }
+        }
     });
 
     return { loadingPercentage, isLoaded }
 }
+
+// export const usePercentageLoaderHook = () => {
+//     const [loadingPercentage, setLoadingPercentage] = createSignal<number>(0);
+//     const [isLoaded, setIsLoaded] = createSignal<boolean>(false);
+
+//     createEffect(() => {
+//         const interval = setInterval(() => {
+//             setLoadingPercentage((prevPercentage) => {
+//                 if (prevPercentage === 100) {
+//                     clearInterval(interval);
+//                     setIsLoaded(true);
+//                     return 100;
+//                 }
+//                 return prevPercentage + 1;
+//             });
+//         }, 50);
+//         onCleanup(() => {
+//             clearInterval(interval);
+//         });
+//     });
+
+//     return { loadingPercentage, isLoaded }
+// }
 
 export const useIsLoadedStateHook = () => {
     const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(false);

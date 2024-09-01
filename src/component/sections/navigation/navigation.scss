@@ -37,6 +37,8 @@
 			height: 100vh;
 			overflow-y: scroll;
 			overflow-x: hidden;
+			border: 1px solid yellow;
+			padding-top: 5rem;
 
 			.navigation--content--sub--container {
 				@include mixins.flex--layout(
@@ -44,11 +46,12 @@
 					$align: center,
 					$justify: baseline
 				);
-				row-gap: 2rem;
+				row-gap: 1rem;
 				width: 100vw;
 				height: 100vh;
-				margin-top: calc(50vh - 2rem);
-				margin-bottom: calc(100vh / 2);
+				// margin-top: calc(100vh - 2rem);
+				// margin-bottom: calc(100vh / 2);
+				border: 1px solid yellow;
 
 				.navigation--link--container {
 					transform: scale(0.8);
@@ -62,7 +65,7 @@
 						flex-direction: row;
 						width: 100%;
 						text-decoration: none;
-						font-size: 4rem;
+						font-size: 7vw;
 						font-weight: 400;
 						font-family: Zodiak, Satoshi, -apple-system,
 							Helvetica Neue, sans-serif;

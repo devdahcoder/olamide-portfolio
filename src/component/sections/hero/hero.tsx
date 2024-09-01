@@ -11,7 +11,7 @@ const Hero: Component<{
 	isNavigationOpen: boolean;
 	isLoadedComplete: Accessor<boolean>;
 }> = (props) => {
-	const [name] = createSignal<string>("Adigun Olamide");
+	const [name] = createSignal<string>("Olamide Adigun");
 	const [skills] = createSignal<string[]>([
 		"Java",
 		"JavaScript",
@@ -30,7 +30,7 @@ const Hero: Component<{
 
 	const animateHeroMainParallaxCharacter = () => {
 		gsap.fromTo(
-			".hero--main--text",
+			".hero--text--character",
 			{
 				yPercent: 100,
 				rotation: 20,
@@ -113,13 +113,44 @@ const Hero: Component<{
 		<div ref={heroRefSection} class=" hero--main--container">
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
-					<div class="hero--text--container">
-						<For each={name().trim().split("")}>
+					<div class="hero--text--container ">
+						<For each={"Adigun Olamide".trim().split("")}>
 							{(character, index) => (
 								<ParallaxCharacter
 									index={index()}
-									class="hero--main--text"
+									class="hero--character--container "
 									children={character}
+									characterClass="hero--text--character"
+									parallaxCharacterElement={
+										parallaxCharacterElement
+									}
+								/>
+							)}
+						</For>
+					</div>
+					<div class="hero--text--container--mobile ">
+						<For each={"Adigun".trim().split("")}>
+							{(character, index) => (
+								<ParallaxCharacter
+									index={index()}
+									class="hero--character--container "
+									children={character}
+									characterClass="hero--text--character"
+									parallaxCharacterElement={
+										parallaxCharacterElement
+									}
+								/>
+							)}
+						</For>
+					</div>
+					<div class="hero--text--container--mobile ">
+						<For each={"Olamide".trim().split("")}>
+							{(character, index) => (
+								<ParallaxCharacter
+									index={index()}
+									class="hero--character--container"
+									children={character}
+									characterClass="hero--text--character"
 									parallaxCharacterElement={
 										parallaxCharacterElement
 									}

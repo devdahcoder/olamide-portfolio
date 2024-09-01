@@ -38,7 +38,7 @@ function App() {
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
 			/>
-			<ImageScroll />
+			{/* <ImageScroll /> */}
 			<AboutMe isLoadedComplete={isLoadedComplete} />
 			<Intro isLoadedComplete={isLoadedComplete} />
 			<Project isLoadedComplete={isLoadedComplete} />
@@ -49,7 +49,6 @@ function App() {
 			<Experience />
 			
 			<Service isLoadedComplete={isLoadedComplete} />
-			<Experience />
 			<Footer />
 		</>
 	);

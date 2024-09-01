@@ -192,18 +192,18 @@ export const workContent: Array<WorkType> = [
 
 export const headerLinksContent: Array<HeaderLinkType> = [
 
+    // {
+    //     id: 1,
+    //     href: "#",
+    //     text: "Home",
+    //     class: "",
+    //     style: {},
+    //     type: NAVIGATION_TYPE.LINK,
+    //     leftLinkElement: BigStarIcon,
+    //     rightLinkElement: BigStarIcon,
+    // },
     {
         id: 1,
-        href: "#",
-        text: "Home",
-        class: "",
-        style: {},
-        type: NAVIGATION_TYPE.LINK,
-        leftLinkElement: BigStarIcon,
-        rightLinkElement: BigStarIcon,
-    },
-    {
-        id: 2,
         href: "#about",
         text: "About",
         class: "",
@@ -213,7 +213,7 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         rightLinkElement: BigStarIcon,
     },
     {
-        id: 3,
+        id: 2,
         href: "#work",
         text: "Work",
         class: "",
@@ -223,18 +223,18 @@ export const headerLinksContent: Array<HeaderLinkType> = [
         leftLinkElement: SmallStartIcon,
 
     },
+    // {
+    //     id: 4,
+    //     href: "#work-flow",
+    //     text: "WorkFlow",
+    //     class: "",
+    //     style: {},
+    //     type: NAVIGATION_TYPE.LINK,
+    //     leftLinkElement: LoveIcon,
+    //     rightLinkElement: BigStarIcon,
+    // },
     {
-        id: 4,
-        href: "#work-flow",
-        text: "WorkFlow",
-        class: "",
-        style: {},
-        type: NAVIGATION_TYPE.LINK,
-        leftLinkElement: LoveIcon,
-        rightLinkElement: BigStarIcon,
-    },
-    {
-        id: 5,
+        id: 3,
         href: "#contact",
         text: "Contact",
         class: "",

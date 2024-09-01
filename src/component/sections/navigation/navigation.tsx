@@ -248,14 +248,14 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		let observe = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					let link = entry?.target?.querySelector(
-						".navigation--link"
-					) as HTMLAnchorElement;
-					if (entry.isIntersecting) {
-						animateLinkFocus(entry.target, link, true);
-					} else {
-						animateLinkFocus(entry.target, link, false);
-					}
+					// let link = entry?.target?.querySelector(
+					// 	".navigation--link"
+					// ) as HTMLAnchorElement;
+					// if (entry.isIntersecting) {
+					// 	animateLinkFocus(entry.target, link, true);
+					// } else {
+					// 	animateLinkFocus(entry.target, link, false);
+					// }
 				});
 			},
 			{

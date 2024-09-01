@@ -19,7 +19,7 @@ const ParallaxCharacter: Component<{
 			class={props.class}
 		>
 			<Show when={props.children === " "}>
-				<div style={{ margin: "0rem 1rem", ...props?.style }}></div>
+				<div class="character--space" style={{ margin: "0rem 1rem", ...props?.style }}></div>
 			</Show>
 			<Show when={props.children !== " "}>
 				<div class={`${props?.characterClass}`}>{props.children}</div>

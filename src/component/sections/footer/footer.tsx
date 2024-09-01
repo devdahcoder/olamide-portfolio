@@ -16,7 +16,7 @@ const Footer: Component<{}> = () => {
 
 	return (
 		<div class="footer--container">
-			<div class="footer--sub--container">
+			<div class="footer--sub--container border">
 				<div class="footer--header--container">
 					<div class="footer--header--sub--container">
 						<DoubleStackedText
@@ -42,30 +42,6 @@ const Footer: Component<{}> = () => {
 
 				<div class="footer--bottom--container">
 					<div class="footer--bottom--sub--container">
-						{/* <DoubleStackedText
-							containerClass="footer--credit--container"
-							subContainerClass="footer--credit--sub--container"
-							firstStack={
-								<>
-									Designs from:{" "}
-									<span>
-										<a href="http://">Behance</a>
-									</span>
-								</>
-							}
-							secondStack={
-								<>
-									Developed by:{" "}
-									<span>
-										<div>Olamide Adigun</div>
-									</span>
-								</>
-							}
-							firstStackClass="footer--credit--design--text"
-							secondStackClass="footer--credit--developer--text"
-						/> */}
-
-						<FooterSocialMedia />
 						<DoubleStackedText
 							containerClass="footer--credit--container"
 							subContainerClass="footer--credit--sub--container"
@@ -88,6 +64,30 @@ const Footer: Component<{}> = () => {
 							firstStackClass="footer--credit--design--text"
 							secondStackClass="footer--credit--developer--text"
 						/>
+
+						<FooterSocialMedia />
+						{/* <DoubleStackedText
+							containerClass="footer--credit--container"
+							subContainerClass="footer--credit--sub--container"
+							firstStack={
+								<>
+									Designs from:{" "}
+									<span>
+										<a href="http://">Behance</a>
+									</span>
+								</>
+							}
+							secondStack={
+								<>
+									Developed by:{" "}
+									<span>
+										<div>Olamide Adigun</div>
+									</span>
+								</>
+							}
+							firstStackClass="footer--credit--design--text"
+							secondStackClass="footer--credit--developer--text"
+						/> */}
 						<DoubleStackedText
 							containerClass="footer--copy--right--container"
 							subContainerClass="footer--copy--right--sub--container"

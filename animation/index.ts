@@ -60,6 +60,7 @@ export const animatePercentage = (
             {
                 yPercent: -100,
                 duration: 0.5,
+                scale: 1,
                 ease: "power1.inOut",
             }
         );

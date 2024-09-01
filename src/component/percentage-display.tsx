@@ -45,7 +45,7 @@ const PercentageDisplay: Component<{ percentage: number }> = (props) => {
                     />
                     <LoaderPercentageContainer
                         styles={{
-                            transform: "translate(0px, 100%)",
+                            transform: "translate(0px, 100%) scale(0.6)",
                             "z-index": "10",
                             position: "absolute",
                         }}
