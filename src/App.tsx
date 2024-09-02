@@ -42,11 +42,11 @@ function App() {
 			<AboutMe isLoadedComplete={isLoadedComplete} />
 			<Intro isLoadedComplete={isLoadedComplete} />
 			<Project isLoadedComplete={isLoadedComplete} />
-			<div class=" py-44">
+			{/* <div class=" py-44 border">
 				<About />
 				<Slider />
-			</div>
-			<Experience />
+			</div> */}
+			{/* <Experience /> */}
 			
 			<Service isLoadedComplete={isLoadedComplete} />
 			<Footer />

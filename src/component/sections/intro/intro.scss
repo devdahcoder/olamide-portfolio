@@ -5,6 +5,10 @@
     height: 900px;
     margin-top: 5rem;
 
+    @include mixins.responsive(sm) {
+        height: 500px;
+    }
+
     .intro--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: baseline,
@@ -27,7 +31,7 @@
                 font-weight: 200;
 
                 @include mixins.responsive(sm) {
-                    font-size: 4.2vw;
+                    font-size: 4.6vw;
                     width: 100%;
                 }
             }

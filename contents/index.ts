@@ -263,7 +263,7 @@ export const serviceContent: ServiceType[] = [
     },
     {
         id: 3,
-        services: ["Web Flow", "Framer Motion"]
+        services: ["WebFlow", "Framer Motion"]
     },
     {
         id: 3,

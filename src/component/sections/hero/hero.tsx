@@ -14,14 +14,13 @@ const Hero: Component<{
 	const [name] = createSignal<string>("Olamide Adigun");
 	const [skills] = createSignal<string[]>([
 		"Java",
-		"JavaScript",
+		"TypeScript",
 		"SCSS",
-		"CSS",
 		"HTML",
 		"Python",
-		"PHP",
+		"Golang",
 		"C#",
-		"C++",
+		"PHP",
 	]);
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
@@ -113,7 +112,7 @@ const Hero: Component<{
 		<div ref={heroRefSection} class=" hero--main--container">
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
-					<div class="hero--text--container ">
+					<div class="hero--text--container">
 						<For each={"Adigun Olamide".trim().split("")}>
 							{(character, index) => (
 								<ParallaxCharacter

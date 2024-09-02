@@ -58,7 +58,7 @@
             .hero--text--container--mobile {
                 display: none;
                 font-size: 18vw;
-                line-height: 5.5rem;
+                line-height: 6rem;
 
                 @include mixins.responsive(mdx) {
                     display: flex;

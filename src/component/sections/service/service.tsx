@@ -16,7 +16,7 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let serviceSectionRefElement: HTMLDivElement | undefined;
 
 
-	const [images, setImages] = createSignal<string[]>([
+	const [images] = createSignal<string[]>([
 		"images/box-1.svg",
 		"images/box.svg",
 		"images/pyramid-1.svg",

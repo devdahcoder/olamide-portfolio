@@ -6,12 +6,20 @@
     padding: 4rem 0;
     position: relative;
 
+    @include mixins.responsive(sm) {
+        padding: 6rem 0 2rem 0;
+        min-height: max-content;
+    }
+
     .project--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: start,
             $justify: start);
         row-gap: 2rem;
 
+        @include mixins.responsive(sm) {
+            row-gap: 0.5rem;
+        }
 
         .project--header--container {
             @include mixins.center--section;
@@ -25,6 +33,10 @@
                 color: hsl(0, 0%, 100%);
                 font-weight: 600;
                 overflow-x: hidden;
+
+                @include mixins.responsive(sm) {
+                    font-size: 18vw;
+                }
 
                 .project--header--title--character {
                     transform: translate(100%, 0%);
@@ -53,6 +65,10 @@
                     height: 8.5rem;
                     position: relative;
 
+                    @include mixins.responsive(sm) {
+                        height: 7rem;
+                    }
+
                     .project--title--container {
                         @include mixins.flex--layout($direction: column,
                             $align: start,
@@ -69,6 +85,10 @@
                             overflow: hidden;
                             height: 5.4rem;
 
+                            @include mixins.responsive(sm) {
+                                height: 3.8rem;
+                            }
+
                             .project--title--character--container {
                                 @include mixins.flex--layout($direction: column,
                                     $align: start,
@@ -80,6 +100,9 @@
                                     color: hsl(0, 8%, 87%);
                                     overflow-y: hidden;
 
+                                    @include mixins.responsive(sm) {
+                                        font-size: 10vw;
+                                    }
                                 }
 
                                 .first--project--title--character {
@@ -91,11 +114,13 @@
                                 }
                             }
                         }
-
-
                     }
 
                     .project--type--container {
+
+                        @include mixins.responsive(sm) {
+                            display: none;
+                        }
 
                         .project--type {
                             font-family: Instrument Sans, -apple-system, Helvetica Neue,
@@ -129,18 +154,42 @@
                                 font-size: 1.1rem;
                             }
 
-                            .project--util--icon--container {
+                            .project--util--icon--container,
+                            .project--util--icon--container--mobile {
                                 @include mixins.flex--layout($direction: row,
                                     $align: center,
                                     $justify: center);
-                                width: 0;
-                                height: 0;
-                                visibility: hidden;
                                 overflow: hidden;
                                 background-color: antiquewhite;
                                 border-radius: 100vh;
                                 margin-left: 0.8rem;
                                 transform: rotate(-40deg);
+                            }
+
+                            .project--util--icon--container {
+                                width: 0;
+                                height: 0;
+                                visibility: hidden;
+                                display: flex;
+
+                                @include mixins.responsive(sm) {
+                                    display: none;
+                                }
+
+                                .project--util--icon {
+                                    transform: scale(0);
+                                }
+                            }
+
+                            .project--util--icon--container--mobile {
+                                height: 2.5rem;
+                                width: 2.5rem;
+                                display: none;
+
+                                @include mixins.responsive(sm) {
+                                    display: flex;
+                                }
+
                             }
                         }
 
@@ -202,6 +251,7 @@
                     }
 
                     .image--container {
+
                         position: absolute;
                         display: block;
                         pointer-events: none;
@@ -211,6 +261,11 @@
                         transform: translate(-50%, -50%);
                         opacity: 0;
                         backface-visibility: hidden;
+                        z-index: 999;
+
+                        @include mixins.responsive(sm) {
+                            display: none;
+                        }
 
                         .image--sub--container {
                             @include mixins.image--sub--container(15rem, 20rem);
@@ -228,9 +283,6 @@
                     }
 
                 }
-
-
-
             }
         }
     }

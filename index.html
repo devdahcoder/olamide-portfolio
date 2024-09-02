@@ -7,14 +7,17 @@
 		<title>Olamide Adigun - Software Engineer </title>
 	</head>
 	<body
-		data-scroll-duration="1000"
-		data-scroll-deceleration="0.96"
-		data-scroll-sensitivity="0.04"
-		data-scroll-isScrolling="false"
-		data-scroll-velocity="0"
 	>
 		<div id="root"></div>
+		<script>
+			document.querySelector('footer--back--to--top--button').addEventListener('click', function (e) {
+				smoothScroll({ yPos: 500, duration: 700 });
+			});
+		</script>
 		<script type="module" src="/src/index.tsx"></script>
-		<script src="https://cdn.jsdelivr.net/gh/monsieurdd/mrD-SmoothScroller@latest/mrd-smoothscroller.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/gh/monsieurdd/mrD-SmoothScroller@latest/mrd-smoothscroller.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/gh/LieutenantPeacock/SmoothScroll@1.2.0/src/smoothscroll.min.js"
+			integrity="sha384-UdJHYJK9eDBy7vML0TvJGlCpvrJhCuOPGTc7tHbA+jHEgCgjWpPbmMvmd/2bzdXU"
+			crossorigin="anonymous"></script>
 	</body>
 </html>

@@ -16,7 +16,7 @@ const Footer: Component<{}> = () => {
 
 	return (
 		<div class="footer--container">
-			<div class="footer--sub--container border">
+			<div class="footer--sub--container">
 				<div class="footer--header--container">
 					<div class="footer--header--sub--container">
 						<DoubleStackedText

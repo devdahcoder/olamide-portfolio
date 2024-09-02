@@ -454,6 +454,9 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 											<div class="project--util--icon--container">
 												<DoubleArrowIcon class="project--util--icon scale-0 " />
 											</div>
+											<div class="project--util--icon--container--mobile">
+												<DoubleArrowIcon class="project--util--icon" />
+											</div>
 										</div>
 									</div>
 									<div class="project--item--border"></div>
