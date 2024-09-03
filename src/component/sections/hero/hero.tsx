@@ -5,6 +5,7 @@ import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./hero.scss";
+import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero: Component<{
@@ -22,6 +23,7 @@ const Hero: Component<{
 		"C#",
 		"PHP",
 	]);
+		let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
@@ -80,9 +82,9 @@ const Hero: Component<{
 
 	const animateHeroSkills = () => {
 		gsap.fromTo(
-			".hero--intro--skills--container",
-			{ yPercent: 200 },
-			{ yPercent: 0, duration: 2.5, ease: "power4.out" }
+			".hero--intro--skill--character",
+			{ yPercent: 200, opacity: 0.3 },
+			{ yPercent: 0, duration: 2.5, opacity: 1, ease: "power4.out" }
 		);
 	};
 
@@ -94,6 +96,23 @@ const Hero: Component<{
 		);
 	};
 
+	const animateSkillHeaderText = () => {
+		gsap.fromTo(
+			".hero--intro--skills--header--text--character",
+			{
+				opacity: 0.4,
+				x: 100,
+			},
+			{
+				opacity: 1,
+				x: 0,
+				stagger: 0.1,
+				duration: 1,
+				ease: "power3.out",
+			}
+		);
+	};
+
 	createEffect(() => {
 		props?.isLoadedComplete();
 		elementObserver(heroRefSection, (entry, observer) => {
@@ -102,6 +121,7 @@ const Hero: Component<{
 				animateSubHeroParallaxCharacter();
 				animateHeroIntroExpertiseParallaxCharacter();
 				animateHeroSkills();
+				animateSkillHeaderText();
 				animateHeroLink();
 				observer.unobserve(entry.target);
 			}
@@ -162,15 +182,34 @@ const Hero: Component<{
 						<div class="hero--intro--sub--container">
 							<div class="hero--intro--skills--container">
 								<div class="hero--intro--skills--header">
-									<p>skills</p>
+									{/* <p>skills</p> */}
+									<For each={"skills".trim().split("")}>
+										{(character, index) => (
+											<ParallaxCharacter
+												index={index()}
+												class="hero--intro--skills--header--container"
+												children={character}
+												characterClass="hero--intro--skills--header--text--character"
+												parallaxCharacterElement={
+													parallaxCharacterElement
+												}
+											/>
+										)}
+									</For>
 								</div>
 
-								<div class="hero--intro--main--skills">
+								<div class="hero--intro--main--skills ">
 									<For each={skills()}>
-										{(skill) => <span>{skill},</span>}
+										{(skill) => (
+											<div class="hero--intro--skill--text ">
+												<div class="hero--intro--skill--character">
+													{skill},
+												</div>
+											</div>
+										)}
 									</For>
 									<div class="and--more">
-										<p>and more...</p>
+										<div>and more...</div>
 									</div>
 								</div>
 							</div>

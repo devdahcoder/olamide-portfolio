@@ -97,6 +97,17 @@
                         .hero--intro--skills--header {
                             color: rgb(146, 136, 136);
                             text-transform: uppercase;
+                            @include mixins.flex--layout($direction: row,
+                                $align: center,
+                                $justify: baseline);
+
+                            .hero--intro--skills--header--container {
+                                overflow-x: hidden;
+
+                                .hero--intro--skills--header--text--character {
+                                    transform: translate(100%, 0%);
+                                }
+                            }
                         }
 
                         .hero--intro--main--skills {
@@ -110,9 +121,24 @@
                             text-wrap: wrap;
                             word-wrap: break-word;
 
+                            .hero--intro--skill--text {
+                                overflow-y: hidden;
+
+                                div {
+                                    transform: translate(0, 200);
+                                    opacity: 0.3;
+                                }
+                            }
+
                             .and--more {
                                 margin-left: 0.1rem;
                                 color: hsl(0, 4%, 55%);
+                                overflow-y: hidden;
+
+                                div {
+                                    transform: translate(0, 200);
+                                    opacity: 0.3;
+                                }
                             }
                         }
                     }

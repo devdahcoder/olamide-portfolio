@@ -2,107 +2,124 @@
 @use "../../../styles/variables";
 
 .service--container {
-    // height: 1200px;
-    padding: 10rem 0;
+	// height: 1200px;
+	padding: 10rem 0;
 
-    .service--sub--container {
-        @include mixins.flex--layout($direction: column,
-            $align: start,
-            $justify: start);
-        row-gap: 3rem;
+	.service--sub--container {
+		@include mixins.flex--layout(
+			$direction: column,
+			$align: start,
+			$justify: start
+		);
+		row-gap: 3rem;
 
-        .service--header--container {
-            @include mixins.center--section;
-            @include mixins.flex--layout($direction: row,
-                $align: start,
-                $justify: start);
+		.service--header--container {
+			@include mixins.center--section;
+			@include mixins.flex--layout(
+				$direction: row,
+				$align: start,
+				$justify: start
+			);
 
-            .service--header--title {
-                font-size: 7vw;
-                color: hsl(0, 0%, 100%);
-                font-weight: 600;
-                overflow-x: hidden;
+			.service--header--title {
+				font-size: 7vw;
+				color: hsl(0, 0%, 100%);
+				font-weight: 600;
+				overflow-x: hidden;
 
-                @include mixins.responsive(sm) {
-                    font-size: 18vw;
-                }
+				@include mixins.responsive(sm) {
+					font-size: 18vw;
+				}
 
-                .service--title--character {
-                    transform: translate(100%, 0%);
-                    font-family: Instrument Sans, -apple-system, Helvetica Neue,
-                        sans-serif;
-                }
-            }
-        }
+				.service--title--character {
+					transform: translate(100%, 0%);
+					font-family: Instrument Sans, -apple-system, Helvetica Neue,
+						sans-serif;
+				}
+			}
+		}
 
+		.service--list {
+			@include mixins.flex--layout(
+				$direction: column,
+				$align: baseline,
+				$justify: baseline
+			);
+			row-gap: 3rem;
+			width: 100%;
 
-        .service--list {
-            @include mixins.flex--layout($direction: column,
-                $align: baseline,
-                $justify: baseline);
-            row-gap: 3rem;
-            width: 100%;
+			@include mixins.responsive(sm) {
+				row-gap: 0.8rem;
+			}
 
-            @include mixins.responsive(sm) {
-                row-gap: 0.5rem;
-            }
+			.service--item {
+				width: 100%;
+				@include mixins.flex--layout;
+				border: 1px solid hsl(0, 1%, 60%);
+				border-radius: 30px;
 
-            .service--item {
-                width: 100%;
-                @include mixins.flex--layout;
-                border: 1px solid hsl(0, 1%, 60%);
-                border-radius: 30px;
+				.service--item--container {
+					@include mixins.center--section;
+					@include mixins.flex--layout;
+					padding: 0.9rem 0;
 
-                .service--item--container {
-                    @include mixins.center--section;
-                    @include mixins.flex--layout;
-                    padding: 0.9rem 0;
+					@include mixins.responsive(sm) {
+						padding: 1.6rem 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+					}
 
-                    @include mixins.responsive(sm) {
-                        padding: 2rem 0;
-                    }
+					.service--text--container {
+						@include mixins.flex--layout(
+							$direction: row,
+							$align: center,
+							$justify: center
+						);
+						vertical-align: middle;
+						font-size: 5vw;
+						font-weight: 200;
+						color: hsl(0, 0%, 100%);
+						align-items: end;
+						text-transform: uppercase;
+						position: relative;
 
-                    .service--text--container {
-                        @include mixins.flex--layout($direction: row,
-                            $align: center,
-                            $justify: center);
-                        vertical-align: middle;
-                        font-size: 5vw;
-                        font-weight: 200;
-                        color: hsl(0, 0%, 100%);
-                        align-items: end;
-                        text-transform: uppercase;
-                        position: relative;
+						@include mixins.responsive(sm) {
+							font-size: 13.1vw;
+						}
 
-                        @include mixins.responsive(sm) {
-                            font-size: 13.1vw;
-                        }
+						.service--image {
+							@include mixins.responsive(sm) {
+								display: none;
+							}
+						}
 
-                        .service--text--sub--container {
-                            @include mixins.flex--layout($direction: row,
-                                $align: center,
-                                $justify: center);
+						.service--text--sub--container {
+							@include mixins.flex--layout(
+								$direction: row,
+								$align: center,
+								$justify: center
+							);
 
-                            .service--text {
-                                overflow-y: hidden;
+							.service--text {
+								overflow-y: hidden;
 
-                                .character--space {
-                                    margin: 0 0.5rem !important;
-                                }
-                            }
-                        }
+								.character--space {
+									margin: 0 0.5rem !important;
+								}
+							}
+						}
 
-                        &:nth-child(2) {
-                            color: hsl(0, 2%, 62%);
+						&:nth-child(2) {
+							color: hsl(0, 2%, 62%);
 
-                            @include mixins.responsive(sm) {
-                                display: none;
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-    }
+							@include mixins.responsive(sm) {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
