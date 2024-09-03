@@ -29,10 +29,13 @@
                 padding: 1rem 2rem;
 
                 @include mixins.responsive(xs) {
-                    padding: 1rem 1rem;
+                    @include mixins.flex--layout($direction: column);
+                    row-gap: 1.5rem;
                 }
 
                 .footer--year--container {
+                    width: 100%;
+
                     .footer--year--sub--container {
                         @include mixins.double--stacked--text--sub-container;
 
@@ -46,6 +49,7 @@
                 .footer--location--container {
                     display: flex;
                     flex-direction: column;
+                    width: 100%;
 
                     .footer--location--sub--container {
                         @include mixins.double--stacked--text--sub-container($align: end);
@@ -166,10 +170,11 @@
                 @include mixins.responsive(mdx) {
                     display: flex;
                     flex-direction: column;
-
+                    row-gap: 1rem;
                 }
 
                 .footer--credit--container {
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
 
@@ -261,6 +266,7 @@
                 }
 
                 .footer--copy--right--container {
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
 

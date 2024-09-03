@@ -20,7 +20,7 @@ const Footer: Component<{}> = () => {
 				<div class="footer--header--container">
 					<div class="footer--header--sub--container">
 						<DoubleStackedText
-							containerClass="footer--year--container"
+							containerClass="footer--year--container "
 							subContainerClass="footer--year--sub--container"
 							firstStack={<p>Software / Creative Developer</p>}
 							secondStack={<p>Portfolio 2024 - 2025</p>}
@@ -28,7 +28,7 @@ const Footer: Component<{}> = () => {
 							secondStackClass="footer--year--text"
 						/>
 						<DoubleStackedText
-							containerClass="footer--location--container"
+							containerClass="footer--location--container "
 							subContainerClass="footer--location--sub--container"
 							firstStack={<p>{formattedLocation}</p>}
 							secondStack={<p>Available for freelance work</p>}
