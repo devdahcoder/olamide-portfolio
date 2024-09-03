@@ -48,8 +48,8 @@ function App() {
 			</div> */}
 			{/* <Experience /> */}
 			
-			<Service isLoadedComplete={isLoadedComplete} />
-			<Footer />
+			{/* <Service isLoadedComplete={isLoadedComplete} />
+			<Footer /> */}
 		</>
 	);
 }
