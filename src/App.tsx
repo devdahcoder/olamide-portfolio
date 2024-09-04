@@ -38,17 +38,14 @@ function App() {
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
 			/>
-			<ImageScroll />
+			{/* <ImageScroll /> */}
 			<AboutMe isLoadedComplete={isLoadedComplete} />
 			<Intro isLoadedComplete={isLoadedComplete} />
 			<Project isLoadedComplete={isLoadedComplete} />
-			{/* <div class=" py-44 border">
-				<About />
-				<Slider />
-			</div> */}
+			<About />
 			{/* <Experience /> */}
-			
-			<Service isLoadedComplete={isLoadedComplete} />
+
+			{/* <Service isLoadedComplete={isLoadedComplete} /> */}
 			<Footer />
 		</>
 	);

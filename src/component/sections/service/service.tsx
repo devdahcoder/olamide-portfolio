@@ -1,6 +1,6 @@
 import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import "./service.scss";
-import { serviceContent } from "../../../../contents";
+import { serviceContent, serviceMobileContent } from "../../../../contents";
 import SectionHeader from "../../section-header";
 import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
 import gsap from "gsap";
@@ -167,6 +167,64 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 											</div>
 										)}
 									</For>
+								</div>
+							</div>
+						)}
+					</For>
+					<For each={serviceMobileContent}>
+						{({ id, services }, index) => (
+							<div class="service--item">
+								<div class="service--item--container">
+									<div class="service--text--container">
+										{index() % 2 !== 0 ? (
+											""
+										) : (
+											<img
+												class="service--image"
+												src={`${
+													images()[
+														Math.floor(
+															Math.random() *
+																images().length
+														)
+													]
+												}`}
+												alt=""
+											/>
+										)}
+
+										<div class="service--text--sub--container">
+											<For each={services?.split("")}>
+												{(character, index) => (
+													<ParallaxCharacter
+														index={index()}
+														class={`service--text`}
+														characterClass={`service--text--character`}
+														children={character}
+														parallaxCharacterElement={
+															parallaxCharacterElement
+														}
+													/>
+												)}
+											</For>
+										</div>
+										{index() % 2 === 0 ? (
+											""
+										) : (
+											<img
+												class="service--image"
+												src={`${
+													images()[
+														Math.floor(
+															Math.random() *
+																images().length
+														)
+													]
+												}`}
+												alt=""
+											/>
+										)}
+									</div>
 								</div>
 							</div>
 						)}

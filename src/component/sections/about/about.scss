@@ -3,7 +3,7 @@
 
 .about--container {
     padding: 0rem 0rem 0rem 0;
-    
+
     .about--sub--container {
         @include mixins.center--section;
         @include mixins.flex--layout($direction: column,
@@ -21,6 +21,10 @@
             width: 100%;
             height: 654px;
 
+            @include mixins.responsive(sm) {
+                height: 100vh;
+            }
+
             .image--sub--container {
                 position: relative;
                 z-index: 0;
@@ -30,7 +34,10 @@
                 transform: scale(0.8, 0.8);
                 clip-path: inset(0% 30%);
                 height: 641px;
-                
+
+                @include mixins.responsive(sm) {
+                    height: 100vh;
+                }
 
                 .image {
                     max-width: 100%;

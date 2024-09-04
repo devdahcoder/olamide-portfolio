@@ -80,7 +80,7 @@ const About: Component<{}> = () => {
 	});
 
 	return (
-		<div class="about--container border">
+		<div class="about--container">
 			<div class="about--sub--container">
 				<div class="image--container">
 					<div class=" image--sub--container">

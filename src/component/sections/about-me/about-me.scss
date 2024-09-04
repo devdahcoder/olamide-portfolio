@@ -133,15 +133,16 @@
 
                 .about--me--header--title {
                     font-family: sans-serif;
+                    overflow-x: hidden;
 
                     .about--me--title--character {
-                        transform: translate(100%, 0%);
                         font-family: Instrument Sans, -apple-system, Helvetica Neue,
                             sans-serif;
                         font-size: 7vw;
                         color: hsl(0, 0%, 100%);
                         overflow-y: hidden;
                         font-weight: 600;
+                        transform: translate(100%, 0%);
 
                         @include mixins.responsive(sm) {
                             font-size: 14vw;

@@ -2,7 +2,7 @@ import { NAVIGATION_TYPE } from "../enum";
 import BigStarIcon from '../icon/big-star-icon';
 import LoveIcon from '../icon/love-icon';
 import SmallStartIcon from '../icon/small-star-icon';
-import { ExperienceType, HeaderLinkType, ImageScrollType, PlaygroundType, QuoteApiType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
+import { ExperienceType, HeaderLinkType, ImageScrollType, PlaygroundType, QuoteApiType, ServiceMobileType, ServiceType, SocialMediaTypes, WorkFlowTypes, WorkType } from "../types";
 
 export const workFlowArrayContent: Array<WorkFlowTypes> = [
 
@@ -268,6 +268,25 @@ export const serviceContent: ServiceType[] = [
     {
         id: 3,
         services: ["Web Flow", "Framer Motion"]
+    },
+]
+
+export const serviceMobileContent: ServiceMobileType[] = [
+    {
+        id: 1,
+        services: "Web Develop"
+    },
+    {
+        id: 2,
+        services: "Mobile Apps"
+    },
+    {
+        id: 3,
+        services: "WebFlow Dev"
+    },
+    {
+        id: 4,
+        services: "Framer Motion"
     },
 ]
 

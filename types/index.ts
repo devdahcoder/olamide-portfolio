@@ -90,6 +90,13 @@ export type ServiceType = {
 
 }
 
+export type ServiceMobileType = {
+
+    id: number | string;
+    services: string;
+
+}
+
 export type PlaygroundType = {
     id: number | string;
     name: string;

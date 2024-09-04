@@ -120,6 +120,14 @@
                 row-gap: 0;
                 column-gap: 0;
 
+                @include mixins.responsive(xs) {
+                    min-width: 6rem;
+                    height: 10rem;
+                }
+
+                .loader--percentage--sign,
+                .loader--percentage--number {}
+
                 .loader--bottom--shadow {
                     position: absolute;
                     width: 100%;
