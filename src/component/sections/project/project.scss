@@ -3,7 +3,7 @@
 
 .project--container {
     min-height: 100vh;
-    padding: 4rem 0;
+    padding: 4rem 0 12rem 0;
     position: relative;
 
     @include mixins.responsive(sm) {

@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 @use "../../../styles/variables";
 
-.navigation--main--container {
+.navigation--container {
 	background-color: rgb(52, 49, 49);
 	width: 100vw;
 	height: 100vh;
@@ -27,7 +27,7 @@
 		.navigation--content--main--container {
 			@include mixins.flex--layout(
 				$direction: column,
-				$align: center,
+				$align: baseline,
 				$justify: baseline
 			);
 			position: absolute;
@@ -35,12 +35,9 @@
 			left: 0;
 			width: 100vw;
 			height: 100vh;
-			overflow-y: scroll;
-			overflow-x: hidden;
-			border: 1px solid yellow;
-			padding-top: 5rem;
+			row-gap: 4rem;
 
-			.navigation--content--sub--container {
+			.navigation--list {
 				@include mixins.flex--layout(
 					$direction: column,
 					$align: center,
@@ -49,9 +46,7 @@
 				row-gap: 1rem;
 				width: 100vw;
 				height: 100vh;
-				// margin-top: calc(100vh - 2rem);
-				// margin-bottom: calc(100vh / 2);
-				border: 1px solid yellow;
+				margin-top: 120px;
 
 				.navigation--link--container {
 					transform: scale(0.8);
@@ -73,6 +68,9 @@
 						color: rgb(141, 141, 141);
 						overflow: hidden;
 
+						@include mixins.responsive(sm) {
+								font-size: 15vw
+							}
 						.icon {
 							transform: scale(0);
 						}
@@ -96,19 +94,64 @@
 				}
 			}
 
-			&::-webkit-scrollbar {
-				width: 0.3rem;
+			.navigation--footer--container {
+				display: none;
+				width: 100%;
+				row-gap: 2rem;
+				padding: 2rem 0;
+
+				@include mixins.responsive(sm) {
+					@include mixins.flex--layout($direction: column, $align: center, $justify: baseline);
+				}
+
+				.navigation--social--container {
+					@include mixins.flex--layout($direction: row, $align: baseline, $justify: space-between);
+					width: 100%;
+					height: 100%;
+					column-gap: 1.5rem;
+
+					.navigation--social--link {
+						@include mixins.flex--layout($direction: row, $align: center, $justify: center);
+						width: 100%;
+						color: rgb(255, 255, 255);
+						font-size: 500;
+						position: relative;
+						padding: 0.5rem 0rem;
+
+						&::before {
+							content: "";
+							position: absolute;
+							width: 100%;
+							bottom: 0;
+							left: 0;
+							height: 0.09rem;
+							background-color: rgb(255, 255, 255);
+						}
+					}
+				}
+
+				.navigation--footer--container--dev {
+					@include mixins.flex--layout($direction: row, $align: center, $justify: center);
+					width: 100%;
+					font-size: 1.2rem;
+					font-weight: 500;
+					color: rgb(255, 255, 255);
+				}
 			}
 
-			&::-webkit-scrollbar-track {
-				box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
-			}
+			// &::-webkit-scrollbar {
+			// 	width: 0.3rem;
+			// }
 
-			&::-webkit-scrollbar-thumb {
-				background-color: hsl(225, 14%, 89%);
-				border-radius: 20px;
-				color: hsl(0, 0%, 96%);
-			}
+			// &::-webkit-scrollbar-track {
+			// 	box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
+			// }
+
+			// &::-webkit-scrollbar-thumb {
+			// 	background-color: hsl(225, 14%, 89%);
+			// 	border-radius: 20px;
+			// 	color: hsl(0, 0%, 96%);
+			// }
 		}
 	}
 }

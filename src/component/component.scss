@@ -143,3 +143,68 @@
         }
     }
 }
+
+.technology--slider--container {
+    width: 100%;
+    overflow: hidden;
+    // background-color: #f0f0f0;
+    padding: 20px 0;
+
+    .technology-slider-content {
+        display: flex;
+        white-space: nowrap;
+
+        .technology-item {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            // background-color: #ffffff;
+            color: rgb(243, 243, 243);
+            border-radius: 20px;
+            font-size: 4rem;
+        }
+    }
+}
+
+
+
+
+
+.portal-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-circle {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+.portal-section.active .content {
+    opacity: 1;
+}

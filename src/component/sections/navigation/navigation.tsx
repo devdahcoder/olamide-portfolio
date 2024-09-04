@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
-import { headerLinksContent } from "../../../../contents";
+import { headerLinksContent, socialMediaContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
 
@@ -8,7 +8,7 @@ let navigationLinkRef: HTMLDivElement[][] = [];
 let navigationLinkContainerRef: HTMLDivElement[] = [];
 
 const animateNavigationMainContainer = (show: boolean) => {
-	const target = ".navigation--main--container";
+	const target = ".navigation--container";
 	const duration = 1.2;
 
 	if (show === true) {
@@ -274,14 +274,14 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	});
 
 	return (
-		<div class="navigation--main--container">
+		<div class="navigation--container">
 			<div class="navigation--sub--container">
 				<For each={Array.of(1, 2, 3, 4, 5, 6)}>
 					{() => <div class="navigation--grid"></div>}
 				</For>
 
 				<div class="navigation--content--main--container">
-					<div class="navigation--content--sub--container">
+					<div class="navigation--list">
 						<For each={headerLinksContent}>
 							{(props, index) => (
 								<div
@@ -294,7 +294,6 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 										href={`${props.href}`}
 										class="navigation--link"
 									>
-										{props.leftLinkElement}
 										<For
 											each={props.text?.trim()?.split("")}
 										>
@@ -309,12 +308,27 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 												/>
 											)}
 										</For>
-										{props.rightLinkElement}
 									</a>
 									<div class="navigation--link--container--border"></div>
 								</div>
 							)}
 						</For>
+					</div>
+
+					<div class="navigation--footer--container">
+						<div class="navigation--social--container">
+							<For each={socialMediaContent}>
+								{(props, index) => (
+									<a href={`${props?.link}`} class="navigation--social--link">
+										{props.text}
+									</a>
+								)}
+							</For>
+						</div>
+
+						<div class="navigation--footer--container--dev">
+							<p>Developed by <a href="https://github.com/thedevsaddam">Olamide Adigun</a></p>
+						</div>
 					</div>
 				</div>
 			</div>

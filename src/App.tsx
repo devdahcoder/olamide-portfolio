@@ -14,6 +14,9 @@ import Experience from "./component/sections/experience/experience";
 import Loader from "./component/loader";
 import ImageScroll from "./component/sections/image-scroll/image-scroll";
 import Expertise from "./component/sections/experties/expertise";
+import TechnologySlider from "./component/TechnologySlider";
+import PortalTransition from "./component/portal-transition";
+import DoubleSlider from "./component/sections/double-slider/double-slider";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -44,7 +47,9 @@ function App() {
 			<Project isLoadedComplete={isLoadedComplete} />
 			<About />
 			{/* <Experience /> */}
-
+			{/* <DoubleSlider /> */}
+			
+			{/* <PortalTransition /> */}
 			{/* <Service isLoadedComplete={isLoadedComplete} /> */}
 			<Footer />
 		</>

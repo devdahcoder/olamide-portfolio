@@ -204,7 +204,7 @@ const Header: Component<{
 				<div class="header--util--container">
 					<div class="header--util--sub--container">
 						<a
-							href="https://drive.google.com/file/d/1XczXvDS15_odPtNFfZgvdVQ3zm5gguSS/view?usp=sharing"
+							href="https://drive.google.com/file/d/1_ucko-5CVD0J20q3VEpSheLIyMehs0pC/view?usp=sharing"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="header--resume--link"
