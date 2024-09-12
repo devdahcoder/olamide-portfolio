@@ -173,25 +173,9 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 					</For>
 					<For each={serviceMobileContent}>
 						{({ id, services }, index) => (
-							<div class="service--item">
+							<div class="service--item--mobile">
 								<div class="service--item--container">
 									<div class="service--text--container">
-										{index() % 2 !== 0 ? (
-											""
-										) : (
-											<img
-												class="service--image"
-												src={`${
-													images()[
-														Math.floor(
-															Math.random() *
-																images().length
-														)
-													]
-												}`}
-												alt=""
-											/>
-										)}
 
 										<div class="service--text--sub--container">
 											<For each={services?.split("")}>
@@ -208,22 +192,7 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 												)}
 											</For>
 										</div>
-										{index() % 2 === 0 ? (
-											""
-										) : (
-											<img
-												class="service--image"
-												src={`${
-													images()[
-														Math.floor(
-															Math.random() *
-																images().length
-														)
-													]
-												}`}
-												alt=""
-											/>
-										)}
+										
 									</div>
 								</div>
 							</div>

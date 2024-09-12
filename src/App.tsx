@@ -48,9 +48,9 @@ function App() {
 			<About />
 			{/* <Experience /> */}
 			{/* <DoubleSlider /> */}
-			
-			{/* <PortalTransition /> */}
-			{/* <Service isLoadedComplete={isLoadedComplete} /> */}
+
+			{/* <PortalTransition isLoadedComplete={isLoadedComplete} /> */}
+			<Service isLoadedComplete={isLoadedComplete} />
 			<Footer />
 		</>
 	);

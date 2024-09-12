@@ -13,7 +13,6 @@
 }
 
 .footer--container {
-
     .footer--sub--container {
         @include mixins.flex--layout($direction: column,
             $align: normal,

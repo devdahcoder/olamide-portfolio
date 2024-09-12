@@ -266,8 +266,8 @@ export const serviceContent: ServiceType[] = [
         services: ["WebFlow", "Framer Motion"]
     },
     {
-        id: 3,
-        services: ["Web Flow", "Framer Motion"]
+        id: 4,
+        services: ["Backend Dev", "Creative Dev"]
     },
 ]
 
@@ -286,7 +286,11 @@ export const serviceMobileContent: ServiceMobileType[] = [
     },
     {
         id: 4,
-        services: "Framer Motion"
+        services: "Backend Dev"
+    },
+    {
+        id: 5,
+        services: "Creative Dev"
     },
 ]
 
