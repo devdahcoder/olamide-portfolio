@@ -11,7 +11,7 @@ const animateNavigationMainContainer = (show: boolean) => {
 	const target = ".navigation--container";
 	const duration = 1.2;
 
-	if (show === true) {
+	if (show) {
 		gsap.fromTo(
 			target,
 			{
@@ -199,39 +199,6 @@ const animateBodyPosition = (show: boolean) => {
 	gsap.fromTo(target, positionProps, { duration, ease });
 };
 
-const animateLinkFocus = (
-	entry: Element,
-	link: HTMLAnchorElement,
-	isFocused: boolean
-) => {
-	const borderElement = entry.querySelector(
-		".navigation--link--container--border"
-	) as HTMLDivElement;
-	const linkSvgElement = link.querySelectorAll(".icon") as any;
-
-	if (isFocused) {
-		gsap.to(entry, { scale: 1.5 });
-		gsap.to(linkSvgElement, { scale: 0.8 });
-		gsap.to(borderElement, { xPercent: 0 });
-		gsap.to(link, { color: "white" });
-	} else {
-		gsap.to(entry, { scale: 0.8 });
-		gsap.to(linkSvgElement, { scale: 0 });
-		gsap.to(borderElement, { xPercent: -200 });
-		gsap.to(link, { color: "grey" });
-	}
-};
-
-const resetAnchor = (element: HTMLDivElement) => {
-	gsap.to(element, {
-		scale: 1,
-		delay: 0.3,
-		duration: 0.8,
-		color: "#FFFFFF",
-		fontFamily: `Zodiak, Satoshi, -apple-system, Helvetica Neue, sans-serif`,
-	});
-};
-
 const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 	props
 ) => {
@@ -247,7 +214,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 
 		let observe = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
+				entries.forEach(() => {
 					// let link = entry?.target?.querySelector(
 					// 	".navigation--link"
 					// ) as HTMLAnchorElement;
@@ -318,7 +285,7 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 					<div class="navigation--footer--container">
 						<div class="navigation--social--container">
 							<For each={socialMediaContent}>
-								{(props, index) => (
+								{(props) => (
 									<a href={`${props?.link}`} class="navigation--social--link">
 										{props.text}
 									</a>

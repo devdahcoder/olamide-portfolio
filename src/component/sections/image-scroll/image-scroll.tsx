@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal, For } from 'solid-js';
+import { Component, createEffect, For } from 'solid-js';
 import './image-scroll.scss';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,9 +15,10 @@ const ImageScroll: Component<{}> = () => {
     createEffect(() => {
         imageScrollContainerRefElement.forEach((element, index) => {
             const targetElement = element.querySelector(".image--container");
-            const targetElementSubContainer = targetElement?.querySelector(".image--sub--container");
-            const image = targetElementSubContainer?.querySelector(".image");
 
+            gsap.killTweensOf([
+                targetElement
+            ]);
 
             gsap.to(targetElement, {
                 scrollTrigger: {
@@ -33,7 +34,7 @@ const ImageScroll: Component<{}> = () => {
                 duration: 1,
             })
 
-            elementObserver(targetElement, (entry, observer) => {
+            elementObserver(targetElement, (entry) => {
                 if (entry.isIntersecting) {
                     gsap.to(targetElement, {
                         filter: 'blur(0px)',
@@ -67,17 +68,6 @@ const ImageScroll: Component<{}> = () => {
 
                 }
             }, { threshold: 0.9, rootMargin: "-90px 0px -90px 0px" });
-            // ScrollTrigger.create({
-            //     trigger: image,
-            //     start: '9% center',
-            //     end: '40% center',
-            //     markers: true,
-            //     // scrub: true,
-            //     onEnter: () => gsap.to(targetElement, { filter: 'blur(0px)', duration: 0.5, }),
-            //     onLeave: () => gsap.to(targetElement, { filter: 'blur(2px)', duration: 0.5, }),
-            //     onEnterBack: () => gsap.to(targetElement, { filter: 'blur(0px)', duration: 0.5, }),
-            //     onLeaveBack: () => gsap.to(targetElement, { filter: 'blur(2px)', duration: 0.5, }),
-            // });
         })
     })
 

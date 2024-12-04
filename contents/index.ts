@@ -91,29 +91,47 @@ export const socialMediaContent: Array<SocialMediaTypes> = [
 ]
 
 export const workContent: Array<WorkType> = [
-
     {
         id: 1,
         image: {
-            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageSrc: './images/ojah.png',
             imageAlt: 'Image 1',
             imageClass: 'image',
             imageContainerClass: 'image--container',
             imageSubContainerClass: 'image--sub--container',
         },
-        title: 'OakLane',
+        title: 'Ojah',
         description: 'Description for Work 1',
         date: '2023-01-15',
-        link: 'work-1-link',
-        companyName: "OkaLane",
+        link: 'https://ojah.payshiga.com/',
+        companyName: "Payshiga",
         className: "start",
         tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
         type: ["Design concept", "Website", "User Experience", "User Interface"]
     },
+
+    // {
+    //     id: 1,
+    //     image: {
+    //         imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+    //         imageAlt: 'Image 1',
+    //         imageClass: 'image',
+    //         imageContainerClass: 'image--container',
+    //         imageSubContainerClass: 'image--sub--container',
+    //     },
+    //     title: 'OakLane',
+    //     description: 'Description for Work 1',
+    //     date: '2023-01-15',
+    //     link: 'work-1-link',
+    //     companyName: "OkaLane",
+    //     className: "start",
+    //     tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
+    //     type: ["Design concept", "Website", "User Experience", "User Interface"]
+    // },
     {
         id: 2,
         image: {
-            imageSrc: 'https://images.pexels.com/photos/1595437/pexels-photo-1595437.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageSrc: './images/scalein.png',
             imageAlt: 'Image 2',
             imageClass: 'image',
             imageContainerClass: 'image--container',
@@ -122,7 +140,7 @@ export const workContent: Array<WorkType> = [
         title: 'ScaleIn',
         description: 'Description for Work 2',
         date: '2023-02-20',
-        link: 'work-2-link',
+        link: 'https://scaleinafrica.com/',
         companyName: "ScaleIn",
         className: "end",
         tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
@@ -132,60 +150,60 @@ export const workContent: Array<WorkType> = [
     {
         id: 3,
         image: {
-            imageSrc: 'URL_FOR_IMAGE_3',
+            imageSrc: './images/logs.png',
             imageAlt: 'Image 3',
             imageClass: 'image',
             imageContainerClass: 'image--container',
             imageSubContainerClass: 'image--sub--container',
         },
-        title: 'KaseFile',
+        title: 'LogShark',
         description: 'Description for New Project 1',
         date: '2023-03-10',
-        link: 'new-project-1-link',
+        link: 'https://logshark.cloud/',
         companyName: "NewProject1",
         className: "middle",
         tools: ["React", "Redux", "TypeScript", "Styled Components"],
         type: ["Design concept", "Website", "User Experience", "User Interface"]
 
     },
-    {
-        id: 4,
-        image: {
-            imageSrc: 'URL_FOR_IMAGE_4',
-            imageAlt: 'Image 4',
-            imageClass: 'image',
-            imageContainerClass: 'image--container',
-            imageSubContainerClass: 'image--sub--container',
-        },
-        title: 'Magnalense',
-        description: 'Description for New Project 2',
-        date: '2023-04-05',
-        link: 'new-project-2-link',
-        companyName: "NewProject2",
-        className: "middle",
-        tools: ["Vue.js", "Vuex", "SCSS", "Webpack"],
-        type: ["Design concept", "Website", "User Experience", "User Interface"]
-
-    },
-    {
-        id: 5,
-        image: {
-            imageSrc: 'URL_FOR_IMAGE_5',
-            imageAlt: 'Image 5',
-            imageClass: 'image',
-            imageContainerClass: 'image--container',
-            imageSubContainerClass: 'image--sub--container',
-        },
-        title: 'Quidate',
-        description: 'Description for New Project 3',
-        date: '2023-05-15',
-        link: 'new-project-3-link',
-        companyName: "NewProject3",
-        className: "end",
-        tools: ["Angular", "RxJS", "NgRx", "Bootstrap"],
-        type: ["Design concept", "Website", "User Experience", "User Interface"]
-
-    }
+    // {
+    //     id: 4,
+    //     image: {
+    //         imageSrc: 'URL_FOR_IMAGE_4',
+    //         imageAlt: 'Image 4',
+    //         imageClass: 'image',
+    //         imageContainerClass: 'image--container',
+    //         imageSubContainerClass: 'image--sub--container',
+    //     },
+    //     title: 'Magnalense',
+    //     description: 'Description for New Project 2',
+    //     date: '2023-04-05',
+    //     link: 'new-project-2-link',
+    //     companyName: "NewProject2",
+    //     className: "middle",
+    //     tools: ["Vue.js", "Vuex", "SCSS", "Webpack"],
+    //     type: ["Design concept", "Website", "User Experience", "User Interface"]
+    //
+    // },
+    // {
+    //     id: 5,
+    //     image: {
+    //         imageSrc: 'URL_FOR_IMAGE_5',
+    //         imageAlt: 'Image 5',
+    //         imageClass: 'image',
+    //         imageContainerClass: 'image--container',
+    //         imageSubContainerClass: 'image--sub--container',
+    //     },
+    //     title: 'Quidate',
+    //     description: 'Description for New Project 3',
+    //     date: '2023-05-15',
+    //     link: 'new-project-3-link',
+    //     companyName: "NewProject3",
+    //     className: "end",
+    //     tools: ["Angular", "RxJS", "NgRx", "Bootstrap"],
+    //     type: ["Design concept", "Website", "User Experience", "User Interface"]
+    //
+    // }
 
 ];
 

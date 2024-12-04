@@ -1,41 +1,5 @@
 import gsap from "gsap";
 
-export const animateLoader = (
-    container: HTMLDivElement | undefined,
-    setIsLoadedComplete: (value: boolean) => void
-) => {
-    const tl = gsap.timeline();
-    tl.to(".loader--grid--container", { visibility: "visible" })
-        .to(".loader--grid", {
-            opacity: 1,
-            y: 0,
-            stagger: 0.2,
-            duration: 0.9,
-            ease: "power4.out",
-        })
-        .to(
-            ".loader--cover",
-            {
-                y: 0,
-                duration: 1,
-                ease: "sine.inOut",
-                onComplete: () => {
-                    setIsLoadedComplete(true);
-                },
-            },
-            "-=0.99"
-        )
-        .to(".loader--container", {
-            yPercent: 100,
-            duration: 1,
-            ease: "expo.inOut",
-            onComplete: () => {
-                gsap.to(".loader--container", {
-                    display: "none",
-                });
-            },
-        });
-};
 
 export const animatePercentage = (
     currentPercentage: number,

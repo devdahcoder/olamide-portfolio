@@ -1,24 +1,18 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { animate } from "motion";
 import {
 	Accessor,
 	Component,
 	For,
-	Show,
 	createEffect,
-	createSignal,
 	onCleanup,
-	onMount,
 } from "solid-js";
 import { workContent } from "../../../../contents";
-import IconButton from "../../icon-button";
 import Image from "../../image";
 import "./project.scss";
 import ParallaxCharacter from "../../parallax-character";
 import DoubleArrowIcon from "../../../../public/icon/double-arrow-icon";
-import { DOMElement } from "solid-js/jsx-runtime";
-import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
+import { elementObserver } from "../../../../hooks";
 import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,12 +21,6 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let projectSectionRefElement: HTMLDivElement | undefined;
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
-
-	const [prevMousePosition, setPreviousMousePosition] =
-		createSignal<number>(0);
-	const [currentMouseIndex, setCurrentMouseIndex] = createSignal<
-		number | null
-	>(0);
 
 	const animateHeaderText = () => {
 		gsap.fromTo(
@@ -52,7 +40,7 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	const getDomVariables = (
-		e: MouseEvent
+		e: MouseEvent | any
 	): {
 		targetElement: any;
 		currentX: number;
@@ -174,16 +162,10 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 
 		const handleMouseEnter = (e: MouseEvent) => {
 			const {
-				targetElement,
 				currentX,
-				titleContainerElement,
-				titleElement,
-				titleCharacterContainerElement,
 				firstTitleCharacterElements,
 				secondTitleCharacterElements,
 				imageContainerElement,
-				imageSubElement,
-				imageElement,
 				borderElement,
 				utilIconContainerElement,
 				iconElement,
@@ -231,16 +213,10 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 
 		const handleMouseLeave = (e: MouseEvent) => {
 			const {
-				targetElement,
 				currentX,
-				titleContainerElement,
-				titleElement,
-				titleCharacterContainerElement,
 				firstTitleCharacterElements,
 				secondTitleCharacterElements,
 				imageContainerElement,
-				imageSubElement,
-				imageElement,
 				borderElement,
 				utilIconContainerElement,
 				iconElement,
@@ -294,15 +270,7 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 			const imageElement = imageSubElement.querySelector(".image");
 			// end project image dom manipulation //
 
-			// gsap.killTweensOf([
-			// 	e.target,
-			// 	imageElement,
-			// 	imageContainerElement,
-			// 	imageContainerElement,
-			// ]);
-
 			if (imageElement) {
-				let prevX = e.clientX;
 				const currentX =
 					e.clientX -
 					e.currentTarget.getBoundingClientRect().left -
@@ -313,10 +281,6 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 					e.currentTarget.getBoundingClientRect().top -
 					e.currentTarget.offsetHeight / 2;
 
-				const direction =
-					prevX >= prevMousePosition() ? "right" : "left";
-
-				const tiltAmount = direction === "right" ? 10 : -10;
 
 				gsap.to(imageContainerElement, {
 					// duration: 0.8,
@@ -372,13 +336,13 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				/>
 				<div class="project--list">
 					<For each={workContent}>
-						{(props, index) => (
+						{(props) => (
 							<div
 								ref={(element) => projectItemRef.push(element)}
 								class="project--item"
 							>
 								<a
-									href={`http://${props.link}`}
+									href={`${props.link}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									class="project--item--link"
