@@ -8,23 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 const Experience: Component<{}> = () => {
 	const experienceElementRef: HTMLDivElement[] = [];
 	createEffect(() => {
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".experience--container",
-				start: `top 20%`,
-				scrub: 1,
-				// pin: true,
-				end: `bottom bottom`,
-				// toggleActions: "play none none reverse",
-			},
-		});
+		// const tl = gsap.timeline({
+		// 	scrollTrigger: {
+		// 		trigger: ".experience--container",
+		// 		start: `top 20%`,
+		// 		scrub: 1,
+		// 		// pin: true,
+		// 		end: `bottom bottom`,
+		// 		// toggleActions: "play none none reverse",
+		// 	},
+		// });
 
-		tl.to(".experience--header--title", {
-			scale: 0.3,
-			opacity: 0,
-			duration: 1,
-			position: "sticky",
-		});
+		// tl.to(".experience--header--title", {
+		// 	scale: 0.3,
+		// 	opacity: 0,
+		// 	duration: 1,
+		// 	position: "sticky",
+		// });
 
 		experienceElementRef.forEach((element, _index) => {
 			gsap.timeline({
@@ -57,32 +57,39 @@ const Experience: Component<{}> = () => {
 			<div class="experience--sub--container">
 				<div class="experience--header--title">
 					<div class="experience--title">
-						<p>Process &</p>
+						<p>Creative process for</p>
 					</div>
 					<div class="experience--title">
-						<p>Creativity</p>
+						<p>your Success</p>
 					</div>
 				</div>
 
 				<div class="experience--list">
 					<For each={experienceContent}>
 						{(experience) => (
-							<div
-								ref={(element) =>
-									experienceElementRef.push(element)
-								}
-								class="experience--item"
-							>
-								<div class="experience--title">
-									<div class="text-base">
+							<div class={`flex flex-row w-full ${experience?.id % 2 !== 0 ? '!justify-start' : '!justify-end'}` }>
+								<div
+									ref={(element) =>
+										experienceElementRef.push(element)
+									}
+
+									class={`experience--item flex `}
+
+								>
+									<div class="experience--number">
 										<span>0{experience?.id}.</span>
 									</div>
-									<div>
-										<p>{experience?.title}</p>
+									<div class={"flex flex-col"}>
+										<div class="experience--title">
+
+											<p>{experience?.title}</p>
+
+										</div>
+
+										<div class="experience--description">
+											<p>{experience?.description}</p>
+										</div>
 									</div>
-								</div>
-								<div class="experience--description">
-									<p>{experience?.description}</p>
 								</div>
 							</div>
 						)}

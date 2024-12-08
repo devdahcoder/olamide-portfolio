@@ -99,24 +99,27 @@ const ImageScroll: Component<{}> = () => {
 
                 <div class="image--scroll--text--container"><div class="image--scroll--text--sub--container">
                     <div class="image--scroll--text">
-                        <h2 >
-                            <For each={imageScrollContent}>
-                                {(item, index) => {
-                                    return (
-                                        <span
-                                            style={{
-                                                transform: `translateX(-50%) translateY(${index() === 0 ? '0cap' : '3cap'}) translateZ(0px)`,
-                                                "z-index": index()
-                                            }}
-                                            class={`image--scroll--text--span image--scroll--text--span--${index()}`}>
-                                            {item?.text}
-                                        </span>
-                                    )
-                                }}
-                            </For>
-                        </h2>
+                        <p class={`text-base`}>
+                            Creativity isn't a destination <br /> reached with projects; it's a journey that unfolds endlessly.</p>
+                        {/*<h2 >*/}
+                        {/*    <For each={imageScrollContent}>*/}
+                        {/*        {(item, index) => {*/}
+                        {/*            return (*/}
+                        {/*                <span*/}
+                        {/*                    style={{*/}
+                        {/*                        transform: `translateX(-50%) translateY(${index() === 0 ? '0cap' : '3cap'}) translateZ(0px)`,*/}
+                        {/*                        "z-index": index()*/}
+                        {/*                    }}*/}
+                        {/*                    class={`image--scroll--text--span image--scroll--text--span--${index()}`}>*/}
+                        {/*                    {item?.text}*/}
+                        {/*                </span>*/}
+                        {/*            )*/}
+                        {/*        }}*/}
+                        {/*    </For>*/}
+                        {/*</h2>*/}
                     </div>
-                </div></div>
+                </div>
+                </div>
             </div>
         </div>
     );

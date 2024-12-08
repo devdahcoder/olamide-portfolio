@@ -2,16 +2,15 @@ import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import "./service.scss";
 import { serviceContent, serviceMobileContent } from "../../../../contents";
 import SectionHeader from "../../section-header";
-import { elementObserver, useIsLoadedStateHook } from "../../../../hooks";
+import { elementObserver } from "../../../../hooks";
 import gsap from "gsap";
 import ParallaxCharacter from "../../parallax-character";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-type Props = {};
 
 const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
-	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
+	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let serviceSectionRefElement: HTMLDivElement | undefined;
 
@@ -102,7 +101,7 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 
 				<div class="service--list">
 					<For each={serviceContent}>
-						{({ id, services }) => (
+						{({ services }) => (
 							<div class="service--item">
 								<div class="service--item--container">
 									<For each={services}>
@@ -172,7 +171,7 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 						)}
 					</For>
 					<For each={serviceMobileContent}>
-						{({ id, services }, index) => (
+						{({ services }) => (
 							<div class="service--item--mobile">
 								<div class="service--item--container">
 									<div class="service--text--container">

@@ -1,14 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Component, For, createEffect, createSignal, onMount } from "solid-js";
-import { quoteContent } from "../../../../contents";
+import { Component, For } from "solid-js";
 import { QuoteApiType } from "../../../../types";
-import ParallaxCharacter from "../../parallax-character";
 import "./quote.scss";
 
 gsap.registerPlugin(ScrollTrigger);
-
-let sectionRef: HTMLDivElement | undefined | any;
 
 type Props = {
 	quote: QuoteApiType

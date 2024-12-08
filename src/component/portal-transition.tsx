@@ -1,14 +1,10 @@
-import { Component, onMount, onCleanup, Accessor } from 'solid-js';
+import { Component, onMount, onCleanup } from 'solid-js';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./component.scss";
-import Service from "./sections/service/service";
-
 gsap.registerPlugin(ScrollTrigger);
 
-const PortalTransition: Component<{
-	isLoadedComplete: Accessor<boolean>;
-}> = (props) => {
+const PortalTransition: Component<{}> = () => {
 	let sectionRef: HTMLDivElement | undefined;
 	let circleRef: HTMLDivElement | undefined;
 
@@ -25,7 +21,7 @@ const PortalTransition: Component<{
 			});
 
 			tl.to(circleRef, {
-                scale: 80,
+                scale: 100,
                 clipPath: "circle(100%)",
 				duration: 1,
 			});
@@ -57,12 +53,17 @@ const PortalTransition: Component<{
 
 	return (
 		<div ref={sectionRef} class="portal-section">
+
 			<div ref={circleRef} class="portal-circle"></div>
-			<div class="content text-white border z-50">
-				<h2>Welcome to the Next Section</h2>
-				<p>This content appears as the circle expands.</p>
+			<div class={"w-full h-full flex flex-col items-center justify-center"}>
+				{/*<div class="content flex flex-col items-center justify-center text-white border z-50">*/}
+				{/*	<h2>Welcome to the Next Section</h2>*/}
+				{/*	<p>This content appears as the circle expands.</p>*/}
+				{/*	*/}
+				{/*</div>*/}
+
+
 			</div>
-			{/* <Service isLoadedComplete={props?.isLoadedComplete} /> */}
 		</div>
 	);
 };

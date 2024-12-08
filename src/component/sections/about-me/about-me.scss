@@ -2,192 +2,192 @@
 @use "../../../styles/variables";
 
 .about--me--container {
-    padding-top: 7rem;
+  padding-top: 7rem;
+
+  @include mixins.responsive(sm) {
+    padding-top: 4rem;
+  }
+
+  .about--me--sub--container {
+    @include mixins.flex--layout($direction: row,
+    $align: start,
+    $justify: start);
+    @include mixins.center--section;
 
     @include mixins.responsive(sm) {
-        padding-top: 4rem;
+      @include mixins.flex--layout($direction: column,
+      $align: start,
+      $justify: start);
+      row-gap: 2rem;
     }
 
-    .about--me--sub--container {
-        @include mixins.flex--layout($direction: row,
-            $align: start,
-            $justify: start);
-        @include mixins.center--section;
+    .about--me--title--and--social--container {
+      width: 60%;
+      @include mixins.flex--layout($direction: column,
+      $align: start,
+      $justify: start);
+      height: 100%;
 
-        @include mixins.responsive(sm) {
-            @include mixins.flex--layout($direction: column,
-                $align: start,
-                $justify: start);
-            row-gap: 2rem;
-        }
+      @include mixins.responsive(sm) {
+        width: 100%;
+      }
 
-        .about--me--title--and--social--container {
-            width: 60%;
-            @include mixins.flex--layout($direction: column,
-                $align: start,
-                $justify: start);
-            height: 100%;
+      .image--container {
+        margin-top: 1rem;
+        position: relative;
+        display: block;
+        inset: 0px auto auto 0px;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        @include mixins.flex--layout($direction: column,
+        $align: start,
+        $justify: start);
+
+        .image--sub--container {
+          position: relative;
+          z-index: 0;
+          width: 15rem;
+          height: 8rem;
+          display: block;
+          overflow: hidden;
+          border-radius: 0px 100vh 100vh 0px;
+          opacity: 0;
+          transform: translate(-100%, 0);
+
+          @include mixins.responsive(sm) {
+            width: 10rem;
+            height: 6rem;
+          }
+
+          .image {
+            width: 15rem;
+            height: 8rem;
+            position: relative;
+            display: block;
+            z-index: 0;
+            object-position: center;
+            object-fit: cover;
 
             @include mixins.responsive(sm) {
-                width: 100%;
+              width: 10rem;
+              height: 6rem;
             }
+          }
 
-            .image--container {
-                margin-top: 1rem;
-                position: relative;
-                display: block;
-                inset: 0px auto auto 0px;
-                height: 100%;
-                width: 100%;
-                overflow-x: hidden;
-                @include mixins.flex--layout($direction: column,
-                    $align: start,
-                    $justify: start);
-
-                .image--sub--container {
-                    position: relative;
-                    z-index: 0;
-                    width: 15rem;
-                    height: 8rem;
-                    display: block;
-                    overflow: hidden;
-                    border-radius: 0px 100vh 100vh 0px;
-                    opacity: 0;
-                    transform: translate(-100%, 0);
-
-                    @include mixins.responsive(sm) {
-                        width: 10rem;
-                        height: 6rem;
-                    }
-
-                    .image {
-                        width: 15rem;
-                        height: 8rem;
-                        position: relative;
-                        display: block;
-                        z-index: 0;
-                        object-position: center;
-                        object-fit: cover;
-
-                        @include mixins.responsive(sm) {
-                            width: 10rem;
-                            height: 6rem;
-                        }
-                    }
-
-                    .image--shadow {
-                        position: absolute;
-                        width: 100%;
-                        bottom: 0;
-                        z-index: 10;
-                        -webkit-mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
-                        mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
-                        background-color: hsl(0, 0%, 5%);
-                        transform: translate(0px, 0px);
-                        opacity: 0;
-                        height: 192px;
-                    }
-                }
-            }
-
-            .about--me--title {
-                @include mixins.flex--layout($direction: row,
-                    $align: start,
-                    $justify: start);
-                font-size: 1.2vw;
-                font-weight: 400;
-                color: variables.$tertiary--text--color;
-                overflow: hidden;
-                column-gap: 5rem;
-
-                @include mixins.responsive(sm) {
-                    font-size: 18vw;
-                }
-            }
-
-            .about--me--social--container {
-                @include mixins.flex--layout($direction: column,
-                    $align: start,
-                    $justify: start);
-
-                .about--me--social--title {}
-
-                .about--me--social--links--container {}
-            }
-        }
-
-        .about--me--intro {
+          .image--shadow {
+            position: absolute;
             width: 100%;
-            @include mixins.flex--layout($direction: column,
-                $align: baseline,
-                $justify: baseline);
-
-            // @include mixins.responsive(sm) {
-            //     row-gap: 5rem;
-            // }
-
-            .about--me--header--container {
-                @include mixins.flex--layout($direction: row,
-                    $align: start,
-                    $justify: start);
-
-                .about--me--header--title {
-                    font-family: sans-serif;
-                    overflow-x: hidden;
-
-                    .about--me--title--character {
-                        font-family: Instrument Sans, -apple-system, Helvetica Neue,
-                            sans-serif;
-                        font-size: 7vw;
-                        color: hsl(0, 0%, 100%);
-                        overflow-y: hidden;
-                        font-weight: 600;
-                        transform: translate(100%, 0%);
-
-                        @include mixins.responsive(sm) {
-                            font-size: 14vw;
-
-                            .character--space {
-                                margin: 0.5rem !important;
-                            }
-                        }
-                    }
-
-                    @include mixins.responsive(sm) {
-                        .character--space {
-                            margin: 0.5rem !important;
-                        }
-                    }
-                }
-            }
-
-            .about--me--text--container {
-                width: 100%;
-                @include mixins.flex--layout($direction: row,
-                    $align: start,
-                    $justify: start);
-                flex-wrap: wrap;
-                column-gap: 0.5rem;
-
-                .about--me--text {
-                    @include mixins.flex--layout($direction: column,
-                        $align: start,
-                        $justify: start);
-                    font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                    font-size: 2.3vw;
-                    font-weight: 400;
-                    color: hsl(0, 7%, 59%);
-                    overflow: hidden;
-
-                    @include mixins.responsive(sm) {
-                        font-size: 4.8vw;
-                    }
-
-                    span {
-                        color: variables.$tertiary--text--color;
-                    }
-                }
-            }
+            bottom: 0;
+            z-index: 10;
+            -webkit-mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
+            mask-image: linear-gradient(transparent, hsl(0, 0%, 0%) 85%);
+            background-color: hsl(0, 0%, 5%);
+            transform: translate(0px, 0px);
+            opacity: 0;
+            height: 192px;
+          }
         }
+      }
+
+      .about--me--title {
+        @include mixins.flex--layout($direction: row,
+        $align: start,
+        $justify: start);
+        font-size: 1.2vw;
+        font-weight: 400;
+        color: variables.$tertiary--text--color;
+        overflow: hidden;
+        column-gap: 5rem;
+
+        @include mixins.responsive(sm) {
+          font-size: 18vw;
+        }
+      }
+
+      .about--me--social--container {
+        @include mixins.flex--layout($direction: column,
+        $align: start,
+        $justify: start);
+
+        .about--me--social--title {}
+
+        .about--me--social--links--container {}
+      }
     }
+
+    .about--me--intro {
+      width: 100%;
+      @include mixins.flex--layout($direction: column,
+      $align: baseline,
+      $justify: baseline);
+
+      // @include mixins.responsive(sm) {
+      //     row-gap: 5rem;
+      // }
+
+      .about--me--header--container {
+        @include mixins.flex--layout($direction: row,
+        $align: start,
+        $justify: start);
+
+        .about--me--header--title {
+          font-family: sans-serif;
+          overflow-x: hidden;
+
+          .about--me--title--character {
+            font-family: Instrument Sans, -apple-system, Helvetica Neue,
+            sans-serif;
+            font-size: 7vw;
+            color: hsl(0, 0%, 100%);
+            overflow-y: hidden;
+            font-weight: 600;
+            transform: translate(100%, 0%);
+
+            @include mixins.responsive(sm) {
+              font-size: 14vw;
+
+              .character--space {
+                margin: 0.5rem !important;
+              }
+            }
+          }
+
+          @include mixins.responsive(sm) {
+            .character--space {
+              margin: 0.5rem !important;
+            }
+          }
+        }
+      }
+
+      .about--me--text--container {
+        width: 100%;
+        @include mixins.flex--layout($direction: row,
+        $align: start,
+        $justify: start);
+        flex-wrap: wrap;
+        column-gap: 0.5rem;
+
+        .about--me--text {
+          @include mixins.flex--layout($direction: column,
+          $align: start,
+          $justify: start);
+          font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+          font-size: 2.3vw;
+          font-weight: 400;
+          color: hsl(0, 7%, 59%);
+          overflow: hidden;
+
+          @include mixins.responsive(sm) {
+            font-size: 4.8vw;
+          }
+
+          span {
+            color: variables.$tertiary--text--color;
+          }
+        }
+      }
+    }
+  }
 }

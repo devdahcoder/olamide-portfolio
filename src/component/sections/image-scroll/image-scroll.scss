@@ -2,6 +2,7 @@
 @use "../../../styles/variables";
 
 .image--scroll--container {
+    background-color: #ffffff;
     .image--scroll--sub--container {
         min-height: 100vh;
         height: 100%;
@@ -101,16 +102,16 @@
                 mix-blend-mode: difference;
 
                 .image--scroll--text {
-                    height: 2.8cap;
-                    width: 7ch;
-                    font-size: clamp(40px, 16.7vw, 320px);
-                    line-height: 1;
+                    //height: 2.8cap;
+                    width: 25ch;
+                    font-size: clamp(20px, 3.5vw, 100px);
+                    line-height: 1.5;
                     overflow-y: clip;
 
-                    h2 {
+                    p {
                         position: relative;
-                        line-height: 1;
-                        font-size: clamp(40px, 16.7vw, 320px);
+                        line-height: 1.5;
+                        font-size: clamp(20px, 3.5vw, 100px);
                         text-transform: uppercase;
                         color: #f9f9f9;
                         text-align: center;

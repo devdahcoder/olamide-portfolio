@@ -4,14 +4,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const Stack: Component<{}> = (props) => {
-	const [card, setCard] = createSignal<string[]>(["1", "2", "3", "4"]);
+const Stack: Component<{}> = () => {
+	const [card] = createSignal<string[]>(["1", "2", "3", "4"]);
 
 	let cardRef: HTMLDivElement[] = [];
 
 	createEffect(() => {
 		cardRef = cardRef.slice(0, card().length);
 	});
+
 const handlePlus = () => {
 	if (cardRef.length > 0) {
 		const currentCard = cardRef?.pop();
