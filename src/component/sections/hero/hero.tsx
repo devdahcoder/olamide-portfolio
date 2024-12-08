@@ -5,14 +5,12 @@ import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./hero.scss";
-import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero: Component<{
 	isNavigationOpen: boolean;
 	isLoadedComplete: Accessor<boolean>;
 }> = (props) => {
-	const [name] = createSignal<string>("Olamide Adigun");
 	const [skills] = createSignal<string[]>([
 		"Java",
 		"TypeScript",
@@ -23,7 +21,6 @@ const Hero: Component<{
 		"C#",
 		"PHP",
 	]);
-		let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];

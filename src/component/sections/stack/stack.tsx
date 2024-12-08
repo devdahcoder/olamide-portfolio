@@ -53,15 +53,15 @@ const handlePlus = () => {
 };
 	createEffect(() => {
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".card--container",
-				start: `top top`,
-				end: `top top`,
-				scrub: 5,
-				markers: true,
-			}
-		});
+		// const tl = gsap.timeline({
+		// 	scrollTrigger: {
+		// 		trigger: ".card--container",
+		// 		start: `top top`,
+		// 		end: `top top`,
+		// 		scrub: 5,
+		// 		markers: true,
+		// 	}
+		// });
 		// cardRef.forEach((card, index) => {
 		// 	gsap.timeline({
 		// 		scrollTrigger: {
