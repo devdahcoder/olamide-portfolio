@@ -12,41 +12,38 @@ import PortalTransition from "./component/portal-transition.tsx";
 import ImageScroll from "./component/sections/image-scroll/image-scroll.tsx";
 import Experience from "./component/sections/experience/experience.tsx";
 import Loader from "./component/loader.tsx";
-import WorkFlow from "./component/sections/work-flow/work-flow.tsx";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
-		createSignal<boolean>(true);
+		createSignal<boolean>(false);
 	const [isLoadedComplete, setIsLoadedComplete] =
 		createSignal<boolean>(false);
 
 	return (
 		<>
-			{/*<Loader*/}
-			{/*	isLoadedComplete={isLoadedComplete}*/}
-			{/*	setIsLoadedComplete={setIsLoadedComplete}*/}
-			{/*/>*/}
-			<WorkFlow isLoadedComplete={ true} />
+			<Loader
+				isLoadedComplete={isLoadedComplete}
+				setIsLoadedComplete={setIsLoadedComplete}
+			/>
 			<Navigation isNavigationOpen={isNavigationOpen} />
-			{/*<Header*/}
-			{/*	isLoadedComplete={isLoadedComplete}*/}
-			{/*	isNavigationOpen={isNavigationOpen}*/}
-			{/*	setIsNavigationOpen={setIsNavigationOpen}*/}
-			{/*/>*/}
-			{/*<Hero*/}
-			{/*	isLoadedComplete={isLoadedComplete}*/}
-			{/*	isNavigationOpen={isNavigationOpen()}*/}
-			{/*/>*/}
-			{/*<AboutMe isLoadedComplete={isLoadedComplete} />*/}
-			{/*<Intro isLoadedComplete={isLoadedComplete} />*/}
-			{/*<Project isLoadedComplete={isLoadedComplete} />*/}
-			{/*<About />*/}
-			{/*<ImageScroll />*/}
-			{/*<PortalTransition />*/}
-			{/*<Experience />*/}
-			{/*/!*<Stack />*!/*/}
+			<Header
+				isLoadedComplete={isLoadedComplete}
+				isNavigationOpen={isNavigationOpen}
+				setIsNavigationOpen={setIsNavigationOpen}
+			/>
+			<Hero
+				isLoadedComplete={isLoadedComplete}
+				isNavigationOpen={isNavigationOpen()}
+			/>
+			<AboutMe isLoadedComplete={isLoadedComplete} />
+			<Intro isLoadedComplete={isLoadedComplete} />
+			<Project isLoadedComplete={isLoadedComplete} />
+			<About />
+			<ImageScroll />
+			<PortalTransition />
+			<Experience />
 
-			{/*<Service isLoadedComplete={isLoadedComplete} />*/}
+			<Service isLoadedComplete={isLoadedComplete} />
 			<Footer />
 		</>
 	);

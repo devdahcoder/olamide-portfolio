@@ -1,4 +1,4 @@
-import { Component, JSXElement } from 'solid-js';
+import { JSXElement } from 'solid-js';
 import { NAVIGATION_TYPE } from './../enum/index';
 
 export type WorkFlowTypes = {
