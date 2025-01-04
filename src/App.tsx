@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal, onMount } from "solid-js";
 import About from "./component/sections/about/about";
 import Footer from "./component/sections/footer/footer";
 import Header from "./component/sections/header/header";
@@ -19,6 +19,32 @@ function App() {
 	const [isLoadedComplete, setIsLoadedComplete] =
 		createSignal<boolean>(false);
 
+	const smoothScrollTo = (element, to, duration = 500) => {
+		const start = Date.now();
+		const from = element.scrollTop;
+
+		const animate = () => {
+			const progress = (Date.now() - start) / duration;
+			const value = from + (to - from) * Math.min(progress, 1);
+			element.scrollTop = value;
+
+			if (progress < 1) {
+				requestAnimationFrame(animate);
+			}
+		};
+
+		requestAnimationFrame(animate);
+	};
+
+	// ... (in your component) ...
+	onMount(() => {
+		const myElement = document.getElementById("myElement");
+
+		createEffect(() => {
+			smoothScrollTo(myElement, 100); // Scroll to position 100 smoothly
+		});
+	});
+
 	return (
 		<>
 			<Loader
@@ -31,6 +57,7 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
+
 			<Hero
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
