@@ -19,7 +19,7 @@ function App() {
 	const [isLoadedComplete, setIsLoadedComplete] =
 		createSignal<boolean>(false);
 
-	const smoothScrollTo = (element, to, duration = 500) => {
+	const smoothScrollTo = (element: any, to: any, duration = 500) => {
 		const start = Date.now();
 		const from = element.scrollTop;
 
@@ -36,12 +36,11 @@ function App() {
 		requestAnimationFrame(animate);
 	};
 
-	// ... (in your component) ...
 	onMount(() => {
 		const myElement = document.getElementById("myElement");
 
 		createEffect(() => {
-			smoothScrollTo(myElement, 100); // Scroll to position 100 smoothly
+			smoothScrollTo(myElement, 100);
 		});
 	});
 
