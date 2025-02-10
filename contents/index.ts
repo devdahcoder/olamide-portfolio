@@ -103,7 +103,7 @@ export const workContent: Array<WorkType> = [
         title: 'Ojah',
         description: 'Description for Work 1',
         date: '2023-01-15',
-        link: 'https://ojah.payshiga.com/',
+        link: 'https://ojah.shop/',
         companyName: "Payshiga",
         className: "start",
         tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
