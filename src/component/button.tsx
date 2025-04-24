@@ -2,8 +2,8 @@ import { Component, JSX, JSXElement } from "solid-js";
 
 type Props = {
 	children: JSXElement;
-	buttonClass: string;
-	buttonContainerClass: string;
+	buttonClass?: string;
+	buttonContainerClass?: string;
 	onClick?: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent> | any;
 };
 

@@ -94,7 +94,7 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				<SectionHeader
 					parallaxCharacterElement={headerParallaxCharacterElement}
 					title="Services"
-					characterClassName="service--title--character"
+					characterClassName="service--title--character shiny-text"
 					class="service--header--title"
 					titleContainerClassNam="service--header--container"
 				/>
@@ -175,7 +175,6 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 							<div class="service--item--mobile">
 								<div class="service--item--container">
 									<div class="service--text--container">
-
 										<div class="service--text--sub--container">
 											<For each={services?.split("")}>
 												{(character, index) => (
@@ -191,7 +190,6 @@ const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 												)}
 											</For>
 										</div>
-										
 									</div>
 								</div>
 							</div>

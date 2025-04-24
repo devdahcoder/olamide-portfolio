@@ -8,23 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 const Experience: Component<{}> = () => {
 	const experienceElementRef: HTMLDivElement[] = [];
 	createEffect(() => {
-		// const tl = gsap.timeline({
-		// 	scrollTrigger: {
-		// 		trigger: ".experience--container",
-		// 		start: `top 20%`,
-		// 		scrub: 1,
-		// 		// pin: true,
-		// 		end: `bottom bottom`,
-		// 		// toggleActions: "play none none reverse",
-		// 	},
-		// });
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".experience--container",
+				start: `top 20%`,
+				scrub: 1,
+				// pin: true,
+				end: `bottom bottom`,
+				// toggleActions: "play none none reverse",
+			},
+		});
 
-		// tl.to(".experience--header--title", {
-		// 	scale: 0.3,
-		// 	opacity: 0,
-		// 	duration: 1,
-		// 	position: "sticky",
-		// });
+		tl.to(".experience--header--title", {
+			scale: 0.3,
+			opacity: 0,
+			duration: 1,
+			position: "sticky",
+		});
 
 		experienceElementRef.forEach((element, _index) => {
 			gsap.timeline({
@@ -34,18 +34,14 @@ const Experience: Component<{}> = () => {
 					scrub: 1,
 					pin: true,
 					end: `bottom bottom`,
-					// markers: true,
-					// toggleActions: "play none none reverse",
+					toggleActions: "play none none reverse",
 				},
 			}).to(
 				element,
 				{
 					opacity: 0,
-					delay: 0,
 					scale: 0.8,
-					y: -50,
-					// x: 100,
-					skewX: "10deg",
+					xPercent: -50,
 					duration: 1,
 				},
 				"<"
@@ -67,26 +63,24 @@ const Experience: Component<{}> = () => {
 				<div class="experience--list">
 					<For each={experienceContent}>
 						{(experience) => (
-							<div class={`flex flex-row w-full ${experience?.id % 2 !== 0 ? '!justify-start' : '!justify-end'}` }>
+							<div
+								class={`relative flex flex-row md:even:items-start md:even:justify-stat md:odd:items-end md:odd:justify-end`}
+							>
 								<div
 									ref={(element) =>
 										experienceElementRef.push(element)
 									}
-
-									class={`experience--item flex `}
-
+									class={`experience--item w-full md:w-1/2`}
 								>
 									<div class="experience--number">
 										<span>0{experience?.id}.</span>
 									</div>
-									<div class={"flex flex-col"}>
-										<div class="experience--title">
-
+									<div class={"flex flex-col w-full flex-1"}>
+										<div class="experience--title w-full">
 											<p>{experience?.title}</p>
-
 										</div>
 
-										<div class="experience--description">
+										<div class="experience--description w-full ">
 											<p>{experience?.description}</p>
 										</div>
 									</div>

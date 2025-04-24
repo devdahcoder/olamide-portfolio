@@ -33,6 +33,7 @@ const Hero: Component<{
 				yPercent: 100,
 				rotation: 20,
 				opacity: 0.3,
+				filter: "blur(5px)",
 			},
 			{
 				yPercent: 0,
@@ -41,6 +42,7 @@ const Hero: Component<{
 				stagger: 0.1,
 				rotation: 0,
 				opacity: 1,
+				filter: "blur(0px)",
 			}
 		);
 	};
@@ -136,7 +138,7 @@ const Hero: Component<{
 									index={index()}
 									class="hero--character--container "
 									children={character}
-									characterClass="hero--text--character"
+									characterClass="hero--text--character shiny-text"
 									parallaxCharacterElement={
 										parallaxCharacterElement
 									}
@@ -151,7 +153,7 @@ const Hero: Component<{
 									index={index()}
 									class="hero--character--container "
 									children={character}
-									characterClass="hero--text--character"
+									characterClass="hero--text--character shiny-text"
 									parallaxCharacterElement={
 										parallaxCharacterElement
 									}
@@ -166,7 +168,7 @@ const Hero: Component<{
 									index={index()}
 									class="hero--character--container"
 									children={character}
-									characterClass="hero--text--character"
+									characterClass="hero--text--character shiny-text"
 									parallaxCharacterElement={
 										parallaxCharacterElement
 									}
@@ -186,7 +188,7 @@ const Hero: Component<{
 												index={index()}
 												class="hero--intro--skills--header--container"
 												children={character}
-												characterClass="hero--intro--skills--header--text--character"
+												characterClass="hero--intro--skills--header--text--character shiny-text"
 												parallaxCharacterElement={
 													parallaxCharacterElement
 												}
@@ -199,7 +201,7 @@ const Hero: Component<{
 									<For each={skills()}>
 										{(skill) => (
 											<div class="hero--intro--skill--text ">
-												<div class="hero--intro--skill--character">
+												<div class="hero--intro--skill--character shiny-text">
 													{skill},
 												</div>
 											</div>
@@ -218,7 +220,7 @@ const Hero: Component<{
 										{(character, index) => (
 											<ParallaxCharacter
 												index={index()}
-												class="hero--intro--expertise--text"
+												class="hero--intro--expertise--text shiny-text"
 												children={character}
 												parallaxCharacterElement={
 													firstExpertiseParallaxCharacterElement
@@ -232,7 +234,7 @@ const Hero: Component<{
 										{(character, index) => (
 											<ParallaxCharacter
 												index={index()}
-												class="hero--intro--expertise--text"
+												class="hero--intro--expertise--text shiny-text"
 												children={character}
 												parallaxCharacterElement={
 													secondExpertiseParallaxCharacterElement

@@ -3,7 +3,7 @@
 
 .project--container {
     min-height: 100vh;
-    padding: 4rem 0 12rem 0;
+    padding: 10rem 0 12rem 0;
     position: relative;
 
     @include mixins.responsive(sm) {
@@ -97,7 +97,7 @@
                                 .project--title--character {
                                     font-size: 4vw;
                                     font-weight: 500;
-                                    color: hsl(0, 8%, 87%);
+                                    // color: hsl(0, 8%, 87%);
                                     overflow-y: hidden;
 
                                     @include mixins.responsive(sm) {
@@ -117,6 +117,7 @@
                     }
 
                     .project--type--container {
+                        z-index: 0;
 
                         @include mixins.responsive(sm) {
                             display: none;
@@ -261,7 +262,7 @@
                         transform: translate(-50%, -50%);
                         opacity: 0;
                         backface-visibility: hidden;
-                        z-index: 999;
+                        z-index: 9999;
 
                         @include mixins.responsive(sm) {
                             display: none;
@@ -273,11 +274,13 @@
                             padding-bottom: 0;
                             pointer-events: none;
                             user-select: none;
+                            z-index: 9999;
 
                             .image {
                                 @include mixins.image($height: 19rem);
                                 pointer-events: none;
                                 user-select: none;
+                                z-index: 9999;
                             }
                         }
                     }

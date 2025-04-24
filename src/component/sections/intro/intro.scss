@@ -3,7 +3,7 @@
 
 .intro--container {
     height: 900px;
-    margin-top: 5rem;
+    margin-top: 9rem;
 
     @include mixins.responsive(sm) {
         height: 500px;
@@ -41,6 +41,10 @@
             @include mixins.flex--layout($direction: column,
                 $align: start,
                 $justify: start);
+
+                .intro--text {
+                    will-change: transform;
+                    transition: transform 0.3s ease-out;}
         }
 
         .intro--text--container--end {

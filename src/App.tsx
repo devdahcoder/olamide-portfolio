@@ -1,77 +1,79 @@
-import { createEffect, createSignal, onMount } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
+import Loader from "./component/loader.tsx";
+import AboutMe from "./component/sections/about-me/about-me";
 import About from "./component/sections/about/about";
+import Experience from "./component/sections/experience/experience.tsx";
 import Footer from "./component/sections/footer/footer";
 import Header from "./component/sections/header/header";
 import Hero from "./component/sections/hero/hero";
+import Intro from "./component/sections/intro/intro";
 import Navigation from "./component/sections/navigation/navigation";
 import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
-import AboutMe from "./component/sections/about-me/about-me";
-import Intro from "./component/sections/intro/intro";
-import PortalTransition from "./component/portal-transition.tsx";
-import ImageScroll from "./component/sections/image-scroll/image-scroll.tsx";
-import Experience from "./component/sections/experience/experience.tsx";
-import Loader from "./component/loader.tsx";
+import Lenis from "@studio-freight/lenis";
+import Mantra from "./component/sections/mantra/mantra.tsx";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
-	const [isLoadedComplete, setIsLoadedComplete] =
-		createSignal<boolean>(false);
+	const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(false);
 
-	const smoothScrollTo = (element: any, to: any, duration = 500) => {
-		const start = Date.now();
-		const from = element.scrollTop;
-
-		const animate = () => {
-			const progress = (Date.now() - start) / duration;
-			const value = from + (to - from) * Math.min(progress, 1);
-			element.scrollTop = value;
-
-			if (progress < 1) {
-				requestAnimationFrame(animate);
-			}
-		};
-
-		requestAnimationFrame(animate);
-	};
-
+	// Initialize smooth scroll using Lenis
 	onMount(() => {
-		const myElement = document.getElementById("myElement");
+		const lenis = new Lenis({
+			// smoothTouch: true,
+			duration: 1.2,
+			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+			smoothWheel: true,
+			touchMultiplier: 2,
+			infinite: false,
+		});
 
-		createEffect(() => {
-			smoothScrollTo(myElement, 100);
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+
+		onCleanup(() => {
+			lenis.destroy();
 		});
 	});
 
 	return (
-		<>
+		<div>
 			<Loader
 				isLoadedComplete={isLoadedComplete}
 				setIsLoadedComplete={setIsLoadedComplete}
 			/>
-			<Navigation isNavigationOpen={isNavigationOpen} />
-			<Header
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen}
-				setIsNavigationOpen={setIsNavigationOpen}
-			/>
+			{isLoadedComplete() && (
+				<>
+					<Navigation
+						isNavigationOpen={isNavigationOpen}
+						setIsNavigationOpen={setIsNavigationOpen}
+					/>
+					<Header
+						isLoadedComplete={isLoadedComplete}
+						isNavigationOpen={isNavigationOpen}
+						setIsNavigationOpen={setIsNavigationOpen}
+					/>
 
-			<Hero
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen()}
-			/>
-			<AboutMe isLoadedComplete={isLoadedComplete} />
-			<Intro isLoadedComplete={isLoadedComplete} />
-			<Project isLoadedComplete={isLoadedComplete} />
-			<About />
-			<ImageScroll />
-			<PortalTransition />
-			<Experience />
-
-			<Service isLoadedComplete={isLoadedComplete} />
-			<Footer />
-		</>
+					<Hero
+						isLoadedComplete={isLoadedComplete}
+						isNavigationOpen={isNavigationOpen()}
+					/>
+					<AboutMe isLoadedComplete={isLoadedComplete} />
+					<Intro isLoadedComplete={isLoadedComplete} />
+					<About />
+					<Project isLoadedComplete={isLoadedComplete} />
+					<Mantra />
+					<Experience />
+					<Service isLoadedComplete={isLoadedComplete} />
+					<Footer />
+				</>
+			)}
+		</div>
 	);
 }
 

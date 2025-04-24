@@ -1,12 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-	Accessor,
-	Component,
-	For,
-	createEffect,
-	onCleanup,
-} from "solid-js";
+import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
 import { workContent } from "../../../../contents";
 import Image from "../../image";
 import "./project.scss";
@@ -19,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let projectItemRef: HTMLDivElement[] = [];
 	let projectSectionRefElement: HTMLDivElement | undefined;
+	let projectListRef: HTMLDivElement | undefined;
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 
@@ -37,6 +32,23 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				ease: "power3.out",
 			}
 		);
+	};
+
+	const animateProjectItems = () => {
+		// Set initial position for all project items
+		gsap.set(projectItemRef, {
+			y: 50,
+			opacity: 0,
+		});
+
+		// Animate each project item with a staggered delay
+		gsap.to(projectItemRef, {
+			y: 0,
+			opacity: 1,
+			duration: 0.8,
+			stagger: 0.15,
+			ease: "power3.out",
+		});
 	};
 
 	const getDomVariables = (
@@ -152,6 +164,7 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 		elementObserver(projectSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting && props?.isLoadedComplete()) {
 				animateHeaderText();
+				animateProjectItems(); // Add the slide-up animation when section is visible
 				observer.unobserve(entry.target);
 			}
 		});
@@ -281,17 +294,9 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 					e.currentTarget.getBoundingClientRect().top -
 					e.currentTarget.offsetHeight / 2;
 
-
 				gsap.to(imageContainerElement, {
-					// duration: 0.8,
 					x: currentX,
 					y: currentY,
-					// ease: "power1.out",
-					// rotation: tiltAmount,
-					// opacity: 0.9,
-					// zIndex: 1,
-					// boxShadow:
-					// "inset 20px 100px 96px 100px rgba(84, 80, 80, 0.1)",
 					onComplete: () => {
 						// gsap.to(imageElement, {
 						// 	rotate: 0,
@@ -299,7 +304,6 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 						// });
 					},
 				});
-				// setPreviousMousePosition(prevX);
 			}
 		};
 
@@ -330,11 +334,11 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				<SectionHeader
 					parallaxCharacterElement={headerParallaxCharacterElement}
 					title="Portfolio"
-					characterClassName="project--header--title--character"
+					characterClassName="project--header--title--character shiny-text"
 					class="project--header--title"
 					titleContainerClassNam="project--header--container"
 				/>
-				<div class="project--list">
+				<div ref={projectListRef} class="project--list">
 					<For each={workContent}>
 						{(props) => (
 							<div
@@ -369,7 +373,7 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 													<div class="project--title--character--container ">
 														<ParallaxCharacter
 															index={index()}
-															class="project--title--character first--project--title--character z-20"
+															class="project--title--character first--project--title--character shiny-text z-20"
 															children={character}
 															style={{
 																margin: "0rem 0.5rem",
@@ -380,7 +384,7 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 														/>
 														<ParallaxCharacter
 															index={index()}
-															class="project--title--character second--project--title--character z-20"
+															class="project--title--character second--project--title--character shiny-text z-20"
 															children={character}
 															style={{
 																margin: "0rem 0.5rem",

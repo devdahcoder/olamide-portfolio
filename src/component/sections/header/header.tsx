@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { Accessor, Component, Setter, createEffect, onCleanup } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
-import Button from "../../button";
+// import Button from "../../button";
 import "./header.scss";
 
 const Header: Component<{
@@ -91,7 +91,7 @@ const Header: Component<{
 	});
 
 	createEffect(() => {
-		if (!resumeLinkRefElement) return;
+		if (!resumeLinkRefElement) {return};
 		const handleMouseEnter = (e: MouseEvent) => {
 			const targetedElement: any = e.currentTarget as HTMLAnchorElement;
 			const targetContainerElement: HTMLDivElement =
@@ -212,10 +212,10 @@ const Header: Component<{
 						>
 							<div class="header--resume--link--container">
 								<div class="header--resume--link--text--container">
-									<div class="header--resume--link--text first--header--resume--link--text">
+									<div class="header--resume--link--text first--header--resume--link--text shiny-text">
 										My Resume
 									</div>
-									<div class="header--resume--link--text second--header--resume--link--text">
+									<div class="header--resume--link--text second--header--resume--link--text  shiny-text">
 										My Resume
 									</div>
 								</div>
@@ -226,7 +226,7 @@ const Header: Component<{
 								/>
 							</div>
 						</a>
-
+{/* 
 						<Button
 							buttonClass="header--navigation--button"
 							buttonContainerClass="header--navigation--button--container"
@@ -239,7 +239,7 @@ const Header: Component<{
 							<div class="navigation--icon first--navigation--icon"></div>
 							<div class="navigation--icon second--navigation--icon"></div>
 							<div class="navigation--icon last--navigation--icon"></div>
-						</Button>
+						</Button> */}
 					</div>
 				</div>
 			</div>

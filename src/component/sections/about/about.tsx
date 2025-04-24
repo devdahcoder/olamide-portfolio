@@ -49,6 +49,7 @@ const About: Component<{}> = () => {
 			".quote--text",
 			{
 				color: "hsl(0, 4%, 14%)",
+				
 			},
 			{
 				scrollTrigger: {
@@ -77,6 +78,26 @@ const About: Component<{}> = () => {
 			ease: "sine.in",
 			y: -450,
 		});
+
+		// ScrollTrigger.create({
+		// 	trigger: ".about--container",
+		// 	start: "top 70%", // 30% into view
+		// 	end: "bottom top",
+		// 	onEnter: () => {
+		// 		gsap.to(document.body, {
+		// 			backgroundColor: "#131111",
+		// 			duration: 0.7,
+		// 			overwrite: "auto",
+		// 		});
+		// 	},
+		// 	onLeaveBack: () => {
+		// 		gsap.to(document.body, {
+		// 			backgroundColor: "#3f3b3d",
+		// 			duration: 0.7,
+		// 			overwrite: "auto",
+		// 		});
+		// 	},
+		// });
 	});
 
 	return (

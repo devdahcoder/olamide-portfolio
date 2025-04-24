@@ -166,6 +166,42 @@ export const workContent: Array<WorkType> = [
         type: ["Design concept", "Website", "User Experience", "User Interface"]
 
     },
+    {
+        id: 4,
+        image: {
+            imageSrc: './images/cards.png',
+            imageAlt: 'Image 1',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'Cards',
+        description: 'Description for Work 1',
+        date: '2023-01-15',
+        link: 'https://cards.payshiga.com/',
+        companyName: "Payshiga",
+        className: "start",
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+    },
+    {
+        id: 5,
+        image: {
+            imageSrc: './images/dre.png',
+            imageAlt: 'Image 1',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'Dre',
+        description: 'Description for Work 1',
+        date: '2023-01-15',
+        link: 'https://dreportfolio.vercel.app/',
+        companyName: "Payshiga",
+        className: "start",
+        tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+    },
     // {
     //     id: 4,
     //     image: {
@@ -415,6 +451,28 @@ export const imageScrollContent: ImageScrollType[] = [
     },
     {
         id: 3,
+        text: "Image 3",
+        image: {
+            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageAlt: 'Image 3',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+    },
+    {
+        id: 4,
+        text: "Image 3",
+        image: {
+            imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',
+            imageAlt: 'Image 3',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+    },
+    {
+        id: 5,
         text: "Image 3",
         image: {
             imageSrc: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=400',

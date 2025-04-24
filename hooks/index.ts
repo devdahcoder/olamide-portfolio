@@ -61,29 +61,6 @@ export const usePercentageLoaderHook = (duration = 5000) => {
     return { loadingPercentage, isLoaded }
 }
 
-// export const usePercentageLoaderHook = () => {
-//     const [loadingPercentage, setLoadingPercentage] = createSignal<number>(0);
-//     const [isLoaded, setIsLoaded] = createSignal<boolean>(false);
-
-//     createEffect(() => {
-//         const interval = setInterval(() => {
-//             setLoadingPercentage((prevPercentage) => {
-//                 if (prevPercentage === 100) {
-//                     clearInterval(interval);
-//                     setIsLoaded(true);
-//                     return 100;
-//                 }
-//                 return prevPercentage + 1;
-//             });
-//         }, 50);
-//         onCleanup(() => {
-//             clearInterval(interval);
-//         });
-//     });
-
-//     return { loadingPercentage, isLoaded }
-// }
-
 export const useIsLoadedStateHook = () => {
     const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(false);
     return { isLoadedComplete, setIsLoadedComplete }

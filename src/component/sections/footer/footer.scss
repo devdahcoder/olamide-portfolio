@@ -82,13 +82,13 @@
                 .footer--hero--text {
                     font-family: Tanker, -apple-system, Helvetica Neue,
                         sans-serif;
-                    @include mixins.flex--layout($direction: row,
+                    @include mixins.flex--layout($direction: column,
                         $align: center,
                         $justify: center);
-                    font-size: 7rem;
+                    font-size: 8.5vw;
                     font-weight: 400;
                     text-transform: uppercase;
-                    line-height: 7rem;
+                    line-height: 8.5vw;
                     color: variables.$primary--text--color;
 
                     @include mixins.responsive(xs) {
@@ -296,3 +296,303 @@
         }
     }
 }
+
+// @use "../../../styles/mixins";
+// @use "../../../styles/variables";
+
+// @mixin double--stacked--text($color: hsl(0, 0%, 100%),
+//     $direction: row,
+//     $align: start,
+//     $fontSize: 0.9rem) {
+//     color: $color;
+//     display: flex;
+//     flex-direction: $direction;
+//     align-items: $align;
+//     font-size: $fontSize;
+// }
+
+// .footer--container {
+//     .footer--sub--container {
+//         @include mixins.flex--layout($direction: column,
+//             $align: normal,
+//             $justify: baseline);
+//         min-height: 100vh;
+//         height: 100%;
+
+//         .footer--header--container {
+//             flex-basis: auto;
+
+//             .footer--header--sub--container {
+//                 @include mixins.flex--layout;
+//                 padding: 1rem 2rem;
+
+//                 @include mixins.responsive(xs) {
+//                     @include mixins.flex--layout($direction: column);
+//                     row-gap: 1.5rem;
+//                 }
+
+//                 .footer--year--container {
+//                     width: 100%;
+
+//                     .footer--year--sub--container {
+//                         @include mixins.double--stacked--text--sub-container;
+
+//                         .footer--role--text,
+//                         .footer--year--text {
+//                             @include double--stacked--text;
+//                         }
+//                     }
+//                 }
+
+//                 .footer--location--container {
+//                     display: flex;
+//                     flex-direction: column;
+//                     width: 100%;
+
+//                     .footer--location--sub--container {
+//                         @include mixins.double--stacked--text--sub-container($align: end);
+
+//                         .footer--availability--text,
+//                         .footer--location--text {
+//                             @include double--stacked--text($align: end);
+//                             justify-content: end;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+//         .footer--hero--container {
+//             @include mixins.flex--layout($direction: column,
+//                 $align: center,
+//                 $justify: center);
+//             padding: 5rem 0 3rem 0;
+//             flex-basis: auto;
+//             flex-grow: 1;
+
+//             .footer--hero--sub--container {
+//                 @include mixins.center--section;
+//                 @include mixins.flex--layout($direction: column,
+//                     $align: center,
+//                     $justify: center);
+//                 text-align: center;
+//                 row-gap: 2rem;
+
+//                 .footer--hero--text {
+//                     font-family: Tanker, -apple-system, Helvetica Neue,
+//                         sans-serif;
+//                     @include mixins.flex--layout($direction: column,
+//                         $align: center,
+//                         $justify: center);
+//                     font-size: 8.5vw;
+//                     /* Changed from 8.5vw to fixed pixel value */
+//                     font-weight: 400;
+//                     text-transform: uppercase;
+//                     line-height: 7rem;
+//                     /* Changed from 7rem to fixed pixel value */
+//                     color: variables.$primary--text--color;
+
+//                     @include mixins.responsive(xs) {
+//                         /* Removed responsive adjustments */
+//                     }
+//                 }
+
+//                 .footer--hero--email--container {
+//                     @include mixins.flex--layout($direction: column,
+//                         $align: center,
+//                         $justify: center);
+//                     text-align: center;
+//                     row-gap: 0.1rem;
+
+//                     .footer--hero--email--text {
+//                         @include mixins.flex--layout($direction: row,
+//                             $align: center,
+//                             $justify: center);
+//                         color: variables.$primary--text--color;
+//                         font-size: 1rem;
+//                     }
+
+//                     .footer--hero--email {
+//                         @include mixins.flex--layout($direction: row,
+//                             $align: center,
+//                             $justify: center);
+
+//                         a {
+//                             width: 100%;
+//                             @include mixins.flex--layout($direction: row,
+//                                 $align: center,
+//                                 $justify: center);
+//                             color: variables.$primary--text--color;
+//                             font-size: 1.3rem;
+//                             text-decoration: none;
+//                         }
+//                     }
+
+//                     .email--copy--button {
+//                         height: fit-content;
+//                         width: fit-content;
+//                         padding: 0.2rem 1rem;
+//                         color: white;
+//                         border: 1px solid white;
+//                         border-radius: 100vh;
+//                         margin-top: 0.5rem;
+//                         visibility: hidden;
+//                         transform: translate(0, 30%);
+//                         opacity: 0;
+//                     }
+//                 }
+//             }
+//         }
+
+//         .footer--back--to--top--hero--button--container {
+//             @include mixins.center--element;
+//             padding: 1.5rem 0;
+//             flex-basis: auto;
+
+//             .footer--back--to--top--hero--button {
+//                 @include mixins.button;
+//                 @include mixins.center--element;
+//                 border: 1px solid white;
+//                 border-radius: 100vh;
+//                 width: 2rem;
+//                 height: 2rem;
+//             }
+//         }
+
+//         .footer--bottom--container {
+//             flex-basis: auto;
+
+//             .footer--bottom--sub--container {
+//                 @include mixins.flex--layout;
+//                 padding: 1rem 2rem;
+
+//                 @include mixins.responsive(mdx) {
+//                     display: flex;
+//                     flex-direction: column;
+//                     row-gap: 1rem;
+//                 }
+
+//                 .footer--credit--container {
+//                     width: 100%;
+//                     display: flex;
+//                     flex-direction: column;
+
+//                     .footer--credit--sub--container {
+//                         @include mixins.double--stacked--text--sub-container;
+
+//                         .footer--credit--design--text,
+//                         .footer--credit--developer--text {
+//                             @include double--stacked--text;
+//                             column-gap: 0.5rem;
+
+//                             a {
+//                                 width: 100%;
+//                                 @include mixins.flex--layout($direction: row,
+//                                     $align: center,
+//                                     $justify: center);
+//                                 text-decoration: none;
+//                                 color: variables.$primary--text--color;
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 .footer--social--media--container {
+//                     @include mixins.responsive(xs) {
+//                         width: 100%;
+//                     }
+
+//                     .footer--social--media--sub--container {
+//                         @include mixins.flex--layout($direction: row,
+//                             $align: center,
+//                             $justify: baseline);
+//                         column-gap: 0.7rem;
+
+//                         @include mixins.responsive(xs) {
+//                             @include mixins.flex--layout($direction: column,
+//                                 $align: center,
+//                                 $justify: baseline);
+//                             width: 100%;
+//                             row-gap: 1.5rem;
+//                         }
+
+//                         .footer--social--media--item {
+//                             @include mixins.flex--layout($direction: row,
+//                                 $align: center,
+//                                 $justify: center);
+//                             text-align: center;
+//                             border: 0.01rem solid white;
+//                             border-radius: 100vh;
+//                             position: relative;
+//                             overflow: hidden;
+
+//                             @include mixins.responsive(xs) {
+//                                 width: 100%;
+//                             }
+
+//                             a {
+//                                 font-family: Satoshi, -apple-system,
+//                                     Helvetica Neue, sans-serif;
+//                                 width: 100%;
+//                                 height: 100%;
+//                                 @include mixins.flex--layout($direction: row,
+//                                     $align: center,
+//                                     $justify: center);
+//                                 text-decoration: none;
+//                                 color: variables.$primary--text--color;
+//                                 font-size: 0.8rem;
+//                                 text-transform: uppercase;
+//                                 padding: 0.5rem 1.4rem;
+//                                 font-weight: 300;
+//                                 letter-spacing: 0.07rem;
+//                                 border-radius: 100vh;
+
+//                                 @include mixins.responsive(xs) {
+//                                     padding: 1rem 1.4rem;
+//                                 }
+//                             }
+
+//                             .secondary--social--media--link {
+//                                 position: absolute;
+//                                 top: 0;
+//                                 left: 0;
+//                                 background-color: rgb(255, 255, 255);
+//                                 color: rgb(5, 0, 0);
+//                                 transform: translate(0, 100%) scale(0.5);
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 .footer--copy--right--container {
+//                     width: 100%;
+//                     display: flex;
+//                     flex-direction: column;
+
+//                     .footer--copy--right--sub--container {
+//                         @include mixins.double--stacked--text--sub-container($align: end,
+//                             $gap: 0.3rem);
+
+//                         .footer--back--to--top--button {
+//                             font-family: Passenger Sans, Satoshi, -apple-system,
+//                                 Helvetica Neue, sans-serif;
+//                             @include mixins.button;
+//                             column-gap: 0.2rem;
+//                         }
+
+//                         .footer--copy--right {
+//                             @include double--stacked--text($align: center);
+//                             column-gap: 0.2rem;
+
+//                             .footer--copy--right--icon {
+//                                 vertical-align: middle;
+//                                 color: variables.$primary--text--color;
+//                                 fill: white;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

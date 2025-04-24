@@ -1,11 +1,12 @@
 import gsap from "gsap";
-import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
+import { Accessor, Component, For, Setter, createEffect, onCleanup } from "solid-js";
 import { headerLinksContent, socialMediaContent } from "../../../../contents";
 import ParallaxCharacter from "../../parallax-character";
 import "./navigation.scss";
+import Button from "../../button";
 
 let navigationLinkRef: HTMLDivElement[][] = [];
-let navigationLinkContainerRef: HTMLDivElement[] = [];
+let navigationLinkContainerRef: HTMLAnchorElement[] = [];
 
 const animateNavigationMainContainer = (show: boolean) => {
 	const target = ".navigation--container";
@@ -164,8 +165,8 @@ const animateContentSubContainer = (show: boolean) => {
 	}
 };
 
-const animateNavigationLinkContainer = (show: boolean) => {
-	const target = ".navigation--link--container";
+const animateNavigationLink = (show: boolean, onComplete?: () => void) => {
+	const target = ".navigation--link";
 	const duration = 1;
 	const stagger = show ? 0.2 : -0.2;
 	const delay = show ? 0.5 : 0.1;
@@ -175,7 +176,7 @@ const animateNavigationLinkContainer = (show: boolean) => {
 		{
 			yPercent: show ? 500 : 0,
 			opacity: show ? 0 : 1,
-			// scale: show ? 0.5 : 1
+			scale: show ? 0.5 : 1,
 		},
 		{
 			yPercent: show ? 0 : 500,
@@ -184,6 +185,14 @@ const animateNavigationLinkContainer = (show: boolean) => {
 			stagger,
 			duration,
 			delay,
+			onComplete: () => {
+				gsap.to(".navigation--link--button", {
+					opacity: 1,
+					scale: 1,
+					ease: "back.inOut",
+				});
+				if (onComplete) onComplete();
+			},
 		}
 	);
 };
@@ -199,10 +208,52 @@ const animateBodyPosition = (show: boolean) => {
 	gsap.fromTo(target, positionProps, { duration, ease });
 };
 
-const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
-	props
-) => {
+
+const animateNavigationFooter = (show: boolean) => {
+    const target = ".navigation--footer--container";
+    const duration = 1;
+    const ease = "power4.out";
+
+    if (show) {
+        gsap.fromTo(
+            target,
+            {
+                opacity: 0,
+                y: 50,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration,
+                ease,
+            }
+        );
+    } else {
+        gsap.to(target, {
+            opacity: 0,
+            y: 50,
+            duration,
+            ease,
+        });
+    }
+};
+
+
+
+const Navigation: Component<{
+	isNavigationOpen: Accessor<boolean>;
+	setIsNavigationOpen: Setter<boolean>;
+}> = (props) => {
 	createEffect(() => {
+		// props.isNavigationOpen();
+		// animateNavigationMainContainer(props.isNavigationOpen());
+		// animateBodyPosition(props.isNavigationOpen());
+		// animateNavigationGrid(props.isNavigationOpen());
+		// animateNavigationSubContainer(props.isNavigationOpen());
+		// animateNavigationContentMainContainer(props.isNavigationOpen());
+		// animateContentSubContainer(props.isNavigationOpen());
+		// animateNavigationLink(props.isNavigationOpen());
+
 		props.isNavigationOpen();
 		animateNavigationMainContainer(props.isNavigationOpen());
 		animateBodyPosition(props.isNavigationOpen());
@@ -210,7 +261,9 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 		animateNavigationSubContainer(props.isNavigationOpen());
 		animateNavigationContentMainContainer(props.isNavigationOpen());
 		animateContentSubContainer(props.isNavigationOpen());
-		animateNavigationLinkContainer(props.isNavigationOpen());
+		animateNavigationLink(props.isNavigationOpen(), () => {
+			animateNavigationFooter(props.isNavigationOpen());
+		});
 
 		let observe = new IntersectionObserver(
 			(entries) => {
@@ -250,34 +303,59 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 				<div class="navigation--content--main--container">
 					<div class="navigation--list">
 						<For each={headerLinksContent}>
-							{(props, index) => (
-								<div
+							{(prop, index) => (
+								<a
+									href={`${prop.href}`}
 									ref={(element) =>
 										navigationLinkContainerRef.push(element)
 									}
-									class="navigation--link--container"
+									class="navigation--link"
+									onClick={() => {
+										props.setIsNavigationOpen(false);
+									}}
 								>
-									<a
-										href={`${props.href}`}
-										class="navigation--link"
-									>
-										<For
-											each={props.text?.trim()?.split("")}
+									<div class="navigation--link--text--container">
+										<div class="navigation--link--text">
+											<For
+												each={prop.text
+													?.trim()
+													?.split("")}
+											>
+												{(character) => (
+													<ParallaxCharacter
+														index={index()}
+														class="navigation--link--character shiny-text"
+														children={character}
+														parallaxCharacterElement={
+															navigationLinkRef
+														}
+													/>
+												)}
+											</For>
+										</div>
+										<div class="navigation--link--index">
+											(0{prop?.id})
+										</div>
+									</div>
+
+									<Button buttonClass="navigation--link--button">
+										<svg
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
 										>
-											{(character) => (
-												<ParallaxCharacter
-													index={index()}
-													class="navigation--link--text"
-													children={character}
-													parallaxCharacterElement={
-														navigationLinkRef
-													}
-												/>
-											)}
-										</For>
-									</a>
-									<div class="navigation--link--container--border"></div>
-								</div>
+											<path
+												d="M3.75 12h16.5M13.5 5.25 20.25 12l-6.75 6.75"
+												stroke="#fff"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											/>
+										</svg>
+									</Button>
+								</a>
 							)}
 						</For>
 					</div>
@@ -286,7 +364,10 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 						<div class="navigation--social--container">
 							<For each={socialMediaContent}>
 								{(props) => (
-									<a href={`${props?.link}`} class="navigation--social--link">
+									<a
+										href={`${props?.link}`}
+										class="navigation--social--link"
+									>
 										{props.text}
 									</a>
 								)}
@@ -294,7 +375,12 @@ const Navigation: Component<{ isNavigationOpen: Accessor<boolean> }> = (
 						</div>
 
 						<div class="navigation--footer--container--dev">
-							<p>Developed by <a href="https://github.com/thedevsaddam">Olamide Adigun</a></p>
+							<p>
+								Developed by{" "}
+								<a href="https://github.com/thedevsaddam">
+									Olamide Adigun
+								</a>
+							</p>
 						</div>
 					</div>
 				</div>

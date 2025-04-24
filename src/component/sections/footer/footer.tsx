@@ -37,9 +37,8 @@ const Footer: Component<{}> = () => {
 						/>
 					</div>
 				</div>
-
 				<FooterHero />
-
+				
 				<div class="footer--bottom--container">
 					<div class="footer--bottom--sub--container">
 						<DoubleStackedText
@@ -66,28 +65,6 @@ const Footer: Component<{}> = () => {
 						/>
 
 						<FooterSocialMedia />
-						{/* <DoubleStackedText
-							containerClass="footer--credit--container"
-							subContainerClass="footer--credit--sub--container"
-							firstStack={
-								<>
-									Designs from:{" "}
-									<span>
-										<a href="http://">Behance</a>
-									</span>
-								</>
-							}
-							secondStack={
-								<>
-									Developed by:{" "}
-									<span>
-										<div>Olamide Adigun</div>
-									</span>
-								</>
-							}
-							firstStackClass="footer--credit--design--text"
-							secondStackClass="footer--credit--developer--text"
-						/> */}
 						<DoubleStackedText
 							containerClass="footer--copy--right--container"
 							subContainerClass="footer--copy--right--sub--container"

@@ -84,7 +84,7 @@ const LoaderPercentageContainer: Component<{
             <p class={`${props?.childClass}`}>{props?.value}</p>
             <div class="loader--bottom--shadow"></div>
         </div>
-    );
-    };
+    )
+};
 
 export default PercentageDisplay

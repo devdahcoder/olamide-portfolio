@@ -1,7 +1,7 @@
-import { Accessor, Component, createEffect, For } from "solid-js";
-import "./intro.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Accessor, Component, createEffect, For } from "solid-js";
+import "./intro.scss";
 gsap.registerPlugin(ScrollTrigger);
 
 const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
@@ -20,8 +20,9 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 			scrollTrigger: {
 				trigger: ".intro--text--container--start",
 				start: `top bottom`,
+				end: `+=250`,
 				scrub: 1,
-				end: `bottom center`,
+				// end: `bottom center`,
 				toggleActions: "play none none reverse",
 			},
 			duration: 1,
@@ -29,6 +30,26 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 			opacity: 1,
 			ease: "power1.inOut",
 		});
+
+				const textElements = document.querySelectorAll(".intro--word--start");
+				textElements.forEach((el) => {
+			gsap.fromTo(
+				el,
+				{ y: 30, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					scrollTrigger: {
+						trigger: el,
+						start: "top bottom",
+						end: "top 60%",
+						scrub: true,
+					},
+					ease: "power2.out",
+				}
+			);
+		});
+
 
 		gsap.to(".intro--word--end", {
 			scrollTrigger: {
@@ -66,6 +87,26 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 				}
 			),
 		]);
+
+		// ScrollTrigger.create({
+		// 	trigger: ".intro--container",
+		// 	start: "top 70%",
+		// 	end: "bottom top",
+		// 	onEnter: () => {
+		// 		gsap.to(document.body, {
+		// 			backgroundColor: "#2a2728",
+		// 			duration: 0.7,
+		// 			overwrite: "auto",
+		// 		});
+		// 	},
+		// 	onLeaveBack: () => {
+		// 		gsap.to(document.body, {
+		// 			backgroundColor: "#131111",
+		// 			duration: 0.7,
+		// 			overwrite: "auto",
+		// 		});
+		// 	},
+		// });
 	});
 
 	return (
@@ -93,8 +134,8 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 
 				<div class="intro--role--container">
 					<div class="intro--role--sub--container">
-						<div class="intro--role--text--container">
-							<div class="intro--role--text intro--top--role--text">
+						<div class="intro--role--text--container shiny-text">
+							<div class="intro--role--text intro--top--role--text shiny-text">
 								Creative
 							</div>
 						</div>
@@ -103,8 +144,8 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 								Software
 							</div>
 						</div>
-						<div class="intro--role--text--container">
-							<div class="intro--role--text intro--bottom--role--text">
+						<div class="intro--role--text--container shiny-text">
+							<div class="intro--role--text intro--bottom--role--text shiny-text">
 								Developer
 							</div>
 						</div>

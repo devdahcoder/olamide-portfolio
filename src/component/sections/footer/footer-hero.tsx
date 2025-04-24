@@ -106,23 +106,21 @@ const FooterHero: Component<{}> = () => {
 					<p>
 						interested in <br /> working together?
 					</p>
+					{/* <p>working together?</p> */}
 				</div>
 				<div
 					ref={emailContainerRef}
-					class="footer--hero--email--container"
+					class="footer--hero--email--container relative"
 				>
 					<div class="footer--hero--email--text">
 						<p>Drop me an email:</p>
 					</div>
 					<div class="footer--hero--email">
-						<a
-							ref={emailRef} 
-							href="http://"
-						>
+						<a ref={emailRef} href="http://">
 							adigunolamide200@gmail.com
 						</a>
 					</div>
-					<div class="footer--email--copy--button email--copy--button">
+					<div class="footer--email--copy--button email--copy--button z-[9999]">
 						Copied
 					</div>
 				</div>
