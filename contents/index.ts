@@ -63,28 +63,28 @@ export const socialMediaContent: Array<SocialMediaTypes> = [
 
         id: 1,
         text: "Github",
-        link: "",
+        link: "https://github.com/devdahcoder",
 
     },
     {
 
         id: 2,
         text: "LinkedIn",
-        link: "https://www.linkedin.com/yourprofile",
+        link: "https://www.linkedin.com/in/olamide-adigun-200/",
 
     },
     {
 
         id: 3,
         text: "Twitter",
-        link: "https://twitter.com/yourhandle",
+        link: "https://x.com/olaorleans",
 
     },
     {
 
         id: 5,
         text: "Medium",
-        link: "https://medium.com/@yourusername",
+        link: "https://medium.com/@adigunolamide200",
 
     }
 
