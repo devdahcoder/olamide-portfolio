@@ -1,17 +1,7 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 import Loader from "./component/loader.tsx";
-import AboutMe from "./component/sections/about-me/about-me";
-import About from "./component/sections/about/about";
-import Experience from "./component/sections/experience/experience.tsx";
-import Footer from "./component/sections/footer/footer";
-import Header from "./component/sections/header/header";
-import Hero from "./component/sections/hero/hero";
-import Intro from "./component/sections/intro/intro";
 import Navigation from "./component/sections/navigation/navigation";
-import Project from "./component/sections/project/project";
-import Service from "./component/sections/service/service";
 import Lenis from "@studio-freight/lenis";
-import Mantra from "./component/sections/mantra/mantra.tsx";
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
@@ -51,24 +41,7 @@ function App() {
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
-			<Header
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen}
-				setIsNavigationOpen={setIsNavigationOpen}
-			/>
-
-			<Hero
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen()}
-			/>
-			<AboutMe isLoadedComplete={isLoadedComplete} />
-			<Intro isLoadedComplete={isLoadedComplete} />
-			<About />
-			<Project isLoadedComplete={isLoadedComplete} />
-			<Mantra />
-			<Experience />
-			<Service isLoadedComplete={isLoadedComplete} />
-			<Footer />
+			
 		</div>
 	);
 }
