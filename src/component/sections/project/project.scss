@@ -84,6 +84,8 @@
                                 $justify: start);
                             overflow: hidden;
                             height: 5.4rem;
+                            color: variables.$primary--text--color;
+
 
                             @include mixins.responsive(sm) {
                                 height: 3.8rem;

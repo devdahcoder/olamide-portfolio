@@ -130,6 +130,7 @@
                 .about--me--header--title {
                     font-family: sans-serif;
                     overflow-x: hidden;
+                    color: variables.$primary--text--color;
 
                     .about--me--title--character {
                         font-family: Instrument Sans, -apple-system, Helvetica Neue,
@@ -176,7 +177,7 @@
                     display: inline-block;
                     will-change: transform;
                     transition: transform 0.3s ease-out;
-                    
+
 
                     @include mixins.responsive(sm) {
                         font-size: 4.8vw;
