@@ -4,8 +4,9 @@ import StarIcon from "../../../../public/icon/star-icon";
 import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import "./hero.scss";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Hero: Component<{
 	isNavigationOpen: boolean;
@@ -22,47 +23,61 @@ const Hero: Component<{
 		"PHP",
 	]);
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
-	const firstExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
-	const secondExpertiseParallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
 
 	const animateHeroMainParallaxCharacter = () => {
-		gsap.fromTo(
-			".hero--text--character",
-			{
-				yPercent: 100,
-				rotation: 20,
-				opacity: 0.3,
-				filter: "blur(5px)",
+		SplitText.create(".hero--text--container", {
+			type: "words, chars",
+			onSplit(self) {
+				gsap.fromTo(
+					self.chars,
+					{
+						yPercent: 100,
+						rotation: 20,
+						opacity: 0.3,
+						filter: "blur(5px)",
+					},
+					{
+						yPercent: 0,
+						duration: 1,
+						ease: "back.out(1.7)",
+						stagger: 0.1,
+						rotation: 0,
+						opacity: 1,
+						filter: "blur(0px)",
+					}
+				);
 			},
-			{
-				yPercent: 0,
-				duration: 1,
-				ease: "back.out(1.7)",
-				stagger: 0.1,
-				rotation: 0,
-				opacity: 1,
-				filter: "blur(0px)",
-			}
-		);
+		});
 	};
 
 	const animateHeroIntroExpertiseParallaxCharacter = () => {
-		gsap.fromTo(
-			".hero--intro--expertise--text",
-			{
-				yPercent: 100,
-				rotation: 20,
-				opacity: 0.3,
+		SplitText.create(".intro--expertise", {
+			type: "words, words",
+			onSplit(self) {
+				gsap.fromTo(
+					self.words,
+					{
+						y: 150,
+						opacity: 0,
+						scale: 0.5,
+						filter: "blur(8px)",
+					},
+					{
+						y: 0,
+						duration: 2.9,
+						ease: "elastic.out(1.2, 0.5)",
+						delay: 0.7,
+						opacity: 1,
+						scale: 1,
+						filter: "blur(0px)",
+						stagger: 0.1,
+						transformOrigin: "center center",
+					}
+				);
 			},
-			{
-				yPercent: 0,
-				duration: 1.5,
-				ease: "sine.out",
-				rotation: 0,
-				opacity: 1,
-			}
-		);
+		});
+
 	};
 
 	const animateSubHeroParallaxCharacter = () => {
@@ -132,19 +147,7 @@ const Hero: Component<{
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
 					<div class="hero--text--container">
-						<For each={"Adigun Olamide".trim().split("")}>
-							{(character, index) => (
-								<ParallaxCharacter
-									index={index()}
-									class="hero--character--container "
-									children={character}
-									characterClass="hero--text--character shiny-text"
-									parallaxCharacterElement={
-										parallaxCharacterElement
-									}
-								/>
-							)}
-						</For>
+						<p> Adigun Olamide</p>
 					</div>
 					<div class="hero--text--container--mobile ">
 						<For each={"Adigun".trim().split("")}>
@@ -216,32 +219,10 @@ const Hero: Component<{
 							<div class="hero--intro--expertise">
 								<div class="intro--expertise">
 									<StarIcon class="w-8 h-8 mr-3 animate-spin ease-linear duration-1000" />
-									<For each={"Software &".split("")}>
-										{(character, index) => (
-											<ParallaxCharacter
-												index={index()}
-												class="hero--intro--expertise--text shiny-text"
-												children={character}
-												parallaxCharacterElement={
-													firstExpertiseParallaxCharacterElement
-												}
-											/>
-										)}
-									</For>
+									<p>Software &</p>
 								</div>{" "}
 								<div class="intro--expertise">
-									<For each={"Creative Developer".split("")}>
-										{(character, index) => (
-											<ParallaxCharacter
-												index={index()}
-												class="hero--intro--expertise--text shiny-text"
-												children={character}
-												parallaxCharacterElement={
-													secondExpertiseParallaxCharacterElement
-												}
-											/>
-										)}
-									</For>
+									<p>Creative Developer</p>
 								</div>
 							</div>
 						</div>

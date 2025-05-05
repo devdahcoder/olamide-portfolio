@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.0.42
     version: 1.0.42
   gsap:
-    specifier: ^3.12.5
-    version: 3.12.5
+    specifier: ^3.13.0
+    version: 3.13.0
   motion:
     specifier: ^10.17.0
     version: 10.17.0
@@ -990,8 +990,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /gsap@3.12.5:
-    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
+  /gsap@3.13.0:
+    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
     dev: false
 
   /has-flag@3.0.0:

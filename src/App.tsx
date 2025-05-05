@@ -12,7 +12,9 @@ import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
 import Lenis from "@studio-freight/lenis";
 import Mantra from "./component/sections/mantra/mantra.tsx";
-
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollSmoother } from "gsap/ScrollSmoother";
+// gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
@@ -40,6 +42,16 @@ function App() {
 		});
 	});
 
+	// Initialize ScrollTrigger and ScrollSmoother
+	// createEffect(() => {
+	// 	// create the scrollSmoother before your scrollTriggers
+	// 	ScrollSmoother.create({
+	// 		smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+	// 		effects: true, // looks for data-speed and data-lag attributes on elements
+	// 		smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+	// 	});
+	// })
+
 	return (
 		<div>
 			<Loader
@@ -56,7 +68,7 @@ function App() {
 				setIsNavigationOpen={setIsNavigationOpen}
 			/>
 
-			 <Hero
+			<Hero
 				isLoadedComplete={isLoadedComplete}
 				isNavigationOpen={isNavigationOpen()}
 			/>
@@ -67,7 +79,7 @@ function App() {
 			<Mantra />
 			<Experience />
 			<Service isLoadedComplete={isLoadedComplete} />
-			<Footer /> 
+			<Footer />
 		</div>
 	);
 }
