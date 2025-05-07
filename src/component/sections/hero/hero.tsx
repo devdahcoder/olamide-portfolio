@@ -149,36 +149,6 @@ const Hero: Component<{
 					<div class="hero--text--container">
 						<p> Adigun Olamide</p>
 					</div>
-					<div class="hero--text--container--mobile ">
-						<For each={"Adigun".trim().split("")}>
-							{(character, index) => (
-								<ParallaxCharacter
-									index={index()}
-									class="hero--character--container "
-									children={character}
-									characterClass="hero--text--character shiny-text"
-									parallaxCharacterElement={
-										parallaxCharacterElement
-									}
-								/>
-							)}
-						</For>
-					</div>
-					<div class="hero--text--container--mobile ">
-						<For each={"Olamide".trim().split("")}>
-							{(character, index) => (
-								<ParallaxCharacter
-									index={index()}
-									class="hero--character--container"
-									children={character}
-									characterClass="hero--text--character shiny-text"
-									parallaxCharacterElement={
-										parallaxCharacterElement
-									}
-								/>
-							)}
-						</For>
-					</div>
 
 					<div class="hero--intro--container">
 						<div class="hero--intro--sub--container">

@@ -1,11 +1,13 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Accessor, Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
 import "./intro.scss";
 gsap.registerPlugin(ScrollTrigger);
 
 const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 	createEffect(() => {
+		const animations: any = [];
+
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".intro--container",
@@ -16,42 +18,57 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 			},
 		});
 
-		gsap.to(".intro--word--start", {
-			scrollTrigger: {
-				trigger: ".intro--text--container--start",
-				start: `top bottom`,
-				end: `+=250`,
-				scrub: 1,
-				// end: `bottom center`,
-				toggleActions: "play none none reverse",
+		tl.fromTo(
+			".intro--top--role--text",
+			{ xPercent: -15, opacity: 0 },
+			{
+				xPercent: 15,
+				opacity: 1,
+				duration: 1.5,
+				ease: "power1.inOut",
+			}
+		).fromTo(
+			".intro--bottom--role--text",
+			{ xPercent: 15, opacity: 0 },
+			{
+				xPercent: -15,
+				opacity: 1,
+				duration: 1.5,
+				ease: "power1.inOut",
 			},
-			duration: 1,
-			stagger: 1,
-			opacity: 1,
-			ease: "power1.inOut",
-		});
+			"<" 
+		);
 
-				const textElements = document.querySelectorAll(".intro--word--start");
-				textElements.forEach((el) => {
-			gsap.fromTo(
+		animations.push(tl);
+
+		const startWordElements = document.querySelectorAll(
+			".intro--word--start"
+		);
+		startWordElements.forEach((el) => {
+			const anim = gsap.fromTo(
 				el,
-				{ y: 30, opacity: 0 },
+				{
+					y: 30,
+					opacity: 0,
+				},
 				{
 					y: 0,
 					opacity: 1,
+					duration: 1,
+					ease: "power2.out",
 					scrollTrigger: {
 						trigger: el,
 						start: "top bottom",
 						end: "top 60%",
 						scrub: true,
+						toggleActions: "play none none reverse",
 					},
-					ease: "power2.out",
 				}
 			);
+			animations.push(anim);
 		});
 
-
-		gsap.to(".intro--word--end", {
+		const endWordAnim = gsap.to(".intro--word--end", {
 			scrollTrigger: {
 				trigger: ".intro--text--container--end",
 				start: `top bottom`,
@@ -65,50 +82,18 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (_props) => {
 			ease: "power1.inOut",
 		});
 
-		tl.add([
-			gsap.fromTo(
-				".intro--top--role--text",
-				{ xPercent: -15, opacity: 0 },
-				{
-					xPercent: 15,
-					opacity: 1,
-					duration: 1.5,
-					ease: "power1.inOut",
-				}
-			),
-			gsap.fromTo(
-				".intro--bottom--role--text",
-				{ xPercent: 15, opacity: 0 },
-				{
-					xPercent: -15,
-					opacity: 1,
-					duration: 1.5,
-					ease: "power1.inOut",
-				}
-			),
-		]);
+		animations.push(endWordAnim);
 
-		// ScrollTrigger.create({
-		// 	trigger: ".intro--container",
-		// 	start: "top 70%",
-		// 	end: "bottom top",
-		// 	onEnter: () => {
-		// 		gsap.to(document.body, {
-		// 			backgroundColor: "#2a2728",
-		// 			duration: 0.7,
-		// 			overwrite: "auto",
-		// 		});
-		// 	},
-		// 	onLeaveBack: () => {
-		// 		gsap.to(document.body, {
-		// 			backgroundColor: "#131111",
-		// 			duration: 0.7,
-		// 			overwrite: "auto",
-		// 		});
-		// 	},
-		// });
+		onCleanup(() => {
+			animations.forEach((anim: any) => {
+				if (anim.scrollTrigger) {
+					anim.scrollTrigger.kill();
+				}
+				anim.kill();
+			});
+		});
 	});
-
+	
 	return (
 		<div class="intro--container">
 			<div class="intro--sub--container">

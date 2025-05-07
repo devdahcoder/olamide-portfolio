@@ -51,17 +51,8 @@
                 line-height: 12.8rem;
 
                 @include mixins.responsive(mdx) {
-                    display: none;
-                }
-            }
-
-            .hero--text--container--mobile {
-                display: none;
-                font-size: 5.5rem;
-                line-height: 6rem;
-
-                @include mixins.responsive(mdx) {
-                    display: flex;
+                    font-size: 5.5rem;
+                    line-height: 6rem;
                 }
             }
 
