@@ -1,4 +1,4 @@
-import { Accessor, Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
 import "./about-me.scss";
 import ParallaxCharacter from "../../parallax-character";
 import SectionHeader from "../../section-header";
@@ -41,6 +41,8 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	createEffect(() => {
+		const animations: any = [];
+
 		props?.isLoadedComplete();
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting && props?.isLoadedComplete()) {
@@ -49,47 +51,45 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				observer.unobserve(entry.target);
 			}
 		});
-
-		gsap.fromTo(
-			".about--me--text",
-			{
-				color: "hsl(0, 4%, 14%)",
-			},
-			{
-				scrollTrigger: {
-					trigger: ".about--me--text--container",
-					start: `top 80%`,
-					end: `+=250`,
-					scrub: 1,
-					toggleActions: "play none none reverse",
-				},
-				duration: 1.5,
-				color: "white",
-				ease: "sine.in",
-				stagger: 1.2,
-			}
-		);
-
 		const textElements = document.querySelectorAll(".about--me--text");
 		textElements.forEach((el) => {
-			gsap.fromTo(
+			const anim = gsap.fromTo(
 				el,
-				{ y: 40, opacity: 0, filter: "blur(5px)", 
- },
+				{
+					y: 40,
+					opacity: 0,
+					filter: "blur(5px)",
+					color: "hsl(0, 4%, 14%)",
+				},
 				{
 					y: 0,
 					opacity: 1,
+					filter: "blur(0px)",
+					color: "white",
+					duration: 1.5,
+					ease: "power2.out",
 					scrollTrigger: {
 						trigger: el,
 						start: "top bottom",
 						end: "top 60%",
 						scrub: true,
+						toggleActions: "play none none reverse",
 					},
-					ease: "power2.out",
-									filter: "blur(0px)",
-
 				}
 			);
+
+			animations.push(anim);
+		});
+
+		onCleanup(() => {
+			animations.forEach((anim: any) => {
+				if (anim.scrollTrigger) {
+					anim.scrollTrigger.kill();
+				}
+				anim.kill();
+			});
+
+			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 		});
 	});
 

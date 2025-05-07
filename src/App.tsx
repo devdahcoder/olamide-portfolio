@@ -18,7 +18,7 @@ import Mantra from "./component/sections/mantra/mantra.tsx";
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
-	const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(false);
+	const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(true);
 
 	// Initialize smooth scroll using Lenis
 	onMount(() => {
@@ -54,10 +54,10 @@ function App() {
 
 	return (
 		<div>
-			<Loader
+			{/* <Loader
 				isLoadedComplete={isLoadedComplete}
 				setIsLoadedComplete={setIsLoadedComplete}
-			/>
+			/> */}
 			<Navigation
 				isNavigationOpen={isNavigationOpen}
 				setIsNavigationOpen={setIsNavigationOpen}
