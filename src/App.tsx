@@ -58,28 +58,32 @@ function App() {
 				isLoadedComplete={isLoadedComplete}
 				setIsLoadedComplete={setIsLoadedComplete}
 			/>
-			<Navigation
-				isNavigationOpen={isNavigationOpen}
-				setIsNavigationOpen={setIsNavigationOpen}
-			/>
-			<Header
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen}
-				setIsNavigationOpen={setIsNavigationOpen}
-			/>
+			{isLoadedComplete() && (
+				<>
+					<Navigation
+						isNavigationOpen={isNavigationOpen}
+						setIsNavigationOpen={setIsNavigationOpen}
+					/>
+					<Header
+						isLoadedComplete={isLoadedComplete}
+						isNavigationOpen={isNavigationOpen}
+						setIsNavigationOpen={setIsNavigationOpen}
+					/>
 
-			<Hero
-				isLoadedComplete={isLoadedComplete}
-				isNavigationOpen={isNavigationOpen()}
-			/>
-			<AboutMe isLoadedComplete={isLoadedComplete} />
-			<Intro isLoadedComplete={isLoadedComplete} />
-			<About />
-			<Project isLoadedComplete={isLoadedComplete} />
-			<Mantra />
-			<Experience />
-			<Service isLoadedComplete={isLoadedComplete} />
-			<Footer />
+					<Hero
+						isLoadedComplete={isLoadedComplete}
+						isNavigationOpen={isNavigationOpen()}
+					/>
+					<AboutMe isLoadedComplete={isLoadedComplete} />
+					<Intro isLoadedComplete={isLoadedComplete} />
+					<About />
+					<Project isLoadedComplete={isLoadedComplete} />
+					<Mantra />
+					<Experience />
+					<Service isLoadedComplete={isLoadedComplete} />
+					<Footer />
+				</>
+			)}
 		</div>
 	);
 }
