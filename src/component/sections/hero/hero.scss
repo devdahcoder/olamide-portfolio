@@ -47,6 +47,10 @@
 
             .hero--text--container {
                 display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: justify;
+
                 font-size: 12vw;
                 line-height: 12.8rem;
 
