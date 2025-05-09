@@ -164,29 +164,24 @@
                     $justify: start);
                 flex-wrap: wrap;
                 column-gap: 0.5rem;
+                @include mixins.flex--layout($direction: column,
+                    $align: start,
+                    $justify: start);
+                font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
+                font-size: 2.3vw;
+                font-weight: 400;
+                color: hsl(0, 7%, 59%);
+                overflow: hidden;
+                display: inline-block;
+                will-change: transform;
+                transition: transform 0.3s ease-out;
+                color: variables.$tertiary--text--color;
 
-                .about--me--text {
-                    @include mixins.flex--layout($direction: column,
-                        $align: start,
-                        $justify: start);
-                    font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                    font-size: 2.3vw;
-                    font-weight: 400;
-                    color: hsl(0, 7%, 59%);
-                    overflow: hidden;
-                    display: inline-block;
-                    will-change: transform;
-                    transition: transform 0.3s ease-out;
 
-
-                    @include mixins.responsive(sm) {
-                        font-size: 4.8vw;
-                    }
-
-                    span {
-                        color: variables.$tertiary--text--color;
-                    }
+                @include mixins.responsive(sm) {
+                    font-size: 4.8vw;
                 }
+
             }
         }
     }

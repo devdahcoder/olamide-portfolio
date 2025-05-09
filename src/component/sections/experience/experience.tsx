@@ -1,13 +1,19 @@
-import { Component, createEffect, For } from "solid-js";
+import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
 import "./experience.scss";
 import { experienceContent } from "../../../../contents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { SplitText } from "gsap/SplitText";
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const Experience: Component<{}> = () => {
+const Experience: Component<{ isLoadedComplete: Accessor<boolean> }> = (
+	props
+) => {
 	const experienceElementRef: HTMLDivElement[] = [];
 	createEffect(() => {
+		const animations: any = [];
+
+		props?.isLoadedComplete();
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".experience--container",
@@ -26,26 +32,49 @@ const Experience: Component<{}> = () => {
 			position: "sticky",
 		});
 
-		experienceElementRef.forEach((element, _index) => {
-			gsap.timeline({
-				scrollTrigger: {
-					trigger: element,
-					start: `top 30%`,
-					scrub: 1,
-					pin: true,
-					end: `bottom bottom`,
-					toggleActions: "play none none reverse",
-				},
-			}).to(
-				element,
+		const elements = gsap.utils.toArray(
+			".experience--item"
+		) as HTMLDivElement[];
+
+		elements.forEach((el: HTMLDivElement, _index) => {
+			const anim = gsap.fromTo(
+				el,
 				{
+					y: 40,
+					x: 70,
 					opacity: 0,
-					scale: 0.8,
-					xPercent: -50,
-					duration: 1,
+					filter: "blur(5px)",
+					color: "hsl(0, 4%, 14%)",
 				},
-				"<"
+				{
+					y: 0,
+					x: 0,
+					opacity: 1,
+					filter: "blur(0px)",
+					color: "white",
+					duration: 1.5,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: el,
+						start: "top 80%",
+						end: "bottom 60%",
+						scrub: true,
+						toggleActions: "play none none reverse",
+					},
+				}
 			);
+
+			animations.push(anim);
+		});
+		onCleanup(() => {
+			animations.forEach((anim: any) => {
+				if (anim.scrollTrigger) {
+					anim.scrollTrigger.kill();
+				}
+				anim.kill();
+			});
+
+			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 		});
 	});
 	return (
@@ -64,7 +93,7 @@ const Experience: Component<{}> = () => {
 					<For each={experienceContent}>
 						{(experience) => (
 							<div
-								class={`relative flex flex-row md:even:items-start md:even:justify-stat md:odd:items-end md:odd:justify-end`}
+								class={`experience--item relative flex flex-row md:even:items-start md:even:justify-stat md:odd:items-end md:odd:justify-end`}
 							>
 								<div
 									ref={(element) =>

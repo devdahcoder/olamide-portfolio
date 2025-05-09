@@ -1,14 +1,13 @@
-import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
+import { Accessor, Component, createEffect } from "solid-js";
 import "./about-me.scss";
-import ParallaxCharacter from "../../parallax-character";
 import SectionHeader from "../../section-header";
 import { elementObserver } from "../../../../hooks";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { SplitText } from "gsap/SplitText";
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
-	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let aboutMeSectionRefElement: HTMLDivElement | undefined;
 
@@ -41,56 +40,49 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	createEffect(() => {
-		const animations: any = [];
+		const isLoaded = props?.isLoadedComplete();
 
-		props?.isLoadedComplete();
+		if (!isLoaded) return;
+
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting && props?.isLoadedComplete()) {
+			if (entry.isIntersecting && isLoaded) {
 				animateHeaderText();
 				animateHeaderImage();
+				SplitText.create(".about--me--text--container", {
+					type: "words",
+					mask: "words",
+					onSplit: (self) => {
+						gsap.fromTo(
+							self.words,
+							{
+								yPercent: 100,
+								opacity: 0,
+								filter: "blur(5px)",
+								color: "hsl(0, 4%, 14%)",
+							},
+							{
+								yPercent: 0,
+								opacity: 1,
+								filter: "blur(0px)",
+								color: "white",
+								duration: 2,
+								ease: "power2.out",
+								scrollTrigger: {
+									trigger: self.words,
+									start: "top bottom",
+									end: "top 30%",
+									scrub: true,
+									toggleActions: "play none none reverse",
+								},
+							}
+						);
+					},
+				});
 				observer.unobserve(entry.target);
 			}
 		});
-		const textElements = document.querySelectorAll(".about--me--text");
-		textElements.forEach((el) => {
-			const anim = gsap.fromTo(
-				el,
-				{
-					y: 40,
-					opacity: 0,
-					filter: "blur(5px)",
-					color: "hsl(0, 4%, 14%)",
-				},
-				{
-					y: 0,
-					opacity: 1,
-					filter: "blur(0px)",
-					color: "white",
-					duration: 1.5,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: el,
-						start: "top bottom",
-						end: "top 60%",
-						scrub: true,
-						toggleActions: "play none none reverse",
-					},
-				}
-			);
 
-			animations.push(anim);
-		});
-
-		onCleanup(() => {
-			animations.forEach((anim: any) => {
-				if (anim.scrollTrigger) {
-					anim.scrollTrigger.kill();
-				}
-				anim.kill();
-			});
-
-			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-		});
+		
 	});
 
 	return (
@@ -121,24 +113,15 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 						class="about--me--header--title shiny-text"
 						titleContainerClassNam="about--me--header--container shiny-text"
 					/>
+
 					<div class="about--me--text--container">
-						<For
-							each={`Hello! I'm Olamide, a passionate software developer, who crafts beautiful web and mobile experiences and digital solutions with a real impact that helps businesses grow and connect with their audience all over the world.`.split(
-								" "
-							)}
-						>
-							{(character, index) => (
-								<ParallaxCharacter
-									index={index()}
-									class="about--me--text"
-									children={character}
-									style={{ margin: "0rem 0.5rem" }}
-									parallaxCharacterElement={
-										parallaxCharacterElement
-									}
-								/>
-							)}
-						</For>
+						<p>
+							Hello! I'm Olamide, a passionate software developer,
+							who crafts beautiful web and mobile experiences and
+							digital solutions with a real impact that helps
+							businesses grow and connect with their audience all
+							over the world.
+						</p>
 					</div>
 				</div>
 			</div>

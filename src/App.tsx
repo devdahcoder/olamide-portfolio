@@ -76,10 +76,10 @@ function App() {
 					/>
 					<AboutMe isLoadedComplete={isLoadedComplete} />
 					<Intro isLoadedComplete={isLoadedComplete} />
-					<About />
+					<About isLoadedComplete={isLoadedComplete} />
 					<Project isLoadedComplete={isLoadedComplete} />
-					<Mantra />
-					<Experience />
+					{/* <Mantra /> */}
+					<Experience isLoadedComplete={isLoadedComplete} />
 					<Service isLoadedComplete={isLoadedComplete} />
 					<Footer />
 				</>

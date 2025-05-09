@@ -1,4 +1,11 @@
-import { Component, createEffect, createSignal } from "solid-js";
+import {
+	Accessor,
+	Component,
+	createEffect,
+	createSignal,
+	onCleanup,
+	onMount,
+} from "solid-js";
 import "./about.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,14 +13,36 @@ import Quote from "../quote/quote";
 import { QuoteApiType } from "../../../../types";
 gsap.registerPlugin(ScrollTrigger);
 
-const About: Component<{}> = () => {
+const About: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	const [quote] = createSignal<QuoteApiType>({
 		author: "Olamide Adigun",
 		category: "programming",
 		quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",
 	});
+	const [currentImage, setCurrentImage] = createSignal(``);
+
+	const images = [
+		"/images/pexels-fotorobot.jpg",
+		"/images/image2.jpg",
+		"/images/image3.jpg",
+		"/images/image4.jpg",
+	];
+
+	function getRandomImage() {
+		return images[Math.floor(Math.random() * images.length)];
+	}
+
+	const imageInterval = setInterval(() => {
+		setCurrentImage(getRandomImage());
+	}, 3000);
+	onMount(() => {
+		setCurrentImage(getRandomImage());
+	});
+	onCleanup(() => clearInterval(imageInterval));
 
 	createEffect(() => {
+		props.isLoadedComplete();
+
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".about--container",
@@ -24,7 +53,6 @@ const About: Component<{}> = () => {
 				toggleActions: "play none none reverse",
 			},
 		});
-
 
 		tl.to(".image--sub--container", {
 			clipPath: `inset(0% 0%)`,
@@ -49,7 +77,6 @@ const About: Component<{}> = () => {
 			".quote--text",
 			{
 				color: "hsl(0, 4%, 14%)",
-				
 			},
 			{
 				scrollTrigger: {
@@ -106,7 +133,7 @@ const About: Component<{}> = () => {
 				<div class="image--container">
 					<div class=" image--sub--container">
 						<img
-							src={`/images/pexels-fotorobot.jpg`}
+							src={`${currentImage()}`}
 							alt=""
 							sizes=""
 							srcset=""
