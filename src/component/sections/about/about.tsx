@@ -23,9 +23,9 @@ const About: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 
 	const images = [
 		"/images/pexels-fotorobot.jpg",
-		"/images/image2.jpg",
-		"/images/image3.jpg",
-		"/images/image4.jpg",
+		"/images/rand1.jpg",
+		"/images/rand2.jpg",
+		"/images/rand3.jpg",
 	];
 
 	function getRandomImage() {
@@ -34,7 +34,8 @@ const About: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 
 	const imageInterval = setInterval(() => {
 		setCurrentImage(getRandomImage());
-	}, 3000);
+	}, 300);
+
 	onMount(() => {
 		setCurrentImage(getRandomImage());
 	});

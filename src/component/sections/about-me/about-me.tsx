@@ -67,13 +67,13 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 								color: "white",
 								duration: 2,
 								ease: "power2.out",
-								scrollTrigger: {
-									trigger: self.words,
-									start: "top bottom",
-									end: "top 30%",
-									scrub: true,
-									toggleActions: "play none none reverse",
-								},
+								// scrollTrigger: {
+								// 	trigger: self.words,
+								// 	start: "top bottom",
+								// 	end: "top 30%",
+								// 	scrub: true,
+								// 	toggleActions: "play none none reverse",
+								// },
 							}
 						);
 					},
@@ -86,18 +86,23 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	});
 
 	return (
-		<div ref={aboutMeSectionRefElement} class="about--me--container">
+		<div
+			// data-speed="0.5"
+			// data-lag="0.1"
+			ref={aboutMeSectionRefElement}
+			class="about--me--container"
+		>
 			<div class="about--me--sub--container">
 				<div class="about--me--title--and--social--container">
 					<div class="image--container">
 						<div class="image--sub--container">
-							<img
+							{/* <img
 								src={`/images/pexels-mabble.jpg`}
 								alt=""
 								sizes=""
 								srcset=""
 								class="image"
-							/>
+							/> */}
 							<div class="image--shadow"></div>
 						</div>
 					</div>

@@ -77,7 +77,6 @@ const Hero: Component<{
 				);
 			},
 		});
-
 	};
 
 	const animateSubHeroParallaxCharacter = () => {
@@ -146,7 +145,11 @@ const Hero: Component<{
 		<div ref={heroRefSection} class=" hero--main--container">
 			<div class="hero--sub--container">
 				<div class="hero--text--main--container">
-					<div class="hero--text--container">
+					<div
+						data-lag="0.3"
+						data-speed="1"
+						class="hero--text--container"
+					>
 						<p> Adigun Olamide</p>
 					</div>
 
@@ -154,7 +157,6 @@ const Hero: Component<{
 						<div class="hero--intro--sub--container">
 							<div class="hero--intro--skills--container">
 								<div class="hero--intro--skills--header">
-									{/* <p>skills</p> */}
 									<For each={"skills".trim().split("")}>
 										{(character, index) => (
 											<ParallaxCharacter

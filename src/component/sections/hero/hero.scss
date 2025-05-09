@@ -152,7 +152,6 @@
                             flex-direction: row;
                             align-items: center;
                             text-align: justify;
-                            // overflow: hidden;
 
                             .hero--intro--expertise--text {
                                 @include mixins.responsive(sm) {
