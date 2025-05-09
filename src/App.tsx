@@ -11,7 +11,7 @@ import Navigation from "./component/sections/navigation/navigation";
 import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
 import Lenis from "@studio-freight/lenis";
-import Mantra from "./component/sections/mantra/mantra.tsx";
+// import Mantra from "./component/sections/mantra/mantra.tsx";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { ScrollSmoother } from "gsap/ScrollSmoother";
 // gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
