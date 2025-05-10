@@ -188,7 +188,10 @@ const Hero: Component<{
 								</div>
 							</div>
 
-							<div class="hero--intro--expertise">
+							<div
+								data-speed="1"
+								class="hero--intro--expertise"
+							>
 								<div class="intro--expertise">
 									<StarIcon class="w-8 h-8 mr-3 animate-spin ease-linear duration-1000" />
 									<p>Software &</p>

@@ -19,7 +19,7 @@ const About: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 		category: "programming",
 		quote: "FOCUSED TO CRAFT POWERFUL BRANDS AND MEMORABLE DIGITAL PRODUCTS TO BE TIMELESS.",
 	});
-	const [currentImage, setCurrentImage] = createSignal(``);
+
 
 	const images = [
 		"/images/pexels-fotorobot.jpg",
@@ -28,18 +28,20 @@ const About: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 		"/images/rand3.jpg",
 	];
 
-	function getRandomImage() {
-		return images[Math.floor(Math.random() * images.length)];
-	}
-
-	const imageInterval = setInterval(() => {
-		setCurrentImage(getRandomImage());
-	}, 300);
+	const getRandomImage = () =>
+		images[Math.floor(Math.random() * images.length)];
+	const [currentImage, setCurrentImage] = createSignal(getRandomImage());
 
 	onMount(() => {
-		setCurrentImage(getRandomImage());
+		const interval = setInterval(() => {
+			const nextImage = getRandomImage();
+			if (nextImage !== currentImage()) {
+				setCurrentImage(nextImage);
+			}
+		}, 300);
+
+		onCleanup(() => clearInterval(interval));
 	});
-	onCleanup(() => clearInterval(imageInterval));
 
 	createEffect(() => {
 		props.isLoadedComplete();

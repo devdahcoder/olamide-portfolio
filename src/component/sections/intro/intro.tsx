@@ -58,26 +58,26 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 						opacity: 1,
 						duration: 1,
 						ease: "power2.out",
-						// scrollTrigger: {
-						// 	trigger: el,
-						// 	start: "top bottom",
-						// 	end: "top 60%",
-						// 	scrub: true,
-						// 	toggleActions: "play none none reverse",
-						// },
+						scrollTrigger: {
+							trigger: el,
+							start: "top bottom",
+							end: "top 60%",
+							scrub: true,
+							toggleActions: "play none none reverse",
+						},
 					}
 				);
 				animations.push(anim);
 			});
 
 			const endWordAnim = gsap.to(".intro--word--end", {
-				// scrollTrigger: {
-				// 	trigger: ".intro--text--container--end",
-				// 	start: `top bottom`,
-				// 	scrub: 1,
-				// 	end: `bottom center`,
-				// 	toggleActions: "play none none reverse",
-				// },
+				scrollTrigger: {
+					trigger: ".intro--text--container--end",
+					start: `top bottom`,
+					scrub: 1,
+					end: `bottom center`,
+					toggleActions: "play none none reverse",
+				},
 				duration: 1,
 				stagger: 1,
 				opacity: 1,
@@ -101,7 +101,7 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 		<div class="intro--container">
 			<div class="intro--sub--container">
 				<div class="intro--text--container intro--text--container--start">
-					<div data-lag="0.1" class="intro--text">
+					<div data-lag="0.2" class="intro--text">
 						<For
 							each={`I've worked in UI design and front-end development,
 							so I can understand designs well and builds
@@ -141,7 +141,7 @@ const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 				</div>
 
 				<div class="intro--text--container intro--text--container--end">
-					<div data-lag="0.1" class="intro--text ">
+					<div data-lag="0.2" class="intro--text ">
 						<For
 							each={`Currently, I live in Lagos. In my personal life, I
 							love to write blog posts, watch documentaries

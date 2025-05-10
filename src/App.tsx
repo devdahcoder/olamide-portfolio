@@ -1,7 +1,7 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import Loader from "./component/loader.tsx";
 import AboutMe from "./component/sections/about-me/about-me";
-import About from "./component/sections/about/about";
+// import About from "./component/sections/about/about";
 import Experience from "./component/sections/experience/experience.tsx";
 import Footer from "./component/sections/footer/footer";
 import Header from "./component/sections/header/header";
@@ -10,7 +10,7 @@ import Intro from "./component/sections/intro/intro";
 import Navigation from "./component/sections/navigation/navigation";
 import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
-import Lenis from "@studio-freight/lenis";
+// import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -20,10 +20,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
-	const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(true);
+	const [isLoadedComplete, setIsLoadedComplete] = createSignal<boolean>(false);
 
 	onMount(() => {
-		const smoother = ScrollSmoother.create({
+		ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
 			content: "#smooth-content",
 			smooth: 1.5,
@@ -73,10 +73,10 @@ function App() {
 	return (
 		<div id="smooth-wrapper">
 			<div id="smooth-content">
-				{/* <Loader
+				<Loader
 					isLoadedComplete={isLoadedComplete}
 					setIsLoadedComplete={setIsLoadedComplete}
-				/> */}
+				/>
 				<Navigation
 					isNavigationOpen={isNavigationOpen}
 					setIsNavigationOpen={setIsNavigationOpen}
@@ -93,7 +93,7 @@ function App() {
 				/>
 				<AboutMe isLoadedComplete={isLoadedComplete} />
 				<Intro isLoadedComplete={isLoadedComplete} />
-				<About isLoadedComplete={isLoadedComplete} />
+				{/* <About isLoadedComplete={isLoadedComplete} /> */}
 				<Project isLoadedComplete={isLoadedComplete} />
 				<Experience isLoadedComplete={isLoadedComplete} />
 				<Service isLoadedComplete={isLoadedComplete} />
