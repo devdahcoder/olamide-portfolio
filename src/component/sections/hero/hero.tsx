@@ -150,7 +150,7 @@ const Hero: Component<{
 						data-speed="1"
 						class="hero--text--container"
 					>
-						<p> Adigun Olamide</p>
+						<div> Adigun Olamide</div>
 					</div>
 
 					<div class="hero--intro--container">
@@ -188,10 +188,7 @@ const Hero: Component<{
 								</div>
 							</div>
 
-							<div
-								data-speed="1"
-								class="hero--intro--expertise"
-							>
+							<div data-speed="1" class="hero--intro--expertise">
 								<div class="intro--expertise">
 									<StarIcon class="w-8 h-8 mr-3 animate-spin ease-linear duration-1000" />
 									<p>Software &</p>
