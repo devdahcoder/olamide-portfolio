@@ -150,7 +150,7 @@ const Hero: Component<{
 						data-speed="1"
 						class="hero--text--container"
 					>
-						<div class="hero--text"> Adigun Olamide</div>
+						<span class="hero--text"> Adigun Olamide</span>
 					</div>
 
 					<div class="hero--intro--container">
