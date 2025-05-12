@@ -43,9 +43,12 @@
 
                 .hero--text {
                     white-space: nowrap;
+                    min-width: none;
 
                     @include mixins.responsive(mdx) {
                         font-size: 5.5rem;
+                        display: flex;
+
                         flex-direction: column;
                         line-height: 7rem;
                     }
@@ -53,21 +56,6 @@
 
                 .hero--main--text {}
             }
-
-            // .hero--text--container {
-            //     display: flex;
-            //     flex-direction: row;
-            //     align-items: center;
-            //     text-align: justify;
-
-            //     font-size: 12vw;
-            //     line-height: 12.8rem;
-
-            //     @include mixins.responsive(mdx) {
-            //         font-size: 5.5rem;
-            //         line-height: 6rem;
-            //     }
-            // }
 
             .hero--intro--container {
                 width: 100%;

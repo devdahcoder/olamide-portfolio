@@ -1,5 +1,4 @@
 import { createSignal, onMount } from "solid-js";
-// import Loader from "./component/loader.tsx";
 import AboutMe from "./component/sections/about-me/about-me";
 // import About from "./component/sections/about/about";
 import Experience from "./component/sections/experience/experience.tsx";
@@ -14,13 +13,15 @@ import Service from "./component/sections/service/service";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import Loader from "./component/loader.tsx";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
-	const [isLoadedComplete] = createSignal<boolean>(true);
+	const [isLoadedComplete, setIsLoadedComplete] =
+		createSignal<boolean>(false);
 
 	onMount(() => {
 		ScrollSmoother.create({
@@ -73,10 +74,10 @@ function App() {
 	return (
 		<div id="smooth-wrapper">
 			<div id="smooth-content">
-				{/* <Loader
+				<Loader
 					isLoadedComplete={isLoadedComplete}
 					setIsLoadedComplete={setIsLoadedComplete}
-				/> */}
+				/>
 				{isLoadedComplete() && (
 					<>
 						<Navigation
