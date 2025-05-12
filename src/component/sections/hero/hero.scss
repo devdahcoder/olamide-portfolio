@@ -29,17 +29,20 @@
 
             .hero--text--container {
                 font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                // display: flex;
-                // flex-direction: row;
-                // align-items: center;
-                // text-align: justify;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: justify;
                 font-weight: 600;
                 color: variables.$primary--text--color;
                 overflow: hidden;
+                font-size: 12vw;
+                line-height: 12.8rem;
 
                 .hero--text {
 
-                    @include mixins.responsive(sm) {
+                    @include mixins.responsive(mdx) {
+                        font-size: 5.5rem;
                         flex-direction: column;
                         line-height: 7rem;
                     }
@@ -48,20 +51,20 @@
                 .hero--main--text {}
             }
 
-            .hero--text--container {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-align: justify;
+            // .hero--text--container {
+            //     display: flex;
+            //     flex-direction: row;
+            //     align-items: center;
+            //     text-align: justify;
 
-                font-size: 12vw;
-                line-height: 12.8rem;
+            //     font-size: 12vw;
+            //     line-height: 12.8rem;
 
-                @include mixins.responsive(mdx) {
-                    font-size: 5.5rem;
-                    line-height: 6rem;
-                }
-            }
+            //     @include mixins.responsive(mdx) {
+            //         font-size: 5.5rem;
+            //         line-height: 6rem;
+            //     }
+            // }
 
             .hero--intro--container {
                 width: 100%;

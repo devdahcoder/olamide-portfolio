@@ -28,6 +28,7 @@ const Hero: Component<{
 	const animateHeroMainParallaxCharacter = () => {
 		SplitText.create(".hero--text", {
 			type: "words, chars",
+			autoSplit: true,
 			onSplit(self) {
 				gsap.fromTo(
 					self.chars,
@@ -150,7 +151,7 @@ const Hero: Component<{
 						data-speed="1"
 						class="hero--text--container"
 					>
-						<div class="hero--text flex"> Adigun <span class="hidden md:block mx-4"></span> Olamide</div>
+						<div class="hero--text">Adigun Olamide</div>
 					</div>
 
 					<div class="hero--intro--container">
