@@ -38,8 +38,11 @@
                 overflow: hidden;
                 font-size: 12vw;
                 line-height: 12.8rem;
+                width: fit-content;
+                min-width: 0;
 
                 .hero--text {
+                    white-space: nowrap;
 
                     @include mixins.responsive(mdx) {
                         font-size: 5.5rem;
