@@ -26,7 +26,7 @@ const Hero: Component<{
 	let heroRefSection: HTMLDivElement | undefined;
 
 	const animateHeroMainParallaxCharacter = () => {
-		SplitText.create(".hero--text--container", {
+		SplitText.create(".hero--text", {
 			type: "words, chars",
 			onSplit(self) {
 				gsap.fromTo(
@@ -150,7 +150,7 @@ const Hero: Component<{
 						data-speed="1"
 						class="hero--text--container"
 					>
-						<div> Adigun Olamide</div>
+						<div class="hero--text"> Adigun Olamide</div>
 					</div>
 
 					<div class="hero--intro--container">

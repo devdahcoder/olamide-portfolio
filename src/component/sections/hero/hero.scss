@@ -27,8 +27,7 @@
                 row-gap: 0.5rem;
             }
 
-            .hero--text--container,
-            .hero--text--container--mobile {
+            .hero--text--container {
                 font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
                 display: flex;
                 flex-direction: row;
@@ -38,8 +37,12 @@
                 color: variables.$primary--text--color;
                 overflow: hidden;
 
-                @include mixins.responsive(sm) {
-                    display: none;
+                .hero--text {
+                    
+                    @include mixins.responsive(sm) {
+                        flex-direction: column;
+                        line-height: 7rem;
+                    }
                 }
 
                 .hero--main--text {}
