@@ -1,4 +1,4 @@
-import { Accessor, Component, createEffect } from "solid-js";
+import { Component, createEffect } from "solid-js";
 import "./about-me.scss";
 import SectionHeader from "../../section-header";
 import { elementObserver } from "../../../../hooks";
@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
+const AboutMe: Component<{ isLoadedComplete: boolean }> = (props) => {
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let aboutMeSectionRefElement: HTMLDivElement | undefined;
 
@@ -40,12 +40,12 @@ const AboutMe: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	createEffect(() => {
-		const isLoaded = props?.isLoadedComplete();
+		const isLoadedComplete = props.isLoadedComplete;
 
-		if (!isLoaded) return;
+		if (!isLoadedComplete) return;
 
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting && isLoaded) {
+			if (entry.isIntersecting && isLoadedComplete) {
 				animateHeaderText();
 				animateHeaderImage();
 				SplitText.create(".about--me--text--container", {

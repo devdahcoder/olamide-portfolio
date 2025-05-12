@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import ParallaxCharacter from "../../parallax-character";
 import StarIcon from "../../../../public/icon/star-icon";
-import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
+import { Component, createEffect, createSignal, For } from "solid-js";
 import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Hero: Component<{
 	isNavigationOpen: boolean;
-	isLoadedComplete: Accessor<boolean>;
+	isLoadedComplete: boolean;
 }> = (props) => {
 	const [skills] = createSignal<string[]>([
 		"Java",
@@ -127,9 +127,9 @@ const Hero: Component<{
 	};
 
 	createEffect(() => {
-		props?.isLoadedComplete();
+		const isLoadedComplete = props.isLoadedComplete;
 		elementObserver(heroRefSection, (entry, observer) => {
-			if (entry.isIntersecting && props?.isLoadedComplete()) {
+			if (entry.isIntersecting && isLoadedComplete) {
 				animateHeroMainParallaxCharacter();
 				animateSubHeroParallaxCharacter();
 				animateHeroIntroExpertiseParallaxCharacter();

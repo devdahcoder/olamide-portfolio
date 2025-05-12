@@ -1,4 +1,4 @@
-import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
+import { Component, createEffect, For, onCleanup } from "solid-js";
 import "./experience.scss";
 import { experienceContent } from "../../../../contents";
 import gsap from "gsap";
@@ -6,14 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const Experience: Component<{ isLoadedComplete: Accessor<boolean> }> = (
+const Experience: Component<{ isLoadedComplete: boolean }> = (
 	props
 ) => {
 	const experienceElementRef: HTMLDivElement[] = [];
 	createEffect(() => {
 		const animations: any = [];
 
-		props?.isLoadedComplete();
+		props.isLoadedComplete;
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".experience--container",

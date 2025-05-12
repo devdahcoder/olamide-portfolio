@@ -29,16 +29,16 @@
 
             .hero--text--container {
                 font-family: Satoshi, -apple-system, Helvetica Neue, sans-serif;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-align: justify;
+                // display: flex;
+                // flex-direction: row;
+                // align-items: center;
+                // text-align: justify;
                 font-weight: 600;
                 color: variables.$primary--text--color;
                 overflow: hidden;
 
                 .hero--text {
-                    
+
                     @include mixins.responsive(sm) {
                         flex-direction: column;
                         line-height: 7rem;

@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
+import { Component, For, createEffect, onCleanup } from "solid-js";
 import { workContent } from "../../../../contents";
 import Image from "../../image";
 import "./project.scss";
@@ -10,7 +10,7 @@ import { elementObserver } from "../../../../hooks";
 import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
-const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
+const Project: Component<{ isLoadedComplete: boolean }> = (props) => {
 	let projectItemRef: HTMLDivElement[] = [];
 	let projectSectionRefElement: HTMLDivElement | undefined;
 	let projectListRef: HTMLDivElement | undefined;
@@ -160,9 +160,9 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	createEffect(() => {
-		props?.isLoadedComplete();
+		const isLoadedComplete = props.isLoadedComplete;
 		elementObserver(projectSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting && props?.isLoadedComplete()) {
+			if (entry.isIntersecting && isLoadedComplete) {
 				animateHeaderText();
 				animateProjectItems(); // Add the slide-up animation when section is visible
 				observer.unobserve(entry.target);
