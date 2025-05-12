@@ -150,7 +150,7 @@ const Hero: Component<{
 						data-speed="1"
 						class="hero--text--container"
 					>
-						<div class="hero--text flex"> Adigun <span class="hidden md:block mx-1"></span> Olamide</div>
+						<div class="hero--text flex"> Adigun <span class="hidden md:block mx-4"></span> Olamide</div>
 					</div>
 
 					<div class="hero--intro--container">
