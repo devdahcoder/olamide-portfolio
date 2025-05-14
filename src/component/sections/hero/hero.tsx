@@ -147,7 +147,6 @@ const Hero: Component<{
 				start: "top 20%",
 				end: "bottom top",
 				scrub: true,
-				markers: true,
 			},
 			y: -50,
 		});

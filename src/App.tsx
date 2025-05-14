@@ -13,7 +13,6 @@ import Service from "./component/sections/service/service";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import About from "./component/sections/about/about.tsx";
 // import GlobalState from "./store.ts";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -83,7 +82,7 @@ function App() {
 				<Hero isNavigationOpen={isNavigationOpen()} />
 				<AboutMe />
 				<Intro isLoadedComplete={isLoadedComplete} />
-				<About isLoadedComplete={isLoadedComplete} />
+				{/* <About isLoadedComplete={isLoadedComplete} /> */}
 				<Project isLoadedComplete={isLoadedComplete} />
 				<Experience isLoadedComplete={isLoadedComplete} />
 				<Service isLoadedComplete={isLoadedComplete} />
