@@ -1,5 +1,4 @@
 import {
-	Accessor,
 	Component,
 	createEffect,
 	createSignal,
@@ -11,18 +10,17 @@ import "./component.scss";
 import PercentageDisplay from "./percentage-display";
 import { animatePercentage } from "../../animation";
 import gsap from "gsap";
+import GlobalState from "../store";
 
-const Loader: Component<{
-	isLoadedComplete: Accessor<boolean>;
-	setIsLoadedComplete: (value: boolean) => void;
-}> = (props) => {
+const Loader: Component<{}> = () => {
 	let container: HTMLDivElement | undefined;
+	const { state, pageLoaded } = GlobalState;
 	const { isLoaded, loadingPercentage } = usePercentageLoaderHook();
 	const [currentCount, setCurrentCount] = createSignal<string>("0");
 	const [prevCount, setPrevCount] = createSignal("0");
 
 	createEffect(() => {
-		if (!props?.isLoadedComplete()) {
+		if (!state.hasPageLoaded) {
 			document.body.style.overflow = "hidden";
 			document.body.style.position = "fixed";
 			document.body.style.top = "0";
@@ -37,8 +35,6 @@ const Loader: Component<{
 			document.body.style.removeProperty("top");
 		});
 	});
-
-	
 
 	createEffect(() => {
 		if (!isLoaded()) return;
@@ -60,7 +56,7 @@ const Loader: Component<{
 					duration: 1,
 					ease: "sine.inOut",
 					onComplete: () => {
-						props.setIsLoadedComplete(true);
+						pageLoaded();
 					},
 				},
 				"-=0.99"

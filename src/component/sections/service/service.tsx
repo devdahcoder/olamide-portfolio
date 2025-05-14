@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal, For } from "solid-js";
+import { Accessor, Component, createEffect, createSignal, For } from "solid-js";
 import "./service.scss";
 import { serviceContent, serviceMobileContent } from "../../../../contents";
 import SectionHeader from "../../section-header";
@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 
-const Service: Component<{ isLoadedComplete: boolean }> = (props) => {
+const Service: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	const headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let serviceSectionRefElement: HTMLDivElement | undefined;
@@ -39,7 +39,7 @@ const Service: Component<{ isLoadedComplete: boolean }> = (props) => {
 	};
 
 	createEffect(() => {
-		const isLoadedComplete = props?.isLoadedComplete;
+		const isLoadedComplete = props?.isLoadedComplete();
 		elementObserver(serviceSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting && isLoadedComplete) {
 				animateHeaderText();

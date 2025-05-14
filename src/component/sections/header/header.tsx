@@ -4,14 +4,15 @@ import { elementObserver } from "../../../../hooks";
 import FileIcon from "../../../../icon/file-icon";
 // import Button from "../../button";
 import "./header.scss";
+import GlobalState from "../../../store";
 
 const Header: Component<{
 	isNavigationOpen: Accessor<boolean>;
 	setIsNavigationOpen: Setter<boolean>;
-	isLoadedComplete: Accessor<boolean>;
 }> = (props) => {
 	let headerSectionRef: HTMLDivElement | any;
 	let resumeLinkRefElement: HTMLAnchorElement;
+	const { state } = GlobalState;
 
 	const animateHeaderContainer = (condition: boolean) => {
 		gsap.fromTo(
@@ -80,9 +81,9 @@ const Header: Component<{
 	});
 
 	createEffect(() => {
-		props?.isLoadedComplete();
+		state.hasPageLoaded;
 		elementObserver(headerSectionRef, (entry, observer) => {
-			if (entry.isIntersecting && props?.isLoadedComplete()) {
+			if (entry.isIntersecting && state.hasPageLoaded) {
 				animateHeaderSubContainer();
 
 				observer.unobserve(entry.target);

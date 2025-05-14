@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Component, For, createEffect, onCleanup } from "solid-js";
+import { Accessor, Component, For, createEffect, onCleanup } from "solid-js";
 import { workContent } from "../../../../contents";
 import Image from "../../image";
 import "./project.scss";
@@ -10,7 +10,7 @@ import { elementObserver } from "../../../../hooks";
 import SectionHeader from "../../section-header";
 gsap.registerPlugin(ScrollTrigger);
 
-const Project: Component<{ isLoadedComplete: boolean }> = (props) => {
+const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	let projectItemRef: HTMLDivElement[] = [];
 	let projectSectionRefElement: HTMLDivElement | undefined;
 	let projectListRef: HTMLDivElement | undefined;
@@ -160,7 +160,7 @@ const Project: Component<{ isLoadedComplete: boolean }> = (props) => {
 	};
 
 	createEffect(() => {
-		const isLoadedComplete = props.isLoadedComplete;
+		const isLoadedComplete = props.isLoadedComplete();
 		elementObserver(projectSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting && isLoadedComplete) {
 				animateHeaderText();

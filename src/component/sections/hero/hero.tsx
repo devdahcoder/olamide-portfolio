@@ -6,12 +6,12 @@ import { elementObserver } from "../../../../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import "./hero.scss";
+import GlobalState from "../../../store";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Hero: Component<{
 	isNavigationOpen: boolean;
-	isLoadedComplete: boolean;
-}> = (props) => {
+}> = () => {
 	const [skills] = createSignal<string[]>([
 		"Java",
 		"TypeScript",
@@ -24,7 +24,7 @@ const Hero: Component<{
 	]);
 	const parallaxCharacterElement: HTMLDivElement[][] = [];
 	let heroRefSection: HTMLDivElement | undefined;
-
+	const { state } = GlobalState;
 	const animateHeroMainParallaxCharacter = () => {
 		SplitText.create(".hero--text", {
 			type: "words, chars",
@@ -128,9 +128,9 @@ const Hero: Component<{
 	};
 
 	createEffect(() => {
-		const isLoadedComplete = props.isLoadedComplete;
+		state.hasPageLoaded;
 		elementObserver(heroRefSection, (entry, observer) => {
-			if (entry.isIntersecting && isLoadedComplete) {
+			if (entry.isIntersecting && entry.intersectionRatio > 0) {
 				animateHeroMainParallaxCharacter();
 				animateSubHeroParallaxCharacter();
 				animateHeroIntroExpertiseParallaxCharacter();

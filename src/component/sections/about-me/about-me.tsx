@@ -5,11 +5,13 @@ import { elementObserver } from "../../../../hooks";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import GlobalState from "../../../store";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const AboutMe: Component<{ isLoadedComplete: boolean }> = (props) => {
+const AboutMe: Component<{ }> = () => {
 	let headerParallaxCharacterElement: HTMLDivElement[][] = [];
 	let aboutMeSectionRefElement: HTMLDivElement | undefined;
+	const { state } = GlobalState;
 
 	const animateHeaderText = () => {
 		gsap.fromTo(
@@ -40,12 +42,12 @@ const AboutMe: Component<{ isLoadedComplete: boolean }> = (props) => {
 	};
 
 	createEffect(() => {
-		const isLoadedComplete = props.isLoadedComplete;
+		const isLoadedComplete = state.hasPageLoaded;
 
 		if (!isLoadedComplete) return;
 
 		elementObserver(aboutMeSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting && isLoadedComplete) {
+			if (entry.isIntersecting && isLoadedComplete && entry.intersectionRatio > 0) {
 				animateHeaderText();
 				animateHeaderImage();
 				SplitText.create(".about--me--text--container", {

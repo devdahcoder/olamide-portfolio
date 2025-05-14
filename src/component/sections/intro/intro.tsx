@@ -1,14 +1,16 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Component, createEffect, For, onCleanup } from "solid-js";
+import { Accessor, Component, createEffect, For, onCleanup } from "solid-js";
 import "./intro.scss";
 gsap.registerPlugin(ScrollTrigger);
 
-const Intro: Component<{ isLoadedComplete: boolean }> = (props) => {
-	createEffect(() => {
-		const isLoadedComplete = props.isLoadedComplete;
-		const animations: any = [];
+const Intro: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
+	let introSectionRefElement: HTMLDivElement | undefined;
 
+	createEffect(() => {
+
+		const animations: any = [];
+		props?.isLoadedComplete();
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".intro--container",
@@ -96,7 +98,7 @@ const Intro: Component<{ isLoadedComplete: boolean }> = (props) => {
 	});
 
 	return (
-		<div class="intro--container">
+		<div ref={introSectionRefElement} class="intro--container">
 			<div class="intro--sub--container">
 				<div class="intro--text--container intro--text--container--start">
 					<div data-lag="0.2" class="intro--text">

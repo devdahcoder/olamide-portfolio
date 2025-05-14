@@ -1,4 +1,5 @@
 import { createSignal, onMount } from "solid-js";
+import Loader from "./component/loader.tsx";
 import AboutMe from "./component/sections/about-me/about-me";
 // import About from "./component/sections/about/about";
 import Experience from "./component/sections/experience/experience.tsx";
@@ -6,22 +7,20 @@ import Footer from "./component/sections/footer/footer";
 import Header from "./component/sections/header/header";
 import Hero from "./component/sections/hero/hero";
 import Intro from "./component/sections/intro/intro";
-import Navigation from "./component/sections/navigation/navigation";
 import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
 // import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import Loader from "./component/loader.tsx";
+// import GlobalState from "./store.ts";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function App() {
 	const [isNavigationOpen, setIsNavigationOpen] =
 		createSignal<boolean>(false);
-	const [isLoadedComplete, setIsLoadedComplete] =
-		createSignal<boolean>(false);
+	const [isLoadedComplete] = createSignal<boolean>(false);
 
 	onMount(() => {
 		ScrollSmoother.create({
@@ -74,35 +73,22 @@ function App() {
 	return (
 		<div id="smooth-wrapper">
 			<div id="smooth-content">
-				<Loader
-					isLoadedComplete={isLoadedComplete}
-					setIsLoadedComplete={setIsLoadedComplete}
+				
+				<Loader/>
+				<Header
+					isNavigationOpen={isNavigationOpen}
+					setIsNavigationOpen={setIsNavigationOpen}
 				/>
-				{isLoadedComplete() && (
-					<>
-						<Navigation
-							isNavigationOpen={isNavigationOpen}
-							setIsNavigationOpen={setIsNavigationOpen}
-						/>
-						<Header
-							isLoadedComplete={isLoadedComplete}
-							isNavigationOpen={isNavigationOpen}
-							setIsNavigationOpen={setIsNavigationOpen}
-						/>
 
-						<Hero
-							isLoadedComplete={isLoadedComplete()}
-							isNavigationOpen={isNavigationOpen()}
-						/>
-						<AboutMe isLoadedComplete={isLoadedComplete()} />
-						<Intro isLoadedComplete={isLoadedComplete()} />
-						{/* <About isLoadedComplete={isLoadedComplete} /> */}
-						<Project isLoadedComplete={isLoadedComplete()} />
-						<Experience isLoadedComplete={isLoadedComplete()} />
-						<Service isLoadedComplete={isLoadedComplete()} />
-						<Footer />
-					</>
-				)}
+				<Hero
+					isNavigationOpen={isNavigationOpen()}
+				/>
+				<AboutMe />
+				<Intro isLoadedComplete={isLoadedComplete} />
+				<Project isLoadedComplete={isLoadedComplete} />
+				<Experience isLoadedComplete={isLoadedComplete} />
+				<Service isLoadedComplete={isLoadedComplete} />
+				<Footer />
 			</div>
 		</div>
 	);
