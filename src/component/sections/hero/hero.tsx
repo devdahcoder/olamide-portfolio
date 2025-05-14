@@ -140,6 +140,17 @@ const Hero: Component<{
 				observer.unobserve(entry.target);
 			}
 		});
+
+		gsap.to(".hero--text", {
+			scrollTrigger: {
+				trigger: ".hero--text--container",
+				start: "top 20%",
+				end: "bottom top",
+				scrub: true,
+				markers: true,
+			},
+			y: -50,
+		});
 	});
 
 	return (
@@ -189,12 +200,20 @@ const Hero: Component<{
 								</div>
 							</div>
 
-							<div data-speed="1" class="hero--intro--expertise">
-								<div class="intro--expertise">
+							<div class="hero--intro--expertise">
+								<div
+									data-lag="0.3"
+									data-speed="1"
+									class="intro--expertise"
+								>
 									<StarIcon class="w-8 h-8 mr-3 animate-spin ease-linear duration-1000" />
 									<p>Software &</p>
 								</div>{" "}
-								<div class="intro--expertise">
+								<div
+									data-lag="0.3"
+									data-speed="1"
+									class="intro--expertise"
+								>
 									<p>Creative Developer</p>
 								</div>
 							</div>

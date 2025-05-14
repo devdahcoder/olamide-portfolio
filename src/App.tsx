@@ -13,6 +13,7 @@ import Service from "./component/sections/service/service";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import About from "./component/sections/about/about.tsx";
 // import GlobalState from "./store.ts";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,8 +27,8 @@ function App() {
 		ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
 			content: "#smooth-content",
-			smooth: 1.5,
-			effects: true, // looks for data-speed and data-lag attributes
+			smooth: 2,
+			effects: true, 
 			smoothTouch: 0.1,
 		});
 
@@ -73,18 +74,16 @@ function App() {
 	return (
 		<div id="smooth-wrapper">
 			<div id="smooth-content">
-				
-				<Loader/>
+				<Loader />
 				<Header
 					isNavigationOpen={isNavigationOpen}
 					setIsNavigationOpen={setIsNavigationOpen}
 				/>
 
-				<Hero
-					isNavigationOpen={isNavigationOpen()}
-				/>
+				<Hero isNavigationOpen={isNavigationOpen()} />
 				<AboutMe />
 				<Intro isLoadedComplete={isLoadedComplete} />
+				<About isLoadedComplete={isLoadedComplete} />
 				<Project isLoadedComplete={isLoadedComplete} />
 				<Experience isLoadedComplete={isLoadedComplete} />
 				<Service isLoadedComplete={isLoadedComplete} />
