@@ -64,7 +64,11 @@ const FooterSocialMedia: Component<{}> = () => {
 	});
 
 	return (
-		<div class="footer--social--media--container">
+		<div
+			data-lag="0.3"
+			data-speed="1"
+			class="footer--social--media--container"
+		>
 			<div class="footer--social--media--sub--container">
 				<For each={socialMediaContent}>
 					{(props) => (

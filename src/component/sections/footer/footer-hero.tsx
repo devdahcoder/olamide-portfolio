@@ -102,13 +102,15 @@ const FooterHero: Component<{}> = () => {
 	return (
 		<div class="footer--hero--container">
 			<div class="footer--hero--sub--container">
-				<div class="footer--hero--text">
+				<div data-lag="0.3" data-speed="1" class="footer--hero--text">
 					<p>
 						interested in <br /> working together?
 					</p>
 					{/* <p>working together?</p> */}
 				</div>
 				<div
+					data-lag="0.3"
+					data-speed="1"
 					ref={emailContainerRef}
 					class="footer--hero--email--container relative"
 				>

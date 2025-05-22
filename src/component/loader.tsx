@@ -37,7 +37,7 @@ const Loader: Component<{}> = () => {
 	});
 
 	createEffect(() => {
-		if (!isLoaded()) return;
+		if (!isLoaded()) {return};
 
 		const tl = gsap.timeline();
 
@@ -50,6 +50,35 @@ const Loader: Component<{}> = () => {
 				ease: "power4.out",
 			})
 			.to(
+				".loader--grid",
+				{
+					scale: 1.1,
+					opacity: 0.7,
+					duration: 0.15,
+					stagger: 0.05,
+					ease: "power2.inOut",
+					yoyo: true,
+					repeat: 1,
+				},
+				">+0.1"
+			)
+
+			.to(
+				".loader--grid",
+				{
+					y: "-=10", 
+					duration: 0.2,
+					stagger: {
+						each: 0.08,
+						from: "edges", 
+						yoyo: true,
+						repeat: 1,
+					},
+					ease: "sine.inOut",
+				},
+				">+0.2"
+			)
+			.to(
 				".loader--cover",
 				{
 					y: 0,
@@ -59,7 +88,7 @@ const Loader: Component<{}> = () => {
 						pageLoaded();
 					},
 				},
-				"-=0.99"
+				">+0.1"
 			)
 			.to(".loader--container", {
 				yPercent: 100,

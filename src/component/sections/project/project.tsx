@@ -160,9 +160,9 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 	};
 
 	createEffect(() => {
-		const isLoadedComplete = props.isLoadedComplete();
+		props.isLoadedComplete();
 		elementObserver(projectSectionRefElement, (entry, observer) => {
-			if (entry.isIntersecting && isLoadedComplete) {
+			if (entry.isIntersecting) {
 				animateHeaderText();
 				animateProjectItems(); // Add the slide-up animation when section is visible
 				observer.unobserve(entry.target);

@@ -169,7 +169,7 @@
                 @include mixins.responsive(mdx) {
                     display: flex;
                     flex-direction: column;
-                    row-gap: 1rem;
+                    row-gap: 4rem;
                 }
 
                 .footer--credit--container {
