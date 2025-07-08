@@ -211,7 +211,7 @@ export const workContent: Array<WorkType> = [
             imageContainerClass: 'image--container',
             imageSubContainerClass: 'image--sub--container',
         },
-        title: 'Dre',
+        title: 'Shiga Business',
         description: 'Description for Work 1',
         date: '2023-01-15',
         link: 'https://business.payshiga.com/',
