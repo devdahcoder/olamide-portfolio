@@ -205,7 +205,7 @@ const Header: Component<{
 				<div class="header--util--container">
 					<div class="header--util--sub--container">
 						<a
-							href="https://docs.google.com/document/d/1Dm55xoI6NX_jATm1jJZ1-4yWJCf0iL7hbE83Oau7UbA/edit?usp=sharing"
+							href="https://docs.google.com/document/d/1BCIpHIkSnMdZ4WOwCKJezuCmW1n7aTsMF-JxZwtOrVc/edit?usp=sharing"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="header--resume--link"
@@ -227,7 +227,7 @@ const Header: Component<{
 								/>
 							</div>
 						</a>
-{/* 
+						{/* 
 						<Button
 							buttonClass="header--navigation--button"
 							buttonContainerClass="header--navigation--button--container"

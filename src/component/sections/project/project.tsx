@@ -164,14 +164,14 @@ const Project: Component<{ isLoadedComplete: Accessor<boolean> }> = (props) => {
 		elementObserver(projectSectionRefElement, (entry, observer) => {
 			if (entry.isIntersecting) {
 				animateHeaderText();
-				animateProjectItems(); // Add the slide-up animation when section is visible
+				animateProjectItems(); 
 				observer.unobserve(entry.target);
 			}
 		});
 	});
 
 	createEffect(() => {
-		if (!projectItemRef) return;
+		if (!projectItemRef) {return};
 
 		const handleMouseEnter = (e: MouseEvent) => {
 			const {

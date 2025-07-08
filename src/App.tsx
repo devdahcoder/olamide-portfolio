@@ -1,7 +1,6 @@
 import { createSignal, onMount } from "solid-js";
 import Loader from "./component/loader.tsx";
 import AboutMe from "./component/sections/about-me/about-me";
-// import About from "./component/sections/about/about";
 import Experience from "./component/sections/experience/experience.tsx";
 import Footer from "./component/sections/footer/footer";
 import Header from "./component/sections/header/header";
@@ -9,11 +8,9 @@ import Hero from "./component/sections/hero/hero";
 import Intro from "./component/sections/intro/intro";
 import Project from "./component/sections/project/project";
 import Service from "./component/sections/service/service";
-// import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-// import GlobalState from "./store.ts";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 

@@ -202,6 +202,24 @@ export const workContent: Array<WorkType> = [
         tools: ["Nextjs", "Axios", "GraphQl", "Unstated Next", "Javascript"],
         type: ["Design concept", "Website", "User Experience", "User Interface"]
     },
+    {
+        id: 6,
+        image: {
+            imageSrc: './images/',
+            imageAlt: 'Image 1',
+            imageClass: 'image',
+            imageContainerClass: 'image--container',
+            imageSubContainerClass: 'image--sub--container',
+        },
+        title: 'Dre',
+        description: 'Description for Work 1',
+        date: '2023-01-15',
+        link: 'https://business.payshiga.com/',
+        companyName: "Payshiga",
+        className: "start",
+        tools: ["Nextjs", "Axios", "GraphQl", "Zustand", "Javascript"],
+        type: ["Design concept", "Website", "User Experience", "User Interface"]
+    },
     // {
     //     id: 4,
     //     image: {
